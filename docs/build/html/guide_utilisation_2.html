@@ -1,0 +1,524 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guide d’utilisation 2 &mdash; On-Shelf Availibility (OSA)  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Solution 2 : Classification par Clustering Semi-Supervisé" href="solution_2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            On-Shelf Availibility (OSA)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sommaire</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeles.html">Modèles Préentraînés</a></li>
+<li class="toctree-l1"><a class="reference internal" href="train_models_results.html">Résultats d’entraînement des modèles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solution_2.html">Solution 2 : Classification par Clustering Semi-Supervisé</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Guide d’utilisation 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vue-d-ensemble">Vue d’ensemble</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fonctionnalites-principales">Fonctionnalités principales</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#detection-de-produits">🔍 Détection de produits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analyse-avancee">📊 Analyse avancée</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#export-des-resultats">📤 Export des résultats</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-et-configuration">Installation et configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequis">Prérequis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure-des-fichiers">Structure des fichiers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#guide-d-utilisation">Guide d’utilisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#demarrage-de-l-application">1. Démarrage de l’application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-initiale">2. Configuration initiale</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-des-modeles">Configuration des modèles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-des-classes-de-produits">Configuration des classes de produits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#seuils-de-confiance">Seuils de confiance</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#initialisation-du-pipeline">3. Initialisation du pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analyse-d-images">4. Analyse d’images</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#upload-d-image">Upload d’image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lancement-de-l-analyse">Lancement de l’analyse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interpretation-des-resultats">Interprétation des résultats</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#analyse-video">5. Analyse vidéo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-video">Configuration vidéo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#analyse-de-tendances">Analyse de tendances</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">6. Export des résultats</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#formats-disponibles">Formats disponibles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contenu-des-exports">Contenu des exports</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api-et-integration">API et intégration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#structure-des-resultats-json">Structure des résultats JSON</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pipeline-programmatique">Pipeline programmatique</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#optimisation-et-performances">Optimisation et performances</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#recommandations">Recommandations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limites">Limites</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#depannage">Dépannage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#problemes-courants">Problèmes courants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logs-et-debogage">Logs et débogage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#support-et-maintenance">Support et maintenance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mise-a-jour-des-modeles">Mise à jour des modèles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sauvegarde-des-configurations">Sauvegarde des configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cas-d-usage-avances">Cas d’usage avancés</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#integration-e-commerce">Intégration e-commerce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analyse-retail">Analyse retail</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#surveillance-en-temps-reel">Surveillance en temps réel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transfer-learning-pour-le-modele-de-classification">Transfer learning pour le modèle de classification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">Références</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">On-Shelf Availibility (OSA)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Guide d’utilisation 2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/guide_utilisation_2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="guide-d-utilisation-2">
+<h1>Guide d’utilisation 2<a class="headerlink" href="#guide-d-utilisation-2" title="Link to this heading"></a></h1>
+<section id="vue-d-ensemble">
+<h2>Vue d’ensemble<a class="headerlink" href="#vue-d-ensemble" title="Link to this heading"></a></h2>
+<p>L’application <strong>Retail Shelf Analysis</strong> est un outil d’analyse intelligent des rayons de magasin utilisant la vision par ordinateur et l’intelligence artificielle. Elle permet d’analyser automatiquement les niveaux de stock, détecter les produits manquants et générer des recommandations de réapprovisionnement.</p>
+</section>
+<section id="fonctionnalites-principales">
+<h2>Fonctionnalités principales<a class="headerlink" href="#fonctionnalites-principales" title="Link to this heading"></a></h2>
+<section id="detection-de-produits">
+<h3>🔍 Détection de produits<a class="headerlink" href="#detection-de-produits" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Détection automatique des produits sur les rayons</p></li>
+<li><p>Classification des produits par catégorie</p></li>
+<li><p>Détection des espaces vides (voids)</p></li>
+<li><p>Calcul précis des niveaux de stock</p></li>
+</ul>
+</section>
+<section id="analyse-avancee">
+<h3>📊 Analyse avancée<a class="headerlink" href="#analyse-avancee" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Analyse des images individuelles</p></li>
+<li><p>Analyse vidéo frame par frame</p></li>
+<li><p>Analyse de tendances temporelles</p></li>
+<li><p>Visualisations interactives</p></li>
+</ul>
+</section>
+<section id="export-des-resultats">
+<h3>📤 Export des résultats<a class="headerlink" href="#export-des-resultats" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Export JSON pour l’intégration système</p></li>
+<li><p>Export CSV pour l’analyse de données</p></li>
+<li><p>Rapports texte détaillés</p></li>
+<li><p>Visualisations téléchargeables</p></li>
+</ul>
+</section>
+</section>
+<section id="installation-et-configuration">
+<h2>Installation et configuration<a class="headerlink" href="#installation-et-configuration" title="Link to this heading"></a></h2>
+<section id="prerequis">
+<h3>Prérequis<a class="headerlink" href="#prerequis" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>streamlit<span class="w"> </span>opencv-python<span class="w"> </span>numpy<span class="w"> </span>pillow<span class="w"> </span>plotly<span class="w"> </span>pandas<span class="w"> </span>matplotlib
+</pre></div>
+</div>
+</section>
+<section id="structure-des-fichiers">
+<h3>Structure des fichiers<a class="headerlink" href="#structure-des-fichiers" title="Link to this heading"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>project/
+├── app.py                     # Application Streamlit principale
+├── pipeline.py               # Pipeline d&#39;analyse (EnhancedRetailPipeline)
+├── notebookClassification.ipynb  # Pour l&#39;entrainemnt du model de classifocation
+├── models/
+│   ├── individual_products.pt    # Modèle YOLO pour la détection
+│   ├── void.pt                   # Modèle de détection des voids
+│   └── classifier/
+│       ├── best_lightweight_cnn.pth  # Modèle CNN de classification
+│       └── model_info.json          # Informations sur les classes
+└── requirements.txt
+</pre></div>
+</div>
+</section>
+</section>
+<section id="guide-d-utilisation">
+<h2>Guide d’utilisation<a class="headerlink" href="#guide-d-utilisation" title="Link to this heading"></a></h2>
+<section id="demarrage-de-l-application">
+<h3>1. Démarrage de l’application<a class="headerlink" href="#demarrage-de-l-application" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>streamlit<span class="w"> </span>run<span class="w"> </span>app.py
+</pre></div>
+</div>
+</section>
+<section id="configuration-initiale">
+<h3>2. Configuration initiale<a class="headerlink" href="#configuration-initiale" title="Link to this heading"></a></h3>
+<section id="configuration-des-modeles">
+<h4>Configuration des modèles<a class="headerlink" href="#configuration-des-modeles" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Panneau latéral</strong> : Accédez aux paramètres de configuration</p></li>
+<li><p><strong>Chemins des modèles</strong> : Vérifiez ou modifiez les chemins vers vos modèles :</p>
+<ul class="simple">
+<li><p>Modèle YOLO : <code class="docutils literal notranslate"><span class="pre">models/individual_products.pt</span></code></p></li>
+<li><p>Modèle CNN : <code class="docutils literal notranslate"><span class="pre">models/classifier/best_lightweight_cnn.pth</span></code></p></li>
+<li><p>Modèle Void : <code class="docutils literal notranslate"><span class="pre">models/void.pt</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="configuration-des-classes-de-produits">
+<h4>Configuration des classes de produits<a class="headerlink" href="#configuration-des-classes-de-produits" title="Link to this heading"></a></h4>
+<p>Les noms des classes sont automatiquement chargés depuis <code class="docutils literal notranslate"><span class="pre">model_info.json</span></code>. Si le fichier n’existe pas, vous pouvez les saisir manuellement :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cocacola,oil,water,juice,soda
+</pre></div>
+</div>
+</section>
+<section id="seuils-de-confiance">
+<h4>Seuils de confiance<a class="headerlink" href="#seuils-de-confiance" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Détection de produits</strong> : 0.5 (recommandé)</p></li>
+<li><p><strong>Détection de voids</strong> : 0.5 (recommandé)</p></li>
+</ul>
+</section>
+</section>
+<section id="initialisation-du-pipeline">
+<h3>3. Initialisation du pipeline<a class="headerlink" href="#initialisation-du-pipeline" title="Link to this heading"></a></h3>
+<p>Cliquez sur <strong>“🚀 Initialize Pipeline”</strong> dans le panneau latéral pour charger les modèles.</p>
+</section>
+<section id="analyse-d-images">
+<h3>4. Analyse d’images<a class="headerlink" href="#analyse-d-images" title="Link to this heading"></a></h3>
+<section id="upload-d-image">
+<h4>Upload d’image<a class="headerlink" href="#upload-d-image" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Dans la section <strong>“📁 Upload Media”</strong></p></li>
+<li><p>Sélectionnez une image (JPG, PNG, BMP)</p></li>
+<li><p>L’image s’affiche automatiquement</p></li>
+</ol>
+</section>
+<section id="lancement-de-l-analyse">
+<h4>Lancement de l’analyse<a class="headerlink" href="#lancement-de-l-analyse" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Cliquez sur <strong>“🔍 Analyze Image”</strong></p></li>
+<li><p>Attendez le traitement (quelques secondes)</p></li>
+<li><p>Les résultats s’affichent automatiquement</p></li>
+</ol>
+</section>
+<section id="interpretation-des-resultats">
+<h4>Interprétation des résultats<a class="headerlink" href="#interpretation-des-resultats" title="Link to this heading"></a></h4>
+<p><strong>Métriques générales :</strong></p>
+<ul class="simple">
+<li><p><strong>Total Products</strong> : Nombre total de produits détectés</p></li>
+<li><p><strong>Missing Products</strong> : Estimation des produits manquants</p></li>
+<li><p><strong>Overall Stock</strong> : Pourcentage de stock global</p></li>
+</ul>
+<p><strong>Visualisations :</strong></p>
+<ul class="simple">
+<li><p><strong>Graphique en barres</strong> : Comparaison stock actuel vs manquant</p></li>
+<li><p><strong>Jauges de stock</strong> : Niveau de stock par produit</p></li>
+<li><p><strong>Tableau détaillé</strong> : Informations complètes par produit</p></li>
+</ul>
+<p><strong>Statuts de stock :</strong></p>
+<ul class="simple">
+<li><p>🟢 <strong>GOOD</strong> (≥90%) : Stock suffisant</p></li>
+<li><p>🟡 <strong>MODERATE</strong> (70-89%) : Stock moyen</p></li>
+<li><p>🔴 <strong>LOW</strong> (&lt;70%) : Stock faible - réapprovisionnement nécessaire</p></li>
+</ul>
+</section>
+</section>
+<section id="analyse-video">
+<h3>5. Analyse vidéo<a class="headerlink" href="#analyse-video" title="Link to this heading"></a></h3>
+<section id="configuration-video">
+<h4>Configuration vidéo<a class="headerlink" href="#configuration-video" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Frame Interval</strong> : Intervalle d’extraction (secondes)</p></li>
+<li><p><strong>Max Frames</strong> : Nombre maximum de frames à analyser</p></li>
+<li><p><strong>Analysis Mode</strong> : Mode d’analyse</p>
+<ul class="simple">
+<li><p><strong>Single Frame</strong> : Analyse d’une frame</p></li>
+<li><p><strong>Multiple Frames</strong> : Analyse de plusieurs frames</p></li>
+<li><p><strong>Trend Analysis</strong> : Analyse des tendances</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="analyse-de-tendances">
+<h4>Analyse de tendances<a class="headerlink" href="#analyse-de-tendances" title="Link to this heading"></a></h4>
+<p>L’analyse de tendances permet de :</p>
+<ul class="simple">
+<li><p>Suivre l’évolution du stock dans le temps</p></li>
+<li><p>Identifier les patterns de consommation</p></li>
+<li><p>Visualiser les tendances par produit</p></li>
+<li><p>Analyser frame par frame</p></li>
+</ul>
+</section>
+</section>
+<section id="id1">
+<h3>6. Export des résultats<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<section id="formats-disponibles">
+<h4>Formats disponibles<a class="headerlink" href="#formats-disponibles" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>JSON</strong> : Données structurées pour l’intégration</p></li>
+<li><p><strong>CSV</strong> : Tableau pour l’analyse Excel</p></li>
+<li><p><strong>Rapport texte</strong> : Résumé détaillé lisible</p></li>
+</ol>
+</section>
+<section id="contenu-des-exports">
+<h4>Contenu des exports<a class="headerlink" href="#contenu-des-exports" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Inventaire détaillé par produit</p></li>
+<li><p>Pourcentages de stock</p></li>
+<li><p>Recommandations de réapprovisionnement</p></li>
+<li><p>Timestamp d’analyse</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="api-et-integration">
+<h2>API et intégration<a class="headerlink" href="#api-et-integration" title="Link to this heading"></a></h2>
+<section id="structure-des-resultats-json">
+<h3>Structure des résultats JSON<a class="headerlink" href="#structure-des-resultats-json" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;total_products_detected&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;estimated_missing_products&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;overall_stock_percentage&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">83.3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;stock_levels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;cocacola&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;current_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;missing_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;full_capacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;stock_percentage&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">80.0</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="pipeline-programmatique">
+<h3>Pipeline programmatique<a class="headerlink" href="#pipeline-programmatique" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnhancedRetailPipeline</span>
+
+<span class="c1"># Initialisation</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">EnhancedRetailPipeline</span><span class="p">(</span>
+    <span class="n">yolo_model_path</span><span class="o">=</span><span class="s2">&quot;models/individual_products.pt&quot;</span><span class="p">,</span>
+    <span class="n">cnn_model_path</span><span class="o">=</span><span class="s2">&quot;models/classifier/best_lightweight_cnn.pth&quot;</span><span class="p">,</span>
+    <span class="n">void_model_path</span><span class="o">=</span><span class="s2">&quot;models/void.pt&quot;</span><span class="p">,</span>
+    <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cocacola&quot;</span><span class="p">,</span> <span class="s2">&quot;oil&quot;</span><span class="p">,</span> <span class="s2">&quot;water&quot;</span><span class="p">],</span>
+    <span class="n">confidence_threshold</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="p">)</span>
+
+<span class="c1"># Analyse</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">detect_and_classify_complete</span><span class="p">(</span><span class="s2">&quot;image.jpg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="optimisation-et-performances">
+<h2>Optimisation et performances<a class="headerlink" href="#optimisation-et-performances" title="Link to this heading"></a></h2>
+<section id="recommandations">
+<h3>Recommandations<a class="headerlink" href="#recommandations" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Images</strong> : Résolution optimale 1024x768 pixels</p></li>
+<li><p><strong>Éclairage</strong> : Éclairage uniforme recommandé</p></li>
+<li><p><strong>Angle</strong> : Vue frontale perpendiculaire au rayon</p></li>
+<li><p><strong>Qualité</strong> : Images nettes sans flou de mouvement</p></li>
+</ol>
+</section>
+<section id="limites">
+<h3>Limites<a class="headerlink" href="#limites" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Temps de traitement : 2-10 secondes par image</p></li>
+<li><p>Formats supportés : JPG, PNG, BMP, MP4, AVI, MOV</p></li>
+<li><p>Taille maximale recommandée : 10 MB par fichier</p></li>
+</ul>
+</section>
+</section>
+<section id="depannage">
+<h2>Dépannage<a class="headerlink" href="#depannage" title="Link to this heading"></a></h2>
+<section id="problemes-courants">
+<h3>Problèmes courants<a class="headerlink" href="#problemes-courants" title="Link to this heading"></a></h3>
+<p><strong>Pipeline non initialisé :</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>⚠️ Please configure and initialize the pipeline in the sidebar first.
+</pre></div>
+</div>
+<p><strong>Solution :</strong> Vérifiez les chemins des modèles et cliquez sur “Initialize Pipeline”</p>
+<p><strong>Erreur de modèle :</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>❌ Error initializing pipeline: [Errno 2] No such file or directory
+</pre></div>
+</div>
+<p><strong>Solution :</strong> Vérifiez que les fichiers de modèles existent aux chemins spécifiés</p>
+<p><strong>Erreur de classe :</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Class names mismatch
+</pre></div>
+</div>
+<p><strong>Solution :</strong> Vérifiez que les noms de classes correspondent à ceux du modèle</p>
+</section>
+<section id="logs-et-debogage">
+<h3>Logs et débogage<a class="headerlink" href="#logs-et-debogage" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Les erreurs s’affichent directement dans l’interface</p></li>
+<li><p>Vérifiez la console pour les détails techniques</p></li>
+<li><p>Consultez les chemins de fichiers dans la configuration</p></li>
+</ul>
+</section>
+</section>
+<section id="support-et-maintenance">
+<h2>Support et maintenance<a class="headerlink" href="#support-et-maintenance" title="Link to this heading"></a></h2>
+<section id="mise-a-jour-des-modeles">
+<h3>Mise à jour des modèles<a class="headerlink" href="#mise-a-jour-des-modeles" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Remplacez les fichiers dans le dossier <code class="docutils literal notranslate"><span class="pre">models/</span></code></p></li>
+<li><p>Mettez à jour <code class="docutils literal notranslate"><span class="pre">model_info.json</span></code> si nécessaire</p></li>
+<li><p>Redémarrez l’application</p></li>
+</ol>
+</section>
+<section id="sauvegarde-des-configurations">
+<h3>Sauvegarde des configurations<a class="headerlink" href="#sauvegarde-des-configurations" title="Link to this heading"></a></h3>
+<p>Les configurations sont sauvegardées dans la session Streamlit et doivent être reconfigurées à chaque redémarrage.</p>
+</section>
+</section>
+<section id="cas-d-usage-avances">
+<h2>Cas d’usage avancés<a class="headerlink" href="#cas-d-usage-avances" title="Link to this heading"></a></h2>
+<section id="integration-e-commerce">
+<h3>Intégration e-commerce<a class="headerlink" href="#integration-e-commerce" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Surveillance automatique des stocks</p></li>
+<li><p>Alertes de réapprovisionnement</p></li>
+<li><p>Optimisation des achats</p></li>
+</ul>
+</section>
+<section id="analyse-retail">
+<h3>Analyse retail<a class="headerlink" href="#analyse-retail" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Études de comportement consommateur</p></li>
+<li><p>Optimisation des planogrammes</p></li>
+<li><p>Contrôle qualité des rayons</p></li>
+</ul>
+</section>
+<section id="surveillance-en-temps-reel">
+<h3>Surveillance en temps réel<a class="headerlink" href="#surveillance-en-temps-reel" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Caméras de surveillance intégrées</p></li>
+<li><p>Analyses périodiques automatisées</p></li>
+<li><p>Tableaux de bord temps réel</p></li>
+</ul>
+</section>
+<section id="transfer-learning-pour-le-modele-de-classification">
+<h3>Transfer learning pour le modèle de classification<a class="headerlink" href="#transfer-learning-pour-le-modele-de-classification" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Il est possible d’ajouter de nouvelles classes de produits.</p></li>
+<li><p>Préparez vos images et leurs classes en utilisant une approche de clustering pour faciliter l’annotation.</p></li>
+<li><p>Effectuez un entraînement par transfert (Transfer Learning) sur ces nouvelles classes.</p></li>
+<li><p>Réutilisez ensuite le modèle pour la classification.</p></li>
+<li><p>Utilisez le notebook <cite>notebookClassification.ipynb</cite>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Cette documentation couvre l’utilisation complète de l’application Retail Shelf Analysis. Pour des questions spécifiques ou des fonctionnalités avancées, consultez le code source ou me contactez .</p>
+</div>
+</section>
+</section>
+<section id="references">
+<h2>Références<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.streamlit.io/">Documentation Streamlit</a></p></li>
+<li><p><a class="reference external" href="https://docs.opencv.org/">OpenCV Documentation</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ultralytics/yolov5">YOLO Documentation</a></p></li>
+<li><p><a class="reference external" href="https://pytorch.org/docs/">PyTorch Documentation</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="solution_2.html" class="btn btn-neutral float-left" title="Solution 2 : Classification par Clustering Semi-Supervisé" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Abderrahman Es-safi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

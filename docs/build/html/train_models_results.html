@@ -1,0 +1,689 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Résultats d’entraînement des modèles &mdash; On-Shelf Availibility (OSA)  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Solution 2 : Classification par Clustering Semi-Supervisé" href="solution_2.html" />
+    <link rel="prev" title="Modèles Préentraînés" href="modeles.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            On-Shelf Availibility (OSA)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sommaire</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeles.html">Modèles Préentraînés</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Résultats d’entraînement des modèles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#detection-des-espaces-vides-void-pt">Détection des espaces vides (void.pt)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comparaison-des-architectures">Comparaison des architectures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#yolov8-dataset-original">YOLOv8 - Dataset Original</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#yolov8-dataset-augmente">YOLOv8 - Dataset Augmenté</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#yolov8-transfer-learning">YOLOv8 - Transfer Learning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#yolov8-augmented-dataset">YOLOv8 - Augmented Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#yolov8-new-dataset-marjan-dataset">YOLOv8 - New Dataset + marjan Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#yolov11">YOLOv11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">YOLOv11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detr-approche-transformer">DETR - Approche Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#analyse-des-erreurs">Analyse des Erreurs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#detection-des-produits-individuals-sku-pt">Détection des produits individuals (sku.pt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#annexes-techniques">Annexes Techniques</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-materielle">Configuration Matérielle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jeux-de-donnees">Jeux de Données</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#glossaire">Glossaire</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solution_2.html">Solution 2 : Classification par Clustering Semi-Supervisé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide_utilisation_2.html">Guide d’utilisation 2</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">On-Shelf Availibility (OSA)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Résultats d’entraînement des modèles</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/train_models_results.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="resultats-d-entrainement-des-modeles">
+<h1>Résultats d’entraînement des modèles<a class="headerlink" href="#resultats-d-entrainement-des-modeles" title="Link to this heading"></a></h1>
+<p>Cette documentation présente les résultats d’entraînement des différents modèles utilisés dans notre système de détection On-Shelf Availability (OSA).</p>
+<nav class="contents local" id="table-des-matieres">
+<p class="topic-title">Table des matières</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#detection-des-espaces-vides-void-pt" id="id33">Détection des espaces vides (void.pt)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#comparaison-des-architectures" id="id34">Comparaison des architectures</a></p>
+<ul>
+<li><p><a class="reference internal" href="#yolov8-dataset-original" id="id35">YOLOv8 - Dataset Original</a></p></li>
+<li><p><a class="reference internal" href="#yolov8-dataset-augmente" id="id36">YOLOv8 - Dataset Augmenté</a></p></li>
+<li><p><a class="reference internal" href="#yolov8-transfer-learning" id="id37">YOLOv8 - Transfer Learning</a></p></li>
+<li><p><a class="reference internal" href="#yolov8-augmented-dataset" id="id38">YOLOv8 - Augmented Dataset</a></p></li>
+<li><p><a class="reference internal" href="#yolov8-new-dataset-marjan-dataset" id="id39">YOLOv8 - New Dataset + marjan Dataset</a></p></li>
+<li><p><a class="reference internal" href="#yolov11" id="id40">YOLOv11</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id41">YOLOv11</a></p></li>
+<li><p><a class="reference internal" href="#detr-approche-transformer" id="id42">DETR - Approche Transformer</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#analyse-des-erreurs" id="id43">Analyse des Erreurs</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#detection-des-produits-individuals-sku-pt" id="id44">Détection des produits individuals (sku.pt)</a></p></li>
+<li><p><a class="reference internal" href="#annexes-techniques" id="id45">Annexes Techniques</a></p>
+<ul>
+<li><p><a class="reference internal" href="#configuration-materielle" id="id46">Configuration Matérielle</a></p></li>
+<li><p><a class="reference internal" href="#jeux-de-donnees" id="id47">Jeux de Données</a></p></li>
+<li><p><a class="reference internal" href="#glossaire" id="id48">Glossaire</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="detection-des-espaces-vides-void-pt">
+<h2><a class="toc-backref" href="#id33" role="doc-backlink">Détection des espaces vides (void.pt)</a><a class="headerlink" href="#detection-des-espaces-vides-void-pt" title="Link to this heading"></a></h2>
+<section id="comparaison-des-architectures">
+<h3><a class="toc-backref" href="#id34" role="doc-backlink">Comparaison des architectures</a><a class="headerlink" href="#comparaison-des-architectures" title="Link to this heading"></a></h3>
+<p>Nous avons évalué plusieurs approches pour la détection des espaces vides :</p>
+<ol class="arabic simple">
+<li><p>YOLOv8 avec le dataset Marjan original 200 images</p></li>
+<li><p>YOLOv8 avec augmentation de données 600 images</p></li>
+<li><p>Transfer Learning à partir du modèle YOLOv8 avec dataset augmenté avec une dataset de 2300 images via kaggle</p></li>
+<li><p>YOLOv8 avec augmentation de données avec une dataset via Roboflow de 3000 images</p></li>
+<li><p>YOLOv11</p></li>
+<li><p>DETR (approche transformer)</p></li>
+</ol>
+<section id="yolov8-dataset-original">
+<h4><a class="toc-backref" href="#id35" role="doc-backlink">YOLOv8 - Dataset Original</a><a class="headerlink" href="#yolov8-dataset-original" title="Link to this heading"></a></h4>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Performance YOLOv8 - Dataset Original</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Métrique</p></th>
+<th class="head"><p>mAP50</p></th>
+<th class="head"><p>mAP50-95</p></th>
+<th class="head"><p>Précision</p></th>
+<th class="head"><p>Rappel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global</p></td>
+<td><p>0.743</p></td>
+<td><p>0.359</p></td>
+<td><p>0.832</p></td>
+<td><p>0.635</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Augmentations appliquées</strong> : Aucune</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="_images/void_1_Matrix.png"><img alt="Matrice de confusion YOLOv8 pour la détection des espaces vides" src="_images/void_1_Matrix.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Matrice de confusion YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="_images/void_1_results.png"><img alt="Courbe précision-rappel YOLOv8 pour la détection des espaces vides" src="_images/void_1_results.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Les Courbe  d’entrenement YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="yolov8-dataset-augmente">
+<h4><a class="toc-backref" href="#id36" role="doc-backlink">YOLOv8 - Dataset Augmenté</a><a class="headerlink" href="#yolov8-dataset-augmente" title="Link to this heading"></a></h4>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Performance YOLOv8 - Dataset Augmenté</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Métrique</p></th>
+<th class="head"><p>mAP50</p></th>
+<th class="head"><p>mAP50-95</p></th>
+<th class="head"><p>Précision</p></th>
+<th class="head"><p>Rappel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global</p></td>
+<td><p>0.723</p></td>
+<td><p>0.366</p></td>
+<td><p>0.695</p></td>
+<td><p>0.695</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Augmentations appliquées</strong> :
+- 50% probabilité de flip horizontal
+- Recadrage aléatoire (0-16%)
+- Rotation (-14° à +14°)
+- Ajustement de luminosité (±25%)
+- Flou gaussien (0-0.7 pixels)</p>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="_images/void_2_matrix.png"><img alt="Matrice de confusion YOLOv8 pour la détection des espaces vides" src="_images/void_2_matrix.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Matrice de confusion YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="_images/void_2_results.png"><img alt="Courbe précision-rappel YOLOv8 pour la détection des espaces vides" src="_images/void_2_results.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Les Courbe  d’entrenement YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="yolov8-transfer-learning">
+<h4><a class="toc-backref" href="#id37" role="doc-backlink">YOLOv8 - Transfer Learning</a><a class="headerlink" href="#yolov8-transfer-learning" title="Link to this heading"></a></h4>
+<p>Using kaggle dataset
+.. list-table:: Performance Transfer Learning</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">widths<span class="colon">:</span></dt>
+<dd class="field-odd"><p>25 20 20 20 15</p>
+</dd>
+<dt class="field-even">header-rows<span class="colon">:</span></dt>
+<dd class="field-even"><p>1</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><ul>
+<li><p>Métrique</p></li>
+<li><p>mAP50</p></li>
+<li><p>mAP50-95</p></li>
+<li><p>Précision</p></li>
+<li><p>Rappel</p></li>
+</ul>
+</li>
+<li><ul>
+<li><p>Global</p></li>
+<li><p>0.62</p></li>
+<li><p>0.301</p></li>
+<li><p>0.644</p></li>
+<li><p>0.551</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>Analyse</strong> : Le transfer learning n’a pas donné de bons résultats, probablement en raison d’un surapprentissage sur le dataset source.</p>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="_images/void_3_tf_matrix.png"><img alt="Matrice de confusion YOLOv8 pour la détection des espaces vides" src="_images/void_3_tf_matrix.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Matrice de confusion YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="_images/void_3_tf_results.png"><img alt="Courbe précision-rappel YOLOv8 pour la détection des espaces vides" src="_images/void_3_tf_results.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Les Courbe  des entrenement YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="yolov8-augmented-dataset">
+<h4><a class="toc-backref" href="#id38" role="doc-backlink">YOLOv8 - Augmented Dataset</a><a class="headerlink" href="#yolov8-augmented-dataset" title="Link to this heading"></a></h4>
+<table class="docutils align-default" id="id10">
+<caption><span class="caption-text">Performance - augmentation</span><a class="headerlink" href="#id10" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Métrique</p></th>
+<th class="head"><p>mAP50</p></th>
+<th class="head"><p>mAP50-95</p></th>
+<th class="head"><p>Précision</p></th>
+<th class="head"><p>Rappel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global</p></td>
+<td><p>0.708</p></td>
+<td><p>0.376</p></td>
+<td><p>0.712</p></td>
+<td><p>0.665</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id11">
+<a class="reference internal image-reference" href="_images/void_4_matrix.png"><img alt="Matrice de confusion YOLOv8 pour la détection des espaces vides" src="_images/void_4_matrix.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Matrice de confusion YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id12">
+<a class="reference internal image-reference" href="_images/void_4_results.png"><img alt="Courbe précision-rappel YOLOv8 pour la détection des espaces vides" src="_images/void_4_results.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Les Courbe  des entrenement YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="yolov8-new-dataset-marjan-dataset">
+<h4><a class="toc-backref" href="#id39" role="doc-backlink">YOLOv8 - New Dataset + marjan Dataset</a><a class="headerlink" href="#yolov8-new-dataset-marjan-dataset" title="Link to this heading"></a></h4>
+<table class="docutils align-default" id="id13">
+<caption><span class="caption-text">Performance - augmentation</span><a class="headerlink" href="#id13" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Métrique</p></th>
+<th class="head"><p>mAP50</p></th>
+<th class="head"><p>mAP50-95</p></th>
+<th class="head"><p>Précision</p></th>
+<th class="head"><p>Rappel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global</p></td>
+<td><p>0.9544</p></td>
+<td><p>0.66</p></td>
+<td><p>0.932</p></td>
+<td><p>0.91</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id14">
+<a class="reference internal image-reference" href="_images/void_5_matrix.png"><img alt="Matrice de confusion YOLOv8 pour la détection des espaces vides" src="_images/void_5_matrix.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Matrice de confusion YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id15">
+<a class="reference internal image-reference" href="_images/void_5_results.png"><img alt="Courbe précision-rappel YOLOv8 pour la détection des espaces vides" src="_images/void_5_results.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Les Courbe  des entrenement YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id15" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="yolov11">
+<h4><a class="toc-backref" href="#id40" role="doc-backlink">YOLOv11</a><a class="headerlink" href="#yolov11" title="Link to this heading"></a></h4>
+<table class="docutils align-default" id="id16">
+<caption><span class="caption-text">Performance YOLOv11 - Dataset Original</span><a class="headerlink" href="#id16" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Métrique</p></th>
+<th class="head"><p>mAP50</p></th>
+<th class="head"><p>mAP50-95</p></th>
+<th class="head"><p>Précision</p></th>
+<th class="head"><p>Rappel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global</p></td>
+<td><p>0.73</p></td>
+<td><p>0.374</p></td>
+<td><p>0.736</p></td>
+<td><p>0.679</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Augmentations appliquées</strong> : Aucune</p>
+<figure class="align-center" id="id17">
+<a class="reference internal image-reference" href="_images/void1_yolo11_matrix.png"><img alt="Matrice de confusion YOLOv8 pour la détection des espaces vides" src="_images/void1_yolo11_matrix.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Matrice de confusion YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id17" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id18">
+<a class="reference internal image-reference" href="_images/void1_yolo11_results.png"><img alt="Courbe précision-rappel YOLOv8 pour la détection des espaces vides" src="_images/void1_yolo11_results.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Les Courbe  d’entrenement YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id18" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id1">
+<h4><a class="toc-backref" href="#id41" role="doc-backlink">YOLOv11</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<table class="docutils align-default" id="id19">
+<caption><span class="caption-text">Performance YOLOv11 - Dataset Original</span><a class="headerlink" href="#id19" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Métrique</p></th>
+<th class="head"><p>mAP50</p></th>
+<th class="head"><p>mAP50-95</p></th>
+<th class="head"><p>Précision</p></th>
+<th class="head"><p>Rappel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global</p></td>
+<td><p>0.918</p></td>
+<td><p>0.561</p></td>
+<td><p>0.871</p></td>
+<td><p>0.865</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Augmentations appliquées</strong> : New Dataset + Marjan</p>
+<figure class="align-center" id="id20">
+<a class="reference internal image-reference" href="_images/void2_yolo11_matrix.png"><img alt="Matrice de confusion YOLOv8 pour la détection des espaces vides" src="_images/void2_yolo11_matrix.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Matrice de confusion YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id20" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id21">
+<a class="reference internal image-reference" href="_images/void2_yolo11_results.png"><img alt="Courbe précision-rappel YOLOv8 pour la détection des espaces vides" src="_images/void2_yolo11_results.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Les Courbe  d’entrenement YOLOv8 pour la détection des espaces vides</span><a class="headerlink" href="#id21" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="detr-approche-transformer">
+<h4><a class="toc-backref" href="#id42" role="doc-backlink">DETR - Approche Transformer</a><a class="headerlink" href="#detr-approche-transformer" title="Link to this heading"></a></h4>
+<figure class="align-center" id="id22">
+<a class="reference internal image-reference" href="_images/DTER_results.png"><img alt="Courbe précision-rappel YOLOv8 pour la détection des espaces vides" src="_images/DTER_results.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Les Courbe  d’entrenement pour la détection des espaces vides</span><a class="headerlink" href="#id22" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><strong>Analyse comparative</strong> :</p>
+<p><strong>Conclusion</strong> : YOLOv8 offre le meilleur compromis avec 95.4% mAP50</p>
+</section>
+</section>
+<section id="analyse-des-erreurs">
+<h3><a class="toc-backref" href="#id43" role="doc-backlink">Analyse des Erreurs</a><a class="headerlink" href="#analyse-des-erreurs" title="Link to this heading"></a></h3>
+<p>Les principales causes d’erreurs :
+1. <strong>Occlusion</strong> : Produits partiellement cachés (23% des erreurs)
+2. <strong>Reflets</strong> : Sur les emballages métalliques (17%)
+3. <strong>Similarité visuelle</strong> : Entre produits de même marque (15%)
+4. <strong>Taille petite</strong> : Produits &lt;50px (12%)</p>
+</section>
+</section>
+<section id="detection-des-produits-individuals-sku-pt">
+<h2><a class="toc-backref" href="#id44" role="doc-backlink">Détection des produits individuals (sku.pt)</a><a class="headerlink" href="#detection-des-produits-individuals-sku-pt" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id23">
+<caption><span class="caption-text">Performance détection étagères</span><a class="headerlink" href="#id23" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 28.6%" />
+<col style="width: 19.0%" />
+<col style="width: 19.0%" />
+<col style="width: 19.0%" />
+<col style="width: 14.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrique</p></th>
+<th class="head"><p>mAP50</p></th>
+<th class="head"><p>mAP50-95</p></th>
+<th class="head"><p>Précision</p></th>
+<th class="head"><p>Rappel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global</p></td>
+<td><p>0.916</p></td>
+<td><p>0.586</p></td>
+<td><p>0.905</p></td>
+<td><p>0.845</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id24">
+<a class="reference internal image-reference" href="_images/sku_matrix.png"><img alt="Matrice de confusion YOLOv8 pour la détection des espaces vides" src="_images/sku_matrix.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Matrice de confusion YOLOv8 pour la détection des objects</span><a class="headerlink" href="#id24" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id25">
+<a class="reference internal image-reference" href="_images/sku_matrix_nor.png"><img alt="Matrice de confusion YOLOv8 pour la détection des espaces vides" src="_images/sku_matrix_nor.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Matrice de confusion normalisee YOLOv8 pour la détection des objects</span><a class="headerlink" href="#id25" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id26">
+<a class="reference internal image-reference" href="_images/sku_results.png"><img alt="Courbe précision-rappel YOLOv8 pour la détection des espaces vides" src="_images/sku_results.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Les Courbe  d’entrenement YOLOv8 pour la détection des objects.</span><a class="headerlink" href="#id26" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default" id="id27">
+<caption><span class="caption-text">Performance détection étagères</span><a class="headerlink" href="#id27" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 28.6%" />
+<col style="width: 19.0%" />
+<col style="width: 19.0%" />
+<col style="width: 19.0%" />
+<col style="width: 14.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrique</p></th>
+<th class="head"><p>mAP50</p></th>
+<th class="head"><p>mAP50-95</p></th>
+<th class="head"><p>Précision</p></th>
+<th class="head"><p>Rappel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global</p></td>
+<td><p>0.951</p></td>
+<td><p>0.794</p></td>
+<td><p>0.91</p></td>
+<td><p>0.924</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id28">
+<a class="reference internal image-reference" href="_images/sku_mp_matrix.png"><img alt="Matrice de confusion YOLOv8 pour la détection des espaces vides" src="_images/sku_mp_matrix.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Matrice de confusion YOLOv8 pour la détection des objects</span><a class="headerlink" href="#id28" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id29">
+<a class="reference internal image-reference" href="_images/sku_mp_matrix_nor.png"><img alt="Matrice de confusion YOLOv8 pour la détection des espaces vides" src="_images/sku_mp_matrix_nor.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Matrice de confusion normalisee YOLOv8 pour la détection des objects</span><a class="headerlink" href="#id29" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id30">
+<a class="reference internal image-reference" href="_images/sku_mp_results.png"><img alt="Courbe précision-rappel YOLOv8 pour la détection des espaces vides" src="_images/sku_mp_results.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Les Courbe  d’entrenement YOLOv8 pour la détection des objects.</span><a class="headerlink" href="#id30" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="annexes-techniques">
+<h2><a class="toc-backref" href="#id45" role="doc-backlink">Annexes Techniques</a><a class="headerlink" href="#annexes-techniques" title="Link to this heading"></a></h2>
+<section id="configuration-materielle">
+<h3><a class="toc-backref" href="#id46" role="doc-backlink">Configuration Matérielle</a><a class="headerlink" href="#configuration-materielle" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id31">
+<caption><span class="caption-text">Environnement d’entraînement</span><a class="headerlink" href="#id31" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>GPU</strong></p></td>
+<td><p>8x NVIDIA A100 80GB</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>CPU</strong></p></td>
+<td><p>2x Intel Xeon Gold 6342</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>RAM</strong></p></td>
+<td><p>1TB DDR4</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Stockage</strong></p></td>
+<td><p>20TB NVMe RAID</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>OS</strong></p></td>
+<td><p>Ubuntu 22.04 LTS</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="jeux-de-donnees">
+<h3><a class="toc-backref" href="#id47" role="doc-backlink">Jeux de Données</a><a class="headerlink" href="#jeux-de-donnees" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id32">
+<caption><span class="caption-text"><strong>Statistiques des datasets</strong></span><a class="headerlink" href="#id32" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Images</p></th>
+<th class="head"><p>Classes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Voids</p></td>
+<td><p>+8 000</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Shelves</p></td>
+<td><p>+6 000</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Products</p></td>
+<td><p>+500</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Product pour Sku</p></td>
+<td><p>+10 000</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="glossaire">
+<h3><a class="toc-backref" href="#id48" role="doc-backlink">Glossaire</a><a class="headerlink" href="#glossaire" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>mAP50</strong> : Mean Average Precision à IoU=50%</p></li>
+<li><p><strong>mAP50-95</strong> : mAP moyenne sur IoU de 50% à 95%</p></li>
+<li><p><strong>IoU</strong> : Intersection over Union</p></li>
+<li><p><strong>TP/FP/FN</strong> : Vrais/Faux Positifs, Faux Négatifs</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modeles.html" class="btn btn-neutral float-left" title="Modèles Préentraînés" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="solution_2.html" class="btn btn-neutral float-right" title="Solution 2 : Classification par Clustering Semi-Supervisé" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Abderrahman Es-safi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

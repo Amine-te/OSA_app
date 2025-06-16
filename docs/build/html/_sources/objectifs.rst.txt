@@ -1,0 +1,10 @@
+Objectifs du Système
+====================
+
+Le système a pour objectifs :
+
+- Détecter les espaces vides sur les étagères.
+- Identifier et localiser les étagères dans l'environnement commercial.
+- Reconnaître les produits présents sur les rayons.
+- Générer des rapports sur l'état des stocks en temps réel.
+- Alerter le personnel en cas de rupture de stock.

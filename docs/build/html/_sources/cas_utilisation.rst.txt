@@ -1,0 +1,9 @@
+Cas d'Utilisation
+=================
+
+Voici les cas d’utilisation principaux du système :
+
+- Surveillance continue des rayons en magasin.
+- Audit de merchandising.
+- Optimisation de la chaîne d'approvisionnement.
+- Analyse des performances commerciales.

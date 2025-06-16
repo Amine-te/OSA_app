@@ -1,0 +1,32 @@
+Notre Équipe
+============
+
+Ce projet a été réalisé par une équipe d’étudiants motivés, encadrée par un enseignant expert dans le domaine de l’intelligence artificielle appliquée.
+
+Membres de l’équipe
+-------------------
+
+- **Es-safi Abderrahman** – AI and Data Technologies Engineering student  🔗 |linkedin_es-safi|
+
+
+- **Faris Amine** – AI and Data Technologies Engineering student  🔗 |linkedin_faris|
+
+.. |linkedin_es-safi| image:: _static\linkedin_image.png
+    :width: 40
+    :height: 40
+    :target: https://www.linkedin.com/in/abderrahman-es-safi-773739329/
+
+.. |linkedin_faris| image:: C:\Users\HP\Downloads\On-Shelf Availbility\source\_static\linkedin_image.png
+    :width: 40
+    :height: 40
+    :target: https://www.linkedin.com/in/amine-faris-645096277/
+Encadrant du projet
+-------------------
+
+- **Pr. Tawfik Masrour** – Professor , expert IA  🔗 |linkedin_Masrour|
+
+.. |linkedin_Masrour| image:: _static\linkedin_image.png
+    :width: 40
+    :height: 40
+    :target: https://www.linkedin.com/in/tawfik-masrour-43163b85/
+

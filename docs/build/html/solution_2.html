@@ -1,0 +1,996 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solution 2 : Classification par Clustering Semi-Supervisé &mdash; On-Shelf Availibility (OSA)  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Guide d’utilisation 2" href="guide_utilisation_2.html" />
+    <link rel="prev" title="Résultats d’entraînement des modèles" href="train_models_results.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            On-Shelf Availibility (OSA)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sommaire</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeles.html">Modèles Préentraînés</a></li>
+<li class="toctree-l1"><a class="reference internal" href="train_models_results.html">Résultats d’entraînement des modèles</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Solution 2 : Classification par Clustering Semi-Supervisé</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture-de-la-solution-complete">Architecture de la Solution Complète</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#analyse-spatiale-et-detection-des-vides">Analyse Spatiale et Détection des Vides</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#innovation-majeure-detection-explicite-des-vides">Innovation Majeure : Détection Explicite des Vides</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#analyse-spatiale-contextuelle">Analyse Spatiale Contextuelle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clustering-spatial-dbscan">Clustering Spatial DBSCAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assignation-intelligente-multi-criteres">Assignation Intelligente Multi-Critères</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#algorithme-d-assignation-pondere">Algorithme d’Assignation Pondéré</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#methodes-de-calcul-des-scores">Méthodes de Calcul des Scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pipeline-de-production-integre">Pipeline de Production Intégré</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#architecture-modulaire">Architecture Modulaire</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#generation-de-rapports-avances">Génération de Rapports Avancés</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generation-d-annotations-semi-automatiques">Génération d’Annotations Semi-Automatiques</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#organisation-hierarchique-des-donnees">Organisation Hiérarchique des Données</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#validation-et-raffinement">Validation et Raffinement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fichier-d-annotations-automatique">Fichier d’Annotations Automatique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture-cnn-optimisee">Architecture CNN Optimisée</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#conception-du-modele">Conception du Modèle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#strategie-d-entrainement">Stratégie d’Entraînement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#metriques-de-performance">Métriques de Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#avantages-de-l-approche-hybride">Avantages de l’Approche Hybride</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#efficacite-du-processus-d-annotation">Efficacité du Processus d’Annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-de-classification">Performance de Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#applications-pratiques-avancees">Applications Pratiques Avancées</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#surveillance-retail-complete">Surveillance Retail Complète</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#analyse-de-performance-operationnelle">Analyse de Performance Opérationnelle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integration-systeme-retail">Intégration Système Retail</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-technique-complete">Configuration Technique Complète</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environnement-de-production">Environnement de Production</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#parametres-de-configuration-avances">Paramètres de Configuration Avancés</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#metriques-de-performance-et-monitoring">Métriques de Performance et Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#evolutions-et-perspectives-futures">Évolutions et Perspectives Futures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ameliorations-techniques-programmees">Améliorations Techniques Programmées</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#extensions-fonctionnelles-planifiees">Extensions Fonctionnelles Planifiées</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-et-deploiement">Configuration et Déploiement</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environnement-technique">Environnement Technique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parametres-configurables">Paramètres Configurables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#metriques-de-suivi">Métriques de Suivi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#perspectives-d-evolution">Perspectives d’Évolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ameliorations-techniques">Améliorations Techniques</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guide_utilisation_2.html">Guide d’utilisation 2</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">On-Shelf Availibility (OSA)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Solution 2 : Classification par Clustering Semi-Supervisé</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/solution_2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="solution-2-classification-par-clustering-semi-supervise">
+<h1>Solution 2 : Classification par Clustering Semi-Supervisé<a class="headerlink" href="#solution-2-classification-par-clustering-semi-supervise" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Cette solution propose une approche hybride révolutionnaire qui combine l’apprentissage non supervisé (clustering) avec l’apprentissage supervisé (CNN) pour créer un système complet de surveillance des étagères retail. L’approche utilise le clustering comme méthode d’annotation semi-automatique, puis intègre une détection intelligente des vides avec assignation contextuelle pour une analyse complète de la disponibilité produits.</p>
+<p><strong>Principe clé</strong> : Utiliser le clustering intelligent pour générer automatiquement des annotations de qualité, entraîner un CNN spécialisé pour la classification fine des produits, et intégrer une détection dédiée des espaces vides avec assignation spatiale intelligente.</p>
+<p><strong>Avantage principal</strong> : Solution complète end-to-end combinant classification précise des produits, détection explicite des vides, et analyse contextuelle spatiale pour une surveillance optimale des rayons retail.</p>
+</section>
+<section id="architecture-de-la-solution-complete">
+<h2>Architecture de la Solution Complète<a class="headerlink" href="#architecture-de-la-solution-complete" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────────────────────────────────────────┐
+│                        IMAGE D&#39;ENTRÉE                          │
+│                         (Étagère)                              │
+└─────────────┬───────────────────────────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    DÉTECTION DUALE YOLO                        │
+│                                                                 │
+│  ┌───────────────────────────┬─────────────────────────────────┐ │
+│  │     DÉTECTION PRODUITS    │      DÉTECTION VIDES           │ │
+│  │   (individual_products)   │      (void_model)              │ │
+│  │     Confidence: 0.5       │      Confidence: 0.5           │ │
+│  └─────────────┬─────────────┴──────────────┬──────────────────┘ │
+└────────────────┼────────────────────────────┼────────────────────┘
+                 │                            │
+                 ▼                            ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                         PHASE 1: CLUSTERING                    │
+│                      (Annotation Automatique)                  │
+└─────────────┬───────────────────────────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  ÉTAPE 1: Détection et Extraction des Produits                │
+│                                                                 │
+│  ┌─────────────────┐    ┌─────────────────────────────────────┐ │
+│  │ IMAGE D&#39;ENTRÉE  │ → │        YOLO DETECTION               │ │
+│  │   (Étagère)     │    │   individual_products.pt            │ │
+│  └─────────────────┘    │   Confidence: 0.5                   │ │
+│                         └─────────────┬───────────────────────┘ │
+│                                       │                         │
+│                                       ▼                         │
+│                         ┌─────────────────────────────────────┐ │
+│                         │      CROPPING AUTOMATIQUE          │ │
+│                         │   → /crops/product_000X.jpg        │ │
+│                         └─────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  ÉTAPE 2: Extraction de Caractéristiques et Clustering         │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────────┐ │
+│  │              FEATURE EXTRACTION                             │ │
+│  │                                                             │ │
+│  │  ┌─────────────┐    ┌─────────────────────────────────────┐ │ │
+│  │  │   Img2Vec   │ OR │         ResNet18 Features           │ │ │
+│  │  │  (Primaire) │    │          (Fallback)                 │ │ │
+│  │  └─────────────┘    └─────────────────────────────────────┘ │ │
+│  │                                   │                         │ │
+│  │                                   ▼                         │ │
+│  │              ┌─────────────────────────────────────────┐    │ │
+│  │              │         t-SNE REDUCTION                 │    │ │
+│  │              │    • n_components = 3                   │    │ │
+│  │              │    • Visualisation 3D                   │    │ │
+│  │              └─────────────┬───────────────────────────┘    │ │
+│  │                            │                                │ │
+│  │                            ▼                                │ │
+│  │              ┌─────────────────────────────────────────┐    │ │
+│  │              │         K-MEANS CLUSTERING              │    │ │
+│  │              │    • Méthode du coude                   │    │ │
+│  │              │    • Clusters automatiques              │    │ │
+│  │              └─────────────┬───────────────────────────┘    │ │
+│  └──────────────────────────┬─────────────────────────────────┘ │
+└───────────────────────────┬───────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  ÉTAPE 3: Génération d&#39;Annotations                             │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────────┐ │
+│  │           ORGANISATION PAR CLUSTERS                         │ │
+│  │                                                             │ │
+│  │  /dataset/                                                  │ │
+│  │  ├── cluster_0_boissons/                                    │ │
+│  │  │   ├── product_001.jpg                                    │ │
+│  │  │   ├── product_015.jpg                                    │ │
+│  │  │   └── product_032.jpg                                    │ │
+│  │  ├── cluster_1_snacks/                                      │ │
+│  │  │   ├── product_003.jpg                                    │ │
+│  │  │   └── product_021.jpg                                    │ │
+│  │  └── cluster_2_produits_laitiers/                          │ │
+│  │      ├── product_007.jpg                                    │ │
+│  │      └── product_018.jpg                                    │ │
+│  │                                                             │ │
+│  │                           │                                 │ │
+│  │                           ▼                                 │ │
+│  │           ┌─────────────────────────────────────────┐       │ │
+│  │           │    GÉNÉRATION ANNOTATIONS.JSON          │       │ │
+│  │           │  • image_path → class_label             │       │ │
+│  │           │  • Validation semi-automatique          │       │ │
+│  │           └─────────────────────────────────────────┘       │ │
+│  └─────────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                     PHASE 2: APPRENTISSAGE                     │
+│                    (Entraînement CNN)                          │
+└─────────────┬───────────────────────────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  ÉTAPE 4: Préparation du Dataset d&#39;Entraînement               │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────────┐ │
+│  │                DATASET STRUCTURE                            │ │
+│  │                                                             │ │
+│  │  /training_data/                                            │ │
+│  │  ├── train/ (70%)                                           │ │
+│  │  │   ├── boissons/                                          │ │
+│  │  │   ├── snacks/                                            │ │
+│  │  │   └── produits_laitiers/                                 │ │
+│  │  ├── validation/ (20%)                                      │ │
+│  │  │   ├── boissons/                                          │ │
+│  │  │   ├── snacks/                                            │ │
+│  │  │   └── produits_laitiers/                                 │ │
+│  │  └── test/ (10%)                                            │ │
+│  │      ├── boissons/                                          │ │
+│  │      ├── snacks/                                            │ │
+│  │      └── produits_laitiers/                                 │ │
+│  └─────────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  ÉTAPE 5: Entraînement CNN Optimisé                           │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────────┐ │
+│  │              ARCHITECTURE CNN LÉGÈRE                        │ │
+│  │                                                             │ │
+│  │  ┌─────────────────────────────────────────────────────────┐ │ │
+│  │  │                  INPUT LAYER                            │ │ │
+│  │  │                224x224x3 RGB                            │ │ │
+│  │  └─────────────┬───────────────────────────────────────────┘ │ │
+│  │                │                                             │ │
+│  │                ▼                                             │ │
+│  │  ┌─────────────────────────────────────────────────────────┐ │ │
+│  │  │           CONVOLUTIONAL BLOCKS                          │ │ │
+│  │  │                                                         │ │ │
+│  │  │  • Block 1: Conv2D(32) + BatchNorm + ReLU + MaxPool    │ │ │
+│  │  │  • Block 2: Conv2D(64) + BatchNorm + ReLU + MaxPool    │ │ │
+│  │  │  • Block 3: Conv2D(128) + BatchNorm + ReLU + MaxPool   │ │ │
+│  │  │  • Block 4: Conv2D(256) + BatchNorm + ReLU + MaxPool   │ │ │
+│  │  └─────────────┬───────────────────────────────────────────┘ │ │
+│  │                │                                             │ │
+│  │                ▼                                             │ │
+│  │  ┌─────────────────────────────────────────────────────────┐ │ │
+│  │  │           CLASSIFIER LAYERS                             │ │ │
+│  │  │                                                         │ │ │
+│  │  │  • GlobalAveragePooling2D                               │ │ │
+│  │  │  • Dense(512) + Dropout(0.5)                           │ │ │
+│  │  │  • Dense(256) + Dropout(0.3)                           │ │ │
+│  │  │  • Dense(n_classes) + Softmax                          │ │ │
+│  │  └─────────────────────────────────────────────────────────┘ │ │
+│  └─────────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                     PHASE 3: ANALYSE AVANCÉE                   │
+│                  (Détection Vides et Assignation)             │
+└─────────────┬───────────────────────────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  ÉTAPE 6: Pipeline de Production Intégré                       │
+│                                                                 │
+│  ┌─────────────────┐    ┌─────────────────────────────────────┐ │
+│  │ NOUVELLE IMAGE  │ → │      DÉTECTION DUALE YOLO           │ │
+│  │   (Étagère)     │    │   • Produits: individual_products   │ │
+│  │                 │    │   • Vides: void_model               │ │
+│  └─────────────────┘    └─────────────┬───────────────────────┘ │
+│                                       │                         │
+│                                       ▼                         │
+│                         ┌─────────────────────────────────────┐ │
+│                         │      CNN CLASSIFICATION             │ │
+│                         │    • Sous-classes granulaires       │ │
+│                         │    • Scores de confiance            │ │
+│                         │    • Classification temps réel      │ │
+│                         └─────────────┬───────────────────────┘ │
+│                                       │                         │
+│                                       ▼                         │
+│                         ┌─────────────────────────────────────┐ │
+│                         │    ANALYSE SPATIALE CONTEXTUELLE    │ │
+│                         │  • Identification des voisins       │ │
+│                         │  • Contexte dominant par zone       │ │
+│                         │  • Clustering DBSCAN spatial        │ │
+│                         └─────────────┬───────────────────────┘ │
+│                                       │                         │
+│                                       ▼                         │
+│                         ┌─────────────────────────────────────┐ │
+│                         │     ASSIGNATION INTELLIGENTE        │ │
+│                         │  • Priorité contexte spatial 40%    │ │
+│                         │  • Proximité géographique 30%       │ │
+│                         │  • Facteur de rareté 30%            │ │
+│                         │  • Scores de confiance pondérés     │ │
+│                         └─────────────┬───────────────────────┘ │
+│                                       │                         │
+│                                       ▼                         │
+│                         ┌─────────────────────────────────────┐ │
+│                         │       RÉSULTATS COMPLETS           │ │
+│                         │  • Classification fine produits     │ │
+│                         │  • Détection explicite des vides    │ │
+│                         │  • Assignation vides→produits       │ │
+│                         │  • Analyse de disponibilité         │ │
+│                         │  • Métriques de performance         │ │
+│                         │  • Visualisation contextuelle       │ │
+│                         └─────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="analyse-spatiale-et-detection-des-vides">
+<h2>Analyse Spatiale et Détection des Vides<a class="headerlink" href="#analyse-spatiale-et-detection-des-vides" title="Link to this heading"></a></h2>
+<section id="innovation-majeure-detection-explicite-des-vides">
+<h3>Innovation Majeure : Détection Explicite des Vides<a class="headerlink" href="#innovation-majeure-detection-explicite-des-vides" title="Link to this heading"></a></h3>
+<p>Contrairement aux approches classiques qui infèrent les vides par absence de détection, cette solution utilise un <strong>modèle YOLO dédié spécifiquement entraîné pour identifier les espaces vides</strong>.</p>
+<p><strong>Avantages de la détection explicite</strong> :</p>
+<ul class="simple">
+<li><p><strong>Précision accrue</strong> : Identification directe vs inférence indirecte</p></li>
+<li><p><strong>Robustesse environnementale</strong> : Performance maintenue malgré conditions variables</p></li>
+<li><p><strong>Détection contextuelle</strong> : Reconnaissance des vides même en présence de produits mal alignés</p></li>
+<li><p><strong>Fiabilité opérationnelle</strong> : Réduction significative des faux positifs/négatifs</p></li>
+</ul>
+<p><strong>Architecture technique</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[IMAGE] → [YOLO Produits] → [Produits détectés]
+         ↓
+        [YOLO Vides] → [Vides détectés] → [Analyse spatiale]
+</pre></div>
+</div>
+</section>
+</section>
+<section id="analyse-spatiale-contextuelle">
+<h2>Analyse Spatiale Contextuelle<a class="headerlink" href="#analyse-spatiale-contextuelle" title="Link to this heading"></a></h2>
+<p>Le système développe une compréhension sophistiquée de l’organisation spatiale des produits sur l’étagère.</p>
+<p><strong>Méthode d’analyse du contexte spatial</strong> :</p>
+<ul class="simple">
+<li><p><strong>Identification des voisins</strong> : Détection des produits adjacents (gauche, droite, haut, bas)</p></li>
+<li><p><strong>Tolérance d’alignement</strong> : Paramètre configurable pour déterminer l’appartenance aux rangées/colonnes</p></li>
+<li><p><strong>Contexte dominant</strong> : Identification des motifs spatiaux cohérents par zone</p></li>
+<li><p><strong>Confiance contextuelle</strong> : Score de fiabilité de l’analyse spatiale</p></li>
+</ul>
+<p><strong>Exemple de contexte spatial analysé</strong> :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;void_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;void_001&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spatial_context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;left_neighbor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Coca-Cola&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;right_neighbor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Coca-Cola&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;top_neighbor&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;bottom_neighbor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Pepsi&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;dominant_context&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Coca-Cola&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;context_confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.85</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;alignment_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.92</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="clustering-spatial-dbscan">
+<h2>Clustering Spatial DBSCAN<a class="headerlink" href="#clustering-spatial-dbscan" title="Link to this heading"></a></h2>
+<p>Utilisation de l’algorithme DBSCAN pour identifier les regroupements logiques de produits et optimiser les assignations.</p>
+<p><strong>Paramètres de clustering</strong> :</p>
+<ul class="simple">
+<li><p><strong>clustering_eps</strong> : Distance maximale entre produits du même cluster (en pixels)</p></li>
+<li><p><strong>min_cluster_size</strong> : Taille minimale d’un cluster valide</p></li>
+<li><p><strong>max_assignment_distance</strong> : Distance maximale autorisée pour l’assignation vide-produit</p></li>
+</ul>
+<p><strong>Avantages du clustering spatial</strong> :</p>
+<ul class="simple">
+<li><p><strong>Regroupement logique</strong> : Formation de clusters physiquement cohérents</p></li>
+<li><p><strong>Optimisation des assignations</strong> : Limitation des attributions improbables</p></li>
+<li><p><strong>Analyse de densité</strong> : Identification des zones à forte/faible concentration</p></li>
+</ul>
+</section>
+<section id="assignation-intelligente-multi-criteres">
+<h2>Assignation Intelligente Multi-Critères<a class="headerlink" href="#assignation-intelligente-multi-criteres" title="Link to this heading"></a></h2>
+<section id="algorithme-d-assignation-pondere">
+<h3>Algorithme d’Assignation Pondéré<a class="headerlink" href="#algorithme-d-assignation-pondere" title="Link to this heading"></a></h3>
+<p>Le système utilise un modèle de scoring multi-factoriel pour assigner intelligemment chaque vide détecté au produit manquant le plus probable.</p>
+<p><strong>Facteurs de pondération</strong> :</p>
+<ol class="arabic simple">
+<li><p><strong>Contexte spatial (40%)</strong> : Priorité maximale basée sur l’analyse des voisins</p></li>
+<li><p><strong>Proximité géographique (30%)</strong> : Distance euclidienne entre vide et produits</p></li>
+<li><p><strong>Facteur de rareté (30%)</strong> : Compensation pour les produits sous-représentés</p></li>
+</ol>
+<p><strong>Formule de calcul</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Score_Assignment = (
+    Contexte_Spatial × 0.4 +
+    Proximité_Inverse × 0.3 +
+    Facteur_Rareté × 0.3
+) × Confiance_Détection
+</pre></div>
+</div>
+</section>
+</section>
+<section id="methodes-de-calcul-des-scores">
+<h2>Méthodes de Calcul des Scores<a class="headerlink" href="#methodes-de-calcul-des-scores" title="Link to this heading"></a></h2>
+<p><strong>Score de contexte spatial</strong> :</p>
+<ul class="simple">
+<li><p>Analyse des produits environnants immédiats</p></li>
+<li><p>Détection des motifs de placement répétitifs</p></li>
+<li><p>Évaluation de la cohérence contextuelle</p></li>
+</ul>
+<p><strong>Score de proximité géographique</strong> :</p>
+<ul class="simple">
+<li><p>Calcul de distance euclidienne normalisée</p></li>
+<li><p>Pondération inverse de la distance</p></li>
+<li><p>Limitation par distance maximale d’assignation</p></li>
+</ul>
+<p><strong>Facteur de rareté</strong> :</p>
+<ul class="simple">
+<li><p>Analyse de la distribution des produits détectés</p></li>
+<li><p>Boost pour les produits peu représentés</p></li>
+<li><p>Équilibrage de la représentation par catégorie</p></li>
+</ul>
+</section>
+<section id="pipeline-de-production-integre">
+<h2>Pipeline de Production Intégré<a class="headerlink" href="#pipeline-de-production-integre" title="Link to this heading"></a></h2>
+<section id="architecture-modulaire">
+<h3>Architecture Modulaire<a class="headerlink" href="#architecture-modulaire" title="Link to this heading"></a></h3>
+<p>Le système en production combine tous les composants dans un pipeline optimisé pour la performance et la précision.</p>
+<p><strong>Composants principaux</strong> :</p>
+<ul class="simple">
+<li><p><strong>YOLOCNNPipeline</strong> : Orchestrateur principal du processus</p></li>
+<li><p><strong>SpatialAnalyzer</strong> : Module d’analyse contextuelle</p></li>
+<li><p><strong>VoidAssignmentEngine</strong> : Moteur d’assignation intelligente</p></li>
+<li><p><strong>ReportGenerator</strong> : Générateur de rapports et visualisations</p></li>
+</ul>
+<p><strong>Configuration type</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">EnhancedRetailPipeline</span><span class="p">(</span>
+    <span class="n">yolo_product_model</span><span class="o">=</span><span class="s1">&#39;individual_products.pt&#39;</span><span class="p">,</span>
+    <span class="n">yolo_void_model</span><span class="o">=</span><span class="s1">&#39;void_detection.pt&#39;</span><span class="p">,</span>
+    <span class="n">cnn_model</span><span class="o">=</span><span class="s1">&#39;best_lightweight_cnn.pth&#39;</span><span class="p">,</span>
+    <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Coca-Cola&#39;</span><span class="p">,</span> <span class="s1">&#39;Pepsi&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprite&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="n">spatial_config</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;neighbor_tolerance&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s1">&#39;clustering_eps&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s1">&#39;max_assignment_distance&#39;</span><span class="p">:</span> <span class="mi">200</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="generation-de-rapports-avances">
+<h2>Génération de Rapports Avancés<a class="headerlink" href="#generation-de-rapports-avances" title="Link to this heading"></a></h2>
+<p><strong>Métriques de performance</strong> :</p>
+<ul class="simple">
+<li><p>Nombre total de produits détectés par sous-classe</p></li>
+<li><p>Identification et localisation des vides</p></li>
+<li><p>Assignations vide-produit avec scores de confiance</p></li>
+<li><p>Taux de disponibilité par catégorie de produits</p></li>
+<li><p>Analyse de conformité au planogramme</p></li>
+</ul>
+<p><strong>Visualisation contextuelle</strong> :</p>
+<ul class="simple">
+<li><p>Boîtes englobantes colorées par sous-classe</p></li>
+<li><p>Labels informatifs avec scores de confiance multiples</p></li>
+<li><p>Assignations vides affichées graphiquement</p></li>
+<li><p>Interface de validation intuitive</p></li>
+</ul>
+<p><strong>Exemple de sortie visuelle</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[PRODUIT: Coca-Cola | YOLO: 0.92 | CNN: 0.87]
+[VIDE → Pepsi assigné | Confiance: 0.78 | Contexte: 0.85]
+[PRODUIT: Sprite | YOLO: 0.89 | CNN: 0.91]
+</pre></div>
+</div>
+</section>
+<section id="generation-d-annotations-semi-automatiques">
+<h2>Génération d’Annotations Semi-Automatiques<a class="headerlink" href="#generation-d-annotations-semi-automatiques" title="Link to this heading"></a></h2>
+<section id="organisation-hierarchique-des-donnees">
+<h3>Organisation Hiérarchique des Données<a class="headerlink" href="#organisation-hierarchique-des-donnees" title="Link to this heading"></a></h3>
+<p>Le système organise automatiquement les produits détectés selon leur appartenance aux clusters identifiés.</p>
+<p><strong>Structure de données générée</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dataset_clustered/
+├── cluster_0_boissons_gazeuses/
+│   ├── coca_cola_001.jpg
+│   ├── pepsi_002.jpg
+│   └── sprite_003.jpg
+├── cluster_1_eaux_minerales/
+│   ├── evian_004.jpg
+│   ├── vittel_005.jpg
+│   └── perrier_006.jpg
+├── cluster_2_jus_fruits/
+│   ├── tropicana_007.jpg
+│   └── minute_maid_008.jpg
+└── metadata/
+    ├── cluster_analysis.json
+    ├── confidence_scores.json
+    └── visual_similarity.json
+</pre></div>
+</div>
+</section>
+</section>
+<section id="validation-et-raffinement">
+<h2>Validation et Raffinement<a class="headerlink" href="#validation-et-raffinement" title="Link to this heading"></a></h2>
+<p><strong>Processus de validation</strong> :</p>
+<ol class="arabic simple">
+<li><p><strong>Analyse de cohérence</strong> : Vérification de la similarité visuelle intra-cluster</p></li>
+<li><p><strong>Détection d’outliers</strong> : Identification des produits mal classés</p></li>
+<li><p><strong>Validation manuelle selective</strong> : Contrôle sur échantillon représentatif</p></li>
+<li><p><strong>Correction itérative</strong> : Ajustement des clusters problématiques</p></li>
+</ol>
+<p><strong>Métriques de qualité</strong> :</p>
+<ul class="simple">
+<li><p>Score de silhouette moyen &gt; 0.6</p></li>
+<li><p>Cohérence visuelle intra-cluster &gt; 80%</p></li>
+<li><p>Taux de validation manuelle &lt; 10%</p></li>
+</ul>
+</section>
+<section id="fichier-d-annotations-automatique">
+<h2>Fichier d’Annotations Automatique<a class="headerlink" href="#fichier-d-annotations-automatique" title="Link to this heading"></a></h2>
+<p>Le système génère automatiquement un fichier d’annotations standardisé compatible avec les frameworks d’apprentissage supervisé.</p>
+<p><strong>Format JSON généré</strong> :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;dataset_info&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;total_images&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1250</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;num_classes&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;creation_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-06-08&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;clustering_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kmeans_tsne&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;class_mapping&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;0&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boissons_gazeuses&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eaux_minerales&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jus_fruits&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;snacks_sales&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chocolats&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;5&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;biscuits&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;6&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;produits_laitiers&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;7&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;conserves&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;annotations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;image_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dataset/cluster_0/coca_cola_001.jpg&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;class_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;class_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boissons_gazeuses&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;confidence_clustering&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.89</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;cluster_purity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.94</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="architecture-cnn-optimisee">
+<h2>Architecture CNN Optimisée<a class="headerlink" href="#architecture-cnn-optimisee" title="Link to this heading"></a></h2>
+<section id="conception-du-modele">
+<h3>Conception du Modèle<a class="headerlink" href="#conception-du-modele" title="Link to this heading"></a></h3>
+<p>Le CNN est spécialement conçu pour être léger et efficace tout en maintenant une précision élevée sur les catégories de produits identifiées par clustering.</p>
+<p><strong>Principes de conception</strong> :</p>
+<ul class="simple">
+<li><p><strong>Légèreté</strong> : Nombre de paramètres optimisé pour déploiement mobile</p></li>
+<li><p><strong>Efficacité</strong> : Architecture inspirée de MobileNet avec adaptations métier</p></li>
+<li><p><strong>Spécialisation</strong> : Optimisation pour les caractéristiques des produits retail</p></li>
+</ul>
+<p><strong>Couches convolutionnelles</strong> :</p>
+<ul class="simple">
+<li><p><strong>Blocs convolutionnels</strong> : 4 blocs avec augmentation progressive des filtres</p></li>
+<li><p><strong>Normalisation</strong> : BatchNormalization après chaque convolution</p></li>
+<li><p><strong>Activation</strong> : ReLU pour éviter le problème du gradient qui disparaît</p></li>
+<li><p><strong>Pooling</strong> : MaxPooling2D pour réduction dimensionnelle contrôlée</p></li>
+</ul>
+<p><strong>Tête de classification</strong> :</p>
+<ul class="simple">
+<li><p><strong>Global Average Pooling</strong> : Réduction drastique des paramètres</p></li>
+<li><p><strong>Couches denses</strong> : 512 → 256 → n_classes avec dropout progressif</p></li>
+<li><p><strong>Activation finale</strong> : Softmax pour probabilités de classe</p></li>
+</ul>
+</section>
+</section>
+<section id="strategie-d-entrainement">
+<h2>Stratégie d’Entraînement<a class="headerlink" href="#strategie-d-entrainement" title="Link to this heading"></a></h2>
+<p><strong>Préparation des données</strong> :</p>
+<ul class="simple">
+<li><p><strong>Division</strong> : 70% entraînement, 20% validation, 10% test</p></li>
+<li><p><strong>Augmentation</strong> : Rotation, zoom, flip horizontal pour robustesse</p></li>
+<li><p><strong>Normalisation</strong> : Standardisation selon ImageNet</p></li>
+</ul>
+<p><strong>Hyperparamètres optimisés</strong> :</p>
+<ul class="simple">
+<li><p><strong>Learning rate</strong> : 0.001 avec décroissance adaptative</p></li>
+<li><p><strong>Batch size</strong> : 32 pour équilibre mémoire/convergence</p></li>
+<li><p><strong>Epochs</strong> : 50-100 avec early stopping</p></li>
+<li><p><strong>Optimiseur</strong> : Adam avec beta1=0.9, beta2=0.999</p></li>
+</ul>
+<p><strong>Techniques de régularisation</strong> :</p>
+<ul class="simple">
+<li><p><strong>Dropout</strong> : 0.5 première couche dense, 0.3 seconde couche</p></li>
+<li><p><strong>L2 regularization</strong> : Coefficient 0.001 sur les couches denses</p></li>
+<li><p><strong>Early stopping</strong> : Patience de 10 epochs sur validation loss</p></li>
+</ul>
+</section>
+<section id="metriques-de-performance">
+<h2>Métriques de Performance<a class="headerlink" href="#metriques-de-performance" title="Link to this heading"></a></h2>
+<p><strong>Évaluation du modèle</strong> :</p>
+<ul class="simple">
+<li><p><strong>Précision globale</strong> : Objectif &gt; 95% sur test set</p></li>
+<li><p><strong>Précision par classe</strong> : Équilibrage des performances inter-classes</p></li>
+<li><p><strong>Matrice de confusion</strong> : Analyse détaillée des erreurs de classification</p></li>
+<li><p><strong>Temps d’inférence</strong> : &lt; 50ms par image sur GPU standard</p></li>
+</ul>
+</section>
+<section id="avantages-de-l-approche-hybride">
+<h2>Avantages de l’Approche Hybride<a class="headerlink" href="#avantages-de-l-approche-hybride" title="Link to this heading"></a></h2>
+</section>
+<section id="efficacite-du-processus-d-annotation">
+<h2>Efficacité du Processus d’Annotation<a class="headerlink" href="#efficacite-du-processus-d-annotation" title="Link to this heading"></a></h2>
+<p><strong>Réduction des coûts</strong> :</p>
+<ul class="simple">
+<li><p><strong>Annotation manuelle</strong> : Seulement 5-10% du dataset nécessite validation</p></li>
+<li><p><strong>Temps de setup</strong> : Division par 10 du temps de préparation</p></li>
+<li><p><strong>Scalabilité</strong> : Addition facile de nouvelles catégories de produits</p></li>
+</ul>
+<p><strong>Qualité des annotations</strong> :</p>
+<ul class="simple">
+<li><p><strong>Cohérence</strong> : Élimination des erreurs humaines d’étiquetage</p></li>
+<li><p><strong>Objectivité</strong> : Critères de similarité quantifiés et reproductibles</p></li>
+<li><p><strong>Traçabilité</strong> : Scores de confiance pour chaque annotation</p></li>
+</ul>
+</section>
+<section id="performance-de-classification">
+<h2>Performance de Classification<a class="headerlink" href="#performance-de-classification" title="Link to this heading"></a></h2>
+<p><strong>Précision améliorée</strong> :</p>
+<ul class="simple">
+<li><p><strong>Spécialisation</strong> : CNN entraîné spécifiquement sur l’assortiment cible</p></li>
+<li><p><strong>Données équilibrées</strong> : Clustering naturel évite les biais de classe</p></li>
+<li><p><strong>Features pertinentes</strong> : Apprentissage focalisé sur caractéristiques discriminantes</p></li>
+</ul>
+<p><strong>Vitesse d’exécution</strong> :</p>
+<ul class="simple">
+<li><p><strong>Inférence rapide</strong> : CNN léger optimisé pour temps réel</p></li>
+<li><p><strong>Batch processing</strong> : Traitement parallèle de multiples produits</p></li>
+<li><p><strong>Optimisation matérielle</strong> : Compatible GPU/CPU selon les ressources</p></li>
+</ul>
+</section>
+<section id="applications-pratiques-avancees">
+<h2>Applications Pratiques Avancées<a class="headerlink" href="#applications-pratiques-avancees" title="Link to this heading"></a></h2>
+</section>
+<section id="surveillance-retail-complete">
+<h2>Surveillance Retail Complète<a class="headerlink" href="#surveillance-retail-complete" title="Link to this heading"></a></h2>
+<p><strong>Audit automatique d’assortiment avancé</strong> :</p>
+<ul class="simple">
+<li><p>Vérification de la présence et de la quantité des références</p></li>
+<li><p>Détection proactive des ruptures de stock par zone</p></li>
+<li><p>Analyse de conformité au planogramme avec assignation des manquants</p></li>
+<li><p>Identification des produits mal placés ou en surnombre</p></li>
+</ul>
+<p><strong>Surveillance concurrentielle intelligente</strong> :</p>
+<ul class="simple">
+<li><p>Mapping complet de l’assortiment concurrent présent</p></li>
+<li><p>Analyse de la part de linéaire par marque avec détection des vides</p></li>
+<li><p>Évolution temporelle de l’assortiment et des disponibilités</p></li>
+<li><p>Détection des stratégies de placement concurrentiel</p></li>
+</ul>
+<p><strong>Optimisation merchandising contextuelle</strong> :</p>
+<ul class="simple">
+<li><p>Recommandations de placement basées sur l’analyse spatiale</p></li>
+<li><p>Identification des associations produits optimales</p></li>
+<li><p>Optimisation de la rotation des stocks par analyse des vides récurrents</p></li>
+<li><p>Prédiction des besoins de réapprovisionnement par zone</p></li>
+</ul>
+</section>
+<section id="analyse-de-performance-operationnelle">
+<h2>Analyse de Performance Opérationnelle<a class="headerlink" href="#analyse-de-performance-operationnelle" title="Link to this heading"></a></h2>
+<p><strong>Métriques de disponibilité granulaires</strong> :</p>
+<ul class="simple">
+<li><p>Taux de disponibilité par sous-catégorie de produits</p></li>
+<li><p>Analyse des patterns de rupture de stock</p></li>
+<li><p>Performance comparative inter-rayons</p></li>
+<li><p>Évolution temporelle des indicateurs de disponibilité</p></li>
+</ul>
+<p><strong>Intelligence prédictive</strong> :</p>
+<ul class="simple">
+<li><p>Prédiction des ruptures de stock basée sur les tendances</p></li>
+<li><p>Optimisation des cycles de réapprovisionnement</p></li>
+<li><p>Analyse prédictive des besoins par catégorie</p></li>
+<li><p>Alertes automatiques pour stocks critiques</p></li>
+</ul>
+</section>
+<section id="integration-systeme-retail">
+<h2>Intégration Système Retail<a class="headerlink" href="#integration-systeme-retail" title="Link to this heading"></a></h2>
+<p><strong>API REST complète</strong> :</p>
+<ul class="simple">
+<li><p>Endpoints pour analyse d’images et récupération de résultats détaillés</p></li>
+<li><p>Format JSON standardisé incluant assignations et scores</p></li>
+<li><p>Authentification et gestion des quotas par utilisateur</p></li>
+<li><p>Webhooks pour notifications en temps réel</p></li>
+</ul>
+<p><strong>Pipeline de traitement automatisé</strong> :</p>
+<ul class="simple">
+<li><p>Traitement batch périodique avec rapports programmés</p></li>
+<li><p>Intégration avec systèmes de caméras de surveillance</p></li>
+<li><p>Export automatisé vers ERP/WMS pour réapprovisionnement</p></li>
+<li><p>Historisation des données pour analyse de tendances</p></li>
+</ul>
+<p><strong>Interface utilisateur avancée</strong> :</p>
+<ul class="simple">
+<li><p>Dashboard de visualisation en temps réel des résultats</p></li>
+<li><p>Outils de validation et correction des assignations</p></li>
+<li><p>Alertes configurables par seuils de disponibilité</p></li>
+<li><p>Rapports personnalisables par zone/catégorie/période</p></li>
+</ul>
+</section>
+<section id="configuration-technique-complete">
+<h2>Configuration Technique Complète<a class="headerlink" href="#configuration-technique-complete" title="Link to this heading"></a></h2>
+<section id="environnement-de-production">
+<h3>Environnement de Production<a class="headerlink" href="#environnement-de-production" title="Link to this heading"></a></h3>
+<p><strong>Architecture système recommandée</strong> :</p>
+<ul class="simple">
+<li><p><strong>Serveur principal</strong> : GPU NVIDIA RTX 4090 ou supérieur</p></li>
+<li><p><strong>Mémoire</strong> : 32GB RAM minimum, 64GB pour traitement haute charge</p></li>
+<li><p><strong>Stockage</strong> : SSD NVMe 1TB pour modèles et cache d’images</p></li>
+<li><p><strong>Réseau</strong> : Bande passante élevée pour traitement d’images volumineuses</p></li>
+</ul>
+<p><strong>Dépendances logicielles optimisées</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ultralytics&gt;=8.0.0          # YOLO v8 optimisé
+torch&gt;=2.0.0                # PyTorch avec support CUDA 11.8+
+torchvision&gt;=0.15.0         # Vision transforms optimisés
+opencv-python&gt;=4.8.0       # Computer vision avancé
+scikit-learn&gt;=1.3.0        # ML classique et clustering
+numpy&gt;=1.24.0               # Calculs vectoriels optimisés
+matplotlib&gt;=3.7.0           # Visualisations avancées
+Pillow&gt;=10.0.0              # Manipulation d&#39;images
+pandas&gt;=2.0.0               # Analyse de données
+</pre></div>
+</div>
+</section>
+</section>
+<section id="parametres-de-configuration-avances">
+<h2>Paramètres de Configuration Avancés<a class="headerlink" href="#parametres-de-configuration-avances" title="Link to this heading"></a></h2>
+<p><strong>Configuration complète du système</strong> :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;models&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;yolo_products&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;individual_products.pt&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;yolo_voids&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;void_detection_v2.pt&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cnn_classifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightweight_cnn_optimized.pth&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;detection_thresholds&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;yolo_products_confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;yolo_voids_confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cnn_classification_confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;spatial_analysis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;neighbor_alignment_tolerance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;spatial_context_weight&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;proximity_weight&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;scarcity_weight&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;clustering&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;dbscan_eps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;min_cluster_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max_assignment_distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;performance&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gpu_memory_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max_image_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1920</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;processing_timeout&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="metriques-de-performance-et-monitoring">
+<h2>Métriques de Performance et Monitoring<a class="headerlink" href="#metriques-de-performance-et-monitoring" title="Link to this heading"></a></h2>
+<p><strong>KPIs techniques</strong> :</p>
+<ul class="simple">
+<li><p><strong>Latence de traitement</strong> : &lt; 2 secondes par image haute résolution</p></li>
+<li><p><strong>Précision de détection</strong> : &gt; 95% pour produits, &gt; 90% pour vides</p></li>
+<li><p><strong>Précision d’assignation</strong> : &gt; 85% de justesse contextuelle</p></li>
+<li><p><strong>Throughput</strong> : &gt; 30 images/minute en traitement continu</p></li>
+</ul>
+<p><strong>Métriques business</strong> :</p>
+<ul class="simple">
+<li><p><strong>Réduction des ruptures</strong> : Diminution de 40% des ventes perdues</p></li>
+<li><p><strong>Optimisation stocks</strong> : Amélioration de 25% de la rotation</p></li>
+<li><p><strong>Productivité audits</strong> : Accélération 10x des contrôles manuels</p></li>
+<li><p><strong>Satisfaction client</strong> : Amélioration de la disponibilité perçue</p></li>
+</ul>
+</section>
+<section id="evolutions-et-perspectives-futures">
+<h2>Évolutions et Perspectives Futures<a class="headerlink" href="#evolutions-et-perspectives-futures" title="Link to this heading"></a></h2>
+<section id="ameliorations-techniques-programmees">
+<h3>Améliorations Techniques Programmées<a class="headerlink" href="#ameliorations-techniques-programmees" title="Link to this heading"></a></h3>
+<p><strong>Intelligence artificielle avancée</strong> :</p>
+<ul class="simple">
+<li><p><strong>Apprentissage par renforcement</strong> : Optimisation continue des assignations</p></li>
+<li><p><strong>Auto-apprentissage</strong> : Adaptation automatique aux nouveaux produits</p></li>
+<li><p><strong>Fusion multi-modalités</strong> : Intégration texte, couleurs, formes</p></li>
+<li><p><strong>Prédiction temporelle</strong> : Anticipation des ruptures par IA</p></li>
+</ul>
+<p><strong>Optimisations performance</strong> :</p>
+<ul class="simple">
+<li><p><strong>Quantization avancée</strong> : Réduction 50% de la taille des modèles</p></li>
+<li><p><strong>Edge computing</strong> : Déploiement sur caméras intelligentes</p></li>
+<li><p><strong>Traitement temps réel</strong> : Pipeline de streaming continu</p></li>
+<li><p><strong>Auto-scaling</strong> : Adaptation dynamique aux charges variables</p></li>
+</ul>
+</section>
+</section>
+<section id="extensions-fonctionnelles-planifiees">
+<h2>Extensions Fonctionnelles Planifiées<a class="headerlink" href="#extensions-fonctionnelles-planifiees" title="Link to this heading"></a></h2>
+<p><strong>Analyse comportementale</strong> :</p>
+<ul class="simple">
+<li><p><strong>Tracking client</strong> : Analyse des interactions produits-clients</p></li>
+<li><p><strong>Heatmaps d’attention</strong> : Zones d’intérêt prioritaires</p></li>
+<li><p><strong>Patterns d’achat</strong> : Corrélation disponibilité-ventes</p></li>
+<li><p><strong>Optimisation layout</strong> : Recommandations de réagencement</p></li>
+</ul>
+<p><strong>Intégration écosystème</strong> :</p>
+<ul class="simple">
+<li><p><strong>IoT sensors</strong> : Fusion avec capteurs de poids/température</p></li>
+<li><p><strong>Blockchain</strong> : Traçabilité complète de la chaîne d’approvisionnement</p></li>
+<li><p><strong>Réalité augmentée</strong> : Interface AR pour le personnel de rayon</p></li>
+<li><p><strong>Analytics prédictives</strong> : Modèles de prévision de demande intégrés</p></li>
+</ul>
+<p>Cette solution hybride représente l’état de l’art en matière de surveillance automatisée des rayons retail. Elle combine la puissance de l’apprentissage automatique, l’intelligence spatiale et l’analyse contextuelle pour offrir une solution complète de gestion des stocks et d’optimisation de la disponibilité produits. L’approche modulaire et extensible garantit son évolutivité face aux défis futurs du retail moderne.</p>
+</section>
+<section id="configuration-et-deploiement">
+<h2>Configuration et Déploiement<a class="headerlink" href="#configuration-et-deploiement" title="Link to this heading"></a></h2>
+<section id="environnement-technique">
+<h3>Environnement Technique<a class="headerlink" href="#environnement-technique" title="Link to this heading"></a></h3>
+<p><strong>Dépendances système</strong> :</p>
+<ul class="simple">
+<li><p>Python 3.8+ avec librairies ML standard</p></li>
+<li><p>PyTorch ou TensorFlow selon préférence</p></li>
+<li><p>OpenCV pour traitement d’images</p></li>
+<li><p>Scikit-learn pour clustering et métriques</p></li>
+</ul>
+<p><strong>Ressources recommandées</strong> :</p>
+<ul class="simple">
+<li><p><strong>GPU</strong> : NVIDIA RTX 3060 ou supérieur pour entraînement</p></li>
+<li><p><strong>RAM</strong> : 16GB minimum, 32GB recommandé</p></li>
+<li><p><strong>Stockage</strong> : SSD 500GB pour datasets et modèles</p></li>
+<li><p><strong>CPU</strong> : Processeur multi-core pour preprocessing</p></li>
+</ul>
+</section>
+<section id="parametres-configurables">
+<h3>Paramètres Configurables<a class="headerlink" href="#parametres-configurables" title="Link to this heading"></a></h3>
+<p><strong>Configuration clustering</strong> :</p>
+<ul class="simple">
+<li><p>Seuil de confiance YOLO : 0.3-0.7 selon qualité images</p></li>
+<li><p>Nombre max de clusters : 5-20 selon assortiment</p></li>
+<li><p>Perplexité t-SNE : 5-50 selon taille dataset</p></li>
+</ul>
+<p><strong>Configuration CNN</strong> :</p>
+<ul class="simple">
+<li><p>Architecture : Nombre de couches et filtres adaptables</p></li>
+<li><p>Augmentation de données : Intensité des transformations</p></li>
+<li><p>Hyperparamètres : Learning rate, batch size, regularization</p></li>
+</ul>
+</section>
+</section>
+<section id="metriques-de-suivi">
+<h2>Métriques de Suivi<a class="headerlink" href="#metriques-de-suivi" title="Link to this heading"></a></h2>
+<p><strong>Phase clustering</strong> :</p>
+<ul class="simple">
+<li><p>Score de silhouette des clusters</p></li>
+<li><p>Pureté intra-cluster (cohérence visuelle)</p></li>
+<li><p>Taux de validation manuelle nécessaire</p></li>
+</ul>
+<p><strong>Phase entraînement</strong> :</p>
+<ul class="simple">
+<li><p>Courbes de loss et accuracy</p></li>
+<li><p>Métriques par classe (precision, recall, F1-score)</p></li>
+<li><p>Temps de convergence et stability</p></li>
+</ul>
+<p><strong>Phase production</strong> :</p>
+<ul class="simple">
+<li><p>Latence d’inférence moyenne</p></li>
+<li><p>Précision en conditions réelles</p></li>
+<li><p>Taux de faux positifs/négatifs</p></li>
+</ul>
+</section>
+<section id="perspectives-d-evolution">
+<h2>Perspectives d’Évolution<a class="headerlink" href="#perspectives-d-evolution" title="Link to this heading"></a></h2>
+<section id="ameliorations-techniques">
+<h3>Améliorations Techniques<a class="headerlink" href="#ameliorations-techniques" title="Link to this heading"></a></h3>
+<p><strong>Auto-amélioration</strong> :</p>
+<ul class="simple">
+<li><p>Feedback loop pour réentraînement périodique</p></li>
+<li><p>Active learning pour identifier les cas difficiles</p></li>
+<li><p>Adaptation continue aux nouveaux produits</p></li>
+</ul>
+<p><strong>Optimisations performance</strong> :</p>
+<ul class="simple">
+<li><p>Quantization des modèles pour déploiement edge</p></li>
+<li><p>Pruning des connexions non-critiques</p></li>
+<li><p>Techniques de distillation de connaissance</p></li>
+</ul>
+<p><strong>Robustesse</strong> :</p>
+<ul class="simple">
+<li><p>Augmentation de données adaptée au domaine retail</p></li>
+<li><p>Techniques d’adversarial training</p></li>
+<li><p>Gestion des conditions d’éclairage variables</p></li>
+</ul>
+<p>Extensions Fonctionnelles
+———————————8</p>
+<p><strong>Multi-modalité</strong> :</p>
+<ul class="simple">
+<li><p>Intégration des informations textuelles (codes-barres, prix)</p></li>
+<li><p>Analyse des couleurs et formes géométriques</p></li>
+<li><p>Fusion avec données contextuelles (saison, promotion)</p></li>
+</ul>
+<p><strong>Intelligence contextuelle</strong> :</p>
+<ul class="simple">
+<li><p>Apprentissage des associations de produits</p></li>
+<li><p>Prédiction des ruptures de stock</p></li>
+<li><p>Recommandations de réassort intelligent</p></li>
+</ul>
+<p>Cette solution hybride représente une avancée significative dans l’automatisation de l’annotation et de la classification des produits retail. Elle combine le meilleur des deux mondes : l’efficacité de l’apprentissage non supervisé pour l’annotation et la précision de l’apprentissage supervisé pour la classification en production.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="train_models_results.html" class="btn btn-neutral float-left" title="Résultats d’entraînement des modèles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="guide_utilisation_2.html" class="btn btn-neutral float-right" title="Guide d’utilisation 2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Abderrahman Es-safi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

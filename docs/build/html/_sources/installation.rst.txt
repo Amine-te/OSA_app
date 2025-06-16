@@ -1,0 +1,29 @@
+Installation
+============
+
+Prérequis
+---------
+
+Avant d'utiliser ce système, assurez-vous d’avoir les éléments suivants installés :
+
+- Python 3.8 ou supérieur
+- PyTorch 1.9 ou supérieur
+- CUDA 11.1+ (recommandé pour les performances GPU)
+
+Installation des Dépendances
+----------------------------
+
+.. code-block:: bash
+
+   pip install -r requirements.txt
+
+**Remarque** : les modèles `shelf.pt`, `void.pt` et `products.pt` doivent être placés dans le dossier `models/`.
+
+Utilisation
+-----------
+
+Pour lancer le système :
+
+.. code-block:: bash
+
+   python main.py --source image.jpg

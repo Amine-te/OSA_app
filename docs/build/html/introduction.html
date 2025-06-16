@@ -1,0 +1,237 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; On-Shelf Availibility (OSA)  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Modèles Préentraînés" href="modeles.html" />
+    <link rel="prev" title="Bienvenue dans la documentation de Mon Projet !" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            On-Shelf Availibility (OSA)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sommaire</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#objectifs-du-systeme">Objectifs du Système</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture-du-systeme">Architecture du Système</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#description-des-composants">Description des composants</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cas-d-utilisation">Cas d’Utilisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#avantages-et-impact">Avantages et Impact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#technologies-utilisees">Technologies Utilisées</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modeles.html">Modèles Préentraînés</a></li>
+<li class="toctree-l1"><a class="reference internal" href="train_models_results.html">Résultats d’entraînement des modèles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solution_2.html">Solution 2 : Classification par Clustering Semi-Supervisé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide_utilisation_2.html">Guide d’utilisation 2</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">On-Shelf Availibility (OSA)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<p>Le système de détection On-Shelf Availability (OSA) est une solution avancée de vision par ordinateur conçue pour identifier automatiquement les espaces vides sur les rayons, détecter les étagères et reconnaître les produits présents dans un environnement commercial.</p>
+<p>Dans le secteur de la grande distribution et du commerce de détail, les ruptures de stock représentent un enjeu majeur pouvant entraîner jusqu’à 4% de pertes de ventes annuelles. Notre solution technologique permet aux détaillants d’optimiser la gestion des stocks, d’améliorer l’expérience client et de maximiser les ventes en assurant une disponibilité optimale des produits.</p>
+<p>Le système OSA utilise des algorithmes d’intelligence artificielle de pointe pour analyser en temps réel l’état des rayons et fournir des informations précieuses aux gestionnaires de magasins.</p>
+<section id="objectifs-du-systeme">
+<h2>Objectifs du Système<a class="headerlink" href="#objectifs-du-systeme" title="Link to this heading"></a></h2>
+<p>Le système a été développé avec des objectifs précis pour répondre aux besoins spécifiques du secteur de la distribution :</p>
+<ul class="simple">
+<li><p><strong>Détecter les espaces vides sur les étagères</strong> : Identification automatique des zones nécessitant un réapprovisionnement</p></li>
+<li><p><strong>Identifier et localiser les étagères</strong> : Cartographie précise de l’espace commercial pour un suivi optimal</p></li>
+<li><p><strong>Reconnaître les produits présents</strong> : Classification des articles présents sur les rayons</p></li>
+<li><p><strong>Détecter les produits individuels</strong> : Comptage précis des unités pour une gestion fine des stocks</p></li>
+<li><p><strong>Générer des rapports en temps réel</strong> : Documentation détaillée sur l’état des stocks pour faciliter la prise de décision</p></li>
+<li><p><strong>Alerter le personnel</strong> : Notifications automatiques en cas de rupture de stock pour une action rapide</p></li>
+</ul>
+</section>
+<section id="architecture-du-systeme">
+<h2>Architecture du Système<a class="headerlink" href="#architecture-du-systeme" title="Link to this heading"></a></h2>
+<p>Le système OSA repose sur une architecture modulaire comprenant quatre modèles de détection principaux qui fonctionnent en séquence pour assurer une analyse complète et précise des rayonnages.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌─────────────────┐     ┌────────────────┐     ┌─────────────────┐     ┌───────────────────────────┐
+│                 │     │                │     │                 │     │                           │
+│  Détection des  │────▶│ Détection des  │────▶│ Détection des   │────▶│ Détection des produits    │
+│    étagères     │     │     vides      │     │    produits     │     │     individuels           │
+│   (shelf.pt)    │     │   (void.pt)    │     │  (products.pt)  │     │ (individual_products.pt)  │
+│                 │     │                │     │                 │     │                           │
+└─────────────────┘     └────────────────┘     └─────────────────┘     └───────────────────────────┘
+         │                     │                       │                           │
+         ▼                     ▼                       ▼                           ▼
+┌───────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   Traitement des données                                      │
+└───────────────────────────────────────────────────────────────────────────────────────────────┘
+                                          │
+                                          ▼
+┌───────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 Génération des rapports                                       │
+└───────────────────────────────────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+<section id="description-des-composants">
+<h3>Description des composants<a class="headerlink" href="#description-des-composants" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Détection des étagères (shelf.pt)</strong>
+- Localise et délimite les structures d’étagères dans l’environnement commercial
+- Utilise un modèle YOLOv8 optimisé pour la reconnaissance de structures commerciales
+- Fournit les coordonnées précises pour les analyses subséquentes</p></li>
+<li><p><strong>Détection des vides (void.pt)</strong>
+- Analyse les sections d’étagères identifiées pour repérer les espaces vides
+- Emploie un algorithme de segmentation sémantique pour différencier les zones occupées et inoccupées
+- Calcule le pourcentage d’espace vide par rayon</p></li>
+<li><p><strong>Détection des produits (products.pt)</strong>
+- Identifie les catégories de produits présents sur les rayons
+- Utilise un réseau de neurones convolutif entraîné sur une vaste base de données d’articles commerciaux
+- Permet d’analyser la répartition des produits par catégorie</p></li>
+<li><p><strong>Détection des produits individuels (individual_products.pt)</strong>
+- Compte avec précision les unités individuelles de chaque produit
+- Emploie des techniques de vision par ordinateur avancées pour distinguer les articles même en cas de chevauchement
+- Fournit des données granulaires pour un inventaire précis</p></li>
+<li><p><strong>Traitement des données</strong>
+- Agrège et analyse les informations collectées par les différents modèles
+- Applique des algorithmes de data mining pour extraire des insights pertinents
+- Stocke les données structurées pour une exploitation ultérieure</p></li>
+<li><p><strong>Génération des rapports</strong>
+- Produit des rapports détaillés et personnalisables selon les besoins des utilisateurs
+- Intègre des visualisations intuitives pour faciliter l’interprétation des données
+- Permet l’export dans différents formats (PDF, CSV, JSON) pour une intégration avec d’autres systèmes</p></li>
+</ol>
+</section>
+</section>
+<section id="cas-d-utilisation">
+<h2>Cas d’Utilisation<a class="headerlink" href="#cas-d-utilisation" title="Link to this heading"></a></h2>
+<p>Notre système OSA s’adapte à différents scénarios d’utilisation dans le secteur de la distribution :</p>
+<ul class="simple">
+<li><p><strong>Surveillance continue des rayons en magasin</strong>
+- Monitoring en temps réel de l’état des rayons
+- Détection immédiate des anomalies ou des ruptures
+- Suivi des tendances de consommation au cours de la journée</p></li>
+<li><p><strong>Audit de merchandising</strong>
+- Évaluation précise du placement et de la présentation des produits
+- Vérification de la conformité aux planogrammes
+- Analyse de l’efficacité des stratégies de mise en rayon</p></li>
+<li><p><strong>Optimisation de la chaîne d’approvisionnement</strong>
+- Anticipation des besoins de réapprovisionnement
+- Réduction des délais entre la détection d’une rupture et son traitement
+- Synchronisation avec les systèmes de gestion d’inventaire</p></li>
+<li><p><strong>Analyse des performances commerciales</strong>
+- Corrélation entre la disponibilité des produits et les ventes
+- Identification des produits à forte rotation
+- Évaluation de l’impact des promotions sur l’état des stocks</p></li>
+</ul>
+</section>
+<section id="avantages-et-impact">
+<h2>Avantages et Impact<a class="headerlink" href="#avantages-et-impact" title="Link to this heading"></a></h2>
+<p>L’implémentation de notre système OSA offre de nombreux avantages mesurables pour les commerces de détail :</p>
+<ul class="simple">
+<li><p><strong>Réduction des pertes de ventes</strong> : Diminution de 30% à 40% des situations de rupture de stock, se traduisant par une augmentation directe du chiffre d’affaires</p></li>
+<li><p><strong>Amélioration de l’expérience client</strong> : Satisfaction accrue des clients grâce à une disponibilité constante des produits recherchés</p></li>
+<li><p><strong>Optimisation des processus</strong> : Réduction de 50% du temps consacré aux contrôles manuels des stocks par le personnel</p></li>
+<li><p><strong>Insights stratégiques</strong> : Collecte de données précieuses sur les comportements d’achat et les tendances de consommation</p></li>
+<li><p><strong>ROI rapide</strong> : Retour sur investissement généralement observé dans les 6 à 12 mois suivant l’implémentation</p></li>
+</ul>
+<p>Notre solution s’intègre facilement dans l’infrastructure existante grâce à ses interfaces API standardisées et sa conception modulaire. Elle est évolutive et peut s’adapter aux besoins spécifiques de chaque client, qu’il s’agisse d’une petite surface de vente ou d’un hypermarché.</p>
+</section>
+<section id="technologies-utilisees">
+<h2>Technologies Utilisées<a class="headerlink" href="#technologies-utilisees" title="Link to this heading"></a></h2>
+<p>Le système OSA s’appuie sur un ensemble de technologies de pointe pour offrir des performances optimales :</p>
+<ul class="simple">
+<li><p><strong>Frameworks d’IA</strong> : PyTorch, TensorFlow</p></li>
+<li><p><strong>Vision par ordinateur</strong> : OpenCV, YOLOv8,YOLOv11,DTER,CNN</p></li>
+<li><p><strong>Traitement des données</strong> : Python, Pandas, NumPy,Matplotlib,</p></li>
+<li><p><strong>Interface utilisateur</strong> : Steamlit</p></li>
+<li><p><strong>Déploiement</strong> :</p></li>
+<li><p><strong>Stockage</strong> :</p></li>
+</ul>
+<p>Ces technologies ont été sélectionnées pour leur robustesse, leur capacité à traiter des données en temps réel et leur facilité d’intégration dans des environnements commerciaux existants.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Bienvenue dans la documentation de Mon Projet !" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modeles.html" class="btn btn-neutral float-right" title="Modèles Préentraînés" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Abderrahman Es-safi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
