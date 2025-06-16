@@ -1,0 +1,16 @@
+{
+  "class_names": [
+    "Alex",
+    "Amalfi 3in1",
+    "Amalfi K",
+    "Amalfi proHair",
+    "Chapo Amande",
+    "Chapo Coco",
+    "Chapo Exotique",
+    "Chapo Yaourt",
+    "Magnum Black",
+    "Magnum Gold"
+  ],
+  "num_classes": 10,
+  "input_size": 224
+}
