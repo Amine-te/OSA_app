@@ -10,16 +10,14 @@ In today's competitive retail landscape, **stockouts** represent one of the most
 
     <div style="display: flex; justify-content: center; gap: 20px;">
         <div style="flex: 1; text-align: center;">
-            <img src="_static/Image4.png" width="100%">
+            <img src="_static/out_of_stock.jpeg" width="100%">
             <p><em>Figure 1: Out-of-stock scenario in aisle</em></p>
         </div>
         <div style="flex: 1; text-align: center;">
             <img src="_static/Image3.png" width="100%">
-            <p><em>Figure 2: Shelf with missing products</em></p>
+            <p><em>Figure 2:  A frustrated customer looking at empty shelves</em></p>
         </div>
     </div>
-
-*Figure 1: Visual representation of stockout challenges in modern retail environments*
 
 The Business Challenge
 ----------------------
@@ -33,7 +31,7 @@ Stock ruptures in retail environments create a complex web of interconnected pro
 * **Margin Reduction**: Decreased profitability from suboptimal inventory management
 * **Customer Loyalty Impact**: Long-term effects on customer retention and brand perception
 
-.. image:: images/economic_impact_graph.png
+.. image:: _static/000000017114.jpg
    :alt: Economic impact visualization of stockouts
    :align: center
    :width: 70%
@@ -49,13 +47,6 @@ The magnitude of this problem is highlighted by industry research findings:
 * **25%** of customers switch to competitor stores when faced with stockouts
 * **70%** of stockout detection still relies on manual processes
 
-.. image:: images/retail_statistics.png
-   :alt: Key statistics about retail stockouts
-   :align: center
-   :width: 60%
-
-*Figure 3: Industry statistics revealing the scope of the stockout problem*
-
 *Source: ECR, IRI, Nielsen retail sector studies*
 
 Our Mission
@@ -63,7 +54,7 @@ Our Mission
 
 The OSA project is driven by a clear and ambitious mission: **to develop an intelligent system for automatic detection of stock ruptures and empty spaces on retail shelves**. This mission encompasses not just the technical challenge of detection, but the broader goal of transforming how retailers approach inventory management.
 
-.. image:: images/mission_overview.png
+.. image:: _static/Image4.png
    :alt: OSA project mission visualization
    :align: center
    :width: 75%
@@ -92,13 +83,6 @@ The OSA system is built around five core solution pillars that work synergistica
 **5. Stock Management Optimization**
    Comprehensive analytics and predictive modeling to enhance overall inventory management efficiency and reduce future stockout incidents.
 
-.. image:: images/solution_framework.png
-   :alt: Comprehensive solution framework visualization
-   :align: center
-   :width: 85%
-
-*Figure 5: The five-pillar solution framework of the OSA system*
-
 Technology Integration
 ----------------------
 
@@ -121,13 +105,6 @@ The OSA system represents a convergence of multiple advanced technologies:
 - Historical trend analysis and reporting
 - Performance metrics and KPI tracking
 - Integration with existing retail management systems
-
-.. image:: images/technology_stack.png
-   :alt: Technology stack and integration overview
-   :align: center
-   :width: 80%
-
-*Figure 6: Technology integration architecture showing the interconnected systems*
 
 Implementation Benefits
 -----------------------
