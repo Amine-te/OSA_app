@@ -91,7 +91,8 @@ For product detection, we integrated a comprehensive **SKU dataset** from Kaggle
 .. image:: _static/sku.png
    :alt: Kaggle SKU dataset overview
    :align: center
-   :width: 80%
+   :width: 100%
+   :height: 500px
 
 **Integration Process**
 
