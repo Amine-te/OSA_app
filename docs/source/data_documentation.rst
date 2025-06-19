@@ -70,7 +70,6 @@ We used **Roboflow** to create high-quality annotations for void detection, leve
 - **Size**: Real-world retail images with void annotations  
 - **Source**: Custom collection from Moroccan retail chains  
 - **Annotation Tool**: Roboflow platform  
-- **Types**: Complete voids, partial voids, gap voids, and edge voids  
 - **Link**: `Void Detection Dataset <https://www.kaggle.com/datasets/void-detection>`_
 
 Product Detection Dataset
@@ -85,7 +84,7 @@ For product detection, we integrated a comprehensive **SKU dataset** from Kaggle
 
 - High-resolution product images
 - Extensive product category coverage
-- COCO-style annotations with detailed classifications
+- YOLO-style annotations with detailed classifications
 - Multi-level product hierarchy
 
 .. image:: _static/sku.png
@@ -105,7 +104,7 @@ For product detection, we integrated a comprehensive **SKU dataset** from Kaggle
 
 - **Dataset Name**: Open Source SKU Dataset  
 - **Description**: Comprehensive collection of retail product images with bounding box annotations for product detection  
-- **Format**: COCO JSON format with image files  
+- **Format**: Yolov5 format with image files  
 - **Size**: Multiple product categories with detailed annotations  
 - **Source**: Kaggle open source community  
 - **Link**: `SKU Detection Dataset <https://www.kaggle.com/datasets/thedatasith/sku110k-annotations>`_
