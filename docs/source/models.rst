@@ -478,12 +478,6 @@ Datasets
    * - Voids
      - +8,000
      - 1
-   * - Shelves
-     - +6,000
-     - 1
-   * - Products
-     - +500
-     - 5
    * - Product for SKU
      - +10,000
      - 1
