@@ -1,7 +1,7 @@
-# Welcome to My Project Documentation!
+Welcome to My Project Documentation!
 ===============================================
 
-# On-Shelf Availability (OSA) Analysis
+On-Shelf Availability (OSA) Analysis
 ===========================================
 
 .. figure:: _static/title image.jpeg
@@ -13,12 +13,12 @@
 
 ------------
 
-# Our Team
+Our Team
 ------------
 
 This innovative project was carried out by a team of students passionate about artificial intelligence and its practical applications in the retail sector, under the supervision of a recognized expert in the field.
 
-## Team Members
+Team Members
 ~~~~~~~~~~~~~~~~~~~
 
 - **Es-safi Abderrahman** – AI and Data Technologies Engineering student  
@@ -27,17 +27,17 @@ This innovative project was carried out by a team of students passionate about a
 - **Faris Amine** – AI and Data Technologies Engineering student   
     `LinkedIn <https://www.linkedin.com/in/amine-faris-645096277/>`__
 
-## Project Supervisor
+Project Supervisor
 ~~~~~~~~~~~~~~~~~~~
 
 - **Prof. Tawfik Masrour** – Professor, AI expert  
     Research Director in applied artificial intelligence and project mentor  
     `LinkedIn <https://www.linkedin.com/in/tawfik-masrour-43163b85/>`__
 
-## Program: IADT-SI
+Field of Study: IADT-SI
 ~~~~~~~~~
 
-## Period: 06-2025 / 01-2025
+Period: 01-2025 / 06-2025
 ~~~~~~~~~
 
 .. toctree::
