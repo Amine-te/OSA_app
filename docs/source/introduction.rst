@@ -10,12 +10,12 @@ In today's competitive retail landscape, **stockouts** represent one of the most
 
     <div style="display: flex; justify-content: center; gap: 20px;">
         <div style="flex: 1; text-align: center;">
-            <img src="_static/out_of_stock.jpg" width="100%">
+            <img src="_static/out_of_stock.jpg" style="width: 100%; height: 300px; object-fit: cover;">
             <p><em>Figure 1: Out-of-stock scenario in aisle</em></p>
         </div>
         <div style="flex: 1; text-align: center;">
-            <img src="_static/Image3.png" width="100%">
-            <p><em>Figure 2:  A frustrated customer looking at empty shelves</em></p>
+            <img src="_static/Image3.png" style="width: 100%; height: 300px; object-fit: cover;">
+            <p><em>Figure 2: A frustrated customer looking at empty shelves</em></p>
         </div>
     </div>
 
