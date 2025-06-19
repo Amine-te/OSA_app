@@ -105,13 +105,6 @@ The OSA system delivers tangible benefits across multiple dimensions:
 - Scalable solution adaptable to various retail formats
 - Future-ready platform for continued innovation
 
-Looking Forward
----------------
-
-The OSA project represents more than just a technological solution—it embodies a fundamental shift toward intelligent, automated retail operations. As we continue to develop and refine this system, we remain committed to pushing the boundaries of what's possible in retail technology while maintaining focus on practical, implementable solutions that deliver real value to retailers and their customers.
-
-The following sections of this documentation will provide detailed insights into the data architecture, technical specifications, implementation guidelines, and performance metrics that make the OSA system a comprehensive solution for modern retail challenges.
-
 .. note::
    This introduction provides the foundation for understanding the OSA system's capabilities and benefits. For detailed technical specifications and implementation details, please refer to the subsequent sections of this documentation.
 
