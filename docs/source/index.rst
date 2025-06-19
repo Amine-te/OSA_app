@@ -9,7 +9,7 @@ On-Shelf Availability (OSA) Analysis
 
 *Intelligent Inventory Management for Modern Retail*
 
-.. figure:: _static/title_image.png
+.. figure:: _static/title_image.jpeg
    :alt: OSA Analysis Presentation
    :width: 85%
    :align: center
