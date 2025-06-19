@@ -5,7 +5,7 @@ Trained Models
 The system uses two detection models based on YOLOv8 or similar architecture:
 
 void.pt
-=======
+-------
 
 Model dedicated to identifying empty spaces.
 
@@ -16,7 +16,7 @@ Model dedicated to identifying empty spaces.
 - Takes into account price tags and separators.
 
 individual_products.pt
-======================
+-----------------------
 
 Model specialized in detecting individual products (SKU - Stock Keeping Unit).
 
@@ -28,7 +28,7 @@ Model specialized in detecting individual products (SKU - Stock Keeping Unit).
 - High precision for detailed classification tasks in complex environments.
 
 Model Training Results
-======================
+====================================
 
 This documentation presents the training results of different models used in our On-Shelf Availability (OSA) detection system.
 
@@ -478,6 +478,12 @@ Datasets
    * - Voids
      - +8,000
      - 1
+   * - Shelves
+     - +6,000
+     - 1
+   * - Products
+     - +500
+     - 5
    * - Product for SKU
      - +10,000
      - 1
