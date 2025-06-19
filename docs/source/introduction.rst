@@ -10,7 +10,7 @@ In today's competitive retail landscape, **stockouts** represent one of the most
 
     <div style="display: flex; justify-content: center; gap: 20px;">
         <div style="flex: 1; text-align: center;">
-            <img src="_static/out_of_stock.jpeg" width="100%">
+            <img src="_static/out_of_stock.jpg" width="100%">
             <p><em>Figure 1: Out-of-stock scenario in aisle</em></p>
         </div>
         <div style="flex: 1; text-align: center;">
@@ -36,8 +36,6 @@ Stock ruptures in retail environments create a complex web of interconnected pro
    :align: center
    :width: 70%
 
-*Figure 2: Economic impact trends showing the correlation between stockouts and business performance*
-
 **Critical Statistics:**
 
 The magnitude of this problem is highlighted by industry research findings:
@@ -59,8 +57,6 @@ The OSA project is driven by a clear and ambitious mission: **to develop an inte
    :align: center
    :width: 75%
 
-*Figure 4: Visual representation of our mission to revolutionize stock detection*
-
 Our approach leverages cutting-edge **computer vision**, **artificial intelligence**, and **machine learning** technologies to create a comprehensive solution that operates in real-time, providing unprecedented visibility into shelf conditions across retail environments.
 
 Comprehensive Solution Framework
@@ -74,37 +70,11 @@ The OSA system is built around five core solution pillars that work synergistica
 **2. Empty Space Identification**
    Sophisticated spatial analysis techniques detect and map empty areas on shelves, providing detailed insights into product placement and availability.
 
-**3. Personalized Recommendation Engine**
-   AI-driven recommendation systems that adapt to store-specific patterns, customer behavior, and seasonal variations to optimize stock replenishment strategies.
-
-**4. Staff Assistance Integration**
+**3. Staff Assistance Integration**
    Seamless integration with existing store management systems to provide actionable insights and task prioritization for retail staff.
 
-**5. Stock Management Optimization**
+**4. Stock Management Optimization**
    Comprehensive analytics and predictive modeling to enhance overall inventory management efficiency and reduce future stockout incidents.
-
-Technology Integration
-----------------------
-
-The OSA system represents a convergence of multiple advanced technologies:
-
-**Computer Vision Pipeline:**
-- High-resolution image capture and processing
-- Object detection and classification algorithms
-- Spatial analysis and shelf mapping
-- Real-time monitoring capabilities
-
-**Artificial Intelligence Engine:**
-- Machine learning models trained on diverse retail environments
-- Pattern recognition for product identification
-- Predictive analytics for proactive stock management
-- Adaptive learning systems that improve over time
-
-**Data Analytics Platform:**
-- Real-time data processing and analysis
-- Historical trend analysis and reporting
-- Performance metrics and KPI tracking
-- Integration with existing retail management systems
 
 Implementation Benefits
 -----------------------
