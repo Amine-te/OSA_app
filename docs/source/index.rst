@@ -68,8 +68,7 @@ This documentation provides comprehensive coverage of the On-Shelf Availability 
    data_documentation
    solution
    models
-   train_models_results
-   user_guide_2
+   user_guide
 
 ----
 
