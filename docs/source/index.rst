@@ -68,7 +68,7 @@ This documentation provides comprehensive coverage of the On-Shelf Availability 
    data_documentation
    solution
    models
-   user_guide
+   app
 
 ----
 

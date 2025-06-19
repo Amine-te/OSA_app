@@ -1,175 +1,175 @@
-Modèles Préentraînés
-====================
+Pre-trained Models
+==================
 
-Le système utilise deux modèles de détection préentraînés basés sur YOLOv8 ou une architecture similaire :
+The system uses two pre-trained detection models based on YOLOv8 or similar architecture:
 
 void.pt
 -------
 
-Modèle dédié à l'identification des espaces vides.
+Model dedicated to identifying empty spaces.
 
-**Caractéristiques :**
+**Characteristics:**
 
-- Détection précise des emplacements sans produit.
-- Différenciation entre espace vide intentionnel et rupture de stock.
-- Prise en compte des étiquettes de prix et des séparateurs.
+- Precise detection of locations without products.
+- Differentiation between intentional empty space and stockout.
+- Takes into account price tags and separators.
 
 individual_products.pt
 -----------------------
 
-Modèle spécialisé dans la détection des produits individuels (SKU - Stock Keeping Unit).
+Model specialized in detecting individual products (SKU - Stock Keeping Unit).
 
-**Caractéristiques :**
+**Characteristics:**
 
-- Identification fine des références précises de produits.
-- Capacité à distinguer les variantes d’un même produit (taille, parfum, format).
-- Utile pour les tâches de réassort automatique ou de vérification de planogramme.
-- Haute précision pour des cas de classification détaillée dans des environnements complexes.
+- Fine identification of precise product references.
+- Ability to distinguish variants of the same product (size, flavor, format).
+- Useful for automatic restocking tasks or planogram verification.
+- High precision for detailed classification tasks in complex environments.
 
 ====================================
-Résultats d'entraînement des modèles
+Model Training Results
 ====================================
 
-Cette documentation présente les résultats d'entraînement des différents modèles utilisés dans notre système de détection On-Shelf Availability (OSA).
+This documentation presents the training results of different models used in our On-Shelf Availability (OSA) detection system.
 
-.. contents:: Table des matières
+.. contents:: Table of Contents
    :depth: 3
    :local:
 
-Détection des espaces vides (void.pt)
-=====================================
+Empty Space Detection (void.pt)
+===============================
 
-Comparaison des architectures
-----------------------------
+Architecture Comparison
+-----------------------
 
-Nous avons évalué plusieurs approches pour la détection des espaces vides :
+We evaluated several approaches for empty space detection:
 
-1. YOLOv8 avec le dataset Marjan original 200 images 
-2. YOLOv8 avec augmentation de données 600 images 
-3. Transfer Learning à partir du modèle YOLOv8 avec dataset augmenté avec une dataset de 2300 images via kaggle
-4. YOLOv8 avec augmentation de données avec une dataset via Roboflow de 3000 images  
+1. YOLOv8 with original Marjan dataset 200 images 
+2. YOLOv8 with data augmentation 600 images 
+3. Transfer Learning from YOLOv8 model with augmented dataset with a 2300 image dataset via Kaggle
+4. YOLOv8 with data augmentation with a dataset via Roboflow of 3000 images  
 5. YOLOv11 
-6. DETR (approche transformer)
+6. DETR (transformer approach)
 
-YOLOv8 - Dataset Original
+YOLOv8 - Original Dataset
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance YOLOv8 - Dataset Original
+.. list-table:: YOLOv8 Performance - Original Dataset
    :widths: 25 20 20 20 15
    :header-rows: 1
 
-   * - Métrique
+   * - Metric
      - mAP50
      - mAP50-95
-     - Précision
-     - Rappel
+     - Precision
+     - Recall
    * - Global
      - 0.743
      - 0.359
      - 0.832
      - 0.635
 
-**Augmentations appliquées** : Aucune
+**Applied Augmentations**: None
 
 .. figure:: _static/images/void/void_1_Matrix.png
-   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 confusion matrix for empty space detection
    :width: 80%
    :align: center
 
-   Matrice de confusion YOLOv8 pour la détection des espaces vides
+   YOLOv8 confusion matrix for empty space detection
 
 .. figure:: _static/images/void/void_1_results.png
-   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 precision-recall curve for empty space detection
    :width: 80%
    :align: center
 
-   Les Courbe  d'entrenement YOLOv8 pour la détection des espaces vides
+   YOLOv8 training curves for empty space detection
 
-YOLOv8 - Dataset Augmenté
+YOLOv8 - Augmented Dataset
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance YOLOv8 - Dataset Augmenté
+.. list-table:: YOLOv8 Performance - Augmented Dataset
    :widths: 25 20 20 20 15
    :header-rows: 1
 
-   * - Métrique
+   * - Metric
      - mAP50
      - mAP50-95
-     - Précision
-     - Rappel
+     - Precision
+     - Recall
    * - Global
      - 0.723
      - 0.366
      - 0.695
      - 0.695
 
-**Augmentations appliquées** :
-- 50% probabilité de flip horizontal
-- Recadrage aléatoire (0-16%)
-- Rotation (-14° à +14°)
-- Ajustement de luminosité (±25%)
-- Flou gaussien (0-0.7 pixels)
+**Applied Augmentations**:
+- 50% probability of horizontal flip
+- Random cropping (0-16%)
+- Rotation (-14° to +14°)
+- Brightness adjustment (±25%)
+- Gaussian blur (0-0.7 pixels)
 
 .. figure:: _static/images/void/void_2_matrix.png
-   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 confusion matrix for empty space detection
    :width: 80%
    :align: center
 
-   Matrice de confusion YOLOv8 pour la détection des espaces vides
+   YOLOv8 confusion matrix for empty space detection
 
 .. figure:: _static/images/void/void_2_results.png
-   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 precision-recall curve for empty space detection
    :width: 80%
    :align: center
 
-   Les Courbe  d'entrenement YOLOv8 pour la détection des espaces vides
+   YOLOv8 training curves for empty space detection
 
 YOLOv8 - Transfer Learning
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-Using kaggle dataset
-.. list-table:: Performance Transfer Learning
+Using Kaggle dataset
+.. list-table:: Transfer Learning Performance
    :widths: 25 20 20 20 15
    :header-rows: 1
 
-   * - Métrique
+   * - Metric
      - mAP50
      - mAP50-95
-     - Précision
-     - Rappel
+     - Precision
+     - Recall
    * - Global
      - 0.62
      - 0.301
      - 0.644
      - 0.551
 
-**Analyse** : Le transfer learning n'a pas donné de bons résultats, probablement en raison d'un surapprentissage sur le dataset source.
+**Analysis**: Transfer learning did not yield good results, probably due to overfitting on the source dataset.
 
 .. figure:: _static/images/void/void_3_tf_matrix.png
-   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 confusion matrix for empty space detection
    :width: 80%
    :align: center
 
-   Matrice de confusion YOLOv8 pour la détection des espaces vides
+   YOLOv8 confusion matrix for empty space detection
 
 .. figure:: _static/images/void/void_3_tf_results.png
-   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 precision-recall curve for empty space detection
    :width: 80%
    :align: center
 
-   Les Courbe  des entrenement YOLOv8 pour la détection des espaces vides
+   YOLOv8 training curves for empty space detection
 
 YOLOv8 - Augmented Dataset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance - augmentation
+.. list-table:: Performance - Augmentation
    :widths: 25 20 20 20 15
    :header-rows: 1
 
-   * - Métrique
+   * - Metric
      - mAP50
      - mAP50-95
-     - Précision
-     - Rappel
+     - Precision
+     - Recall
    * - Global
      - 0.708
      - 0.376
@@ -177,31 +177,31 @@ YOLOv8 - Augmented Dataset
      - 0.665
 
 .. figure:: _static/images/void/void_4_matrix.png
-   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 confusion matrix for empty space detection
    :width: 80%
    :align: center
 
-   Matrice de confusion YOLOv8 pour la détection des espaces vides
+   YOLOv8 confusion matrix for empty space detection
 
 .. figure:: _static/images/void/void_4_results.png
-   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 precision-recall curve for empty space detection
    :width: 80%
    :align: center
 
-   Les Courbe  des entrenement YOLOv8 pour la détection des espaces vides
+   YOLOv8 training curves for empty space detection
 
-YOLOv8 - New Dataset + marjan Dataset
+YOLOv8 - New Dataset + Marjan Dataset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance - augmentation
+.. list-table:: Performance - Augmentation
    :widths: 25 20 20 20 15
    :header-rows: 1
 
-   * - Métrique
+   * - Metric
      - mAP50
      - mAP50-95
-     - Précision
-     - Rappel
+     - Precision
+     - Recall
    * - Global
      - 0.9544
      - 0.66
@@ -209,99 +209,99 @@ YOLOv8 - New Dataset + marjan Dataset
      - 0.91
 
 .. figure:: _static/images/void/void_5_matrix.png
-   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 confusion matrix for empty space detection
    :width: 80%
    :align: center
 
-   Matrice de confusion YOLOv8 pour la détection des espaces vides
+   YOLOv8 confusion matrix for empty space detection
 
 .. figure:: _static/images/void/void_5_results.png
-   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 precision-recall curve for empty space detection
    :width: 80%
    :align: center
 
-   Les Courbe  des entrenement YOLOv8 pour la détection des espaces vides
+   YOLOv8 training curves for empty space detection
 
 YOLOv11 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance YOLOv11 - Dataset Original
+.. list-table:: YOLOv11 Performance - Original Dataset
    :widths: 25 20 20 20 15
    :header-rows: 1
 
-   * - Métrique
+   * - Metric
      - mAP50
      - mAP50-95
-     - Précision
-     - Rappel
+     - Precision
+     - Recall
    * - Global
      - 0.73
      - 0.374
      - 0.736
      - 0.679
 
-**Augmentations appliquées** : Aucune
+**Applied Augmentations**: None
 
 .. figure:: _static/images/void/void1_yolo11_matrix.png
-   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv11 confusion matrix for empty space detection
    :width: 80%
    :align: center
 
-   Matrice de confusion YOLOv8 pour la détection des espaces vides
+   YOLOv11 confusion matrix for empty space detection
 
 .. figure:: _static/images/void/void1_yolo11_results.png
-   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv11 precision-recall curve for empty space detection
    :width: 80%
    :align: center
 
-   Les Courbe  d'entrenement YOLOv8 pour la détection des espaces vides
+   YOLOv11 training curves for empty space detection
 
 YOLOv11 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance YOLOv11 - Dataset Original
+.. list-table:: YOLOv11 Performance - Original Dataset
    :widths: 25 20 20 20 15
    :header-rows: 1
 
-   * - Métrique
+   * - Metric
      - mAP50
      - mAP50-95
-     - Précision
-     - Rappel
+     - Precision
+     - Recall
    * - Global
      - 0.918
      - 0.561
      - 0.871
      - 0.865
 
-**Augmentations appliquées** : New Dataset + Marjan
+**Applied Augmentations**: New Dataset + Marjan
 
 .. figure:: _static/images/void/void2_yolo11_matrix.png
-   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv11 confusion matrix for empty space detection
    :width: 80%
    :align: center
 
-   Matrice de confusion YOLOv8 pour la détection des espaces vides
+   YOLOv11 confusion matrix for empty space detection
 
 .. figure:: _static/images/void/void2_yolo11_results.png
-   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv11 precision-recall curve for empty space detection
    :width: 80%
    :align: center
 
-   Les Courbe  d'entrenement YOLOv8 pour la détection des espaces vides
+   YOLOv11 training curves for empty space detection
 
-DETR - Approche Transformer
+DETR - Transformer Approach
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance DETR
+.. list-table:: DETR Performance
    :widths: 25 20 20 20 15 20
    :header-rows: 1
 
-   * - Métrique
+   * - Metric
      - mAP50
      - mAP50-95
-     - Précision
-     - Rappel
+     - Precision
+     - Recall
    * - Global
      - 0.94
      - 
@@ -310,16 +310,16 @@ DETR - Approche Transformer
 
 
 .. figure:: _static/images/void/DTER_results.png
-   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :alt: DETR precision-recall curve for empty space detection
    :width: 80%
    :align: center
 
-   Les Courbe  d'entrenement pour la détection des espaces vides
+   DETR training curves for empty space detection
 
-**Analyse comparative** :
+**Comparative Analysis**:
 
 
-.. list-table:: Comparaison des architectures
+.. list-table:: Architecture Comparison
    :widths: 25 15 15 20 20
    :header-rows: 1
 
@@ -332,7 +332,7 @@ DETR - Approche Transformer
      - 0.38
      - 12.3
      - 18.4
-   * - YOLOv8 (augmenté)
+   * - YOLOv8 (augmented)
      - 0.66
      - 0.35
      - 12.5
@@ -348,33 +348,33 @@ DETR - Approche Transformer
      - 32.5
      - 158.3
 
-**Conclusion** : YOLOv8 offre le meilleur compromis avec 95.4% mAP50 
+**Conclusion**: YOLOv8 offers the best compromise with 95.4% mAP50 
 
-Analyse des Erreurs
--------------------
+Error Analysis
+--------------
 
-Les principales causes d'erreurs :
-1. **Occlusion** : Produits partiellement cachés (23% des erreurs)
-2. **Reflets** : Sur les emballages métalliques (17%)
-3. **Similarité visuelle** : Entre produits de même marque (15%)
-4. **Taille petite** : Produits <50px (12%)
+Main causes of errors:
+1. **Occlusion**: Partially hidden products (23% of errors)
+2. **Reflections**: On metallic packaging (17%)
+3. **Visual similarity**: Between products of the same brand (15%)
+4. **Small size**: Products <50px (12%)
 
 
-Détection des produits individuals (sku.pt)
-===========================================
+Individual Product Detection (sku.pt)
+=====================================
 
-Dataset de 10k images
-^^^^^^^^^^^^^^^^^^^^^^
+10k Images Dataset
+^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance détection étagères
+.. list-table:: Shelf Detection Performance
    :widths: 30 20 20 20 15
    :header-rows: 1
 
-   * - Metrique
+   * - Metric
      - mAP50
      - mAP50-95
-     - Précision
-     - Rappel
+     - Precision
+     - Recall
    * - Global
      - 0.916
      - 0.586
@@ -383,38 +383,38 @@ Dataset de 10k images
 
 
 .. figure:: _static/images/sku/sku_matrix.png
-   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 confusion matrix for object detection
    :width: 80%
    :align: center
 
-   Matrice de confusion YOLOv8 pour la détection des objects
+   YOLOv8 confusion matrix for object detection
 
 .. figure:: _static/images/sku/sku_matrix_nor.png
-   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 normalized confusion matrix for object detection
    :width: 80%
    :align: center
 
-   Matrice de confusion normalisee YOLOv8 pour la détection des objects
+   YOLOv8 normalized confusion matrix for object detection
 
 .. figure:: _static/images/sku/sku_results.png
-   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 precision-recall curve for object detection
    :width: 80%
    :align: center
 
-   Les Courbe  d'entrenement YOLOv8 pour la détection des objects.
+   YOLOv8 training curves for object detection.
 
-Trasfer Learning : Moroccan products Dataset 350 images
-^^^^^^^^^^^^^^^^^^^^^^
+Transfer Learning: Moroccan Products Dataset 350 Images
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance détection étagères
+.. list-table:: Shelf Detection Performance
    :widths: 30 20 20 20 15
    :header-rows: 1
 
-   * - Metrique
+   * - Metric
      - mAP50
      - mAP50-95
-     - Précision
-     - Rappel
+     - Precision
+     - Recall
    * - Global
      - 0.951
      - 0.794
@@ -423,34 +423,34 @@ Trasfer Learning : Moroccan products Dataset 350 images
 
 
 .. figure:: _static/images/sku/sku_mp_matrix.png
-   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 confusion matrix for object detection
    :width: 80%
    :align: center
 
-   Matrice de confusion YOLOv8 pour la détection des objects
+   YOLOv8 confusion matrix for object detection
 
 .. figure:: _static/images/sku/sku_mp_matrix_nor.png
-   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 normalized confusion matrix for object detection
    :width: 80%
    :align: center
 
-   Matrice de confusion normalisee YOLOv8 pour la détection des objects
+   YOLOv8 normalized confusion matrix for object detection
 
 .. figure:: _static/images/sku/sku_mp_results.png
-   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :alt: YOLOv8 precision-recall curve for object detection
    :width: 80%
    :align: center
 
-   Les Courbe  d'entrenement YOLOv8 pour la détection des objects.
+   YOLOv8 training curves for object detection.
 
 
-Annexes Techniques
-=================
+Technical Appendices
+====================
 
-Configuration Matérielle
------------------------
+Hardware Configuration
+----------------------
 
-.. list-table:: Environnement d'entraînement
+.. list-table:: Training Environment
    :widths: 30 70
    :header-rows: 0
 
@@ -460,15 +460,15 @@ Configuration Matérielle
      - 2x Intel Xeon Gold 6342
    * - **RAM**
      - 1TB DDR4
-   * - **Stockage**
+   * - **Storage**
      - 20TB NVMe RAID
    * - **OS**
      - Ubuntu 22.04 LTS
 
-Jeux de Données
----------------
+Datasets
+--------
 
-.. list-table:: **Statistiques des datasets**
+.. list-table:: **Dataset Statistics**
    :widths: 30 15 15
    :header-rows: 1
 
@@ -476,22 +476,22 @@ Jeux de Données
      - Images
      - Classes
    * - Voids
-     - +8 000
+     - +8,000
      - 1
    * - Shelves
-     - +6 000
+     - +6,000
      - 1
    * - Products
      - +500
      - 5
-   * - Product pour Sku
-     - +10 000
+   * - Product for SKU
+     - +10,000
      - 1
 
-Glossaire
----------
+Glossary
+--------
 
-- **mAP50** : Mean Average Precision à IoU=50%
-- **mAP50-95** : mAP moyenne sur IoU de 50% à 95%
-- **IoU** : Intersection over Union
-- **TP/FP/FN** : Vrais/Faux Positifs, Faux Négatifs
+- **mAP50**: Mean Average Precision at IoU=50%
+- **mAP50-95**: Average mAP over IoU from 50% to 95%
+- **IoU**: Intersection over Union
+- **TP/FP/FN**: True/False Positives, False Negatives

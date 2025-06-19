@@ -345,15 +345,6 @@ Model Performance
 - **Void Attribution Accuracy:** >85% for intelligent assignment
 - **Pattern Recognition Accuracy:** >90% for arrangement classification
 
-System Requirements
-~~~~~~~~~~~~~~~~~~~
-
-- **Minimum Image Resolution:** 1280×720 pixels
-- **Recommended Resolution:** 1920×1080 pixels
-- **Processing Memory:** 8GB RAM minimum
-- **GPU Acceleration:** CUDA-compatible GPU recommended
-- **Storage:** 2GB for model files and temporary processing
-
 Configuration Parameters
 ------------------------
 
