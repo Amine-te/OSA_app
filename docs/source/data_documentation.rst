@@ -53,7 +53,7 @@ We used **Roboflow** to create high-quality annotations for void detection, leve
    :align: center
    :width: 75%
 
-*Figure 3: Examples of different void types and annotations*
+*Figure: Examples of different void types and annotations*
 
 **Annotation Process**
 
@@ -92,8 +92,6 @@ For product detection, we integrated a comprehensive **SKU dataset** from Kaggle
    :alt: Kaggle SKU dataset overview
    :align: center
    :width: 80%
-
-*Figure 4: Overview of the Kaggle SKU dataset*
 
 **Integration Process**
 
