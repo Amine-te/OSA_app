@@ -1,15 +1,15 @@
 ===============================================
-🚀 Welcome to My Project Documentation! 🚀
+Welcome to My Project Documentation
 ===============================================
 
 *Revolutionizing Retail with AI-Powered Solutions*
 
-📊 On-Shelf Availability (OSA) Analysis
-========================================
+On-Shelf Availability (OSA) Analysis
+=====================================
 
 *Intelligent Inventory Management for Modern Retail*
 
-.. figure:: _static/title_image.jpeg
+.. figure:: _static/title_image.png
    :alt: OSA Analysis Presentation
    :width: 85%
    :align: center
@@ -17,51 +17,52 @@
 
 ----
 
-👥 Meet Our Innovative Team
-===========================
+Project Team
+============
 
-*This cutting-edge project was brought to life by a passionate team of AI enthusiasts, dedicated to transforming the retail landscape through intelligent technology solutions.*
+This innovative project was developed by a team of students passionate about artificial intelligence and its practical applications in the retail sector, under the supervision of a recognized expert in the field.
 
-🎓 Team Members
-~~~~~~~~~~~~~~~
+Team Members
+~~~~~~~~~~~~
 
-**🔹 Faris Amine** – *AI & Data Technologies Engineering Student*
+**Faris Amine** – *AI & Data Technologies Engineering Student*
    
-   📧 `Connect on LinkedIn <https://www.linkedin.com/in/amine-faris-645096277/>`__
+   `LinkedIn Profile <https://www.linkedin.com/in/amine-faris-645096277/>`__
 
-**🔹 Es-safi Abderrahman** – *AI & Data Technologies Engineering Student*
+**Es-safi Abderrahman** – *AI & Data Technologies Engineering Student*
    
-   📧 `Connect on LinkedIn <https://www.linkedin.com/in/abderrahman-es-safi-773739329/>`__
+   `LinkedIn Profile <https://www.linkedin.com/in/abderrahman-es-safi-773739329/>`__
 
-🏆 Project Supervisor
-~~~~~~~~~~~~~~~~~~~~~
+Project Supervisor
+~~~~~~~~~~~~~~~~~~
 
-**👨‍🏫 Prof. Tawfik Masrour** – *AI Research Director & Industry Expert*
+**Prof. Tawfik Masrour** – *Professor, AI Expert*
 
-   🌟 Leading authority in Applied Artificial Intelligence
+   Research Director in Applied Artificial Intelligence
    
-   🎓 Project Mentor & Academic Supervisor
+   Project Mentor & Academic Supervisor
    
-   📧 `Professional Profile <https://www.linkedin.com/in/tawfik-masrour-43163b85/>`__
+   `LinkedIn Profile <https://www.linkedin.com/in/tawfik-masrour-43163b85/>`__
 
-📚 Project Information
-======================
+Project Details
+===============
 
-:Program: **IADT-SI** (AI & Data Technologies)
-:Timeline: **January 2025 - June 2025**
-:Duration: **6-Month Development Cycle**
-:Focus: **Retail AI & Computer Vision**
+:Program: IADT-SI (AI & Data Technologies - Information Systems)
+:Duration: January 2025 - June 2025
+:Institution: [Institution Name]
+:Field: Artificial Intelligence, Computer Vision, Retail Analytics
 
 ----
 
-📖 Documentation Contents
-==========================
+Table of Contents
+=================
+
+This documentation provides comprehensive coverage of the On-Shelf Availability analysis project, from theoretical foundations to practical implementation.
 
 .. toctree::
-   :maxdepth: 3
-   :caption: 📋 Explore Our Documentation
+   :maxdepth: 2
+   :caption: Documentation Sections
    :numbered:
-   :titlesonly:
 
    introduction
    models
@@ -71,18 +72,21 @@
 
 ----
 
+Getting Started
+===============
+
 .. note::
    
-   🚀 **Getting Started?** 
+   **New to this project?** 
    
-   Begin with our **introduction** section to understand the project scope and objectives, then explore our innovative **models** and **solutions** sections.
+   We recommend starting with the **Introduction** section to understand the project scope, objectives, and problem statement before exploring the technical implementations.
 
 .. tip::
    
-   💡 **Pro Tip:** 
+   **Navigation:** 
    
-   Use the navigation sidebar to quickly jump between sections and make the most of your documentation experience!
+   Use the table of contents above or the sidebar navigation to quickly access specific sections of the documentation.
 
-.. important::
-   
-   *"Transforming retail through intelligent automation and data-driven insights"*
+----
+
+*"Advancing retail technology through intelligent automation and data-driven insights"*
