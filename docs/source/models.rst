@@ -1,7 +1,8 @@
-Pre-trained Models
+==================
+Trained Models
 ==================
 
-The system uses two pre-trained detection models based on YOLOv8 or similar architecture:
+The system uses two detection models based on YOLOv8 or similar architecture:
 
 void.pt
 -------
@@ -26,7 +27,6 @@ Model specialized in detecting individual products (SKU - Stock Keeping Unit).
 - Useful for automatic restocking tasks or planogram verification.
 - High precision for detailed classification tasks in complex environments.
 
-====================================
 Model Training Results
 ====================================
 
