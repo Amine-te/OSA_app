@@ -1,52 +1,51 @@
-Bienvenue dans la documentation de Mon Projet !
+# Welcome to My Project Documentation!
 ===============================================
 
-Analyse de la Disponibilité en Rayon (OSA)
+# On-Shelf Availability (OSA) Analysis
 ===========================================
 
-.. figure:: _static/image_presentation.png
+.. figure:: _static/title image.jpeg
    :alt: presentation image
    :width: 80%
    :align: center
 
-
 ------------
 
 ------------
 
-Notre Équipe
+# Our Team
 ------------
 
-Ce projet innovant a été réalisé par une équipe d'étudiants passionnés par l'intelligence artificielle et ses applications pratiques dans le secteur du retail, sous la supervision d'un expert reconnu dans le domaine.
+This innovative project was carried out by a team of students passionate about artificial intelligence and its practical applications in the retail sector, under the supervision of a recognized expert in the field.
 
-Membres de l'équipe
+## Team Members
 ~~~~~~~~~~~~~~~~~~~
 
-- **Es-safi Abderrahman** – AI and Data Technologies Engineering student   
-  `LinkedIn <https://www.linkedin.com/in/abderrahman-es-safi-773739329/>`__
+- **Es-safi Abderrahman** – AI and Data Technologies Engineering student  
+    `LinkedIn <https://www.linkedin.com/in/abderrahman-es-safi-773739329/>`__
 
-- **Faris Amine** – AI and Data Technologies Engineering student    
-  `LinkedIn <https://www.linkedin.com/in/amine-faris-645096277/>`__
+- **Faris Amine** – AI and Data Technologies Engineering student   
+    `LinkedIn <https://www.linkedin.com/in/amine-faris-645096277/>`__
 
-Encadrant du projet
+## Project Supervisor
 ~~~~~~~~~~~~~~~~~~~
 
-- **Pr. Tawfik Masrour** – Professor, expert IA  
-  Directeur de recherche en intelligence artificielle appliquée et mentor du projet  
-  `LinkedIn <https://www.linkedin.com/in/tawfik-masrour-43163b85/>`__
+- **Prof. Tawfik Masrour** – Professor, AI expert  
+    Research Director in applied artificial intelligence and project mentor  
+    `LinkedIn <https://www.linkedin.com/in/tawfik-masrour-43163b85/>`__
 
-Filiere : IADT-SI
+## Program: IADT-SI
 ~~~~~~~~~
 
-Periode : 06-2025 / 01-2025
+## Period: 06-2025 / 01-2025
 ~~~~~~~~~
+
 .. toctree::
    :maxdepth: 2
-   :caption: Sommaire
+   :caption: Table of Contents
 
    introduction
-   modeles
+   models
    train_models_results
    solution_2
-   guide_utilisation_2
-   
+   user_guide_2
