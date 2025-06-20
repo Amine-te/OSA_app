@@ -5,7 +5,7 @@ Trained Models
 The system uses two detection models based on YOLOv8 or similar architecture:
 
 void.pt
--------
+=======
 
 Model dedicated to identifying empty spaces.
 
@@ -16,7 +16,7 @@ Model dedicated to identifying empty spaces.
 - Takes into account price tags and separators.
 
 individual_products.pt
------------------------
+======================
 
 Model specialized in detecting individual products (SKU - Stock Keeping Unit).
 
