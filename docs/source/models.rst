@@ -364,7 +364,7 @@ Individual Product Detection (sku.pt)
 =====================================
 
 10k Images Dataset
-^^^^^^^^^^^^^^^^^^^
+------------------
 
 .. list-table:: Shelf Detection Performance
    :widths: 30 20 20 20 15
@@ -404,7 +404,7 @@ Individual Product Detection (sku.pt)
    YOLOv8 training curves for object detection.
 
 Transfer Learning: Moroccan Products Dataset 350 Images
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------------------
 
 .. list-table:: Shelf Detection Performance
    :widths: 30 20 20 20 15
