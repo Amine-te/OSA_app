@@ -47,7 +47,7 @@ Project Supervisor
 Project Details
 ===============
 
-:Program: IADT-SI (AI & Data Technologies - Information Systems)
+:Program: IADT-SI (AI & Data Technologies)
 :Duration: January 2025 - June 2025
 :Institution: [Institution Name]
 :Field: Artificial Intelligence, Computer Vision, Retail Analytics
