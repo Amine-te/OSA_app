@@ -330,11 +330,11 @@ Error Analysis
 --------------
 
 Main causes of errors:
-1. **Occlusion**: Partially hidden products (23% of errors)
-2. **Reflections**: On metallic packaging (17%)
-3. **Visual similarity**: Between products of the same brand (15%)
-4. **Small size**: Products <50px (12%)
 
+- **Occlusion** – Partially hidden products (**23%** of errors)
+- **Reflections** – On metallic packaging (**17%**)
+- **Visual similarity** – Between products of the same brand (**15%**)
+- **Small size** – Products smaller than 50px (**12%**)
 
 Individual Product Detection (sku.pt)
 =====================================
