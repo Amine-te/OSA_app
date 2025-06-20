@@ -4,8 +4,8 @@ Trained Models
 
 The system uses two detection models based on YOLOv8 or similar architecture:
 
-void.pt
-=======
+Empty Space Detection (void.pt)
+===============================
 
 Model dedicated to identifying empty spaces.
 
@@ -14,30 +14,6 @@ Model dedicated to identifying empty spaces.
 - Precise detection of locations without products.
 - Differentiation between intentional empty space and stockout.
 - Takes into account price tags and separators.
-
-individual_products.pt
-======================
-
-Model specialized in detecting individual products (SKU - Stock Keeping Unit).
-
-**Characteristics:**
-
-- Fine identification of precise product references.
-- Ability to distinguish variants of the same product (size, flavor, format).
-- Useful for automatic restocking tasks or planogram verification.
-- High precision for detailed classification tasks in complex environments.
-
-Model Training Results
-====================================
-
-This documentation presents the training results of different models used in our On-Shelf Availability (OSA) detection system.
-
-.. contents:: Table of Contents
-   :depth: 3
-   :local:
-
-Empty Space Detection (void.pt)
-===============================
 
 Architecture Comparison
 -----------------------
@@ -362,6 +338,15 @@ Main causes of errors:
 
 Individual Product Detection (sku.pt)
 =====================================
+
+Model specialized in detecting individual products (SKU - Stock Keeping Unit).
+
+**Characteristics:**
+
+- Fine identification of precise product references.
+- Ability to distinguish variants of the same product (size, flavor, format).
+- Useful for automatic restocking tasks or planogram verification.
+- High precision for detailed classification tasks in complex environments.
 
 10k Images Dataset
 ------------------
