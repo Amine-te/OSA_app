@@ -70,7 +70,7 @@ We used **Roboflow** to create high-quality annotations for void detection, leve
 - **Size**: Real-world retail images with void annotations  
 - **Source**: Custom collection from Moroccan retail chains  
 - **Annotation Tool**: Roboflow platform  
-- **Link**: `Void Detection Dataset <https://www.kaggle.com/datasets/void-detection>`_
+- **Link**: `Void Detection Dataset <https://www.kaggle.com/datasets/aminefaris/retail-shelf-void-detection-dataset/data>`_
 
 Product Detection Dataset
 -------------------------
