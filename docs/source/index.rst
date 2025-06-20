@@ -49,7 +49,7 @@ Project Details
 
 :Program: IADT-SI (AI & Data Technologies)
 :Duration: January 2025 - June 2025
-:Institution: [Institution Name]
+:Institution: ENSAM Meknès
 :Field: Artificial Intelligence, Computer Vision, Retail Analytics
 
 ----
