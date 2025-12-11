@@ -39,7 +39,7 @@ Void Detection Dataset Development
 Annotation with Roboflow
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-We used **Roboflow** to create high-quality annotations for void detection, leveraging its collaborative annotation tools and quality control features.
+The void detection dataset was manually annotated using **Roboflow** from images collected at local Meknes Marjane and Atakadao retail locations. We used Roboflow's collaborative annotation tools and quality control features to create high-quality annotations for void detection.
 
 **Void Detection Types**
 
@@ -68,7 +68,7 @@ We used **Roboflow** to create high-quality annotations for void detection, leve
 - **Description**: Custom-built dataset for detecting empty spaces on retail shelves  
 - **Format**: YOLO format annotations via Roboflow  
 - **Size**: Real-world retail images with void annotations  
-- **Source**: Custom collection from Moroccan retail chains  
+- **Source**: Manually annotated data collected from local Meknes Marjane and Atakadao retail locations  
 - **Annotation Tool**: Roboflow platform  
 - **Link**: `Void Detection Dataset <https://www.kaggle.com/datasets/aminefaris/retail-shelf-void-detection-dataset/data>`_
 
