@@ -114,6 +114,17 @@ Following YOLO detection, a lightweight CNN architecture performs fine-grained p
    - GlobalAveragePooling2D + Dense layers for classification
    - Real-time sub-category classification with confidence scoring
 
+**CNN Classification on YOLO Cropped Images:**
+
+The CNN classifier processes individual product crops extracted by YOLO detection, providing fine-grained sub-category classification with confidence scores for each detected product.
+
+.. image:: _static/yolo_cnn.png
+   :alt: YOLO Detection + CNN Classification Results
+   :align: center
+   :width: 100%
+
+*Figure: Example of CNN classification applied to YOLO-detected product crops, showing product names with YOLO and CNN confidence scores*
+
 Spatial Context Analysis
 ------------------------
 
@@ -331,6 +342,32 @@ The system generates comprehensive visual analytics including spatial connection
    - Dynamic cluster boundary adjustments
    - Pattern overlay displays for arrangement analysis
    - Confidence heat mapping for attribution decisions
+
+Complete Pipeline Output Examples
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following examples demonstrate the complete pipeline output, showcasing product detection, void identification, spatial context analysis, and intelligent void attribution in real retail environments:
+
+.. image:: _static/full_example1.png
+   :alt: Complete Pipeline Output Example 1
+   :align: center
+   :width: 100%
+
+*Figure: Example 1 - Enhanced shelf analysis showing product detection, void identification, and spatial context attribution for retail shelf monitoring*
+
+.. image:: _static/full_example2.png
+   :alt: Complete Pipeline Output Example 2
+   :align: center
+   :width: 100%
+
+*Figure: Example 2 - Complete pipeline visualization demonstrating void detection with spatial relationships and product classification across multiple shelf levels*
+
+.. image:: _static/full_example3.png
+   :alt: Complete Pipeline Output Example 3
+   :align: center
+   :width: 100%
+
+*Figure: Example 3 - Comprehensive shelf analysis output featuring multiple product types, void detection, and intelligent spatial context analysis*
 
 Performance Specifications
 --------------------------
