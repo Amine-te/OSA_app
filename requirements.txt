@@ -1,0 +1,22 @@
+# Core ML and Computer Vision
+torch>=2.0.0
+torchvision>=0.15.0
+ultralytics>=8.0.0
+
+# Image Processing
+opencv-python>=4.8.0
+Pillow>=10.0.0
+numpy>=1.24.0
+
+# Data Science and Analysis
+pandas>=2.0.0
+scikit-learn>=1.3.0
+scipy>=1.11.0
+
+# Visualization
+matplotlib>=3.7.0
+plotly>=5.17.0
+
+# Web Application
+streamlit>=1.28.0
+
