@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from src.config import get_device, DEFAULT_ASSIGNMENT_PARAMS, DEFAULT_CNN_TRANSFORM
-from src.models.cnn import LightweightCNN
+from src.networks.cnn import LightweightCNN
 from src.detection.product_detector import detect_products
 from src.detection.void_detector import detect_voids
 from src.analysis.shelf_patterns import analyze_shelf_patterns
