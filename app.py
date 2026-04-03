@@ -79,7 +79,7 @@ if 'current_frame_index' not in st.session_state:
     st.session_state.current_frame_index = 0
 
 # Import your EnhancedRetailPipeline class here
-from pipeline import EnhancedRetailPipeline
+from src.pipelines.enhanced_pipeline import EnhancedRetailPipeline
 
 def cleanup_session_temp_files():
     """Clean up temporary files from current session"""
