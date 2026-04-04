@@ -20,3 +20,8 @@ plotly>=5.17.0
 # Web Application
 streamlit>=1.28.0
 
+# Desktop Application (PyQt6)
+PyQt6>=6.4.0
+pyqtgraph>=0.13.3
+PyYAML>=6.0
+pyinstaller>=6.0.0

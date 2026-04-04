@@ -2,12 +2,13 @@ import os
 import torch
 import torchvision.transforms as transforms
 
-# Force CPU usage
-torch.cuda.is_available = lambda: False
-os.environ['CUDA_VISIBLE_DEVICES'] = ''
-
 def get_device():
-    return torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    """Detect dynamic optimal device for PyTorch execution."""
+    if hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+        return torch.device('mps')
+    elif torch.cuda.is_available():
+        return torch.device('cuda')
+    return torch.device('cpu')
 
 DEFAULT_ASSIGNMENT_PARAMS = {
     'spatial_context_weight': 0.5,

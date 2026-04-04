@@ -1,6 +1,6 @@
-def detect_voids(image_path, void_model, void_confidence_threshold):
+def detect_voids(image_source, void_model, void_confidence_threshold):
     """Detect void areas using void detection model"""
-    void_results = void_model(image_path, conf=void_confidence_threshold)
+    void_results = void_model(image_source, conf=void_confidence_threshold)
 
     void_detections = []
 

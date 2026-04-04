@@ -2,6 +2,7 @@ import torch
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+from pathlib import Path
 
 from src.config import get_device, DEFAULT_ASSIGNMENT_PARAMS, DEFAULT_CNN_TRANSFORM
 from src.networks.cnn import LightweightCNN
@@ -48,23 +49,27 @@ class EnhancedRetailPipeline:
         # Enhanced assignment parameters with spatial context priority
         self.assignment_params = DEFAULT_ASSIGNMENT_PARAMS
 
-    def detect_and_classify_complete(self, image_path):
+    def detect_and_classify_complete(self, image_source):
         """
         Complete pipeline: detect products, classify subclasses, detect voids, and analyze relationships
         """
-        # Load image
-        image = cv2.imread(image_path)
-        image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        # Load image if string/path is passed
+        if isinstance(image_source, (str, Path)):
+            image = cv2.imread(str(image_source))
+        else:
+            image = image_source
+            
+        image_rgb = cv2.cvtColor(np.array(image), cv2.COLOR_BGR2RGB)
 
         # Step 1: YOLO product detection + CNN classification
         product_detections = detect_products(
-            image_path, image_rgb, self.yolo_model, self.confidence_threshold,
+            image_source, image_rgb, self.yolo_model, self.confidence_threshold,
             self.cnn_transform, self.cnn_model, self.class_names, self.device
         )
 
         # Step 2: Void area detection
         void_detections = detect_voids(
-            image_path, self.void_model, self.void_confidence_threshold
+            image_source, self.void_model, self.void_confidence_threshold
         )
 
         # Step 3: Analyze shelf patterns and product clusters

@@ -1,8 +1,8 @@
 from src.detection.classifier import classify_crop
 
-def detect_products(image_path, image_rgb, yolo_model, confidence_threshold, cnn_transform, cnn_model, class_names, device):
+def detect_products(image_source, image_rgb, yolo_model, confidence_threshold, cnn_transform, cnn_model, class_names, device):
     """Detect and classify products using YOLO + CNN"""
-    yolo_results = yolo_model(image_path, conf=confidence_threshold)
+    yolo_results = yolo_model(image_source, conf=confidence_threshold)
 
     detections = []
 
