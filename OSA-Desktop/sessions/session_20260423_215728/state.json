@@ -1,0 +1,27 @@
+{
+  "saved_at": "2026-04-23T21:57:28.499331",
+  "state": {
+    "source_type": "RTSP",
+    "source_path": "rtsp://127.0.0.1:8554/live",
+    "workspace_index": 2,
+    "viewer_compare_mode": "slider",
+    "heatmap_enabled": false,
+    "focus_mode": false
+  },
+  "auxiliary_windows": {
+    "config": {
+      "geometry": "AdnQywADAAAAAAAHAAAAGgAAAaoAAAMuAAAABwAAABoAAAGqAAADLgAAAAAAAAAABgAAAAAHAAAAGgAAAaoAAAMu",
+      "visible": false
+    },
+    "analytics": {
+      "geometry": "AdnQywADAAAAAAAB/////AAABf4AAAMuAAAAAQAAABoAAAX+AAADLgAAAAAAAAAABgAAAAABAAAAGgAABf4AAAMu",
+      "visible": false
+    },
+    "inventory": {
+      "geometry": "AdnQywADAAAAAAAB/////AAABf4AAAMuAAAAAQAAABoAAAX+AAADLgAAAAACAAAABgAAAAABAAAAGgAABf4AAAMu",
+      "visible": false
+    },
+    "log_dock_visible": true,
+    "void_feed_visible": true
+  }
+}

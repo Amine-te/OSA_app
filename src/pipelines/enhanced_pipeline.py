@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import torch
 import cv2
 import matplotlib.pyplot as plt
@@ -50,21 +52,36 @@ class EnhancedRetailPipeline:
 
     def detect_and_classify_complete(self, image_path):
         """
-        Complete pipeline: detect products, classify subclasses, detect voids, and analyze relationships
+        Complete pipeline: detect products, classify subclasses, detect voids, and analyze relationships.
+
+        ``image_path`` may be a filesystem path (str / Path) or a BGR ``uint8`` numpy array (e.g. video frame).
         """
-        # Load image
-        image = cv2.imread(image_path)
-        image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        if isinstance(image_path, (str, Path)):
+            image_bgr = cv2.imread(str(image_path))
+            if image_bgr is None:
+                raise ValueError(f"Could not read image: {image_path}")
+            yolo_source = str(image_path)
+        else:
+            image_bgr = np.asarray(image_path)
+            if image_bgr.ndim != 3 or image_bgr.shape[2] != 3:
+                raise ValueError("Frame array must be HxWx3 BGR uint8")
+            if image_bgr.dtype != np.uint8:
+                image_bgr = image_bgr.astype(np.uint8)
+            if not image_bgr.flags["WRITEABLE"]:
+                image_bgr = image_bgr.copy()
+            yolo_source = image_bgr
+
+        image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
 
         # Step 1: YOLO product detection + CNN classification
         product_detections = detect_products(
-            image_path, image_rgb, self.yolo_model, self.confidence_threshold,
+            yolo_source, image_rgb, self.yolo_model, self.confidence_threshold,
             self.cnn_transform, self.cnn_model, self.class_names, self.device
         )
 
         # Step 2: Void area detection
         void_detections = detect_voids(
-            image_path, self.void_model, self.void_confidence_threshold
+            yolo_source, self.void_model, self.void_confidence_threshold
         )
 
         # Step 3: Analyze shelf patterns and product clusters

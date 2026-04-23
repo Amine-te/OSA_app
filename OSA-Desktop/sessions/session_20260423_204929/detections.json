@@ -1,0 +1,4351 @@
+{
+  "image": "[[[ 70  57  48]\n  [ 71  58  49]\n  [ 71  58  49]\n  ...\n  [158 125  94]\n  [154 121  90]\n  [138 105  74]]\n\n [[ 63  50  41]\n  [ 67  57  47]\n  [ 85  72  63]\n  ...\n  [159 126  95]\n  [153 120  89]\n  [136 103  72]]\n\n [[ 72  62  53]\n  [ 91  82  73]\n  [119 109 100]\n  ...\n  [159 126  95]\n  [152 119  88]\n  [134 101  70]]\n\n ...\n\n [[161 157 145]\n  [161 157 145]\n  [159 155 143]\n  ...\n  [153 141 119]\n  [123 102  73]\n  [120  96  62]]\n\n [[161 157 145]\n  [161 157 145]\n  [158 154 142]\n  ...\n  [153 138 117]\n  [121  98  67]\n  [119  93  58]]\n\n [[160 156 144]\n  [160 156 144]\n  [158 154 142]\n  ...\n  [152 137 114]\n  [121  98  67]\n  [124  95  61]]]",
+  "product_detections": [
+    {
+      "bbox": [
+        "521",
+        "179",
+        "554",
+        "287"
+      ],
+      "center": [
+        "537",
+        "233"
+      ],
+      "area": "3564",
+      "width": "33",
+      "height": "108",
+      "yolo_confidence": "0.8657827",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9769055843353271,
+      "combined_confidence": "0.84578794"
+    },
+    {
+      "bbox": [
+        "836",
+        "348",
+        "865",
+        "448"
+      ],
+      "center": [
+        "850",
+        "398"
+      ],
+      "area": "2900",
+      "width": "29",
+      "height": "100",
+      "yolo_confidence": "0.8558364",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9959872364997864,
+      "combined_confidence": "0.85240215"
+    },
+    {
+      "bbox": [
+        "744",
+        "348",
+        "775",
+        "448"
+      ],
+      "center": [
+        "759",
+        "398"
+      ],
+      "area": "3100",
+      "width": "31",
+      "height": "100",
+      "yolo_confidence": "0.8530356",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9976376295089722,
+      "combined_confidence": "0.85102046"
+    },
+    {
+      "bbox": [
+        "927",
+        "347",
+        "956",
+        "448"
+      ],
+      "center": [
+        "941",
+        "397"
+      ],
+      "area": "2929",
+      "width": "29",
+      "height": "101",
+      "yolo_confidence": "0.8524814",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9947066903114319,
+      "combined_confidence": "0.847969"
+    },
+    {
+      "bbox": [
+        "220",
+        "175",
+        "253",
+        "284"
+      ],
+      "center": [
+        "236",
+        "229"
+      ],
+      "area": "3597",
+      "width": "33",
+      "height": "109",
+      "yolo_confidence": "0.8524213",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.6903373599052429,
+      "combined_confidence": "0.58845824"
+    },
+    {
+      "bbox": [
+        "420",
+        "179",
+        "450",
+        "286"
+      ],
+      "center": [
+        "435",
+        "232"
+      ],
+      "area": "3210",
+      "width": "30",
+      "height": "107",
+      "yolo_confidence": "0.8499004",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.9858741760253906,
+      "combined_confidence": "0.83789486"
+    },
+    {
+      "bbox": [
+        "587",
+        "182",
+        "617",
+        "288"
+      ],
+      "center": [
+        "602",
+        "235"
+      ],
+      "area": "3180",
+      "width": "30",
+      "height": "106",
+      "yolo_confidence": "0.84988403",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9744612574577332,
+      "combined_confidence": "0.82817906"
+    },
+    {
+      "bbox": [
+        "468",
+        "348",
+        "499",
+        "449"
+      ],
+      "center": [
+        "483",
+        "398"
+      ],
+      "area": "3131",
+      "width": "31",
+      "height": "101",
+      "yolo_confidence": "0.8496186",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.9987940788269043,
+      "combined_confidence": "0.84859407"
+    },
+    {
+      "bbox": [
+        "453",
+        "178",
+        "484",
+        "287"
+      ],
+      "center": [
+        "468",
+        "232"
+      ],
+      "area": "3379",
+      "width": "31",
+      "height": "109",
+      "yolo_confidence": "0.84417355",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.9917717576026917,
+      "combined_confidence": "0.83722746"
+    },
+    {
+      "bbox": [
+        "679",
+        "490",
+        "708",
+        "589"
+      ],
+      "center": [
+        "693",
+        "539"
+      ],
+      "area": "2871",
+      "width": "29",
+      "height": "99",
+      "yolo_confidence": "0.84412444",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9968820810317993,
+      "combined_confidence": "0.84149253"
+    },
+    {
+      "bbox": [
+        "588",
+        "490",
+        "616",
+        "590"
+      ],
+      "center": [
+        "602",
+        "540"
+      ],
+      "area": "2800",
+      "width": "28",
+      "height": "100",
+      "yolo_confidence": "0.8429463",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9975034594535828,
+      "combined_confidence": "0.8408418"
+    },
+    {
+      "bbox": [
+        "255",
+        "175",
+        "287",
+        "287"
+      ],
+      "center": [
+        "271",
+        "231"
+      ],
+      "area": "3584",
+      "width": "32",
+      "height": "112",
+      "yolo_confidence": "0.84188247",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.6431455612182617,
+      "combined_confidence": "0.54145294"
+    },
+    {
+      "bbox": [
+        "808",
+        "185",
+        "841",
+        "288"
+      ],
+      "center": [
+        "824",
+        "236"
+      ],
+      "area": "3399",
+      "width": "33",
+      "height": "103",
+      "yolo_confidence": "0.84174037",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9878739714622498,
+      "combined_confidence": "0.8315334"
+    },
+    {
+      "bbox": [
+        "681",
+        "348",
+        "712",
+        "448"
+      ],
+      "center": [
+        "696",
+        "398"
+      ],
+      "area": "3100",
+      "width": "31",
+      "height": "100",
+      "yolo_confidence": "0.84009147",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9974761605262756,
+      "combined_confidence": "0.8379712"
+    },
+    {
+      "bbox": [
+        "714",
+        "183",
+        "745",
+        "288"
+      ],
+      "center": [
+        "729",
+        "235"
+      ],
+      "area": "3255",
+      "width": "31",
+      "height": "105",
+      "yolo_confidence": "0.839602",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9714116454124451,
+      "combined_confidence": "0.81559914"
+    },
+    {
+      "bbox": [
+        "938",
+        "186",
+        "968",
+        "289"
+      ],
+      "center": [
+        "953",
+        "237"
+      ],
+      "area": "3090",
+      "width": "30",
+      "height": "103",
+      "yolo_confidence": "0.8389169",
+      "subclass": "Alex",
+      "subclass_confidence": 0.6926925778388977,
+      "combined_confidence": "0.5811115"
+    },
+    {
+      "bbox": [
+        "651",
+        "182",
+        "681",
+        "288"
+      ],
+      "center": [
+        "666",
+        "235"
+      ],
+      "area": "3180",
+      "width": "30",
+      "height": "106",
+      "yolo_confidence": "0.8384493",
+      "subclass": "Alex",
+      "subclass_confidence": 0.957537055015564,
+      "combined_confidence": "0.80284625"
+    },
+    {
+      "bbox": [
+        "486",
+        "178",
+        "518",
+        "287"
+      ],
+      "center": [
+        "502",
+        "232"
+      ],
+      "area": "3488",
+      "width": "32",
+      "height": "109",
+      "yolo_confidence": "0.83735055",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.9945996999740601,
+      "combined_confidence": "0.8328286"
+    },
+    {
+      "bbox": [
+        "915",
+        "487",
+        "944",
+        "583"
+      ],
+      "center": [
+        "929",
+        "535"
+      ],
+      "area": "2784",
+      "width": "29",
+      "height": "96",
+      "yolo_confidence": "0.83658785",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9930832386016846,
+      "combined_confidence": "0.83080137"
+    },
+    {
+      "bbox": [
+        "793",
+        "489",
+        "826",
+        "586"
+      ],
+      "center": [
+        "809",
+        "537"
+      ],
+      "area": "3201",
+      "width": "33",
+      "height": "97",
+      "yolo_confidence": "0.83652997",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9959062337875366,
+      "combined_confidence": "0.8331054"
+    },
+    {
+      "bbox": [
+        "843",
+        "185",
+        "874",
+        "288"
+      ],
+      "center": [
+        "858",
+        "236"
+      ],
+      "area": "3193",
+      "width": "31",
+      "height": "103",
+      "yolo_confidence": "0.8361635",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9713044762611389,
+      "combined_confidence": "0.8121694"
+    },
+    {
+      "bbox": [
+        "326",
+        "180",
+        "361",
+        "286"
+      ],
+      "center": [
+        "343",
+        "233"
+      ],
+      "area": "3710",
+      "width": "35",
+      "height": "106",
+      "yolo_confidence": "0.8356642",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.7617983222007751,
+      "combined_confidence": "0.6366076"
+    },
+    {
+      "bbox": [
+        "297",
+        "349",
+        "330",
+        "451"
+      ],
+      "center": [
+        "313",
+        "400"
+      ],
+      "area": "3366",
+      "width": "33",
+      "height": "102",
+      "yolo_confidence": "0.83533925",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.7599985003471375,
+      "combined_confidence": "0.6348566"
+    },
+    {
+      "bbox": [
+        "876",
+        "186",
+        "906",
+        "288"
+      ],
+      "center": [
+        "891",
+        "237"
+      ],
+      "area": "3060",
+      "width": "30",
+      "height": "102",
+      "yolo_confidence": "0.8352031",
+      "subclass": "Alex",
+      "subclass_confidence": 0.7889367341995239,
+      "combined_confidence": "0.65892243"
+    },
+    {
+      "bbox": [
+        "747",
+        "184",
+        "777",
+        "288"
+      ],
+      "center": [
+        "762",
+        "236"
+      ],
+      "area": "3120",
+      "width": "30",
+      "height": "104",
+      "yolo_confidence": "0.83518285",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9772652983665466,
+      "combined_confidence": "0.8161952"
+    },
+    {
+      "bbox": [
+        "289",
+        "176",
+        "324",
+        "285"
+      ],
+      "center": [
+        "306",
+        "230"
+      ],
+      "area": "3815",
+      "width": "35",
+      "height": "109",
+      "yolo_confidence": "0.8328062",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.6955298781394958,
+      "combined_confidence": "0.57924163"
+    },
+    {
+      "bbox": [
+        "651",
+        "348",
+        "679",
+        "449"
+      ],
+      "center": [
+        "665",
+        "398"
+      ],
+      "area": "2828",
+      "width": "28",
+      "height": "101",
+      "yolo_confidence": "0.83205855",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9980626702308655,
+      "combined_confidence": "0.8304466"
+    },
+    {
+      "bbox": [
+        "619",
+        "182",
+        "650",
+        "288"
+      ],
+      "center": [
+        "634",
+        "235"
+      ],
+      "area": "3286",
+      "width": "31",
+      "height": "106",
+      "yolo_confidence": "0.8318272",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9669017195701599,
+      "combined_confidence": "0.8042952"
+    },
+    {
+      "bbox": [
+        "501",
+        "348",
+        "529",
+        "449"
+      ],
+      "center": [
+        "515",
+        "398"
+      ],
+      "area": "2828",
+      "width": "28",
+      "height": "101",
+      "yolo_confidence": "0.83128417",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.9991136193275452,
+      "combined_confidence": "0.83054733"
+    },
+    {
+      "bbox": [
+        "806",
+        "348",
+        "835",
+        "448"
+      ],
+      "center": [
+        "820",
+        "398"
+      ],
+      "area": "2900",
+      "width": "29",
+      "height": "100",
+      "yolo_confidence": "0.8311548",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9958916902542114,
+      "combined_confidence": "0.8277402"
+    },
+    {
+      "bbox": [
+        "238",
+        "349",
+        "264",
+        "450"
+      ],
+      "center": [
+        "251",
+        "399"
+      ],
+      "area": "2626",
+      "width": "26",
+      "height": "101",
+      "yolo_confidence": "0.83110756",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.7358266115188599,
+      "combined_confidence": "0.61155105"
+    },
+    {
+      "bbox": [
+        "555",
+        "181",
+        "586",
+        "288"
+      ],
+      "center": [
+        "570",
+        "234"
+      ],
+      "area": "3317",
+      "width": "31",
+      "height": "107",
+      "yolo_confidence": "0.83042383",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9890051484107971,
+      "combined_confidence": "0.8212935"
+    },
+    {
+      "bbox": [
+        "821",
+        "711",
+        "891",
+        "779"
+      ],
+      "center": [
+        "856",
+        "745"
+      ],
+      "area": "4760",
+      "width": "70",
+      "height": "68",
+      "yolo_confidence": "0.827533",
+      "subclass": "Chapo Yaourt",
+      "subclass_confidence": 0.5395428538322449,
+      "combined_confidence": "0.4464895"
+    },
+    {
+      "bbox": [
+        "526",
+        "491",
+        "555",
+        "591"
+      ],
+      "center": [
+        "540",
+        "541"
+      ],
+      "area": "2900",
+      "width": "29",
+      "height": "100",
+      "yolo_confidence": "0.8266034",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9966933727264404,
+      "combined_confidence": "0.8238701"
+    },
+    {
+      "bbox": [
+        "495",
+        "490",
+        "524",
+        "591"
+      ],
+      "center": [
+        "509",
+        "540"
+      ],
+      "area": "2929",
+      "width": "29",
+      "height": "101",
+      "yolo_confidence": "0.8256072",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.9958693385124207,
+      "combined_confidence": "0.8221969"
+    },
+    {
+      "bbox": [
+        "187",
+        "174",
+        "219",
+        "282"
+      ],
+      "center": [
+        "203",
+        "228"
+      ],
+      "area": "3456",
+      "width": "32",
+      "height": "108",
+      "yolo_confidence": "0.82517105",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.7362808585166931,
+      "combined_confidence": "0.60755765"
+    },
+    {
+      "bbox": [
+        "395",
+        "185",
+        "419",
+        "286"
+      ],
+      "center": [
+        "407",
+        "235"
+      ],
+      "area": "2424",
+      "width": "24",
+      "height": "101",
+      "yolo_confidence": "0.82494515",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.9895161390304565,
+      "combined_confidence": "0.8162965"
+    },
+    {
+      "bbox": [
+        "310",
+        "493",
+        "344",
+        "592"
+      ],
+      "center": [
+        "327",
+        "542"
+      ],
+      "area": "3366",
+      "width": "34",
+      "height": "99",
+      "yolo_confidence": "0.82469267",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.7592337131500244,
+      "combined_confidence": "0.62613446"
+    },
+    {
+      "bbox": [
+        "713",
+        "348",
+        "743",
+        "448"
+      ],
+      "center": [
+        "728",
+        "398"
+      ],
+      "area": "3000",
+      "width": "30",
+      "height": "100",
+      "yolo_confidence": "0.8245268",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9976518750190735,
+      "combined_confidence": "0.8225907"
+    },
+    {
+      "bbox": [
+        "153",
+        "173",
+        "186",
+        "282"
+      ],
+      "center": [
+        "169",
+        "227"
+      ],
+      "area": "3597",
+      "width": "33",
+      "height": "109",
+      "yolo_confidence": "0.8241919",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.6344316601753235,
+      "combined_confidence": "0.5228934"
+    },
+    {
+      "bbox": [
+        "382",
+        "490",
+        "413",
+        "588"
+      ],
+      "center": [
+        "397",
+        "539"
+      ],
+      "area": "3038",
+      "width": "31",
+      "height": "98",
+      "yolo_confidence": "0.8235941",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.9897900223731995,
+      "combined_confidence": "0.8151852"
+    },
+    {
+      "bbox": [
+        "333",
+        "348",
+        "364",
+        "451"
+      ],
+      "center": [
+        "348",
+        "399"
+      ],
+      "area": "3193",
+      "width": "31",
+      "height": "103",
+      "yolo_confidence": "0.82326025",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.6810867190361023,
+      "combined_confidence": "0.5607116"
+    },
+    {
+      "bbox": [
+        "683",
+        "183",
+        "713",
+        "288"
+      ],
+      "center": [
+        "698",
+        "235"
+      ],
+      "area": "3150",
+      "width": "30",
+      "height": "105",
+      "yolo_confidence": "0.82309556",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9655594825744629,
+      "combined_confidence": "0.7947477"
+    },
+    {
+      "bbox": [
+        "363",
+        "184",
+        "393",
+        "286"
+      ],
+      "center": [
+        "378",
+        "235"
+      ],
+      "area": "3060",
+      "width": "30",
+      "height": "102",
+      "yolo_confidence": "0.8214194",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.8133969902992249,
+      "combined_confidence": "0.66814005"
+    },
+    {
+      "bbox": [
+        "557",
+        "490",
+        "587",
+        "591"
+      ],
+      "center": [
+        "572",
+        "540"
+      ],
+      "area": "3030",
+      "width": "30",
+      "height": "101",
+      "yolo_confidence": "0.8208765",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9968937635421753,
+      "combined_confidence": "0.81832665"
+    },
+    {
+      "bbox": [
+        "898",
+        "348",
+        "926",
+        "448"
+      ],
+      "center": [
+        "912",
+        "398"
+      ],
+      "area": "2800",
+      "width": "28",
+      "height": "100",
+      "yolo_confidence": "0.8208633",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9955594539642334,
+      "combined_confidence": "0.81721824"
+    },
+    {
+      "bbox": [
+        "618",
+        "489",
+        "647",
+        "590"
+      ],
+      "center": [
+        "632",
+        "539"
+      ],
+      "area": "2929",
+      "width": "29",
+      "height": "101",
+      "yolo_confidence": "0.8205052",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9971000552177429,
+      "combined_confidence": "0.8181258"
+    },
+    {
+      "bbox": [
+        "886",
+        "488",
+        "914",
+        "584"
+      ],
+      "center": [
+        "900",
+        "536"
+      ],
+      "area": "2688",
+      "width": "28",
+      "height": "96",
+      "yolo_confidence": "0.82046914",
+      "subclass": "Alex",
+      "subclass_confidence": 0.993453860282898,
+      "combined_confidence": "0.8150982"
+    },
+    {
+      "bbox": [
+        "206",
+        "348",
+        "237",
+        "450"
+      ],
+      "center": [
+        "221",
+        "399"
+      ],
+      "area": "3162",
+      "width": "31",
+      "height": "102",
+      "yolo_confidence": "0.81980383",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.7571107149124146,
+      "combined_confidence": "0.62068224"
+    },
+    {
+      "bbox": [
+        "367",
+        "347",
+        "400",
+        "450"
+      ],
+      "center": [
+        "383",
+        "398"
+      ],
+      "area": "3399",
+      "width": "33",
+      "height": "103",
+      "yolo_confidence": "0.81798196",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.7807496190071106,
+      "combined_confidence": "0.6386391"
+    },
+    {
+      "bbox": [
+        "171",
+        "348",
+        "204",
+        "451"
+      ],
+      "center": [
+        "187",
+        "399"
+      ],
+      "area": "3399",
+      "width": "33",
+      "height": "103",
+      "yolo_confidence": "0.81578803",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.6317421197891235,
+      "combined_confidence": "0.5153677"
+    },
+    {
+      "bbox": [
+        "709",
+        "490",
+        "737",
+        "588"
+      ],
+      "center": [
+        "723",
+        "539"
+      ],
+      "area": "2744",
+      "width": "28",
+      "height": "98",
+      "yolo_confidence": "0.81520706",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9962698221206665,
+      "combined_confidence": "0.8121662"
+    },
+    {
+      "bbox": [
+        "867",
+        "348",
+        "897",
+        "448"
+      ],
+      "center": [
+        "882",
+        "398"
+      ],
+      "area": "3000",
+      "width": "30",
+      "height": "100",
+      "yolo_confidence": "0.81481296",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9955412745475769,
+      "combined_confidence": "0.81117994"
+    },
+    {
+      "bbox": [
+        "618",
+        "348",
+        "650",
+        "448"
+      ],
+      "center": [
+        "634",
+        "398"
+      ],
+      "area": "3200",
+      "width": "32",
+      "height": "100",
+      "yolo_confidence": "0.8138479",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9980658888816833,
+      "combined_confidence": "0.8122738"
+    },
+    {
+      "bbox": [
+        "648",
+        "490",
+        "678",
+        "590"
+      ],
+      "center": [
+        "663",
+        "540"
+      ],
+      "area": "3000",
+      "width": "30",
+      "height": "100",
+      "yolo_confidence": "0.81232214",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9968217611312866,
+      "combined_confidence": "0.80974036"
+    },
+    {
+      "bbox": [
+        "777",
+        "348",
+        "805",
+        "448"
+      ],
+      "center": [
+        "791",
+        "398"
+      ],
+      "area": "2800",
+      "width": "28",
+      "height": "100",
+      "yolo_confidence": "0.8119813",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9968826770782471,
+      "combined_confidence": "0.8094501"
+    },
+    {
+      "bbox": [
+        "778",
+        "184",
+        "806",
+        "288"
+      ],
+      "center": [
+        "792",
+        "236"
+      ],
+      "area": "2912",
+      "width": "28",
+      "height": "104",
+      "yolo_confidence": "0.81152755",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9676885008811951,
+      "combined_confidence": "0.78530586"
+    },
+    {
+      "bbox": [
+        "893",
+        "708",
+        "956",
+        "779"
+      ],
+      "center": [
+        "924",
+        "743"
+      ],
+      "area": "4473",
+      "width": "63",
+      "height": "71",
+      "yolo_confidence": "0.81089425",
+      "subclass": "Chapo Yaourt",
+      "subclass_confidence": 0.8223766684532166,
+      "combined_confidence": "0.6668605"
+    },
+    {
+      "bbox": [
+        "347",
+        "496",
+        "379",
+        "590"
+      ],
+      "center": [
+        "363",
+        "543"
+      ],
+      "area": "3008",
+      "width": "32",
+      "height": "94",
+      "yolo_confidence": "0.809902",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.7490672469139099,
+      "combined_confidence": "0.6066711"
+    },
+    {
+      "bbox": [
+        "266",
+        "349",
+        "296",
+        "451"
+      ],
+      "center": [
+        "281",
+        "400"
+      ],
+      "area": "3060",
+      "width": "30",
+      "height": "102",
+      "yolo_confidence": "0.8083402",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.7217280864715576,
+      "combined_confidence": "0.5834018"
+    },
+    {
+      "bbox": [
+        "907",
+        "186",
+        "937",
+        "289"
+      ],
+      "center": [
+        "922",
+        "237"
+      ],
+      "area": "3090",
+      "width": "30",
+      "height": "103",
+      "yolo_confidence": "0.80753946",
+      "subclass": "Alex",
+      "subclass_confidence": 0.6467130184173584,
+      "combined_confidence": "0.5222463"
+    },
+    {
+      "bbox": [
+        "827",
+        "488",
+        "857",
+        "586"
+      ],
+      "center": [
+        "842",
+        "537"
+      ],
+      "area": "2940",
+      "width": "30",
+      "height": "98",
+      "yolo_confidence": "0.8057482",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9961943626403809,
+      "combined_confidence": "0.80268186"
+    },
+    {
+      "bbox": [
+        "274",
+        "503",
+        "306",
+        "592"
+      ],
+      "center": [
+        "290",
+        "547"
+      ],
+      "area": "2848",
+      "width": "32",
+      "height": "89",
+      "yolo_confidence": "0.8049898",
+      "subclass": "Amalfi K",
+      "subclass_confidence": 0.6452291011810303,
+      "combined_confidence": "0.51940286"
+    },
+    {
+      "bbox": [
+        "969",
+        "186",
+        "1000",
+        "289"
+      ],
+      "center": [
+        "984",
+        "237"
+      ],
+      "area": "3193",
+      "width": "31",
+      "height": "103",
+      "yolo_confidence": "0.8011155",
+      "subclass": "Alex",
+      "subclass_confidence": 0.6712912917137146,
+      "combined_confidence": "0.5377819"
+    },
+    {
+      "bbox": [
+        "957",
+        "348",
+        "987",
+        "447"
+      ],
+      "center": [
+        "972",
+        "397"
+      ],
+      "area": "2970",
+      "width": "30",
+      "height": "99",
+      "yolo_confidence": "0.8008383",
+      "subclass": "Alex",
+      "subclass_confidence": 0.990921139717102,
+      "combined_confidence": "0.7935676"
+    },
+    {
+      "bbox": [
+        "858",
+        "488",
+        "885",
+        "585"
+      ],
+      "center": [
+        "871",
+        "536"
+      ],
+      "area": "2619",
+      "width": "27",
+      "height": "97",
+      "yolo_confidence": "0.8004653",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9953867793083191,
+      "combined_confidence": "0.79677254"
+    },
+    {
+      "bbox": [
+        "739",
+        "490",
+        "767",
+        "588"
+      ],
+      "center": [
+        "753",
+        "539"
+      ],
+      "area": "2744",
+      "width": "28",
+      "height": "98",
+      "yolo_confidence": "0.7984321",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9961108565330505,
+      "combined_confidence": "0.7953269"
+    },
+    {
+      "bbox": [
+        "530",
+        "348",
+        "557",
+        "448"
+      ],
+      "center": [
+        "543",
+        "398"
+      ],
+      "area": "2700",
+      "width": "27",
+      "height": "100",
+      "yolo_confidence": "0.7896274",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9969578981399536,
+      "combined_confidence": "0.78722525"
+    },
+    {
+      "bbox": [
+        "945",
+        "486",
+        "975",
+        "582"
+      ],
+      "center": [
+        "960",
+        "534"
+      ],
+      "area": "2880",
+      "width": "30",
+      "height": "96",
+      "yolo_confidence": "0.78474563",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9887725710868835,
+      "combined_confidence": "0.77593493"
+    },
+    {
+      "bbox": [
+        "382",
+        "644",
+        "499",
+        "746"
+      ],
+      "center": [
+        "440",
+        "695"
+      ],
+      "area": "11934",
+      "width": "117",
+      "height": "102",
+      "yolo_confidence": "0.7798078",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.9003826975822449,
+      "combined_confidence": "0.70212543"
+    },
+    {
+      "bbox": [
+        "768",
+        "490",
+        "791",
+        "585"
+      ],
+      "center": [
+        "779",
+        "537"
+      ],
+      "area": "2185",
+      "width": "23",
+      "height": "95",
+      "yolo_confidence": "0.7415612",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9960117340087891,
+      "combined_confidence": "0.73860365"
+    },
+    {
+      "bbox": [
+        "576",
+        "349",
+        "603",
+        "449"
+      ],
+      "center": [
+        "589",
+        "399"
+      ],
+      "area": "2700",
+      "width": "27",
+      "height": "100",
+      "yolo_confidence": "0.73287725",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9977911710739136,
+      "combined_confidence": "0.73125845"
+    },
+    {
+      "bbox": [
+        "265",
+        "650",
+        "380",
+        "752"
+      ],
+      "center": [
+        "322",
+        "701"
+      ],
+      "area": "11730",
+      "width": "115",
+      "height": "102",
+      "yolo_confidence": "0.6853175",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8630999326705933,
+      "combined_confidence": "0.5914975"
+    },
+    {
+      "bbox": [
+        "559",
+        "348",
+        "575",
+        "447"
+      ],
+      "center": [
+        "567",
+        "397"
+      ],
+      "area": "1584",
+      "width": "16",
+      "height": "99",
+      "yolo_confidence": "0.66123635",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9990135431289673,
+      "combined_confidence": "0.6605841"
+    },
+    {
+      "bbox": [
+        "504",
+        "745",
+        "615",
+        "779"
+      ],
+      "center": [
+        "559",
+        "762"
+      ],
+      "area": "3774",
+      "width": "111",
+      "height": "34",
+      "yolo_confidence": "0.60806525",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7204738855361938,
+      "combined_confidence": "0.43809512"
+    },
+    {
+      "bbox": [
+        "385",
+        "750",
+        "496",
+        "779"
+      ],
+      "center": [
+        "440",
+        "764"
+      ],
+      "area": "3219",
+      "width": "111",
+      "height": "29",
+      "yolo_confidence": "0.573763",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8064320087432861,
+      "combined_confidence": "0.46270087"
+    },
+    {
+      "bbox": [
+        "505",
+        "615",
+        "608",
+        "706"
+      ],
+      "center": [
+        "556",
+        "660"
+      ],
+      "area": "9373",
+      "width": "103",
+      "height": "91",
+      "yolo_confidence": "0.5083843",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8917243480682373,
+      "combined_confidence": "0.45333865"
+    },
+    {
+      "bbox": [
+        "712",
+        "614",
+        "813",
+        "699"
+      ],
+      "center": [
+        "762",
+        "656"
+      ],
+      "area": "8585",
+      "width": "101",
+      "height": "85",
+      "yolo_confidence": "0.5005874",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8518166542053223,
+      "combined_confidence": "0.42640868"
+    }
+  ],
+  "void_detections": [
+    {
+      "bbox": [
+        "413",
+        "474",
+        "497",
+        "592"
+      ],
+      "center": [
+        "455",
+        "533"
+      ],
+      "area": "9912",
+      "width": "84",
+      "height": "118",
+      "confidence": "0.8992019"
+    },
+    {
+      "bbox": [
+        "49",
+        "480",
+        "267",
+        "598"
+      ],
+      "center": [
+        "158",
+        "539"
+      ],
+      "area": "25724",
+      "width": "218",
+      "height": "118",
+      "confidence": "0.885724"
+    },
+    {
+      "bbox": [
+        "401",
+        "313",
+        "470",
+        "446"
+      ],
+      "center": [
+        "435",
+        "379"
+      ],
+      "area": "9177",
+      "width": "69",
+      "height": "133",
+      "confidence": "0.8741989"
+    },
+    {
+      "bbox": [
+        "91",
+        "156",
+        "155",
+        "282"
+      ],
+      "center": [
+        "123",
+        "219"
+      ],
+      "area": "8064",
+      "width": "64",
+      "height": "126",
+      "confidence": "0.84586847"
+    },
+    {
+      "bbox": [
+        "9",
+        "310",
+        "167",
+        "449"
+      ],
+      "center": [
+        "88",
+        "379"
+      ],
+      "area": "21962",
+      "width": "158",
+      "height": "139",
+      "confidence": "0.83502793"
+    }
+  ],
+  "shelf_analysis": {
+    "clusters": [
+      {
+        "cluster_id": "0",
+        "products": [
+          {
+            "bbox": [
+              "521",
+              "179",
+              "554",
+              "287"
+            ],
+            "center": [
+              "537",
+              "233"
+            ],
+            "area": "3564",
+            "width": "33",
+            "height": "108",
+            "yolo_confidence": "0.8657827",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9769055843353271,
+            "combined_confidence": "0.84578794"
+          },
+          {
+            "bbox": [
+              "220",
+              "175",
+              "253",
+              "284"
+            ],
+            "center": [
+              "236",
+              "229"
+            ],
+            "area": "3597",
+            "width": "33",
+            "height": "109",
+            "yolo_confidence": "0.8524213",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.6903373599052429,
+            "combined_confidence": "0.58845824"
+          },
+          {
+            "bbox": [
+              "420",
+              "179",
+              "450",
+              "286"
+            ],
+            "center": [
+              "435",
+              "232"
+            ],
+            "area": "3210",
+            "width": "30",
+            "height": "107",
+            "yolo_confidence": "0.8499004",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.9858741760253906,
+            "combined_confidence": "0.83789486"
+          },
+          {
+            "bbox": [
+              "587",
+              "182",
+              "617",
+              "288"
+            ],
+            "center": [
+              "602",
+              "235"
+            ],
+            "area": "3180",
+            "width": "30",
+            "height": "106",
+            "yolo_confidence": "0.84988403",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9744612574577332,
+            "combined_confidence": "0.82817906"
+          },
+          {
+            "bbox": [
+              "453",
+              "178",
+              "484",
+              "287"
+            ],
+            "center": [
+              "468",
+              "232"
+            ],
+            "area": "3379",
+            "width": "31",
+            "height": "109",
+            "yolo_confidence": "0.84417355",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.9917717576026917,
+            "combined_confidence": "0.83722746"
+          },
+          {
+            "bbox": [
+              "255",
+              "175",
+              "287",
+              "287"
+            ],
+            "center": [
+              "271",
+              "231"
+            ],
+            "area": "3584",
+            "width": "32",
+            "height": "112",
+            "yolo_confidence": "0.84188247",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.6431455612182617,
+            "combined_confidence": "0.54145294"
+          },
+          {
+            "bbox": [
+              "808",
+              "185",
+              "841",
+              "288"
+            ],
+            "center": [
+              "824",
+              "236"
+            ],
+            "area": "3399",
+            "width": "33",
+            "height": "103",
+            "yolo_confidence": "0.84174037",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9878739714622498,
+            "combined_confidence": "0.8315334"
+          },
+          {
+            "bbox": [
+              "714",
+              "183",
+              "745",
+              "288"
+            ],
+            "center": [
+              "729",
+              "235"
+            ],
+            "area": "3255",
+            "width": "31",
+            "height": "105",
+            "yolo_confidence": "0.839602",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9714116454124451,
+            "combined_confidence": "0.81559914"
+          },
+          {
+            "bbox": [
+              "938",
+              "186",
+              "968",
+              "289"
+            ],
+            "center": [
+              "953",
+              "237"
+            ],
+            "area": "3090",
+            "width": "30",
+            "height": "103",
+            "yolo_confidence": "0.8389169",
+            "subclass": "Alex",
+            "subclass_confidence": 0.6926925778388977,
+            "combined_confidence": "0.5811115"
+          },
+          {
+            "bbox": [
+              "651",
+              "182",
+              "681",
+              "288"
+            ],
+            "center": [
+              "666",
+              "235"
+            ],
+            "area": "3180",
+            "width": "30",
+            "height": "106",
+            "yolo_confidence": "0.8384493",
+            "subclass": "Alex",
+            "subclass_confidence": 0.957537055015564,
+            "combined_confidence": "0.80284625"
+          },
+          {
+            "bbox": [
+              "486",
+              "178",
+              "518",
+              "287"
+            ],
+            "center": [
+              "502",
+              "232"
+            ],
+            "area": "3488",
+            "width": "32",
+            "height": "109",
+            "yolo_confidence": "0.83735055",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.9945996999740601,
+            "combined_confidence": "0.8328286"
+          },
+          {
+            "bbox": [
+              "843",
+              "185",
+              "874",
+              "288"
+            ],
+            "center": [
+              "858",
+              "236"
+            ],
+            "area": "3193",
+            "width": "31",
+            "height": "103",
+            "yolo_confidence": "0.8361635",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9713044762611389,
+            "combined_confidence": "0.8121694"
+          },
+          {
+            "bbox": [
+              "326",
+              "180",
+              "361",
+              "286"
+            ],
+            "center": [
+              "343",
+              "233"
+            ],
+            "area": "3710",
+            "width": "35",
+            "height": "106",
+            "yolo_confidence": "0.8356642",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7617983222007751,
+            "combined_confidence": "0.6366076"
+          },
+          {
+            "bbox": [
+              "876",
+              "186",
+              "906",
+              "288"
+            ],
+            "center": [
+              "891",
+              "237"
+            ],
+            "area": "3060",
+            "width": "30",
+            "height": "102",
+            "yolo_confidence": "0.8352031",
+            "subclass": "Alex",
+            "subclass_confidence": 0.7889367341995239,
+            "combined_confidence": "0.65892243"
+          },
+          {
+            "bbox": [
+              "747",
+              "184",
+              "777",
+              "288"
+            ],
+            "center": [
+              "762",
+              "236"
+            ],
+            "area": "3120",
+            "width": "30",
+            "height": "104",
+            "yolo_confidence": "0.83518285",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9772652983665466,
+            "combined_confidence": "0.8161952"
+          },
+          {
+            "bbox": [
+              "289",
+              "176",
+              "324",
+              "285"
+            ],
+            "center": [
+              "306",
+              "230"
+            ],
+            "area": "3815",
+            "width": "35",
+            "height": "109",
+            "yolo_confidence": "0.8328062",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.6955298781394958,
+            "combined_confidence": "0.57924163"
+          },
+          {
+            "bbox": [
+              "619",
+              "182",
+              "650",
+              "288"
+            ],
+            "center": [
+              "634",
+              "235"
+            ],
+            "area": "3286",
+            "width": "31",
+            "height": "106",
+            "yolo_confidence": "0.8318272",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9669017195701599,
+            "combined_confidence": "0.8042952"
+          },
+          {
+            "bbox": [
+              "555",
+              "181",
+              "586",
+              "288"
+            ],
+            "center": [
+              "570",
+              "234"
+            ],
+            "area": "3317",
+            "width": "31",
+            "height": "107",
+            "yolo_confidence": "0.83042383",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9890051484107971,
+            "combined_confidence": "0.8212935"
+          },
+          {
+            "bbox": [
+              "187",
+              "174",
+              "219",
+              "282"
+            ],
+            "center": [
+              "203",
+              "228"
+            ],
+            "area": "3456",
+            "width": "32",
+            "height": "108",
+            "yolo_confidence": "0.82517105",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7362808585166931,
+            "combined_confidence": "0.60755765"
+          },
+          {
+            "bbox": [
+              "395",
+              "185",
+              "419",
+              "286"
+            ],
+            "center": [
+              "407",
+              "235"
+            ],
+            "area": "2424",
+            "width": "24",
+            "height": "101",
+            "yolo_confidence": "0.82494515",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.9895161390304565,
+            "combined_confidence": "0.8162965"
+          },
+          {
+            "bbox": [
+              "153",
+              "173",
+              "186",
+              "282"
+            ],
+            "center": [
+              "169",
+              "227"
+            ],
+            "area": "3597",
+            "width": "33",
+            "height": "109",
+            "yolo_confidence": "0.8241919",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.6344316601753235,
+            "combined_confidence": "0.5228934"
+          },
+          {
+            "bbox": [
+              "683",
+              "183",
+              "713",
+              "288"
+            ],
+            "center": [
+              "698",
+              "235"
+            ],
+            "area": "3150",
+            "width": "30",
+            "height": "105",
+            "yolo_confidence": "0.82309556",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9655594825744629,
+            "combined_confidence": "0.7947477"
+          },
+          {
+            "bbox": [
+              "363",
+              "184",
+              "393",
+              "286"
+            ],
+            "center": [
+              "378",
+              "235"
+            ],
+            "area": "3060",
+            "width": "30",
+            "height": "102",
+            "yolo_confidence": "0.8214194",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.8133969902992249,
+            "combined_confidence": "0.66814005"
+          },
+          {
+            "bbox": [
+              "778",
+              "184",
+              "806",
+              "288"
+            ],
+            "center": [
+              "792",
+              "236"
+            ],
+            "area": "2912",
+            "width": "28",
+            "height": "104",
+            "yolo_confidence": "0.81152755",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9676885008811951,
+            "combined_confidence": "0.78530586"
+          },
+          {
+            "bbox": [
+              "907",
+              "186",
+              "937",
+              "289"
+            ],
+            "center": [
+              "922",
+              "237"
+            ],
+            "area": "3090",
+            "width": "30",
+            "height": "103",
+            "yolo_confidence": "0.80753946",
+            "subclass": "Alex",
+            "subclass_confidence": 0.6467130184173584,
+            "combined_confidence": "0.5222463"
+          },
+          {
+            "bbox": [
+              "969",
+              "186",
+              "1000",
+              "289"
+            ],
+            "center": [
+              "984",
+              "237"
+            ],
+            "area": "3193",
+            "width": "31",
+            "height": "103",
+            "yolo_confidence": "0.8011155",
+            "subclass": "Alex",
+            "subclass_confidence": 0.6712912917137146,
+            "combined_confidence": "0.5377819"
+          }
+        ],
+        "center": "[582.30769231 233.76923077]",
+        "product_types": {
+          "Alex": 15,
+          "Amalfi K": 7,
+          "Amalfi 3in1": 4
+        },
+        "dominant_type": "Alex",
+        "size": 26,
+        "bbox": [
+          "153",
+          "173",
+          "1000",
+          "289"
+        ]
+      },
+      {
+        "cluster_id": "1",
+        "products": [
+          {
+            "bbox": [
+              "836",
+              "348",
+              "865",
+              "448"
+            ],
+            "center": [
+              "850",
+              "398"
+            ],
+            "area": "2900",
+            "width": "29",
+            "height": "100",
+            "yolo_confidence": "0.8558364",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9959872364997864,
+            "combined_confidence": "0.85240215"
+          },
+          {
+            "bbox": [
+              "744",
+              "348",
+              "775",
+              "448"
+            ],
+            "center": [
+              "759",
+              "398"
+            ],
+            "area": "3100",
+            "width": "31",
+            "height": "100",
+            "yolo_confidence": "0.8530356",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9976376295089722,
+            "combined_confidence": "0.85102046"
+          },
+          {
+            "bbox": [
+              "927",
+              "347",
+              "956",
+              "448"
+            ],
+            "center": [
+              "941",
+              "397"
+            ],
+            "area": "2929",
+            "width": "29",
+            "height": "101",
+            "yolo_confidence": "0.8524814",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9947066903114319,
+            "combined_confidence": "0.847969"
+          },
+          {
+            "bbox": [
+              "468",
+              "348",
+              "499",
+              "449"
+            ],
+            "center": [
+              "483",
+              "398"
+            ],
+            "area": "3131",
+            "width": "31",
+            "height": "101",
+            "yolo_confidence": "0.8496186",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.9987940788269043,
+            "combined_confidence": "0.84859407"
+          },
+          {
+            "bbox": [
+              "681",
+              "348",
+              "712",
+              "448"
+            ],
+            "center": [
+              "696",
+              "398"
+            ],
+            "area": "3100",
+            "width": "31",
+            "height": "100",
+            "yolo_confidence": "0.84009147",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9974761605262756,
+            "combined_confidence": "0.8379712"
+          },
+          {
+            "bbox": [
+              "651",
+              "348",
+              "679",
+              "449"
+            ],
+            "center": [
+              "665",
+              "398"
+            ],
+            "area": "2828",
+            "width": "28",
+            "height": "101",
+            "yolo_confidence": "0.83205855",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9980626702308655,
+            "combined_confidence": "0.8304466"
+          },
+          {
+            "bbox": [
+              "501",
+              "348",
+              "529",
+              "449"
+            ],
+            "center": [
+              "515",
+              "398"
+            ],
+            "area": "2828",
+            "width": "28",
+            "height": "101",
+            "yolo_confidence": "0.83128417",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.9991136193275452,
+            "combined_confidence": "0.83054733"
+          },
+          {
+            "bbox": [
+              "806",
+              "348",
+              "835",
+              "448"
+            ],
+            "center": [
+              "820",
+              "398"
+            ],
+            "area": "2900",
+            "width": "29",
+            "height": "100",
+            "yolo_confidence": "0.8311548",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9958916902542114,
+            "combined_confidence": "0.8277402"
+          },
+          {
+            "bbox": [
+              "713",
+              "348",
+              "743",
+              "448"
+            ],
+            "center": [
+              "728",
+              "398"
+            ],
+            "area": "3000",
+            "width": "30",
+            "height": "100",
+            "yolo_confidence": "0.8245268",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9976518750190735,
+            "combined_confidence": "0.8225907"
+          },
+          {
+            "bbox": [
+              "898",
+              "348",
+              "926",
+              "448"
+            ],
+            "center": [
+              "912",
+              "398"
+            ],
+            "area": "2800",
+            "width": "28",
+            "height": "100",
+            "yolo_confidence": "0.8208633",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9955594539642334,
+            "combined_confidence": "0.81721824"
+          },
+          {
+            "bbox": [
+              "867",
+              "348",
+              "897",
+              "448"
+            ],
+            "center": [
+              "882",
+              "398"
+            ],
+            "area": "3000",
+            "width": "30",
+            "height": "100",
+            "yolo_confidence": "0.81481296",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9955412745475769,
+            "combined_confidence": "0.81117994"
+          },
+          {
+            "bbox": [
+              "618",
+              "348",
+              "650",
+              "448"
+            ],
+            "center": [
+              "634",
+              "398"
+            ],
+            "area": "3200",
+            "width": "32",
+            "height": "100",
+            "yolo_confidence": "0.8138479",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9980658888816833,
+            "combined_confidence": "0.8122738"
+          },
+          {
+            "bbox": [
+              "777",
+              "348",
+              "805",
+              "448"
+            ],
+            "center": [
+              "791",
+              "398"
+            ],
+            "area": "2800",
+            "width": "28",
+            "height": "100",
+            "yolo_confidence": "0.8119813",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9968826770782471,
+            "combined_confidence": "0.8094501"
+          },
+          {
+            "bbox": [
+              "957",
+              "348",
+              "987",
+              "447"
+            ],
+            "center": [
+              "972",
+              "397"
+            ],
+            "area": "2970",
+            "width": "30",
+            "height": "99",
+            "yolo_confidence": "0.8008383",
+            "subclass": "Alex",
+            "subclass_confidence": 0.990921139717102,
+            "combined_confidence": "0.7935676"
+          },
+          {
+            "bbox": [
+              "530",
+              "348",
+              "557",
+              "448"
+            ],
+            "center": [
+              "543",
+              "398"
+            ],
+            "area": "2700",
+            "width": "27",
+            "height": "100",
+            "yolo_confidence": "0.7896274",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9969578981399536,
+            "combined_confidence": "0.78722525"
+          },
+          {
+            "bbox": [
+              "576",
+              "349",
+              "603",
+              "449"
+            ],
+            "center": [
+              "589",
+              "399"
+            ],
+            "area": "2700",
+            "width": "27",
+            "height": "100",
+            "yolo_confidence": "0.73287725",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9977911710739136,
+            "combined_confidence": "0.73125845"
+          },
+          {
+            "bbox": [
+              "559",
+              "348",
+              "575",
+              "447"
+            ],
+            "center": [
+              "567",
+              "397"
+            ],
+            "area": "1584",
+            "width": "16",
+            "height": "99",
+            "yolo_confidence": "0.66123635",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9990135431289673,
+            "combined_confidence": "0.6605841"
+          }
+        ],
+        "center": "[726.29411765 397.88235294]",
+        "product_types": {
+          "Alex": 15,
+          "Amalfi 3in1": 2
+        },
+        "dominant_type": "Alex",
+        "size": 17,
+        "bbox": [
+          "468",
+          "347",
+          "987",
+          "449"
+        ]
+      },
+      {
+        "cluster_id": "2",
+        "products": [
+          {
+            "bbox": [
+              "679",
+              "490",
+              "708",
+              "589"
+            ],
+            "center": [
+              "693",
+              "539"
+            ],
+            "area": "2871",
+            "width": "29",
+            "height": "99",
+            "yolo_confidence": "0.84412444",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9968820810317993,
+            "combined_confidence": "0.84149253"
+          },
+          {
+            "bbox": [
+              "588",
+              "490",
+              "616",
+              "590"
+            ],
+            "center": [
+              "602",
+              "540"
+            ],
+            "area": "2800",
+            "width": "28",
+            "height": "100",
+            "yolo_confidence": "0.8429463",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9975034594535828,
+            "combined_confidence": "0.8408418"
+          },
+          {
+            "bbox": [
+              "915",
+              "487",
+              "944",
+              "583"
+            ],
+            "center": [
+              "929",
+              "535"
+            ],
+            "area": "2784",
+            "width": "29",
+            "height": "96",
+            "yolo_confidence": "0.83658785",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9930832386016846,
+            "combined_confidence": "0.83080137"
+          },
+          {
+            "bbox": [
+              "793",
+              "489",
+              "826",
+              "586"
+            ],
+            "center": [
+              "809",
+              "537"
+            ],
+            "area": "3201",
+            "width": "33",
+            "height": "97",
+            "yolo_confidence": "0.83652997",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9959062337875366,
+            "combined_confidence": "0.8331054"
+          },
+          {
+            "bbox": [
+              "526",
+              "491",
+              "555",
+              "591"
+            ],
+            "center": [
+              "540",
+              "541"
+            ],
+            "area": "2900",
+            "width": "29",
+            "height": "100",
+            "yolo_confidence": "0.8266034",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9966933727264404,
+            "combined_confidence": "0.8238701"
+          },
+          {
+            "bbox": [
+              "495",
+              "490",
+              "524",
+              "591"
+            ],
+            "center": [
+              "509",
+              "540"
+            ],
+            "area": "2929",
+            "width": "29",
+            "height": "101",
+            "yolo_confidence": "0.8256072",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.9958693385124207,
+            "combined_confidence": "0.8221969"
+          },
+          {
+            "bbox": [
+              "557",
+              "490",
+              "587",
+              "591"
+            ],
+            "center": [
+              "572",
+              "540"
+            ],
+            "area": "3030",
+            "width": "30",
+            "height": "101",
+            "yolo_confidence": "0.8208765",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9968937635421753,
+            "combined_confidence": "0.81832665"
+          },
+          {
+            "bbox": [
+              "618",
+              "489",
+              "647",
+              "590"
+            ],
+            "center": [
+              "632",
+              "539"
+            ],
+            "area": "2929",
+            "width": "29",
+            "height": "101",
+            "yolo_confidence": "0.8205052",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9971000552177429,
+            "combined_confidence": "0.8181258"
+          },
+          {
+            "bbox": [
+              "886",
+              "488",
+              "914",
+              "584"
+            ],
+            "center": [
+              "900",
+              "536"
+            ],
+            "area": "2688",
+            "width": "28",
+            "height": "96",
+            "yolo_confidence": "0.82046914",
+            "subclass": "Alex",
+            "subclass_confidence": 0.993453860282898,
+            "combined_confidence": "0.8150982"
+          },
+          {
+            "bbox": [
+              "709",
+              "490",
+              "737",
+              "588"
+            ],
+            "center": [
+              "723",
+              "539"
+            ],
+            "area": "2744",
+            "width": "28",
+            "height": "98",
+            "yolo_confidence": "0.81520706",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9962698221206665,
+            "combined_confidence": "0.8121662"
+          },
+          {
+            "bbox": [
+              "648",
+              "490",
+              "678",
+              "590"
+            ],
+            "center": [
+              "663",
+              "540"
+            ],
+            "area": "3000",
+            "width": "30",
+            "height": "100",
+            "yolo_confidence": "0.81232214",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9968217611312866,
+            "combined_confidence": "0.80974036"
+          },
+          {
+            "bbox": [
+              "827",
+              "488",
+              "857",
+              "586"
+            ],
+            "center": [
+              "842",
+              "537"
+            ],
+            "area": "2940",
+            "width": "30",
+            "height": "98",
+            "yolo_confidence": "0.8057482",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9961943626403809,
+            "combined_confidence": "0.80268186"
+          },
+          {
+            "bbox": [
+              "858",
+              "488",
+              "885",
+              "585"
+            ],
+            "center": [
+              "871",
+              "536"
+            ],
+            "area": "2619",
+            "width": "27",
+            "height": "97",
+            "yolo_confidence": "0.8004653",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9953867793083191,
+            "combined_confidence": "0.79677254"
+          },
+          {
+            "bbox": [
+              "739",
+              "490",
+              "767",
+              "588"
+            ],
+            "center": [
+              "753",
+              "539"
+            ],
+            "area": "2744",
+            "width": "28",
+            "height": "98",
+            "yolo_confidence": "0.7984321",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9961108565330505,
+            "combined_confidence": "0.7953269"
+          },
+          {
+            "bbox": [
+              "945",
+              "486",
+              "975",
+              "582"
+            ],
+            "center": [
+              "960",
+              "534"
+            ],
+            "area": "2880",
+            "width": "30",
+            "height": "96",
+            "yolo_confidence": "0.78474563",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9887725710868835,
+            "combined_confidence": "0.77593493"
+          },
+          {
+            "bbox": [
+              "768",
+              "490",
+              "791",
+              "585"
+            ],
+            "center": [
+              "779",
+              "537"
+            ],
+            "area": "2185",
+            "width": "23",
+            "height": "95",
+            "yolo_confidence": "0.7415612",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9960117340087891,
+            "combined_confidence": "0.73860365"
+          }
+        ],
+        "center": "[736.0625 538.0625]",
+        "product_types": {
+          "Alex": 15,
+          "Amalfi 3in1": 1
+        },
+        "dominant_type": "Alex",
+        "size": 16,
+        "bbox": [
+          "495",
+          "486",
+          "975",
+          "591"
+        ]
+      },
+      {
+        "cluster_id": "3",
+        "products": [
+          {
+            "bbox": [
+              "297",
+              "349",
+              "330",
+              "451"
+            ],
+            "center": [
+              "313",
+              "400"
+            ],
+            "area": "3366",
+            "width": "33",
+            "height": "102",
+            "yolo_confidence": "0.83533925",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7599985003471375,
+            "combined_confidence": "0.6348566"
+          },
+          {
+            "bbox": [
+              "238",
+              "349",
+              "264",
+              "450"
+            ],
+            "center": [
+              "251",
+              "399"
+            ],
+            "area": "2626",
+            "width": "26",
+            "height": "101",
+            "yolo_confidence": "0.83110756",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7358266115188599,
+            "combined_confidence": "0.61155105"
+          },
+          {
+            "bbox": [
+              "333",
+              "348",
+              "364",
+              "451"
+            ],
+            "center": [
+              "348",
+              "399"
+            ],
+            "area": "3193",
+            "width": "31",
+            "height": "103",
+            "yolo_confidence": "0.82326025",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.6810867190361023,
+            "combined_confidence": "0.5607116"
+          },
+          {
+            "bbox": [
+              "206",
+              "348",
+              "237",
+              "450"
+            ],
+            "center": [
+              "221",
+              "399"
+            ],
+            "area": "3162",
+            "width": "31",
+            "height": "102",
+            "yolo_confidence": "0.81980383",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7571107149124146,
+            "combined_confidence": "0.62068224"
+          },
+          {
+            "bbox": [
+              "367",
+              "347",
+              "400",
+              "450"
+            ],
+            "center": [
+              "383",
+              "398"
+            ],
+            "area": "3399",
+            "width": "33",
+            "height": "103",
+            "yolo_confidence": "0.81798196",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7807496190071106,
+            "combined_confidence": "0.6386391"
+          },
+          {
+            "bbox": [
+              "171",
+              "348",
+              "204",
+              "451"
+            ],
+            "center": [
+              "187",
+              "399"
+            ],
+            "area": "3399",
+            "width": "33",
+            "height": "103",
+            "yolo_confidence": "0.81578803",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.6317421197891235,
+            "combined_confidence": "0.5153677"
+          },
+          {
+            "bbox": [
+              "266",
+              "349",
+              "296",
+              "451"
+            ],
+            "center": [
+              "281",
+              "400"
+            ],
+            "area": "3060",
+            "width": "30",
+            "height": "102",
+            "yolo_confidence": "0.8083402",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7217280864715576,
+            "combined_confidence": "0.5834018"
+          }
+        ],
+        "center": "[283.42857143 399.14285714]",
+        "product_types": {
+          "Amalfi K": 7
+        },
+        "dominant_type": "Amalfi K",
+        "size": 7,
+        "bbox": [
+          "171",
+          "347",
+          "400",
+          "451"
+        ]
+      },
+      {
+        "cluster_id": "4",
+        "products": [
+          {
+            "bbox": [
+              "821",
+              "711",
+              "891",
+              "779"
+            ],
+            "center": [
+              "856",
+              "745"
+            ],
+            "area": "4760",
+            "width": "70",
+            "height": "68",
+            "yolo_confidence": "0.827533",
+            "subclass": "Chapo Yaourt",
+            "subclass_confidence": 0.5395428538322449,
+            "combined_confidence": "0.4464895"
+          },
+          {
+            "bbox": [
+              "893",
+              "708",
+              "956",
+              "779"
+            ],
+            "center": [
+              "924",
+              "743"
+            ],
+            "area": "4473",
+            "width": "63",
+            "height": "71",
+            "yolo_confidence": "0.81089425",
+            "subclass": "Chapo Yaourt",
+            "subclass_confidence": 0.8223766684532166,
+            "combined_confidence": "0.6668605"
+          }
+        ],
+        "center": "[890. 744.]",
+        "product_types": {
+          "Chapo Yaourt": 2
+        },
+        "dominant_type": "Chapo Yaourt",
+        "size": 2,
+        "bbox": [
+          "821",
+          "708",
+          "956",
+          "779"
+        ]
+      },
+      {
+        "cluster_id": "5",
+        "products": [
+          {
+            "bbox": [
+              "310",
+              "493",
+              "344",
+              "592"
+            ],
+            "center": [
+              "327",
+              "542"
+            ],
+            "area": "3366",
+            "width": "34",
+            "height": "99",
+            "yolo_confidence": "0.82469267",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7592337131500244,
+            "combined_confidence": "0.62613446"
+          },
+          {
+            "bbox": [
+              "382",
+              "490",
+              "413",
+              "588"
+            ],
+            "center": [
+              "397",
+              "539"
+            ],
+            "area": "3038",
+            "width": "31",
+            "height": "98",
+            "yolo_confidence": "0.8235941",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.9897900223731995,
+            "combined_confidence": "0.8151852"
+          },
+          {
+            "bbox": [
+              "347",
+              "496",
+              "379",
+              "590"
+            ],
+            "center": [
+              "363",
+              "543"
+            ],
+            "area": "3008",
+            "width": "32",
+            "height": "94",
+            "yolo_confidence": "0.809902",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7490672469139099,
+            "combined_confidence": "0.6066711"
+          },
+          {
+            "bbox": [
+              "274",
+              "503",
+              "306",
+              "592"
+            ],
+            "center": [
+              "290",
+              "547"
+            ],
+            "area": "2848",
+            "width": "32",
+            "height": "89",
+            "yolo_confidence": "0.8049898",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.6452291011810303,
+            "combined_confidence": "0.51940286"
+          }
+        ],
+        "center": "[344.25 542.75]",
+        "product_types": {
+          "Amalfi K": 3,
+          "Amalfi 3in1": 1
+        },
+        "dominant_type": "Amalfi K",
+        "size": 4,
+        "bbox": [
+          "274",
+          "490",
+          "413",
+          "592"
+        ]
+      },
+      {
+        "cluster_id": "6",
+        "products": [
+          {
+            "bbox": [
+              "382",
+              "644",
+              "499",
+              "746"
+            ],
+            "center": [
+              "440",
+              "695"
+            ],
+            "area": "11934",
+            "width": "117",
+            "height": "102",
+            "yolo_confidence": "0.7798078",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.9003826975822449,
+            "combined_confidence": "0.70212543"
+          },
+          {
+            "bbox": [
+              "385",
+              "750",
+              "496",
+              "779"
+            ],
+            "center": [
+              "440",
+              "764"
+            ],
+            "area": "3219",
+            "width": "111",
+            "height": "29",
+            "yolo_confidence": "0.573763",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.8064320087432861,
+            "combined_confidence": "0.46270087"
+          }
+        ],
+        "center": "[440.  729.5]",
+        "product_types": {
+          "Chapo Coco": 2
+        },
+        "dominant_type": "Chapo Coco",
+        "size": 2,
+        "bbox": [
+          "382",
+          "644",
+          "499",
+          "779"
+        ]
+      }
+    ],
+    "product_counts": {
+      "Alex": 45,
+      "Amalfi K": 17,
+      "Amalfi 3in1": 8,
+      "Chapo Yaourt": 2,
+      "Chapo Coco": 6
+    },
+    "scarcity_scores": {
+      "Alex": 0.42307692307692313,
+      "Amalfi 3in1": 0.8974358974358975,
+      "Amalfi K": 0.782051282051282,
+      "Amalfi proHair": 1.0,
+      "Chapo Amande": 1.0,
+      "Chapo Coco": 0.9230769230769231,
+      "Chapo Exotique": 1.0,
+      "Chapo Yaourt": 0.9743589743589743,
+      "Magnum Black": 1.0,
+      "Magnum Gold": 1.0
+    },
+    "spatial_patterns": {
+      "dominant_pattern": "mixed",
+      "horizontal_spread": 230.29668284666522,
+      "vertical_spread": 156.2760353062662
+    }
+  },
+  "spatial_context_analysis": [
+    {
+      "void_id": 0,
+      "left_neighbors": [
+        {
+          "product_id": 40,
+          "product": {
+            "bbox": [
+              "382",
+              "490",
+              "413",
+              "588"
+            ],
+            "center": [
+              "397",
+              "539"
+            ],
+            "area": "3038",
+            "width": "31",
+            "height": "98",
+            "yolo_confidence": "0.8235941",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.9897900223731995,
+            "combined_confidence": "0.8151852"
+          },
+          "distance": "58",
+          "product_type": "Amalfi 3in1"
+        },
+        {
+          "product_id": 58,
+          "product": {
+            "bbox": [
+              "347",
+              "496",
+              "379",
+              "590"
+            ],
+            "center": [
+              "363",
+              "543"
+            ],
+            "area": "3008",
+            "width": "32",
+            "height": "94",
+            "yolo_confidence": "0.809902",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7490672469139099,
+            "combined_confidence": "0.6066711"
+          },
+          "distance": "92",
+          "product_type": "Amalfi K"
+        }
+      ],
+      "right_neighbors": [
+        {
+          "product_id": 34,
+          "product": {
+            "bbox": [
+              "495",
+              "490",
+              "524",
+              "591"
+            ],
+            "center": [
+              "509",
+              "540"
+            ],
+            "area": "2929",
+            "width": "29",
+            "height": "101",
+            "yolo_confidence": "0.8256072",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.9958693385124207,
+            "combined_confidence": "0.8221969"
+          },
+          "distance": "54",
+          "product_type": "Amalfi 3in1"
+        },
+        {
+          "product_id": 33,
+          "product": {
+            "bbox": [
+              "526",
+              "491",
+              "555",
+              "591"
+            ],
+            "center": [
+              "540",
+              "541"
+            ],
+            "area": "2900",
+            "width": "29",
+            "height": "100",
+            "yolo_confidence": "0.8266034",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9966933727264404,
+            "combined_confidence": "0.8238701"
+          },
+          "distance": "85",
+          "product_type": "Alex"
+        }
+      ],
+      "top_neighbors": [],
+      "bottom_neighbors": [],
+      "horizontal_context": {
+        "product_type": "Amalfi 3in1",
+        "confidence": 1.0,
+        "left_distance": "58",
+        "right_distance": "54",
+        "context_strength": "strong"
+      },
+      "vertical_context": null,
+      "dominant_context": {
+        "product_type": "Amalfi 3in1",
+        "confidence": 1.0,
+        "left_distance": "58",
+        "right_distance": "54",
+        "context_strength": "strong"
+      }
+    },
+    {
+      "void_id": 1,
+      "left_neighbors": [],
+      "right_neighbors": [],
+      "top_neighbors": [],
+      "bottom_neighbors": [],
+      "horizontal_context": null,
+      "vertical_context": null,
+      "dominant_context": null
+    },
+    {
+      "void_id": 2,
+      "left_neighbors": [
+        {
+          "product_id": 49,
+          "product": {
+            "bbox": [
+              "367",
+              "347",
+              "400",
+              "450"
+            ],
+            "center": [
+              "383",
+              "398"
+            ],
+            "area": "3399",
+            "width": "33",
+            "height": "103",
+            "yolo_confidence": "0.81798196",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7807496190071106,
+            "combined_confidence": "0.6386391"
+          },
+          "distance": "52",
+          "product_type": "Amalfi K"
+        },
+        {
+          "product_id": 41,
+          "product": {
+            "bbox": [
+              "333",
+              "348",
+              "364",
+              "451"
+            ],
+            "center": [
+              "348",
+              "399"
+            ],
+            "area": "3193",
+            "width": "31",
+            "height": "103",
+            "yolo_confidence": "0.82326025",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.6810867190361023,
+            "combined_confidence": "0.5607116"
+          },
+          "distance": "87",
+          "product_type": "Amalfi K"
+        }
+      ],
+      "right_neighbors": [
+        {
+          "product_id": 7,
+          "product": {
+            "bbox": [
+              "468",
+              "348",
+              "499",
+              "449"
+            ],
+            "center": [
+              "483",
+              "398"
+            ],
+            "area": "3131",
+            "width": "31",
+            "height": "101",
+            "yolo_confidence": "0.8496186",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.9987940788269043,
+            "combined_confidence": "0.84859407"
+          },
+          "distance": "48",
+          "product_type": "Amalfi 3in1"
+        },
+        {
+          "product_id": 28,
+          "product": {
+            "bbox": [
+              "501",
+              "348",
+              "529",
+              "449"
+            ],
+            "center": [
+              "515",
+              "398"
+            ],
+            "area": "2828",
+            "width": "28",
+            "height": "101",
+            "yolo_confidence": "0.83128417",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.9991136193275452,
+            "combined_confidence": "0.83054733"
+          },
+          "distance": "80",
+          "product_type": "Amalfi 3in1"
+        }
+      ],
+      "top_neighbors": [],
+      "bottom_neighbors": [
+        {
+          "product_id": 7,
+          "product": {
+            "bbox": [
+              "468",
+              "348",
+              "499",
+              "449"
+            ],
+            "center": [
+              "483",
+              "398"
+            ],
+            "area": "3131",
+            "width": "31",
+            "height": "101",
+            "yolo_confidence": "0.8496186",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.9987940788269043,
+            "combined_confidence": "0.84859407"
+          },
+          "distance": "19",
+          "product_type": "Amalfi 3in1"
+        }
+      ],
+      "horizontal_context": null,
+      "vertical_context": null,
+      "dominant_context": {
+        "product_type": "Amalfi 3in1",
+        "confidence": 0.6,
+        "direction": "right",
+        "distance": "48",
+        "context_strength": "moderate"
+      }
+    },
+    {
+      "void_id": 3,
+      "left_neighbors": [],
+      "right_neighbors": [
+        {
+          "product_id": 39,
+          "product": {
+            "bbox": [
+              "153",
+              "173",
+              "186",
+              "282"
+            ],
+            "center": [
+              "169",
+              "227"
+            ],
+            "area": "3597",
+            "width": "33",
+            "height": "109",
+            "yolo_confidence": "0.8241919",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.6344316601753235,
+            "combined_confidence": "0.5228934"
+          },
+          "distance": "46",
+          "product_type": "Amalfi K"
+        },
+        {
+          "product_id": 35,
+          "product": {
+            "bbox": [
+              "187",
+              "174",
+              "219",
+              "282"
+            ],
+            "center": [
+              "203",
+              "228"
+            ],
+            "area": "3456",
+            "width": "32",
+            "height": "108",
+            "yolo_confidence": "0.82517105",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7362808585166931,
+            "combined_confidence": "0.60755765"
+          },
+          "distance": "80",
+          "product_type": "Amalfi K"
+        }
+      ],
+      "top_neighbors": [],
+      "bottom_neighbors": [
+        {
+          "product_id": 39,
+          "product": {
+            "bbox": [
+              "153",
+              "173",
+              "186",
+              "282"
+            ],
+            "center": [
+              "169",
+              "227"
+            ],
+            "area": "3597",
+            "width": "33",
+            "height": "109",
+            "yolo_confidence": "0.8241919",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.6344316601753235,
+            "combined_confidence": "0.5228934"
+          },
+          "distance": "8",
+          "product_type": "Amalfi K"
+        }
+      ],
+      "horizontal_context": null,
+      "vertical_context": null,
+      "dominant_context": {
+        "product_type": "Amalfi K",
+        "confidence": 0.6,
+        "direction": "right",
+        "distance": "46",
+        "context_strength": "moderate"
+      }
+    },
+    {
+      "void_id": 4,
+      "left_neighbors": [],
+      "right_neighbors": [
+        {
+          "product_id": 50,
+          "product": {
+            "bbox": [
+              "171",
+              "348",
+              "204",
+              "451"
+            ],
+            "center": [
+              "187",
+              "399"
+            ],
+            "area": "3399",
+            "width": "33",
+            "height": "103",
+            "yolo_confidence": "0.81578803",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.6317421197891235,
+            "combined_confidence": "0.5153677"
+          },
+          "distance": "99",
+          "product_type": "Amalfi K"
+        }
+      ],
+      "top_neighbors": [],
+      "bottom_neighbors": [],
+      "horizontal_context": null,
+      "vertical_context": null,
+      "dominant_context": {
+        "product_type": "Amalfi K",
+        "confidence": 0.6,
+        "direction": "right",
+        "distance": "99",
+        "context_strength": "moderate"
+      }
+    },
+    {
+      "void_id": 5,
+      "left_neighbors": [],
+      "right_neighbors": [],
+      "top_neighbors": [],
+      "bottom_neighbors": [],
+      "horizontal_context": null,
+      "vertical_context": null,
+      "dominant_context": null
+    },
+    {
+      "void_id": 6,
+      "left_neighbors": [],
+      "right_neighbors": [],
+      "top_neighbors": [],
+      "bottom_neighbors": [],
+      "horizontal_context": null,
+      "vertical_context": null,
+      "dominant_context": null
+    }
+  ],
+  "void_analysis": [
+    {
+      "void_id": 0,
+      "void_bbox": [
+        "413",
+        "474",
+        "497",
+        "592"
+      ],
+      "void_area": "9912",
+      "spatial_context": {
+        "void_id": 0,
+        "left_neighbors": [
+          {
+            "product_id": 40,
+            "product": {
+              "bbox": [
+                "382",
+                "490",
+                "413",
+                "588"
+              ],
+              "center": [
+                "397",
+                "539"
+              ],
+              "area": "3038",
+              "width": "31",
+              "height": "98",
+              "yolo_confidence": "0.8235941",
+              "subclass": "Amalfi 3in1",
+              "subclass_confidence": 0.9897900223731995,
+              "combined_confidence": "0.8151852"
+            },
+            "distance": "58",
+            "product_type": "Amalfi 3in1"
+          },
+          {
+            "product_id": 58,
+            "product": {
+              "bbox": [
+                "347",
+                "496",
+                "379",
+                "590"
+              ],
+              "center": [
+                "363",
+                "543"
+              ],
+              "area": "3008",
+              "width": "32",
+              "height": "94",
+              "yolo_confidence": "0.809902",
+              "subclass": "Amalfi K",
+              "subclass_confidence": 0.7490672469139099,
+              "combined_confidence": "0.6066711"
+            },
+            "distance": "92",
+            "product_type": "Amalfi K"
+          }
+        ],
+        "right_neighbors": [
+          {
+            "product_id": 34,
+            "product": {
+              "bbox": [
+                "495",
+                "490",
+                "524",
+                "591"
+              ],
+              "center": [
+                "509",
+                "540"
+              ],
+              "area": "2929",
+              "width": "29",
+              "height": "101",
+              "yolo_confidence": "0.8256072",
+              "subclass": "Amalfi 3in1",
+              "subclass_confidence": 0.9958693385124207,
+              "combined_confidence": "0.8221969"
+            },
+            "distance": "54",
+            "product_type": "Amalfi 3in1"
+          },
+          {
+            "product_id": 33,
+            "product": {
+              "bbox": [
+                "526",
+                "491",
+                "555",
+                "591"
+              ],
+              "center": [
+                "540",
+                "541"
+              ],
+              "area": "2900",
+              "width": "29",
+              "height": "100",
+              "yolo_confidence": "0.8266034",
+              "subclass": "Alex",
+              "subclass_confidence": 0.9966933727264404,
+              "combined_confidence": "0.8238701"
+            },
+            "distance": "85",
+            "product_type": "Alex"
+          }
+        ],
+        "top_neighbors": [],
+        "bottom_neighbors": [],
+        "horizontal_context": {
+          "product_type": "Amalfi 3in1",
+          "confidence": 1.0,
+          "left_distance": "58",
+          "right_distance": "54",
+          "context_strength": "strong"
+        },
+        "vertical_context": null,
+        "dominant_context": {
+          "product_type": "Amalfi 3in1",
+          "confidence": 1.0,
+          "left_distance": "58",
+          "right_distance": "54",
+          "context_strength": "strong"
+        }
+      },
+      "assignment_candidates": [],
+      "final_assignment": {
+        "product_type": "Amalfi 3in1",
+        "confidence": 1.0,
+        "assignment_method": "spatial_context_priority",
+        "primary_factors": [
+          "spatial_context"
+        ],
+        "context_type": "horizontal"
+      },
+      "assignment_confidence": 1.0,
+      "assignment_reasoning": [
+        "Strong spatial context: Amalfi 3in1 products on both left and right",
+        "Left distance: 58px, Right distance: 54px",
+        "Direct neighbor analysis indicates clear product continuation"
+      ],
+      "estimated_product_count": 2
+    },
+    {
+      "void_id": 1,
+      "void_bbox": [
+        "49",
+        "480",
+        "267",
+        "598"
+      ],
+      "void_area": "25724",
+      "spatial_context": {
+        "void_id": 1,
+        "left_neighbors": [],
+        "right_neighbors": [],
+        "top_neighbors": [],
+        "bottom_neighbors": [],
+        "horizontal_context": null,
+        "vertical_context": null,
+        "dominant_context": null
+      },
+      "assignment_candidates": [
+        {
+          "product_id": "62",
+          "product": {
+            "bbox": [
+              "274",
+              "503",
+              "306",
+              "592"
+            ],
+            "center": [
+              "290",
+              "547"
+            ],
+            "area": "2848",
+            "width": "32",
+            "height": "89",
+            "yolo_confidence": "0.8049898",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.6452291011810303,
+            "combined_confidence": "0.51940286"
+          },
+          "distance": 132.24220203853233,
+          "product_type": "Amalfi K",
+          "scores": {
+            "spatial_context": 0.0,
+            "proximity": 0.08469724745183459,
+            "scarcity": 0.11730769230769231,
+            "pattern": 0.030000000000000006,
+            "confidence": "0.025970144"
+          },
+          "total_score": 0.25797508395687163,
+          "reasoning": [
+            "Low stock priority for Amalfi K",
+            "Close competition with Amalfi K (score difference: 0.028)"
+          ]
+        },
+        {
+          "product_id": "50",
+          "product": {
+            "bbox": [
+              "171",
+              "348",
+              "204",
+              "451"
+            ],
+            "center": [
+              "187",
+              "399"
+            ],
+            "area": "3399",
+            "width": "33",
+            "height": "103",
+            "yolo_confidence": "0.81578803",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.6317421197891235,
+            "combined_confidence": "0.5153677"
+          },
+          "distance": 142.97202523570826,
+          "product_type": "Amalfi K",
+          "scores": {
+            "spatial_context": 0.0,
+            "proximity": 0.07128496845536468,
+            "scarcity": 0.11730769230769231,
+            "pattern": 0.015500000000000003,
+            "confidence": "0.025768384"
+          },
+          "total_score": 0.22986104510048222,
+          "reasoning": [
+            "Low stock priority for Amalfi K"
+          ]
+        },
+        {
+          "product_id": "48",
+          "product": {
+            "bbox": [
+              "206",
+              "348",
+              "237",
+              "450"
+            ],
+            "center": [
+              "221",
+              "399"
+            ],
+            "area": "3162",
+            "width": "31",
+            "height": "102",
+            "yolo_confidence": "0.81980383",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7571107149124146,
+            "combined_confidence": "0.62068224"
+          },
+          "distance": 153.52198539622916,
+          "product_type": "Amalfi K",
+          "scores": {
+            "spatial_context": 0.0,
+            "proximity": 0.05809751825471356,
+            "scarcity": 0.11730769230769231,
+            "pattern": 0.0,
+            "confidence": "0.031034112"
+          },
+          "total_score": 0.2064393225390294,
+          "reasoning": [
+            "Low stock priority for Amalfi K"
+          ]
+        },
+        {
+          "product_id": "37",
+          "product": {
+            "bbox": [
+              "310",
+              "493",
+              "344",
+              "592"
+            ],
+            "center": [
+              "327",
+              "542"
+            ],
+            "area": "3366",
+            "width": "34",
+            "height": "99",
+            "yolo_confidence": "0.82469267",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7592337131500244,
+            "combined_confidence": "0.62613446"
+          },
+          "distance": 169.0266251216062,
+          "product_type": "Amalfi K",
+          "scores": {
+            "spatial_context": 0.0,
+            "proximity": 0.03871671859799225,
+            "scarcity": 0.11730769230769231,
+            "pattern": 0.014000000000000002,
+            "confidence": "0.031306725"
+          },
+          "total_score": 0.20133113590105925,
+          "reasoning": [
+            "Low stock priority for Amalfi K"
+          ]
+        },
+        {
+          "product_id": "30",
+          "product": {
+            "bbox": [
+              "238",
+              "349",
+              "264",
+              "450"
+            ],
+            "center": [
+              "251",
+              "399"
+            ],
+            "area": "2626",
+            "width": "26",
+            "height": "101",
+            "yolo_confidence": "0.83110756",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7358266115188599,
+            "combined_confidence": "0.61155105"
+          },
+          "distance": 168.07438829280326,
+          "product_type": "Amalfi K",
+          "scores": {
+            "spatial_context": 0.0,
+            "proximity": 0.03990701463399592,
+            "scarcity": 0.11730769230769231,
+            "pattern": 0.0,
+            "confidence": "0.030577553"
+          },
+          "total_score": 0.18779226037784832,
+          "reasoning": [
+            "Low stock priority for Amalfi K"
+          ]
+        },
+        {
+          "product_id": "59",
+          "product": {
+            "bbox": [
+              "266",
+              "349",
+              "296",
+              "451"
+            ],
+            "center": [
+              "281",
+              "400"
+            ],
+            "area": "3060",
+            "width": "30",
+            "height": "102",
+            "yolo_confidence": "0.8083402",
+            "subclass": "Amalfi K",
+            "subclass_confidence": 0.7217280864715576,
+            "combined_confidence": "0.5834018"
+          },
+          "distance": 185.60711193270586,
+          "product_type": "Amalfi K",
+          "scores": {
+            "spatial_context": 0.0,
+            "proximity": 0.017991110084117672,
+            "scarcity": 0.11730769230769231,
+            "pattern": 0.0,
+            "confidence": "0.02917009"
+          },
+          "total_score": 0.16446889272443727,
+          "reasoning": [
+            "Low stock priority for Amalfi K"
+          ]
+        }
+      ],
+      "final_assignment": {
+        "product_type": "Amalfi K",
+        "confidence": 0.25797508395687163,
+        "assignment_method": "intelligent_scoring",
+        "primary_factors": [
+          "scarcity"
+        ]
+      },
+      "assignment_confidence": 0.25797508395687163,
+      "assignment_reasoning": [
+        "Low stock priority for Amalfi K",
+        "Close competition with Amalfi K (score difference: 0.028)"
+      ],
+      "estimated_product_count": 6
+    },
+    {
+      "void_id": 2,
+      "void_bbox": [
+        "401",
+        "313",
+        "470",
+        "446"
+      ],
+      "void_area": "9177",
+      "spatial_context": {
+        "void_id": 2,
+        "left_neighbors": [
+          {
+            "product_id": 49,
+            "product": {
+              "bbox": [
+                "367",
+                "347",
+                "400",
+                "450"
+              ],
+              "center": [
+                "383",
+                "398"
+              ],
+              "area": "3399",
+              "width": "33",
+              "height": "103",
+              "yolo_confidence": "0.81798196",
+              "subclass": "Amalfi K",
+              "subclass_confidence": 0.7807496190071106,
+              "combined_confidence": "0.6386391"
+            },
+            "distance": "52",
+            "product_type": "Amalfi K"
+          },
+          {
+            "product_id": 41,
+            "product": {
+              "bbox": [
+                "333",
+                "348",
+                "364",
+                "451"
+              ],
+              "center": [
+                "348",
+                "399"
+              ],
+              "area": "3193",
+              "width": "31",
+              "height": "103",
+              "yolo_confidence": "0.82326025",
+              "subclass": "Amalfi K",
+              "subclass_confidence": 0.6810867190361023,
+              "combined_confidence": "0.5607116"
+            },
+            "distance": "87",
+            "product_type": "Amalfi K"
+          }
+        ],
+        "right_neighbors": [
+          {
+            "product_id": 7,
+            "product": {
+              "bbox": [
+                "468",
+                "348",
+                "499",
+                "449"
+              ],
+              "center": [
+                "483",
+                "398"
+              ],
+              "area": "3131",
+              "width": "31",
+              "height": "101",
+              "yolo_confidence": "0.8496186",
+              "subclass": "Amalfi 3in1",
+              "subclass_confidence": 0.9987940788269043,
+              "combined_confidence": "0.84859407"
+            },
+            "distance": "48",
+            "product_type": "Amalfi 3in1"
+          },
+          {
+            "product_id": 28,
+            "product": {
+              "bbox": [
+                "501",
+                "348",
+                "529",
+                "449"
+              ],
+              "center": [
+                "515",
+                "398"
+              ],
+              "area": "2828",
+              "width": "28",
+              "height": "101",
+              "yolo_confidence": "0.83128417",
+              "subclass": "Amalfi 3in1",
+              "subclass_confidence": 0.9991136193275452,
+              "combined_confidence": "0.83054733"
+            },
+            "distance": "80",
+            "product_type": "Amalfi 3in1"
+          }
+        ],
+        "top_neighbors": [],
+        "bottom_neighbors": [
+          {
+            "product_id": 7,
+            "product": {
+              "bbox": [
+                "468",
+                "348",
+                "499",
+                "449"
+              ],
+              "center": [
+                "483",
+                "398"
+              ],
+              "area": "3131",
+              "width": "31",
+              "height": "101",
+              "yolo_confidence": "0.8496186",
+              "subclass": "Amalfi 3in1",
+              "subclass_confidence": 0.9987940788269043,
+              "combined_confidence": "0.84859407"
+            },
+            "distance": "19",
+            "product_type": "Amalfi 3in1"
+          }
+        ],
+        "horizontal_context": null,
+        "vertical_context": null,
+        "dominant_context": {
+          "product_type": "Amalfi 3in1",
+          "confidence": 0.6,
+          "direction": "right",
+          "distance": "48",
+          "context_strength": "moderate"
+        }
+      },
+      "assignment_candidates": [],
+      "final_assignment": {
+        "product_type": "Amalfi 3in1",
+        "confidence": 0.6,
+        "assignment_method": "spatial_context_moderate",
+        "primary_factors": [
+          "spatial_context"
+        ]
+      },
+      "assignment_confidence": 0.6,
+      "assignment_reasoning": [
+        "Moderate spatial context: Amalfi 3in1 product on right side",
+        "Distance: 48px",
+        "Single-sided neighbor analysis suggests likely product type"
+      ],
+      "estimated_product_count": 2
+    },
+    {
+      "void_id": 3,
+      "void_bbox": [
+        "91",
+        "156",
+        "155",
+        "282"
+      ],
+      "void_area": "8064",
+      "spatial_context": {
+        "void_id": 3,
+        "left_neighbors": [],
+        "right_neighbors": [
+          {
+            "product_id": 39,
+            "product": {
+              "bbox": [
+                "153",
+                "173",
+                "186",
+                "282"
+              ],
+              "center": [
+                "169",
+                "227"
+              ],
+              "area": "3597",
+              "width": "33",
+              "height": "109",
+              "yolo_confidence": "0.8241919",
+              "subclass": "Amalfi K",
+              "subclass_confidence": 0.6344316601753235,
+              "combined_confidence": "0.5228934"
+            },
+            "distance": "46",
+            "product_type": "Amalfi K"
+          },
+          {
+            "product_id": 35,
+            "product": {
+              "bbox": [
+                "187",
+                "174",
+                "219",
+                "282"
+              ],
+              "center": [
+                "203",
+                "228"
+              ],
+              "area": "3456",
+              "width": "32",
+              "height": "108",
+              "yolo_confidence": "0.82517105",
+              "subclass": "Amalfi K",
+              "subclass_confidence": 0.7362808585166931,
+              "combined_confidence": "0.60755765"
+            },
+            "distance": "80",
+            "product_type": "Amalfi K"
+          }
+        ],
+        "top_neighbors": [],
+        "bottom_neighbors": [
+          {
+            "product_id": 39,
+            "product": {
+              "bbox": [
+                "153",
+                "173",
+                "186",
+                "282"
+              ],
+              "center": [
+                "169",
+                "227"
+              ],
+              "area": "3597",
+              "width": "33",
+              "height": "109",
+              "yolo_confidence": "0.8241919",
+              "subclass": "Amalfi K",
+              "subclass_confidence": 0.6344316601753235,
+              "combined_confidence": "0.5228934"
+            },
+            "distance": "8",
+            "product_type": "Amalfi K"
+          }
+        ],
+        "horizontal_context": null,
+        "vertical_context": null,
+        "dominant_context": {
+          "product_type": "Amalfi K",
+          "confidence": 0.6,
+          "direction": "right",
+          "distance": "46",
+          "context_strength": "moderate"
+        }
+      },
+      "assignment_candidates": [],
+      "final_assignment": {
+        "product_type": "Amalfi K",
+        "confidence": 0.6,
+        "assignment_method": "spatial_context_moderate",
+        "primary_factors": [
+          "spatial_context"
+        ]
+      },
+      "assignment_confidence": 0.6,
+      "assignment_reasoning": [
+        "Moderate spatial context: Amalfi K product on right side",
+        "Distance: 46px",
+        "Single-sided neighbor analysis suggests likely product type"
+      ],
+      "estimated_product_count": 1
+    },
+    {
+      "void_id": 4,
+      "void_bbox": [
+        "9",
+        "310",
+        "167",
+        "449"
+      ],
+      "void_area": "21962",
+      "spatial_context": {
+        "void_id": 4,
+        "left_neighbors": [],
+        "right_neighbors": [
+          {
+            "product_id": 50,
+            "product": {
+              "bbox": [
+                "171",
+                "348",
+                "204",
+                "451"
+              ],
+              "center": [
+                "187",
+                "399"
+              ],
+              "area": "3399",
+              "width": "33",
+              "height": "103",
+              "yolo_confidence": "0.81578803",
+              "subclass": "Amalfi K",
+              "subclass_confidence": 0.6317421197891235,
+              "combined_confidence": "0.5153677"
+            },
+            "distance": "99",
+            "product_type": "Amalfi K"
+          }
+        ],
+        "top_neighbors": [],
+        "bottom_neighbors": [],
+        "horizontal_context": null,
+        "vertical_context": null,
+        "dominant_context": {
+          "product_type": "Amalfi K",
+          "confidence": 0.6,
+          "direction": "right",
+          "distance": "99",
+          "context_strength": "moderate"
+        }
+      },
+      "assignment_candidates": [],
+      "final_assignment": {
+        "product_type": "Amalfi K",
+        "confidence": 0.6,
+        "assignment_method": "spatial_context_moderate",
+        "primary_factors": [
+          "spatial_context"
+        ]
+      },
+      "assignment_confidence": 0.6,
+      "assignment_reasoning": [
+        "Moderate spatial context: Amalfi K product on right side",
+        "Distance: 99px",
+        "Single-sided neighbor analysis suggests likely product type"
+      ],
+      "estimated_product_count": 4
+    }
+  ],
+  "summary": {
+    "total_products_detected": 78,
+    "total_void_areas": 5,
+    "product_counts_by_type": {
+      "Alex": 45,
+      "Amalfi K": 17,
+      "Amalfi 3in1": 8,
+      "Chapo Yaourt": 2,
+      "Chapo Coco": 6
+    },
+    "estimated_missing_products": 15,
+    "missing_by_product_type": {
+      "Amalfi 3in1": 4,
+      "Amalfi K": 11
+    },
+    "stock_levels": {
+      "Alex": {
+        "current_count": 45,
+        "estimated_full_count": 45,
+        "stock_percentage": 100.0,
+        "missing_count": 0
+      },
+      "Amalfi 3in1": {
+        "current_count": 8,
+        "estimated_full_count": 12,
+        "stock_percentage": 66.66666666666666,
+        "missing_count": 4
+      },
+      "Amalfi K": {
+        "current_count": 17,
+        "estimated_full_count": 28,
+        "stock_percentage": 60.71428571428571,
+        "missing_count": 11
+      },
+      "Chapo Coco": {
+        "current_count": 6,
+        "estimated_full_count": 6,
+        "stock_percentage": 100.0,
+        "missing_count": 0
+      },
+      "Chapo Yaourt": {
+        "current_count": 2,
+        "estimated_full_count": 2,
+        "stock_percentage": 100.0,
+        "missing_count": 0
+      }
+    },
+    "overall_stock_percentage": 83.87096774193549,
+    "assignment_methods": {
+      "spatial_context_priority": 1,
+      "intelligent_scoring": 1,
+      "spatial_context_moderate": 3
+    },
+    "average_assignment_confidence": 0.6115950167913744
+  },
+  "inference_time_ms": 694.4103240966797,
+  "device": "CPU",
+  "raw_image": "[[[ 70  57  48]\n  [ 71  58  49]\n  [ 71  58  49]\n  ...\n  [158 125  94]\n  [154 121  90]\n  [138 105  74]]\n\n [[ 63  50  41]\n  [ 67  57  47]\n  [ 85  72  63]\n  ...\n  [159 126  95]\n  [153 120  89]\n  [136 103  72]]\n\n [[ 72  62  53]\n  [ 91  82  73]\n  [119 109 100]\n  ...\n  [159 126  95]\n  [152 119  88]\n  [134 101  70]]\n\n ...\n\n [[161 157 145]\n  [161 157 145]\n  [159 155 143]\n  ...\n  [153 141 119]\n  [123 102  73]\n  [120  96  62]]\n\n [[161 157 145]\n  [161 157 145]\n  [158 154 142]\n  ...\n  [153 138 117]\n  [121  98  67]\n  [119  93  58]]\n\n [[160 156 144]\n  [160 156 144]\n  [158 154 142]\n  ...\n  [152 137 114]\n  [121  98  67]\n  [124  95  61]]]"
+}

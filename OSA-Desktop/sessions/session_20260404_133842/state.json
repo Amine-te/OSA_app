@@ -1,0 +1,13 @@
+{
+  "saved_at": "2026-04-04T13:38:42.385387",
+  "state": {
+    "source_type": "NONE",
+    "source_path": "",
+    "rois": [],
+    "active_roi_preset": "",
+    "workspace_index": 0,
+    "viewer_compare_mode": "slider",
+    "heatmap_enabled": false,
+    "focus_mode": false
+  }
+}
