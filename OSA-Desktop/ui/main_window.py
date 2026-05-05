@@ -2,22 +2,18 @@
 # main_window.py — OSA Industrial Control Center (dock workspaces)
 # ─────────────────────────────────────────────────────────────
 
-import os
 import sys
 import time
 import traceback
 from pathlib import Path
 
-import cv2
 from datetime import datetime
 
 from PyQt6.QtCore import QByteArray, Qt, QTimer, pyqtSlot
 from PyQt6.QtGui import QAction, QKeySequence, QShortcut
 from PyQt6.QtWidgets import (
     QApplication,
-    QComboBox,
     QDockWidget,
-    QFileDialog,
     QHBoxLayout,
     QLabel,
     QLineEdit,
@@ -25,8 +21,6 @@ from PyQt6.QtWidgets import (
     QMainWindow,
     QProgressBar,
     QPushButton,
-    QSpinBox,
-    QSplitter,
     QStackedWidget,
     QStatusBar,
     QToolBar,
@@ -50,7 +44,6 @@ from ui.auxiliary_windows import AnalyticsWindow, ConfigWindow, InventoryReportW
 from ui.viewer import SplitCompareViewer, HUDOverlay
 from ui.widgets import GradientHeader, ToastManager, LogConsole
 from ui.error_banner import ErrorBanner
-from ui.timeline_widget import VideoTimeline
 
 
 class MainWindow(QMainWindow):
@@ -64,11 +57,8 @@ class MainWindow(QMainWindow):
         self.worker = None
         self.pipeline_ready = False
         self.current_results = None
-        self.video_frames = []
-        self.current_frame_idx = 0
         self._last_frame_time = time.time()
         self._fps = 0.0
-        self._frame_markers = []
         self._base_dir = Path(__file__).resolve().parent.parent
         self._history = HistoryStore(session_manager.sessions_root(self._base_dir) / "history.db")
         self._analytics_frame_idx = 0
@@ -289,127 +279,10 @@ class MainWindow(QMainWindow):
         self.act_stop.triggered.connect(self._on_stop_clicked)
         tb.addAction(self.act_stop)
 
-        tb.addSeparator()
-
-        ws_label = QLabel("  Workspace ")
-        ws_label.setStyleSheet(f"color:{COLORS['text_secondary']};")
-        tb.addWidget(ws_label)
-        self.combo_workspace = QComboBox()
-        self.combo_workspace.addItems(
-            ["Image Inspection", "Video Monitoring", "Live Camera (future)"]
-        )
-        self.combo_workspace.currentIndexChanged.connect(self._on_workspace_changed)
-        tb.addWidget(self.combo_workspace)
-
     def _build_workspaces(self):
         self.main_stack = QStackedWidget()
 
-        # Image workspace
-        self.ws_image = QWidget()
-        il = QVBoxLayout(self.ws_image)
-        il.setContentsMargins(0, 0, 0, 0)
-        il.setSpacing(8)
-
-        ctrl = QHBoxLayout()
-        ctrl.setSpacing(8)
-        self.btn_load_image = QPushButton("Load image")
-        self.btn_load_image.clicked.connect(self._on_load_image)
-        self.btn_analyze = QPushButton("Analyze")
-        self.btn_analyze.clicked.connect(self._on_analyze_image)
-        for w in (self.btn_load_image, self.btn_analyze):
-            ctrl.addWidget(w)
-        ctrl.addStretch()
-        il.addLayout(ctrl)
-
-        tools_wrap = QWidget()
-        tools_wrap.setObjectName("viewer_tool_strip")
-        tools_wrap.setStyleSheet(
-            f"QWidget#viewer_tool_strip {{ background: {COLORS['bg_card']}; "
-            f"border: 1px solid {COLORS['border']}; border-radius: 8px; }}"
-        )
-        tool_row = QHBoxLayout(tools_wrap)
-        tool_row.setContentsMargins(10, 6, 10, 6)
-        tool_row.setSpacing(8)
-        tl = QLabel("Viewer tools")
-        tl.setStyleSheet(f"color:{COLORS['text_secondary']}; font-weight:600;")
-        tool_row.addWidget(tl)
-        self.btn_heatmap = QPushButton("Heatmap")
-        self.btn_heatmap.setCheckable(True)
-        self.btn_heatmap.setProperty("class", "secondary")
-        self.btn_heatmap.toggled.connect(self._on_heatmap_toggle)
-        self.btn_reset_view = QPushButton("Reset view")
-        self.btn_reset_view.setProperty("class", "secondary")
-        self.btn_reset_view.clicked.connect(lambda: self.img_viewer.reset_view())
-        for w in (
-            self.btn_heatmap,
-            self.btn_reset_view,
-        ):
-            tool_row.addWidget(w)
-        tool_row.addStretch()
-        il.addWidget(tools_wrap)
-
-        self.img_viewer = SplitCompareViewer()
-        self.img_viewer.detection_clicked.connect(self._on_image_detection_clicked)
-        il.addWidget(self.img_viewer, stretch=1)
-
-        self.img_hud = HUDOverlay(self.img_viewer)
-        self.img_hud.setParent(self.img_viewer)
-        self.img_hud.move(8, 8)
-        self.img_hud.setVisible(False)
-
-        self.main_stack.addWidget(self.ws_image)
-
-        # Video workspace
-        self.ws_video = QWidget()
-        vl = QVBoxLayout(self.ws_video)
-        vl.setContentsMargins(0, 0, 0, 0)
-        vl.setSpacing(8)
-
-        vctrl = QHBoxLayout()
-        self.btn_load_video = QPushButton("Load video")
-        self.btn_load_video.clicked.connect(self._on_load_video)
-        self.spin_interval = QSpinBox()
-        self.spin_interval.setRange(1, 60)
-        self.spin_interval.setValue(5)
-        self.spin_max = QSpinBox()
-        self.spin_max.setRange(1, 200)
-        self.spin_max.setValue(10)
-        self.combo_mode = QComboBox()
-        self.combo_mode.addItems(["Frame-by-Frame", "Trend Analysis"])
-        self.btn_run_video = QPushButton("Run analysis")
-        self.btn_run_video.clicked.connect(self._on_analyze_video)
-        self.btn_clear_video = QPushButton("Clear")
-        self.btn_clear_video.setProperty("class", "secondary")
-        self.btn_clear_video.clicked.connect(self._on_clear_video)
-
-        vctrl.addWidget(self.btn_load_video)
-        vctrl.addWidget(QLabel("Interval"))
-        vctrl.addWidget(self.spin_interval)
-        vctrl.addWidget(QLabel("Max frames"))
-        vctrl.addWidget(self.spin_max)
-        vctrl.addWidget(self.combo_mode)
-        vctrl.addWidget(self.btn_run_video)
-        vctrl.addWidget(self.btn_clear_video)
-        vctrl.addStretch()
-        vl.addLayout(vctrl)
-
-        self.vid_viewer = SplitCompareViewer()
-        self.vid_viewer.enable_split(False)
-        self.vid_viewer.detection_clicked.connect(self._on_image_detection_clicked)
-        vl.addWidget(self.vid_viewer, stretch=1)
-
-        self.vid_hud = HUDOverlay(self.vid_viewer)
-        self.vid_hud.setParent(self.vid_viewer)
-        self.vid_hud.move(8, 8)
-        self.vid_hud.setVisible(False)
-
-        self.video_timeline = VideoTimeline()
-        self.video_timeline.frame_changed.connect(self._on_timeline_frame)
-        vl.addWidget(self.video_timeline)
-
-        self.main_stack.addWidget(self.ws_video)
-
-        # Live (RTSP)
+        # Live (RTSP) — only workspace
         self.ws_live = QWidget()
         ll = QVBoxLayout(self.ws_live)
         ll.setContentsMargins(0, 0, 0, 0)
@@ -526,9 +399,6 @@ class MainWindow(QMainWindow):
         QShortcut(QKeySequence("Ctrl+E"), self, activated=self._export_quick)
         QShortcut(QKeySequence("Meta+E"), self, activated=self._export_quick)
         QShortcut(QKeySequence("Ctrl+`"), self, activated=self._toggle_log_dock)
-        QShortcut(QKeySequence(Qt.Key.Key_Space), self, activated=self._toggle_video_play)
-        QShortcut(QKeySequence(Qt.Key.Key_Left), self, activated=lambda: self._nudge_frame(-1))
-        QShortcut(QKeySequence(Qt.Key.Key_Right), self, activated=lambda: self._nudge_frame(1))
 
     # ── Event bus handlers ────────────────────────────────────
 
@@ -575,8 +445,7 @@ class MainWindow(QMainWindow):
 
     def _update_header_state(self):
         st = self.app_state.pipeline_state.name
-        ws = self.combo_workspace.currentText() if hasattr(self, "combo_workspace") else ""
-        self.header.set_state(st, ws)
+        self.header.set_state(st, "Live Camera")
 
     def _on_start_clicked(self):
         if not self.pipeline_ready:
@@ -585,10 +454,7 @@ class MainWindow(QMainWindow):
         if self.app_state.pipeline_state == PipelineState.PAUSED:
             self._resume_processing()
             return
-        if self.main_stack.currentIndex() == 0:
-            self._on_analyze_image()
-        elif self.main_stack.currentIndex() == 1:
-            self._on_analyze_video()
+        self._on_analyze_live()
 
     def _on_pause_clicked(self):
         if self.worker and self.worker.isRunning():
@@ -671,73 +537,12 @@ class MainWindow(QMainWindow):
 
     # ── Media actions ───────────────────────────────────────
 
-    def _on_load_image(self):
-        path, _ = QFileDialog.getOpenFileName(
-            self, "Open Image", "", "Images (*.png *.jpg *.jpeg *.bmp)"
-        )
-        if not path:
-            return
-        self.app_state.current_source = SourceType.IMAGE
-        self.app_state.source_path = path
-        raw = cv2.imread(path)
-        self.img_viewer.set_images(raw, None)
-        self.img_viewer.enable_split(False)
-        self.statusBar().showMessage(os.path.basename(path))
-        self.log_console.log(f"Image loaded: {os.path.basename(path)}", "info")
-
-    def _on_analyze_image(self):
-        path = self.app_state.source_path
-        if not path or not self.pipeline_ready:
-            self.statusBar().showMessage("Load an image and ensure pipeline is ready")
-            return
-        self._start_processing(path, is_rtsp=False)
-
-    def _on_heatmap_toggle(self, checked):
-        self.img_viewer.toggle_heatmap(checked)
-        self.app_state.heatmap_enabled = checked
-        self.log_console.log(f"Heatmap {'on' if checked else 'off'}", "info")
-
-    def _on_image_detection_clicked(self, idx: int):
-        self.app_state.selected_detection_index = idx
-        self.img_table.selectRow(idx)
-        self.img_table.scrollToItem(self.img_table.item(idx, 0))
-        self.img_viewer.highlight_detection(idx)
-
-    def _on_table_row_clicked(self, row, col):
-        self.img_viewer.flash_detection(row)
-        self.img_viewer.highlight_detection(row)
-
-    def _on_table_hover(self, item):
-        if item is None:
-            return
-        self.img_viewer.highlight_detection(item.row())
-
-    def _on_load_video(self):
-        path, _ = QFileDialog.getOpenFileName(
-            self, "Open Video", "", "Video (*.mp4 *.avi *.mov *.mkv)"
-        )
-        if path:
-            self.app_state.current_source = SourceType.VIDEO
-            self.app_state.source_path = path
-            self.log_console.log(f"Video: {os.path.basename(path)}", "info")
-
     def _on_connect_rtsp_live(self):
         url = self.input_rtsp_live.text().strip()
         if url:
             self.app_state.current_source = SourceType.RTSP
             self.app_state.source_path = url
             self.log_console.log("Live RTSP URL set", "info")
-
-    def _on_analyze_video(self):
-        path = self.app_state.source_path
-        if not path or not self.pipeline_ready:
-            return
-        self.video_frames.clear()
-        self.current_frame_idx = 0
-        self._frame_markers = []
-        self.video_timeline.set_frame_count(0)
-        is_rtsp = path.startswith("rtsp://")
-        self._start_processing(path, is_rtsp=is_rtsp)
 
     def _on_analyze_live(self):
         url = self.input_rtsp_live.text().strip()
@@ -750,22 +555,31 @@ class MainWindow(QMainWindow):
     def _on_clear_live(self):
         self.live_hud.setVisible(False)
 
-    def _on_clear_video(self):
-        self.video_frames.clear()
-        self.video_timeline.set_frame_count(0)
-        self.vid_hud.setVisible(False)
+    def _on_image_detection_clicked(self, idx: int):
+        self.app_state.selected_detection_index = idx
+        self.img_table.selectRow(idx)
+        self.img_table.scrollToItem(self.img_table.item(idx, 0))
+        self.live_viewer.highlight_detection(idx)
+
+    def _on_table_row_clicked(self, row, col):
+        self.live_viewer.flash_detection(row)
+        self.live_viewer.highlight_detection(row)
+
+    def _on_table_hover(self, item):
+        if item is None:
+            return
+        self.live_viewer.highlight_detection(item.row())
 
     def _resume_processing(self):
-        self._on_analyze_video() if self.main_stack.currentIndex() == 1 else self._on_analyze_image()
+        self._on_analyze_live()
 
     def _start_processing(self, path, is_rtsp=False):
         if self.worker and self.worker.isRunning():
             self.worker.stop()
-        if self.app_state.current_source in (SourceType.VIDEO, SourceType.RTSP):
-            self.app_state.analytics_session_id = datetime.now().strftime("%Y%m%d_%H%M%S")
-            self._analytics_frame_idx = 0
-            self._analytics_win.bind_history(self._history, self.app_state.analytics_session_id)
-        self.worker = PipelineWorker(media_path=path, config=self.config, is_rtsp=is_rtsp)
+        self.app_state.analytics_session_id = datetime.now().strftime("%Y%m%d_%H%M%S")
+        self._analytics_frame_idx = 0
+        self._analytics_win.bind_history(self._history, self.app_state.analytics_session_id)
+        self.worker = PipelineWorker(rtsp_url=path, config=self.config)
         self.worker.started_processing.connect(self._worker_started)
         self.worker.frame_processed.connect(self._worker_frame)
         self.worker.finished_processing.connect(self._worker_finished)
@@ -773,7 +587,7 @@ class MainWindow(QMainWindow):
         self._last_frame_time = time.time()
         self._set_pipeline_state(PipelineState.RUNNING)
         self.worker.start()
-        self.log_console.log(f"Processing started: {os.path.basename(str(path))}", "info")
+        self.log_console.log(f"Processing started: {str(path)}", "info")
 
     def _worker_started(self):
         self.progress_bar.setVisible(True)
@@ -789,42 +603,30 @@ class MainWindow(QMainWindow):
         device = results.get("device", "CPU")
         lat = float(results.get("inference_time_ms", 0))
         self.app_state.device = device
-        if self.app_state.current_source in (SourceType.VIDEO, SourceType.RTSP):
-            self.perf_panel.set_device(device)
-            self.perf_panel.push_sample(self._fps, lat)
-            try:
-                self._history.append_result(
-                    session_id=self.app_state.analytics_session_id or "default",
-                    ts_ms=int(time.time() * 1000),
-                    source_type=self.app_state.current_source.name.lower(),
-                    source_id=str(self.app_state.source_path or ""),
-                    frame_index=int(self._analytics_frame_idx),
-                    results=results,
-                )
-                self._analytics_frame_idx += 1
-                self._analytics_win.bind_history(self._history, self.app_state.analytics_session_id)
-                self._analytics_win.refresh()
-            except Exception as e:
-                # History must never break processing; log once per error type.
-                self.log_console.log(f"Analytics history write skipped: {e}", "warning")
+        self.perf_panel.set_device(device)
+        self.perf_panel.push_sample(self._fps, lat)
+        try:
+            self._history.append_result(
+                session_id=self.app_state.analytics_session_id or "default",
+                ts_ms=int(time.time() * 1000),
+                source_type=self.app_state.current_source.name.lower(),
+                source_id=str(self.app_state.source_path or ""),
+                frame_index=int(self._analytics_frame_idx),
+                results=results,
+            )
+            self._analytics_frame_idx += 1
+            self._analytics_win.bind_history(self._history, self.app_state.analytics_session_id)
+            self._analytics_win.refresh()
+        except Exception as e:
+            # History must never break processing; log once per error type.
+            self.log_console.log(f"Analytics history write skipped: {e}", "warning")
 
         self.bus.frame_updated.emit(results)
         dets = results.get("product_detections", [])
         voids = results.get("void_detections", [])
         self.bus.detections_updated.emit(dets, voids)
 
-        path = self.app_state.source_path.lower()
-        is_image = self.app_state.current_source == SourceType.IMAGE and path.endswith(
-            (".jpg", ".jpeg", ".png", ".bmp")
-        )
-
-        if is_image:
-            self._display_image_results(results)
-        else:
-            if self.app_state.current_source == SourceType.RTSP:
-                self._display_live_frame(results)
-            else:
-                self._display_video_frame(results)
+        self._display_live_frame(results)
 
     def _worker_finished(self):
         self.progress_bar.setVisible(False)
@@ -836,72 +638,6 @@ class MainWindow(QMainWindow):
         self.progress_bar.setVisible(False)
         self.log_console.log(f"Error: {msg}", "error")
         self._set_pipeline_state(PipelineState.ERROR, msg)
-
-    def _display_image_results(self, results):
-        raw = results.get("raw_image")
-        ann = results.get("image")
-        self.img_viewer.set_images(raw, ann)
-        self.img_viewer.enable_split(True)
-        dets = results.get("product_detections", [])
-        voids = results.get("void_detections", [])
-        self.img_viewer.set_detections(dets, voids)
-
-        lat = results.get("inference_time_ms", 0)
-        dev = results.get("device", "CPU")
-        self.img_hud.update_stats(fps=self._fps, latency_ms=lat, device=dev)
-        self.img_hud.setVisible(True)
-        self.img_hud.move(self.img_viewer.width() - self.img_hud.width() - 8, 8)
-
-        summary = results.get("summary", {})
-        pct = summary.get("overall_stock_percentage", 0)
-
-        sl = summary.get("stock_levels", {})
-        if sl:
-            self.img_table.load_data(sl)
-        self.report_panel.set_results(results)
-
-        self.log_console.log(
-            f"Image: {summary.get('total_products_detected', 0)} products · {pct:.1f}% stock",
-            "info",
-        )
-
-    def _display_video_frame(self, results):
-        idx = len(self.video_frames)
-        results["frame_number"] = idx + 1
-        self.video_frames.append(results)
-
-        summary = results.get("summary", {})
-        pct = summary.get("overall_stock_percentage", 0)
-        missing = summary.get("estimated_missing_products", 0)
-        tag = "missing" if missing > 0 else ("anomaly" if pct < 70 else "")
-        self._frame_markers.append(tag)
-
-        self.video_timeline.set_frame_count(len(self.video_frames))
-        self.video_timeline.set_markers(self._frame_markers)
-        self.video_timeline.set_value(idx)
-
-        ann = results.get("image")
-        if ann is not None:
-            self.vid_viewer.set_images(None, ann)
-        self.vid_viewer.set_detections(
-            results.get("product_detections", []), results.get("void_detections", [])
-        )
-
-        self.vid_hud.update_stats(
-            fps=self._fps,
-            latency_ms=results.get("inference_time_ms", 0),
-            device=results.get("device", "CPU"),
-        )
-        self.vid_hud.setVisible(True)
-
-        s = summary
-        sl = s.get("stock_levels", {})
-        if sl:
-            self.img_table.load_data(sl)
-        self.report_panel.set_results(results)
-
-        if self.combo_mode.currentText() == "Trend Analysis":
-            pass  # trend chart could be added next to perf panel
 
     def _display_live_frame(self, results):
         ann = results.get("image")
@@ -917,49 +653,11 @@ class MainWindow(QMainWindow):
         )
         self.live_hud.setVisible(True)
 
-    def _on_timeline_frame(self, idx: int):
-        self._show_video_frame_at(idx)
-
-    def _show_video_frame_at(self, idx: int):
-        if idx < 0 or idx >= len(self.video_frames):
-            return
-        self.current_frame_idx = idx
-        r = self.video_frames[idx]
-        ann = r.get("image")
-        if ann is not None:
-            self.vid_viewer.set_images(None, ann)
-        self.vid_viewer.set_detections(
-            r.get("product_detections", []), r.get("void_detections", [])
-        )
-        self.vid_hud.update_stats(
-            fps=self._fps,
-            latency_ms=r.get("inference_time_ms", 0),
-            device=r.get("device", "CPU"),
-        )
-        s = r.get("summary", {})
-        sl = s.get("stock_levels", {})
+        summary = results.get("summary", {})
+        sl = summary.get("stock_levels", {})
         if sl:
             self.img_table.load_data(sl)
-        self.report_panel.set_results(r)
-
-    def _nudge_frame(self, delta: int):
-        if self.main_stack.currentIndex() != 1 or not self.video_frames:
-            return
-        self._show_video_frame_at(self.current_frame_idx + delta)
-
-    def _toggle_video_play(self):
-        if self.main_stack.currentIndex() != 1:
-            return
-        if self.app_state.pipeline_state == PipelineState.RUNNING:
-            self._on_pause_clicked()
-        else:
-            self._resume_processing()
-
-    def _on_workspace_changed(self, idx: int):
-        self.app_state.current_workspace_index = idx
-        self.main_stack.setCurrentIndex(idx)
-        self._analytics_win.set_enabled_for_source(idx != 0)
-        self._update_header_state()
+        self.report_panel.set_results(results)
 
     def _export_quick(self):
         self.report_panel._export_pdf()
@@ -970,21 +668,12 @@ class MainWindow(QMainWindow):
             return
         try:
             session_manager.load_session_state(folder, self.app_state)
-            self.combo_workspace.setCurrentIndex(self.app_state.current_workspace_index)
-            if self.app_state.source_path and os.path.isfile(self.app_state.source_path):
-                raw = cv2.imread(self.app_state.source_path)
-                self.img_viewer.set_images(raw, None)
             session_manager.restore_window_layout(self, folder)
             aux = session_manager.load_auxiliary_windows_payload(folder)
             self._restore_auxiliary_ui(aux)
             self.log_console.log(f"Restored session {folder.name}", "info")
         except Exception as e:
             self.log_console.log(f"Session restore skipped: {e}", "warning")
-
-    def resizeEvent(self, event):
-        super().resizeEvent(event)
-        if hasattr(self, "img_hud"):
-            self.img_hud.move(self.img_viewer.width() - self.img_hud.width() - 8, 8)
 
     def closeEvent(self, event):
         try:

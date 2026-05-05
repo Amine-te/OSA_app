@@ -23,8 +23,6 @@ def _serialize_state(state: AppState) -> Dict[str, Any]:
     return {
         "source_type": state.current_source.name,
         "source_path": state.source_path,
-        "workspace_index": state.current_workspace_index,
-        "viewer_compare_mode": state.viewer_compare_mode,
         "heatmap_enabled": state.heatmap_enabled,
         "focus_mode": state.focus_mode,
     }
@@ -36,11 +34,9 @@ def _deserialize_state(data: Dict[str, Any], state: AppState) -> None:
     except KeyError:
         state.current_source = SourceType.NONE
     state.source_path = data.get("source_path", "") or ""
-    # Backwards-compat: ignore legacy ROI fields if present.
+    # Backwards-compat: clear any legacy ROI fields if present.
     state.rois = []
     state.active_roi_preset = ""
-    state.current_workspace_index = int(data.get("workspace_index", 0))
-    state.viewer_compare_mode = data.get("viewer_compare_mode", "slider")
     state.heatmap_enabled = bool(data.get("heatmap_enabled", False))
     state.focus_mode = bool(data.get("focus_mode", False))
 

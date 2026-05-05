@@ -20,8 +20,6 @@ class PipelineState(Enum):
 
 class SourceType(Enum):
     NONE = auto()
-    IMAGE = auto()
-    VIDEO = auto()
     RTSP = auto()
 
 
@@ -56,15 +54,11 @@ class AppState:
     pipeline_state: PipelineState = PipelineState.IDLE
     device: str = "—"
     last_error: str = ""
-    current_workspace_index: int = 0
-    video_frame_index: int = 0
-    video_is_playing: bool = True
     focus_mode: bool = False
     selected_detection_index: int = -1
-    viewer_compare_mode: str = "slider"  # slider | side | toggle
     heatmap_enabled: bool = False
 
-    # Analytics (video/live): current session id for history storage
+    # Analytics (live): current session id for history storage
     analytics_session_id: str = ""
 
     # Last full pipeline result dict for reports / export
@@ -77,7 +71,6 @@ class AppState:
         self.detections = []
         self.void_detections = []
         self.last_results = None
-        self.video_frame_index = 0
 
     def set_pipeline(self, state: PipelineState, error: str = "") -> None:
         self.pipeline_state = state

@@ -1,0 +1,4140 @@
+{
+  "image": "[[[  0 255 255]\n  [  0 255 255]\n  [  0 255 255]\n  ...\n  [255   0   0]\n  [255   0   0]\n  [255   0   0]]\n\n [[  0 255 255]\n  [  0 255 255]\n  [  0 255 255]\n  ...\n  [255   0   0]\n  [255   0   0]\n  [233 231 232]]\n\n [[  0 255 255]\n  [  0 255 255]\n  [184 167 157]\n  ...\n  [250 248 249]\n  [250 248 249]\n  [250 248 249]]\n\n ...\n\n [[ 47  91  65]\n  [ 43  87  61]\n  [ 44  96  67]\n  ...\n  [ 34  13   0]\n  [ 34  13   0]\n  [ 34  13   0]]\n\n [[ 28  99  64]\n  [ 28  99  64]\n  [ 21 100  62]\n  ...\n  [ 35  14   1]\n  [ 35  14   1]\n  [ 35  14   1]]\n\n [[ 22  93  58]\n  [ 21  92  57]\n  [ 14  93  55]\n  ...\n  [ 35  14   1]\n  [ 35  14   1]\n  [ 35  14   1]]]",
+  "product_detections": [
+    {
+      "bbox": [
+        "25",
+        "0",
+        "69",
+        "97"
+      ],
+      "center": [
+        "47",
+        "48"
+      ],
+      "area": "4268",
+      "width": "44",
+      "height": "97",
+      "yolo_confidence": "0.852166",
+      "subclass": "Chapo Yaourt",
+      "subclass_confidence": 0.4634961783885956,
+      "combined_confidence": "0.3949757"
+    },
+    {
+      "bbox": [
+        "125",
+        "254",
+        "163",
+        "342"
+      ],
+      "center": [
+        "144",
+        "298"
+      ],
+      "area": "3344",
+      "width": "38",
+      "height": "88",
+      "yolo_confidence": "0.85126466",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.656011700630188,
+      "combined_confidence": "0.55843955"
+    },
+    {
+      "bbox": [
+        "87",
+        "256",
+        "124",
+        "344"
+      ],
+      "center": [
+        "105",
+        "300"
+      ],
+      "area": "3256",
+      "width": "37",
+      "height": "88",
+      "yolo_confidence": "0.84335047",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.6661534309387207,
+      "combined_confidence": "0.56180084"
+    },
+    {
+      "bbox": [
+        "0",
+        "131",
+        "45",
+        "227"
+      ],
+      "center": [
+        "22",
+        "179"
+      ],
+      "area": "4320",
+      "width": "45",
+      "height": "96",
+      "yolo_confidence": "0.8364307",
+      "subclass": "Chapo Yaourt",
+      "subclass_confidence": 0.7461275458335876,
+      "combined_confidence": "0.624084"
+    },
+    {
+      "bbox": [
+        "112",
+        "1",
+        "153",
+        "96"
+      ],
+      "center": [
+        "132",
+        "48"
+      ],
+      "area": "3895",
+      "width": "41",
+      "height": "95",
+      "yolo_confidence": "0.83291596",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8846322298049927,
+      "combined_confidence": "0.73682433"
+    },
+    {
+      "bbox": [
+        "166",
+        "252",
+        "201",
+        "339"
+      ],
+      "center": [
+        "183",
+        "295"
+      ],
+      "area": "3045",
+      "width": "35",
+      "height": "87",
+      "yolo_confidence": "0.8315051",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.6345744132995605,
+      "combined_confidence": "0.52765185"
+    },
+    {
+      "bbox": [
+        "95",
+        "375",
+        "133",
+        "459"
+      ],
+      "center": [
+        "114",
+        "417"
+      ],
+      "area": "3192",
+      "width": "38",
+      "height": "84",
+      "yolo_confidence": "0.82915866",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7998835444450378,
+      "combined_confidence": "0.66323036"
+    },
+    {
+      "bbox": [
+        "71",
+        "1",
+        "110",
+        "96"
+      ],
+      "center": [
+        "90",
+        "48"
+      ],
+      "area": "3705",
+      "width": "39",
+      "height": "95",
+      "yolo_confidence": "0.82760596",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8717455863952637,
+      "combined_confidence": "0.72146183"
+    },
+    {
+      "bbox": [
+        "0",
+        "0",
+        "23",
+        "97"
+      ],
+      "center": [
+        "11",
+        "48"
+      ],
+      "area": "2231",
+      "width": "23",
+      "height": "97",
+      "yolo_confidence": "0.8238633",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.761241614818573,
+      "combined_confidence": "0.62715906"
+    },
+    {
+      "bbox": [
+        "130",
+        "131",
+        "174",
+        "223"
+      ],
+      "center": [
+        "152",
+        "177"
+      ],
+      "area": "4048",
+      "width": "44",
+      "height": "92",
+      "yolo_confidence": "0.8213597",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7818513512611389,
+      "combined_confidence": "0.64218116"
+    },
+    {
+      "bbox": [
+        "51",
+        "380",
+        "92",
+        "465"
+      ],
+      "center": [
+        "71",
+        "422"
+      ],
+      "area": "3485",
+      "width": "41",
+      "height": "85",
+      "yolo_confidence": "0.8206565",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7786682844161987,
+      "combined_confidence": "0.6390192"
+    },
+    {
+      "bbox": [
+        "203",
+        "250",
+        "237",
+        "335"
+      ],
+      "center": [
+        "220",
+        "292"
+      ],
+      "area": "2890",
+      "width": "34",
+      "height": "85",
+      "yolo_confidence": "0.8195598",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7418702840805054,
+      "combined_confidence": "0.6080071"
+    },
+    {
+      "bbox": [
+        "155",
+        "4",
+        "192",
+        "97"
+      ],
+      "center": [
+        "173",
+        "50"
+      ],
+      "area": "3441",
+      "width": "37",
+      "height": "93",
+      "yolo_confidence": "0.81913215",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8845586180686951,
+      "combined_confidence": "0.7245704"
+    },
+    {
+      "bbox": [
+        "47",
+        "131",
+        "83",
+        "225"
+      ],
+      "center": [
+        "65",
+        "178"
+      ],
+      "area": "3384",
+      "width": "36",
+      "height": "94",
+      "yolo_confidence": "0.8159257",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8868250846862793,
+      "combined_confidence": "0.7235834"
+    },
+    {
+      "bbox": [
+        "456",
+        "242",
+        "483",
+        "315"
+      ],
+      "center": [
+        "469",
+        "278"
+      ],
+      "area": "1971",
+      "width": "27",
+      "height": "73",
+      "yolo_confidence": "0.81568885",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.7747853994369507,
+      "combined_confidence": "0.6319838"
+    },
+    {
+      "bbox": [
+        "635",
+        "28",
+        "662",
+        "103"
+      ],
+      "center": [
+        "648",
+        "65"
+      ],
+      "area": "2025",
+      "width": "27",
+      "height": "75",
+      "yolo_confidence": "0.813176",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8967034816741943,
+      "combined_confidence": "0.7291777"
+    },
+    {
+      "bbox": [
+        "245",
+        "135",
+        "279",
+        "219"
+      ],
+      "center": [
+        "262",
+        "177"
+      ],
+      "area": "2856",
+      "width": "34",
+      "height": "84",
+      "yolo_confidence": "0.8126977",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7958151698112488,
+      "combined_confidence": "0.6467572"
+    },
+    {
+      "bbox": [
+        "618",
+        "328",
+        "638",
+        "396"
+      ],
+      "center": [
+        "628",
+        "362"
+      ],
+      "area": "1360",
+      "width": "20",
+      "height": "68",
+      "yolo_confidence": "0.81264967",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.9642064571380615,
+      "combined_confidence": "0.78356206"
+    },
+    {
+      "bbox": [
+        "89",
+        "131",
+        "128",
+        "222"
+      ],
+      "center": [
+        "108",
+        "176"
+      ],
+      "area": "3549",
+      "width": "39",
+      "height": "91",
+      "yolo_confidence": "0.8115081",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.5883432626724243,
+      "combined_confidence": "0.47744533"
+    },
+    {
+      "bbox": [
+        "310",
+        "10",
+        "342",
+        "101"
+      ],
+      "center": [
+        "326",
+        "55"
+      ],
+      "area": "2912",
+      "width": "32",
+      "height": "91",
+      "yolo_confidence": "0.8093394",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.6739047169685364,
+      "combined_confidence": "0.54541767"
+    },
+    {
+      "bbox": [
+        "485",
+        "240",
+        "512",
+        "313"
+      ],
+      "center": [
+        "498",
+        "276"
+      ],
+      "area": "1971",
+      "width": "27",
+      "height": "73",
+      "yolo_confidence": "0.80881715",
+      "subclass": "Alex",
+      "subclass_confidence": 0.5811603665351868,
+      "combined_confidence": "0.47005248"
+    },
+    {
+      "bbox": [
+        "424",
+        "244",
+        "455",
+        "317"
+      ],
+      "center": [
+        "439",
+        "280"
+      ],
+      "area": "2263",
+      "width": "31",
+      "height": "73",
+      "yolo_confidence": "0.8078002",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.6093038320541382,
+      "combined_confidence": "0.49219576"
+    },
+    {
+      "bbox": [
+        "521",
+        "135",
+        "548",
+        "209"
+      ],
+      "center": [
+        "534",
+        "172"
+      ],
+      "area": "1998",
+      "width": "27",
+      "height": "74",
+      "yolo_confidence": "0.80530363",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.8064324855804443,
+      "combined_confidence": "0.649423"
+    },
+    {
+      "bbox": [
+        "514",
+        "239",
+        "539",
+        "310"
+      ],
+      "center": [
+        "526",
+        "274"
+      ],
+      "area": "1775",
+      "width": "25",
+      "height": "71",
+      "yolo_confidence": "0.80470014",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.5940123796463013,
+      "combined_confidence": "0.47800183"
+    },
+    {
+      "bbox": [
+        "50",
+        "257",
+        "84",
+        "342"
+      ],
+      "center": [
+        "67",
+        "299"
+      ],
+      "area": "2890",
+      "width": "34",
+      "height": "85",
+      "yolo_confidence": "0.8045883",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.6821022033691406,
+      "combined_confidence": "0.54881144"
+    },
+    {
+      "bbox": [
+        "171",
+        "370",
+        "198",
+        "452"
+      ],
+      "center": [
+        "184",
+        "411"
+      ],
+      "area": "2214",
+      "width": "27",
+      "height": "82",
+      "yolo_confidence": "0.8035082",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7530615329742432,
+      "combined_confidence": "0.60509115"
+    },
+    {
+      "bbox": [
+        "193",
+        "3",
+        "233",
+        "98"
+      ],
+      "center": [
+        "213",
+        "50"
+      ],
+      "area": "3800",
+      "width": "40",
+      "height": "95",
+      "yolo_confidence": "0.8033514",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.9324964284896851,
+      "combined_confidence": "0.7491223"
+    },
+    {
+      "bbox": [
+        "135",
+        "373",
+        "170",
+        "456"
+      ],
+      "center": [
+        "152",
+        "414"
+      ],
+      "area": "2905",
+      "width": "35",
+      "height": "83",
+      "yolo_confidence": "0.80227035",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7600653767585754,
+      "combined_confidence": "0.6097779"
+    },
+    {
+      "bbox": [
+        "472",
+        "18",
+        "501",
+        "103"
+      ],
+      "center": [
+        "486",
+        "60"
+      ],
+      "area": "2465",
+      "width": "29",
+      "height": "85",
+      "yolo_confidence": "0.8013691",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.5573408603668213,
+      "combined_confidence": "0.44663572"
+    },
+    {
+      "bbox": [
+        "640",
+        "325",
+        "656",
+        "392"
+      ],
+      "center": [
+        "648",
+        "358"
+      ],
+      "area": "1072",
+      "width": "16",
+      "height": "67",
+      "yolo_confidence": "0.7992825",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9986963868141174,
+      "combined_confidence": "0.79824054"
+    },
+    {
+      "bbox": [
+        "513",
+        "340",
+        "538",
+        "409"
+      ],
+      "center": [
+        "525",
+        "374"
+      ],
+      "area": "1725",
+      "width": "25",
+      "height": "69",
+      "yolo_confidence": "0.7981578",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.7906418442726135,
+      "combined_confidence": "0.63105696"
+    },
+    {
+      "bbox": [
+        "7",
+        "384",
+        "49",
+        "473"
+      ],
+      "center": [
+        "28",
+        "428"
+      ],
+      "area": "3738",
+      "width": "42",
+      "height": "89",
+      "yolo_confidence": "0.79809856",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.6569388508796692,
+      "combined_confidence": "0.52430195"
+    },
+    {
+      "bbox": [
+        "460",
+        "346",
+        "484",
+        "414"
+      ],
+      "center": [
+        "472",
+        "380"
+      ],
+      "area": "1632",
+      "width": "24",
+      "height": "68",
+      "yolo_confidence": "0.79787076",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.7956990003585815,
+      "combined_confidence": "0.634865"
+    },
+    {
+      "bbox": [
+        "540",
+        "237",
+        "565",
+        "308"
+      ],
+      "center": [
+        "552",
+        "272"
+      ],
+      "area": "1775",
+      "width": "25",
+      "height": "71",
+      "yolo_confidence": "0.79626644",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.47095099091529846,
+      "combined_confidence": "0.37500247"
+    },
+    {
+      "bbox": [
+        "388",
+        "246",
+        "420",
+        "319"
+      ],
+      "center": [
+        "404",
+        "282"
+      ],
+      "area": "2336",
+      "width": "32",
+      "height": "73",
+      "yolo_confidence": "0.7952545",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.5629953145980835,
+      "combined_confidence": "0.44772458"
+    },
+    {
+      "bbox": [
+        "432",
+        "348",
+        "458",
+        "417"
+      ],
+      "center": [
+        "445",
+        "382"
+      ],
+      "area": "1794",
+      "width": "26",
+      "height": "69",
+      "yolo_confidence": "0.79282284",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.7122440934181213,
+      "combined_confidence": "0.5646834"
+    },
+    {
+      "bbox": [
+        "680",
+        "228",
+        "704",
+        "293"
+      ],
+      "center": [
+        "692",
+        "260"
+      ],
+      "area": "1560",
+      "width": "24",
+      "height": "65",
+      "yolo_confidence": "0.7919634",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9990440011024475,
+      "combined_confidence": "0.7912063"
+    },
+    {
+      "bbox": [
+        "281",
+        "138",
+        "313",
+        "217"
+      ],
+      "center": [
+        "297",
+        "177"
+      ],
+      "area": "2528",
+      "width": "32",
+      "height": "79",
+      "yolo_confidence": "0.7890562",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7269101142883301,
+      "combined_confidence": "0.57357293"
+    },
+    {
+      "bbox": [
+        "567",
+        "235",
+        "591",
+        "305"
+      ],
+      "center": [
+        "579",
+        "270"
+      ],
+      "area": "1680",
+      "width": "24",
+      "height": "70",
+      "yolo_confidence": "0.78794503",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.6836287975311279,
+      "combined_confidence": "0.5386619"
+    },
+    {
+      "bbox": [
+        "594",
+        "234",
+        "618",
+        "303"
+      ],
+      "center": [
+        "606",
+        "268"
+      ],
+      "area": "1656",
+      "width": "24",
+      "height": "69",
+      "yolo_confidence": "0.78577834",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.3496188223361969,
+      "combined_confidence": "0.2747229"
+    },
+    {
+      "bbox": [
+        "503",
+        "20",
+        "530",
+        "104"
+      ],
+      "center": [
+        "516",
+        "62"
+      ],
+      "area": "2268",
+      "width": "27",
+      "height": "84",
+      "yolo_confidence": "0.78545237",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.5871263146400452,
+      "combined_confidence": "0.46115977"
+    },
+    {
+      "bbox": [
+        "310",
+        "357",
+        "339",
+        "432"
+      ],
+      "center": [
+        "324",
+        "394"
+      ],
+      "area": "2175",
+      "width": "29",
+      "height": "75",
+      "yolo_confidence": "0.78450876",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.696445643901825,
+      "combined_confidence": "0.5463677"
+    },
+    {
+      "bbox": [
+        "407",
+        "16",
+        "442",
+        "102"
+      ],
+      "center": [
+        "424",
+        "59"
+      ],
+      "area": "3010",
+      "width": "35",
+      "height": "86",
+      "yolo_confidence": "0.783894",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8027867674827576,
+      "combined_confidence": "0.62929976"
+    },
+    {
+      "bbox": [
+        "540",
+        "335",
+        "566",
+        "405"
+      ],
+      "center": [
+        "553",
+        "370"
+      ],
+      "area": "1820",
+      "width": "26",
+      "height": "70",
+      "yolo_confidence": "0.7832083",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.3852616846561432,
+      "combined_confidence": "0.30174014"
+    },
+    {
+      "bbox": [
+        "595",
+        "330",
+        "616",
+        "398"
+      ],
+      "center": [
+        "605",
+        "364"
+      ],
+      "area": "1428",
+      "width": "21",
+      "height": "68",
+      "yolo_confidence": "0.7828781",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.9740013480186462,
+      "combined_confidence": "0.7625243"
+    },
+    {
+      "bbox": [
+        "657",
+        "324",
+        "674",
+        "390"
+      ],
+      "center": [
+        "665",
+        "357"
+      ],
+      "area": "1122",
+      "width": "17",
+      "height": "66",
+      "yolo_confidence": "0.7818059",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9996918439865112,
+      "combined_confidence": "0.78156495"
+    },
+    {
+      "bbox": [
+        "378",
+        "16",
+        "406",
+        "102"
+      ],
+      "center": [
+        "392",
+        "59"
+      ],
+      "area": "2408",
+      "width": "28",
+      "height": "86",
+      "yolo_confidence": "0.78028655",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.5333362221717834,
+      "combined_confidence": "0.41615507"
+    },
+    {
+      "bbox": [
+        "549",
+        "134",
+        "576",
+        "207"
+      ],
+      "center": [
+        "562",
+        "170"
+      ],
+      "area": "1971",
+      "width": "27",
+      "height": "73",
+      "yolo_confidence": "0.7801578",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.5110162496566772,
+      "combined_confidence": "0.39867333"
+    },
+    {
+      "bbox": [
+        "344",
+        "13",
+        "376",
+        "102"
+      ],
+      "center": [
+        "360",
+        "57"
+      ],
+      "area": "2848",
+      "width": "32",
+      "height": "89",
+      "yolo_confidence": "0.7793469",
+      "subclass": "Chapo Yaourt",
+      "subclass_confidence": 0.4564291536808014,
+      "combined_confidence": "0.35571665"
+    },
+    {
+      "bbox": [
+        "270",
+        "251",
+        "303",
+        "330"
+      ],
+      "center": [
+        "286",
+        "290"
+      ],
+      "area": "2607",
+      "width": "33",
+      "height": "79",
+      "yolo_confidence": "0.7790201",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7584671974182129,
+      "combined_confidence": "0.59086114"
+    },
+    {
+      "bbox": [
+        "531",
+        "20",
+        "558",
+        "104"
+      ],
+      "center": [
+        "544",
+        "62"
+      ],
+      "area": "2268",
+      "width": "27",
+      "height": "84",
+      "yolo_confidence": "0.7782423",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.6776732802391052,
+      "combined_confidence": "0.527394"
+    },
+    {
+      "bbox": [
+        "486",
+        "342",
+        "512",
+        "411"
+      ],
+      "center": [
+        "499",
+        "376"
+      ],
+      "area": "1794",
+      "width": "26",
+      "height": "69",
+      "yolo_confidence": "0.77518344",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.8237162828445435,
+      "combined_confidence": "0.6385312"
+    },
+    {
+      "bbox": [
+        "577",
+        "134",
+        "602",
+        "206"
+      ],
+      "center": [
+        "589",
+        "170"
+      ],
+      "area": "1800",
+      "width": "25",
+      "height": "72",
+      "yolo_confidence": "0.7749133",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.9213240146636963,
+      "combined_confidence": "0.7139462"
+    },
+    {
+      "bbox": [
+        "657",
+        "230",
+        "679",
+        "295"
+      ],
+      "center": [
+        "668",
+        "262"
+      ],
+      "area": "1430",
+      "width": "22",
+      "height": "65",
+      "yolo_confidence": "0.77408665",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9985533356666565,
+      "combined_confidence": "0.7729668"
+    },
+    {
+      "bbox": [
+        "675",
+        "322",
+        "694",
+        "388"
+      ],
+      "center": [
+        "684",
+        "355"
+      ],
+      "area": "1254",
+      "width": "19",
+      "height": "66",
+      "yolo_confidence": "0.7730597",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9997079968452454,
+      "combined_confidence": "0.772834"
+    },
+    {
+      "bbox": [
+        "341",
+        "356",
+        "368",
+        "428"
+      ],
+      "center": [
+        "354",
+        "392"
+      ],
+      "area": "1944",
+      "width": "27",
+      "height": "72",
+      "yolo_confidence": "0.7716184",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7883449792861938,
+      "combined_confidence": "0.6083015"
+    },
+    {
+      "bbox": [
+        "275",
+        "360",
+        "308",
+        "436"
+      ],
+      "center": [
+        "291",
+        "398"
+      ],
+      "area": "2508",
+      "width": "33",
+      "height": "76",
+      "yolo_confidence": "0.7661377",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7998303771018982,
+      "combined_confidence": "0.6127802"
+    },
+    {
+      "bbox": [
+        "369",
+        "355",
+        "400",
+        "426"
+      ],
+      "center": [
+        "384",
+        "390"
+      ],
+      "area": "2201",
+      "width": "31",
+      "height": "71",
+      "yolo_confidence": "0.7656708",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8228092789649963,
+      "combined_confidence": "0.630001"
+    },
+    {
+      "bbox": [
+        "199",
+        "367",
+        "228",
+        "448"
+      ],
+      "center": [
+        "213",
+        "407"
+      ],
+      "area": "2349",
+      "width": "29",
+      "height": "81",
+      "yolo_confidence": "0.76519257",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7650848627090454,
+      "combined_confidence": "0.58543724"
+    },
+    {
+      "bbox": [
+        "238",
+        "6",
+        "272",
+        "99"
+      ],
+      "center": [
+        "255",
+        "52"
+      ],
+      "area": "3162",
+      "width": "34",
+      "height": "93",
+      "yolo_confidence": "0.76437896",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.6398375630378723,
+      "combined_confidence": "0.48907837"
+    },
+    {
+      "bbox": [
+        "451",
+        "134",
+        "483",
+        "211"
+      ],
+      "center": [
+        "467",
+        "172"
+      ],
+      "area": "2464",
+      "width": "32",
+      "height": "77",
+      "yolo_confidence": "0.7625074",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.6471354365348816,
+      "combined_confidence": "0.49344555"
+    },
+    {
+      "bbox": [
+        "489",
+        "134",
+        "519",
+        "210"
+      ],
+      "center": [
+        "504",
+        "172"
+      ],
+      "area": "2280",
+      "width": "30",
+      "height": "76",
+      "yolo_confidence": "0.7608309",
+      "subclass": "Alex",
+      "subclass_confidence": 0.5376771092414856,
+      "combined_confidence": "0.40908134"
+    },
+    {
+      "bbox": [
+        "404",
+        "139",
+        "437",
+        "212"
+      ],
+      "center": [
+        "420",
+        "175"
+      ],
+      "area": "2409",
+      "width": "33",
+      "height": "73",
+      "yolo_confidence": "0.75888526",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.7974348068237305,
+      "combined_confidence": "0.60516155"
+    },
+    {
+      "bbox": [
+        "567",
+        "334",
+        "592",
+        "403"
+      ],
+      "center": [
+        "579",
+        "368"
+      ],
+      "area": "1725",
+      "width": "25",
+      "height": "69",
+      "yolo_confidence": "0.7574629",
+      "subclass": "Alex",
+      "subclass_confidence": 0.6080639362335205,
+      "combined_confidence": "0.4605859"
+    },
+    {
+      "bbox": [
+        "272",
+        "8",
+        "308",
+        "100"
+      ],
+      "center": [
+        "290",
+        "54"
+      ],
+      "area": "3312",
+      "width": "36",
+      "height": "92",
+      "yolo_confidence": "0.75541687",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.5577479004859924,
+      "combined_confidence": "0.42133218"
+    },
+    {
+      "bbox": [
+        "611",
+        "27",
+        "634",
+        "104"
+      ],
+      "center": [
+        "622",
+        "65"
+      ],
+      "area": "1771",
+      "width": "23",
+      "height": "77",
+      "yolo_confidence": "0.75470835",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.864858090877533,
+      "combined_confidence": "0.6527156"
+    },
+    {
+      "bbox": [
+        "657",
+        "132",
+        "682",
+        "201"
+      ],
+      "center": [
+        "669",
+        "166"
+      ],
+      "area": "1725",
+      "width": "25",
+      "height": "69",
+      "yolo_confidence": "0.75249636",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.999971866607666,
+      "combined_confidence": "0.7524752"
+    },
+    {
+      "bbox": [
+        "314",
+        "139",
+        "346",
+        "216"
+      ],
+      "center": [
+        "330",
+        "177"
+      ],
+      "area": "2464",
+      "width": "32",
+      "height": "77",
+      "yolo_confidence": "0.7511466",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8593756556510925,
+      "combined_confidence": "0.6455171"
+    },
+    {
+      "bbox": [
+        "708",
+        "226",
+        "727",
+        "291"
+      ],
+      "center": [
+        "717",
+        "258"
+      ],
+      "area": "1235",
+      "width": "19",
+      "height": "65",
+      "yolo_confidence": "0.7434595",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9739881157875061,
+      "combined_confidence": "0.72412074"
+    },
+    {
+      "bbox": [
+        "827",
+        "225",
+        "847",
+        "283"
+      ],
+      "center": [
+        "837",
+        "254"
+      ],
+      "area": "1160",
+      "width": "20",
+      "height": "58",
+      "yolo_confidence": "0.73842573",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.999916672706604,
+      "combined_confidence": "0.7383642"
+    },
+    {
+      "bbox": [
+        "794",
+        "314",
+        "811",
+        "371"
+      ],
+      "center": [
+        "802",
+        "342"
+      ],
+      "area": "969",
+      "width": "17",
+      "height": "57",
+      "yolo_confidence": "0.7322972",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.99994957447052,
+      "combined_confidence": "0.7322602"
+    },
+    {
+      "bbox": [
+        "634",
+        "231",
+        "655",
+        "298"
+      ],
+      "center": [
+        "644",
+        "264"
+      ],
+      "area": "1407",
+      "width": "21",
+      "height": "67",
+      "yolo_confidence": "0.72950476",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9992902278900146,
+      "combined_confidence": "0.728987"
+    },
+    {
+      "bbox": [
+        "180",
+        "133",
+        "222",
+        "221"
+      ],
+      "center": [
+        "201",
+        "177"
+      ],
+      "area": "3696",
+      "width": "42",
+      "height": "88",
+      "yolo_confidence": "0.72702706",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.751971423625946,
+      "combined_confidence": "0.5467036"
+    },
+    {
+      "bbox": [
+        "806",
+        "225",
+        "826",
+        "284"
+      ],
+      "center": [
+        "816",
+        "254"
+      ],
+      "area": "1180",
+      "width": "20",
+      "height": "59",
+      "yolo_confidence": "0.72690064",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.9997743964195251,
+      "combined_confidence": "0.72673666"
+    },
+    {
+      "bbox": [
+        "611",
+        "133",
+        "636",
+        "203"
+      ],
+      "center": [
+        "623",
+        "168"
+      ],
+      "area": "1750",
+      "width": "25",
+      "height": "70",
+      "yolo_confidence": "0.723602",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.8224705457687378,
+      "combined_confidence": "0.59514135"
+    },
+    {
+      "bbox": [
+        "696",
+        "320",
+        "710",
+        "385"
+      ],
+      "center": [
+        "703",
+        "352"
+      ],
+      "area": "910",
+      "width": "14",
+      "height": "65",
+      "yolo_confidence": "0.72198117",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9987658262252808,
+      "combined_confidence": "0.72109014"
+    },
+    {
+      "bbox": [
+        "239",
+        "252",
+        "268",
+        "331"
+      ],
+      "center": [
+        "253",
+        "291"
+      ],
+      "area": "2291",
+      "width": "29",
+      "height": "79",
+      "yolo_confidence": "0.72077316",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8188951015472412,
+      "combined_confidence": "0.5902376"
+    },
+    {
+      "bbox": [
+        "305",
+        "247",
+        "336",
+        "328"
+      ],
+      "center": [
+        "320",
+        "287"
+      ],
+      "area": "2511",
+      "width": "31",
+      "height": "81",
+      "yolo_confidence": "0.7039452",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.8649925589561462,
+      "combined_confidence": "0.6089074"
+    },
+    {
+      "bbox": [
+        "733",
+        "316",
+        "761",
+        "369"
+      ],
+      "center": [
+        "747",
+        "342"
+      ],
+      "area": "1484",
+      "width": "28",
+      "height": "53",
+      "yolo_confidence": "0.7035261",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.9997537732124329,
+      "combined_confidence": "0.70335287"
+    },
+    {
+      "bbox": [
+        "812",
+        "312",
+        "832",
+        "369"
+      ],
+      "center": [
+        "822",
+        "340"
+      ],
+      "area": "1140",
+      "width": "20",
+      "height": "57",
+      "yolo_confidence": "0.70238346",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.9999839067459106,
+      "combined_confidence": "0.70237213"
+    },
+    {
+      "bbox": [
+        "356",
+        "141",
+        "393",
+        "213"
+      ],
+      "center": [
+        "374",
+        "177"
+      ],
+      "area": "2664",
+      "width": "37",
+      "height": "72",
+      "yolo_confidence": "0.67531395",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8102772831916809,
+      "combined_confidence": "0.54719156"
+    },
+    {
+      "bbox": [
+        "242",
+        "363",
+        "274",
+        "438"
+      ],
+      "center": [
+        "258",
+        "400"
+      ],
+      "area": "2400",
+      "width": "32",
+      "height": "75",
+      "yolo_confidence": "0.67446005",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.8095660209655762,
+      "combined_confidence": "0.54602"
+    },
+    {
+      "bbox": [
+        "750",
+        "135",
+        "776",
+        "196"
+      ],
+      "center": [
+        "763",
+        "165"
+      ],
+      "area": "1586",
+      "width": "26",
+      "height": "61",
+      "yolo_confidence": "0.65455717",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.9998953342437744,
+      "combined_confidence": "0.6544887"
+    },
+    {
+      "bbox": [
+        "401",
+        "352",
+        "429",
+        "423"
+      ],
+      "center": [
+        "415",
+        "387"
+      ],
+      "area": "1988",
+      "width": "28",
+      "height": "71",
+      "yolo_confidence": "0.6484154",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7627544403076172,
+      "combined_confidence": "0.49458173"
+    },
+    {
+      "bbox": [
+        "832",
+        "134",
+        "848",
+        "194"
+      ],
+      "center": [
+        "840",
+        "164"
+      ],
+      "area": "960",
+      "width": "16",
+      "height": "60",
+      "yolo_confidence": "0.6313953",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.9998966455459595,
+      "combined_confidence": "0.63133"
+    },
+    {
+      "bbox": [
+        "364",
+        "247",
+        "387",
+        "322"
+      ],
+      "center": [
+        "375",
+        "284"
+      ],
+      "area": "1725",
+      "width": "23",
+      "height": "75",
+      "yolo_confidence": "0.6266222",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.5214147567749023,
+      "combined_confidence": "0.32673007"
+    },
+    {
+      "bbox": [
+        "337",
+        "245",
+        "364",
+        "325"
+      ],
+      "center": [
+        "350",
+        "285"
+      ],
+      "area": "2160",
+      "width": "27",
+      "height": "80",
+      "yolo_confidence": "0.6230472",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.5177423357963562,
+      "combined_confidence": "0.3225779"
+    },
+    {
+      "bbox": [
+        "775",
+        "226",
+        "804",
+        "286"
+      ],
+      "center": [
+        "789",
+        "256"
+      ],
+      "area": "1740",
+      "width": "29",
+      "height": "60",
+      "yolo_confidence": "0.6109212",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.9999853372573853,
+      "combined_confidence": "0.61091226"
+    },
+    {
+      "bbox": [
+        "557",
+        "27",
+        "574",
+        "103"
+      ],
+      "center": [
+        "565",
+        "65"
+      ],
+      "area": "1292",
+      "width": "17",
+      "height": "76",
+      "yolo_confidence": "0.60626715",
+      "subclass": "Chapo Exotique",
+      "subclass_confidence": 0.9378561973571777,
+      "combined_confidence": "0.5685914"
+    },
+    {
+      "bbox": [
+        "732",
+        "240",
+        "752",
+        "290"
+      ],
+      "center": [
+        "742",
+        "265"
+      ],
+      "area": "1000",
+      "width": "20",
+      "height": "50",
+      "yolo_confidence": "0.5996507",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.9878849387168884,
+      "combined_confidence": "0.5923859"
+    },
+    {
+      "bbox": [
+        "619",
+        "235",
+        "633",
+        "300"
+      ],
+      "center": [
+        "626",
+        "267"
+      ],
+      "area": "910",
+      "width": "14",
+      "height": "65",
+      "yolo_confidence": "0.5983605",
+      "subclass": "Alex",
+      "subclass_confidence": 0.9995720982551575,
+      "combined_confidence": "0.5981044"
+    },
+    {
+      "bbox": [
+        "781",
+        "43",
+        "806",
+        "102"
+      ],
+      "center": [
+        "793",
+        "72"
+      ],
+      "area": "1475",
+      "width": "25",
+      "height": "59",
+      "yolo_confidence": "0.5819911",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.9994170665740967,
+      "combined_confidence": "0.5816518"
+    },
+    {
+      "bbox": [
+        "179",
+        "132",
+        "240",
+        "221"
+      ],
+      "center": [
+        "209",
+        "176"
+      ],
+      "area": "5429",
+      "width": "61",
+      "height": "89",
+      "yolo_confidence": "0.56703264",
+      "subclass": "Chapo Coco",
+      "subclass_confidence": 0.7924450039863586,
+      "combined_confidence": "0.4493422"
+    },
+    {
+      "bbox": [
+        "785",
+        "135",
+        "810",
+        "195"
+      ],
+      "center": [
+        "797",
+        "165"
+      ],
+      "area": "1500",
+      "width": "25",
+      "height": "60",
+      "yolo_confidence": "0.54755175",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.9998980760574341,
+      "combined_confidence": "0.54749596"
+    },
+    {
+      "bbox": [
+        "445",
+        "15",
+        "471",
+        "102"
+      ],
+      "center": [
+        "458",
+        "58"
+      ],
+      "area": "2262",
+      "width": "26",
+      "height": "87",
+      "yolo_confidence": "0.51786655",
+      "subclass": "Amalfi 3in1",
+      "subclass_confidence": 0.5029395222663879,
+      "combined_confidence": "0.26045555"
+    },
+    {
+      "bbox": [
+        "706",
+        "134",
+        "729",
+        "197"
+      ],
+      "center": [
+        "717",
+        "165"
+      ],
+      "area": "1449",
+      "width": "23",
+      "height": "63",
+      "yolo_confidence": "0.5080432",
+      "subclass": "Magnum Black",
+      "subclass_confidence": 0.9999254941940308,
+      "combined_confidence": "0.5080054"
+    }
+  ],
+  "void_detections": [
+    {
+      "bbox": [
+        "666",
+        "0",
+        "782",
+        "106"
+      ],
+      "center": [
+        "724",
+        "53"
+      ],
+      "area": "12296",
+      "width": "116",
+      "height": "106",
+      "confidence": "0.88253194"
+    },
+    {
+      "bbox": [
+        "0",
+        "253",
+        "48",
+        "345"
+      ],
+      "center": [
+        "24",
+        "299"
+      ],
+      "area": "4416",
+      "width": "48",
+      "height": "92",
+      "confidence": "0.7538294"
+    }
+  ],
+  "shelf_analysis": {
+    "clusters": [
+      {
+        "cluster_id": "0",
+        "products": [
+          {
+            "bbox": [
+              "25",
+              "0",
+              "69",
+              "97"
+            ],
+            "center": [
+              "47",
+              "48"
+            ],
+            "area": "4268",
+            "width": "44",
+            "height": "97",
+            "yolo_confidence": "0.852166",
+            "subclass": "Chapo Yaourt",
+            "subclass_confidence": 0.4634961783885956,
+            "combined_confidence": "0.3949757"
+          },
+          {
+            "bbox": [
+              "112",
+              "1",
+              "153",
+              "96"
+            ],
+            "center": [
+              "132",
+              "48"
+            ],
+            "area": "3895",
+            "width": "41",
+            "height": "95",
+            "yolo_confidence": "0.83291596",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.8846322298049927,
+            "combined_confidence": "0.73682433"
+          },
+          {
+            "bbox": [
+              "71",
+              "1",
+              "110",
+              "96"
+            ],
+            "center": [
+              "90",
+              "48"
+            ],
+            "area": "3705",
+            "width": "39",
+            "height": "95",
+            "yolo_confidence": "0.82760596",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.8717455863952637,
+            "combined_confidence": "0.72146183"
+          },
+          {
+            "bbox": [
+              "0",
+              "0",
+              "23",
+              "97"
+            ],
+            "center": [
+              "11",
+              "48"
+            ],
+            "area": "2231",
+            "width": "23",
+            "height": "97",
+            "yolo_confidence": "0.8238633",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.761241614818573,
+            "combined_confidence": "0.62715906"
+          },
+          {
+            "bbox": [
+              "155",
+              "4",
+              "192",
+              "97"
+            ],
+            "center": [
+              "173",
+              "50"
+            ],
+            "area": "3441",
+            "width": "37",
+            "height": "93",
+            "yolo_confidence": "0.81913215",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.8845586180686951,
+            "combined_confidence": "0.7245704"
+          },
+          {
+            "bbox": [
+              "635",
+              "28",
+              "662",
+              "103"
+            ],
+            "center": [
+              "648",
+              "65"
+            ],
+            "area": "2025",
+            "width": "27",
+            "height": "75",
+            "yolo_confidence": "0.813176",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.8967034816741943,
+            "combined_confidence": "0.7291777"
+          },
+          {
+            "bbox": [
+              "310",
+              "10",
+              "342",
+              "101"
+            ],
+            "center": [
+              "326",
+              "55"
+            ],
+            "area": "2912",
+            "width": "32",
+            "height": "91",
+            "yolo_confidence": "0.8093394",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.6739047169685364,
+            "combined_confidence": "0.54541767"
+          },
+          {
+            "bbox": [
+              "193",
+              "3",
+              "233",
+              "98"
+            ],
+            "center": [
+              "213",
+              "50"
+            ],
+            "area": "3800",
+            "width": "40",
+            "height": "95",
+            "yolo_confidence": "0.8033514",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.9324964284896851,
+            "combined_confidence": "0.7491223"
+          },
+          {
+            "bbox": [
+              "472",
+              "18",
+              "501",
+              "103"
+            ],
+            "center": [
+              "486",
+              "60"
+            ],
+            "area": "2465",
+            "width": "29",
+            "height": "85",
+            "yolo_confidence": "0.8013691",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.5573408603668213,
+            "combined_confidence": "0.44663572"
+          },
+          {
+            "bbox": [
+              "503",
+              "20",
+              "530",
+              "104"
+            ],
+            "center": [
+              "516",
+              "62"
+            ],
+            "area": "2268",
+            "width": "27",
+            "height": "84",
+            "yolo_confidence": "0.78545237",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.5871263146400452,
+            "combined_confidence": "0.46115977"
+          },
+          {
+            "bbox": [
+              "407",
+              "16",
+              "442",
+              "102"
+            ],
+            "center": [
+              "424",
+              "59"
+            ],
+            "area": "3010",
+            "width": "35",
+            "height": "86",
+            "yolo_confidence": "0.783894",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.8027867674827576,
+            "combined_confidence": "0.62929976"
+          },
+          {
+            "bbox": [
+              "378",
+              "16",
+              "406",
+              "102"
+            ],
+            "center": [
+              "392",
+              "59"
+            ],
+            "area": "2408",
+            "width": "28",
+            "height": "86",
+            "yolo_confidence": "0.78028655",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.5333362221717834,
+            "combined_confidence": "0.41615507"
+          },
+          {
+            "bbox": [
+              "344",
+              "13",
+              "376",
+              "102"
+            ],
+            "center": [
+              "360",
+              "57"
+            ],
+            "area": "2848",
+            "width": "32",
+            "height": "89",
+            "yolo_confidence": "0.7793469",
+            "subclass": "Chapo Yaourt",
+            "subclass_confidence": 0.4564291536808014,
+            "combined_confidence": "0.35571665"
+          },
+          {
+            "bbox": [
+              "531",
+              "20",
+              "558",
+              "104"
+            ],
+            "center": [
+              "544",
+              "62"
+            ],
+            "area": "2268",
+            "width": "27",
+            "height": "84",
+            "yolo_confidence": "0.7782423",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.6776732802391052,
+            "combined_confidence": "0.527394"
+          },
+          {
+            "bbox": [
+              "238",
+              "6",
+              "272",
+              "99"
+            ],
+            "center": [
+              "255",
+              "52"
+            ],
+            "area": "3162",
+            "width": "34",
+            "height": "93",
+            "yolo_confidence": "0.76437896",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.6398375630378723,
+            "combined_confidence": "0.48907837"
+          },
+          {
+            "bbox": [
+              "272",
+              "8",
+              "308",
+              "100"
+            ],
+            "center": [
+              "290",
+              "54"
+            ],
+            "area": "3312",
+            "width": "36",
+            "height": "92",
+            "yolo_confidence": "0.75541687",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.5577479004859924,
+            "combined_confidence": "0.42133218"
+          },
+          {
+            "bbox": [
+              "611",
+              "27",
+              "634",
+              "104"
+            ],
+            "center": [
+              "622",
+              "65"
+            ],
+            "area": "1771",
+            "width": "23",
+            "height": "77",
+            "yolo_confidence": "0.75470835",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.864858090877533,
+            "combined_confidence": "0.6527156"
+          },
+          {
+            "bbox": [
+              "557",
+              "27",
+              "574",
+              "103"
+            ],
+            "center": [
+              "565",
+              "65"
+            ],
+            "area": "1292",
+            "width": "17",
+            "height": "76",
+            "yolo_confidence": "0.60626715",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.9378561973571777,
+            "combined_confidence": "0.5685914"
+          },
+          {
+            "bbox": [
+              "445",
+              "15",
+              "471",
+              "102"
+            ],
+            "center": [
+              "458",
+              "58"
+            ],
+            "area": "2262",
+            "width": "26",
+            "height": "87",
+            "yolo_confidence": "0.51786655",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.5029395222663879,
+            "combined_confidence": "0.26045555"
+          }
+        ],
+        "center": "[344.84210526  56.05263158]",
+        "product_types": {
+          "Chapo Yaourt": 2,
+          "Chapo Coco": 11,
+          "Amalfi 3in1": 5,
+          "Chapo Exotique": 1
+        },
+        "dominant_type": "Chapo Coco",
+        "size": 19,
+        "bbox": [
+          "0",
+          "0",
+          "662",
+          "104"
+        ]
+      },
+      {
+        "cluster_id": "1",
+        "products": [
+          {
+            "bbox": [
+              "125",
+              "254",
+              "163",
+              "342"
+            ],
+            "center": [
+              "144",
+              "298"
+            ],
+            "area": "3344",
+            "width": "38",
+            "height": "88",
+            "yolo_confidence": "0.85126466",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.656011700630188,
+            "combined_confidence": "0.55843955"
+          },
+          {
+            "bbox": [
+              "87",
+              "256",
+              "124",
+              "344"
+            ],
+            "center": [
+              "105",
+              "300"
+            ],
+            "area": "3256",
+            "width": "37",
+            "height": "88",
+            "yolo_confidence": "0.84335047",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.6661534309387207,
+            "combined_confidence": "0.56180084"
+          },
+          {
+            "bbox": [
+              "166",
+              "252",
+              "201",
+              "339"
+            ],
+            "center": [
+              "183",
+              "295"
+            ],
+            "area": "3045",
+            "width": "35",
+            "height": "87",
+            "yolo_confidence": "0.8315051",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.6345744132995605,
+            "combined_confidence": "0.52765185"
+          },
+          {
+            "bbox": [
+              "95",
+              "375",
+              "133",
+              "459"
+            ],
+            "center": [
+              "114",
+              "417"
+            ],
+            "area": "3192",
+            "width": "38",
+            "height": "84",
+            "yolo_confidence": "0.82915866",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7998835444450378,
+            "combined_confidence": "0.66323036"
+          },
+          {
+            "bbox": [
+              "51",
+              "380",
+              "92",
+              "465"
+            ],
+            "center": [
+              "71",
+              "422"
+            ],
+            "area": "3485",
+            "width": "41",
+            "height": "85",
+            "yolo_confidence": "0.8206565",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7786682844161987,
+            "combined_confidence": "0.6390192"
+          },
+          {
+            "bbox": [
+              "203",
+              "250",
+              "237",
+              "335"
+            ],
+            "center": [
+              "220",
+              "292"
+            ],
+            "area": "2890",
+            "width": "34",
+            "height": "85",
+            "yolo_confidence": "0.8195598",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7418702840805054,
+            "combined_confidence": "0.6080071"
+          },
+          {
+            "bbox": [
+              "456",
+              "242",
+              "483",
+              "315"
+            ],
+            "center": [
+              "469",
+              "278"
+            ],
+            "area": "1971",
+            "width": "27",
+            "height": "73",
+            "yolo_confidence": "0.81568885",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.7747853994369507,
+            "combined_confidence": "0.6319838"
+          },
+          {
+            "bbox": [
+              "618",
+              "328",
+              "638",
+              "396"
+            ],
+            "center": [
+              "628",
+              "362"
+            ],
+            "area": "1360",
+            "width": "20",
+            "height": "68",
+            "yolo_confidence": "0.81264967",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.9642064571380615,
+            "combined_confidence": "0.78356206"
+          },
+          {
+            "bbox": [
+              "485",
+              "240",
+              "512",
+              "313"
+            ],
+            "center": [
+              "498",
+              "276"
+            ],
+            "area": "1971",
+            "width": "27",
+            "height": "73",
+            "yolo_confidence": "0.80881715",
+            "subclass": "Alex",
+            "subclass_confidence": 0.5811603665351868,
+            "combined_confidence": "0.47005248"
+          },
+          {
+            "bbox": [
+              "424",
+              "244",
+              "455",
+              "317"
+            ],
+            "center": [
+              "439",
+              "280"
+            ],
+            "area": "2263",
+            "width": "31",
+            "height": "73",
+            "yolo_confidence": "0.8078002",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.6093038320541382,
+            "combined_confidence": "0.49219576"
+          },
+          {
+            "bbox": [
+              "514",
+              "239",
+              "539",
+              "310"
+            ],
+            "center": [
+              "526",
+              "274"
+            ],
+            "area": "1775",
+            "width": "25",
+            "height": "71",
+            "yolo_confidence": "0.80470014",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.5940123796463013,
+            "combined_confidence": "0.47800183"
+          },
+          {
+            "bbox": [
+              "50",
+              "257",
+              "84",
+              "342"
+            ],
+            "center": [
+              "67",
+              "299"
+            ],
+            "area": "2890",
+            "width": "34",
+            "height": "85",
+            "yolo_confidence": "0.8045883",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.6821022033691406,
+            "combined_confidence": "0.54881144"
+          },
+          {
+            "bbox": [
+              "171",
+              "370",
+              "198",
+              "452"
+            ],
+            "center": [
+              "184",
+              "411"
+            ],
+            "area": "2214",
+            "width": "27",
+            "height": "82",
+            "yolo_confidence": "0.8035082",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7530615329742432,
+            "combined_confidence": "0.60509115"
+          },
+          {
+            "bbox": [
+              "135",
+              "373",
+              "170",
+              "456"
+            ],
+            "center": [
+              "152",
+              "414"
+            ],
+            "area": "2905",
+            "width": "35",
+            "height": "83",
+            "yolo_confidence": "0.80227035",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7600653767585754,
+            "combined_confidence": "0.6097779"
+          },
+          {
+            "bbox": [
+              "640",
+              "325",
+              "656",
+              "392"
+            ],
+            "center": [
+              "648",
+              "358"
+            ],
+            "area": "1072",
+            "width": "16",
+            "height": "67",
+            "yolo_confidence": "0.7992825",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9986963868141174,
+            "combined_confidence": "0.79824054"
+          },
+          {
+            "bbox": [
+              "513",
+              "340",
+              "538",
+              "409"
+            ],
+            "center": [
+              "525",
+              "374"
+            ],
+            "area": "1725",
+            "width": "25",
+            "height": "69",
+            "yolo_confidence": "0.7981578",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.7906418442726135,
+            "combined_confidence": "0.63105696"
+          },
+          {
+            "bbox": [
+              "7",
+              "384",
+              "49",
+              "473"
+            ],
+            "center": [
+              "28",
+              "428"
+            ],
+            "area": "3738",
+            "width": "42",
+            "height": "89",
+            "yolo_confidence": "0.79809856",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.6569388508796692,
+            "combined_confidence": "0.52430195"
+          },
+          {
+            "bbox": [
+              "460",
+              "346",
+              "484",
+              "414"
+            ],
+            "center": [
+              "472",
+              "380"
+            ],
+            "area": "1632",
+            "width": "24",
+            "height": "68",
+            "yolo_confidence": "0.79787076",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.7956990003585815,
+            "combined_confidence": "0.634865"
+          },
+          {
+            "bbox": [
+              "540",
+              "237",
+              "565",
+              "308"
+            ],
+            "center": [
+              "552",
+              "272"
+            ],
+            "area": "1775",
+            "width": "25",
+            "height": "71",
+            "yolo_confidence": "0.79626644",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.47095099091529846,
+            "combined_confidence": "0.37500247"
+          },
+          {
+            "bbox": [
+              "388",
+              "246",
+              "420",
+              "319"
+            ],
+            "center": [
+              "404",
+              "282"
+            ],
+            "area": "2336",
+            "width": "32",
+            "height": "73",
+            "yolo_confidence": "0.7952545",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.5629953145980835,
+            "combined_confidence": "0.44772458"
+          },
+          {
+            "bbox": [
+              "432",
+              "348",
+              "458",
+              "417"
+            ],
+            "center": [
+              "445",
+              "382"
+            ],
+            "area": "1794",
+            "width": "26",
+            "height": "69",
+            "yolo_confidence": "0.79282284",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.7122440934181213,
+            "combined_confidence": "0.5646834"
+          },
+          {
+            "bbox": [
+              "680",
+              "228",
+              "704",
+              "293"
+            ],
+            "center": [
+              "692",
+              "260"
+            ],
+            "area": "1560",
+            "width": "24",
+            "height": "65",
+            "yolo_confidence": "0.7919634",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9990440011024475,
+            "combined_confidence": "0.7912063"
+          },
+          {
+            "bbox": [
+              "567",
+              "235",
+              "591",
+              "305"
+            ],
+            "center": [
+              "579",
+              "270"
+            ],
+            "area": "1680",
+            "width": "24",
+            "height": "70",
+            "yolo_confidence": "0.78794503",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.6836287975311279,
+            "combined_confidence": "0.5386619"
+          },
+          {
+            "bbox": [
+              "594",
+              "234",
+              "618",
+              "303"
+            ],
+            "center": [
+              "606",
+              "268"
+            ],
+            "area": "1656",
+            "width": "24",
+            "height": "69",
+            "yolo_confidence": "0.78577834",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.3496188223361969,
+            "combined_confidence": "0.2747229"
+          },
+          {
+            "bbox": [
+              "310",
+              "357",
+              "339",
+              "432"
+            ],
+            "center": [
+              "324",
+              "394"
+            ],
+            "area": "2175",
+            "width": "29",
+            "height": "75",
+            "yolo_confidence": "0.78450876",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.696445643901825,
+            "combined_confidence": "0.5463677"
+          },
+          {
+            "bbox": [
+              "540",
+              "335",
+              "566",
+              "405"
+            ],
+            "center": [
+              "553",
+              "370"
+            ],
+            "area": "1820",
+            "width": "26",
+            "height": "70",
+            "yolo_confidence": "0.7832083",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.3852616846561432,
+            "combined_confidence": "0.30174014"
+          },
+          {
+            "bbox": [
+              "595",
+              "330",
+              "616",
+              "398"
+            ],
+            "center": [
+              "605",
+              "364"
+            ],
+            "area": "1428",
+            "width": "21",
+            "height": "68",
+            "yolo_confidence": "0.7828781",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.9740013480186462,
+            "combined_confidence": "0.7625243"
+          },
+          {
+            "bbox": [
+              "657",
+              "324",
+              "674",
+              "390"
+            ],
+            "center": [
+              "665",
+              "357"
+            ],
+            "area": "1122",
+            "width": "17",
+            "height": "66",
+            "yolo_confidence": "0.7818059",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9996918439865112,
+            "combined_confidence": "0.78156495"
+          },
+          {
+            "bbox": [
+              "270",
+              "251",
+              "303",
+              "330"
+            ],
+            "center": [
+              "286",
+              "290"
+            ],
+            "area": "2607",
+            "width": "33",
+            "height": "79",
+            "yolo_confidence": "0.7790201",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7584671974182129,
+            "combined_confidence": "0.59086114"
+          },
+          {
+            "bbox": [
+              "486",
+              "342",
+              "512",
+              "411"
+            ],
+            "center": [
+              "499",
+              "376"
+            ],
+            "area": "1794",
+            "width": "26",
+            "height": "69",
+            "yolo_confidence": "0.77518344",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.8237162828445435,
+            "combined_confidence": "0.6385312"
+          },
+          {
+            "bbox": [
+              "657",
+              "230",
+              "679",
+              "295"
+            ],
+            "center": [
+              "668",
+              "262"
+            ],
+            "area": "1430",
+            "width": "22",
+            "height": "65",
+            "yolo_confidence": "0.77408665",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9985533356666565,
+            "combined_confidence": "0.7729668"
+          },
+          {
+            "bbox": [
+              "675",
+              "322",
+              "694",
+              "388"
+            ],
+            "center": [
+              "684",
+              "355"
+            ],
+            "area": "1254",
+            "width": "19",
+            "height": "66",
+            "yolo_confidence": "0.7730597",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9997079968452454,
+            "combined_confidence": "0.772834"
+          },
+          {
+            "bbox": [
+              "341",
+              "356",
+              "368",
+              "428"
+            ],
+            "center": [
+              "354",
+              "392"
+            ],
+            "area": "1944",
+            "width": "27",
+            "height": "72",
+            "yolo_confidence": "0.7716184",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7883449792861938,
+            "combined_confidence": "0.6083015"
+          },
+          {
+            "bbox": [
+              "275",
+              "360",
+              "308",
+              "436"
+            ],
+            "center": [
+              "291",
+              "398"
+            ],
+            "area": "2508",
+            "width": "33",
+            "height": "76",
+            "yolo_confidence": "0.7661377",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7998303771018982,
+            "combined_confidence": "0.6127802"
+          },
+          {
+            "bbox": [
+              "369",
+              "355",
+              "400",
+              "426"
+            ],
+            "center": [
+              "384",
+              "390"
+            ],
+            "area": "2201",
+            "width": "31",
+            "height": "71",
+            "yolo_confidence": "0.7656708",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.8228092789649963,
+            "combined_confidence": "0.630001"
+          },
+          {
+            "bbox": [
+              "199",
+              "367",
+              "228",
+              "448"
+            ],
+            "center": [
+              "213",
+              "407"
+            ],
+            "area": "2349",
+            "width": "29",
+            "height": "81",
+            "yolo_confidence": "0.76519257",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7650848627090454,
+            "combined_confidence": "0.58543724"
+          },
+          {
+            "bbox": [
+              "567",
+              "334",
+              "592",
+              "403"
+            ],
+            "center": [
+              "579",
+              "368"
+            ],
+            "area": "1725",
+            "width": "25",
+            "height": "69",
+            "yolo_confidence": "0.7574629",
+            "subclass": "Alex",
+            "subclass_confidence": 0.6080639362335205,
+            "combined_confidence": "0.4605859"
+          },
+          {
+            "bbox": [
+              "708",
+              "226",
+              "727",
+              "291"
+            ],
+            "center": [
+              "717",
+              "258"
+            ],
+            "area": "1235",
+            "width": "19",
+            "height": "65",
+            "yolo_confidence": "0.7434595",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9739881157875061,
+            "combined_confidence": "0.72412074"
+          },
+          {
+            "bbox": [
+              "827",
+              "225",
+              "847",
+              "283"
+            ],
+            "center": [
+              "837",
+              "254"
+            ],
+            "area": "1160",
+            "width": "20",
+            "height": "58",
+            "yolo_confidence": "0.73842573",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.999916672706604,
+            "combined_confidence": "0.7383642"
+          },
+          {
+            "bbox": [
+              "794",
+              "314",
+              "811",
+              "371"
+            ],
+            "center": [
+              "802",
+              "342"
+            ],
+            "area": "969",
+            "width": "17",
+            "height": "57",
+            "yolo_confidence": "0.7322972",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.99994957447052,
+            "combined_confidence": "0.7322602"
+          },
+          {
+            "bbox": [
+              "634",
+              "231",
+              "655",
+              "298"
+            ],
+            "center": [
+              "644",
+              "264"
+            ],
+            "area": "1407",
+            "width": "21",
+            "height": "67",
+            "yolo_confidence": "0.72950476",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9992902278900146,
+            "combined_confidence": "0.728987"
+          },
+          {
+            "bbox": [
+              "806",
+              "225",
+              "826",
+              "284"
+            ],
+            "center": [
+              "816",
+              "254"
+            ],
+            "area": "1180",
+            "width": "20",
+            "height": "59",
+            "yolo_confidence": "0.72690064",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.9997743964195251,
+            "combined_confidence": "0.72673666"
+          },
+          {
+            "bbox": [
+              "696",
+              "320",
+              "710",
+              "385"
+            ],
+            "center": [
+              "703",
+              "352"
+            ],
+            "area": "910",
+            "width": "14",
+            "height": "65",
+            "yolo_confidence": "0.72198117",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9987658262252808,
+            "combined_confidence": "0.72109014"
+          },
+          {
+            "bbox": [
+              "239",
+              "252",
+              "268",
+              "331"
+            ],
+            "center": [
+              "253",
+              "291"
+            ],
+            "area": "2291",
+            "width": "29",
+            "height": "79",
+            "yolo_confidence": "0.72077316",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.8188951015472412,
+            "combined_confidence": "0.5902376"
+          },
+          {
+            "bbox": [
+              "305",
+              "247",
+              "336",
+              "328"
+            ],
+            "center": [
+              "320",
+              "287"
+            ],
+            "area": "2511",
+            "width": "31",
+            "height": "81",
+            "yolo_confidence": "0.7039452",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.8649925589561462,
+            "combined_confidence": "0.6089074"
+          },
+          {
+            "bbox": [
+              "733",
+              "316",
+              "761",
+              "369"
+            ],
+            "center": [
+              "747",
+              "342"
+            ],
+            "area": "1484",
+            "width": "28",
+            "height": "53",
+            "yolo_confidence": "0.7035261",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.9997537732124329,
+            "combined_confidence": "0.70335287"
+          },
+          {
+            "bbox": [
+              "812",
+              "312",
+              "832",
+              "369"
+            ],
+            "center": [
+              "822",
+              "340"
+            ],
+            "area": "1140",
+            "width": "20",
+            "height": "57",
+            "yolo_confidence": "0.70238346",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.9999839067459106,
+            "combined_confidence": "0.70237213"
+          },
+          {
+            "bbox": [
+              "242",
+              "363",
+              "274",
+              "438"
+            ],
+            "center": [
+              "258",
+              "400"
+            ],
+            "area": "2400",
+            "width": "32",
+            "height": "75",
+            "yolo_confidence": "0.67446005",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.8095660209655762,
+            "combined_confidence": "0.54602"
+          },
+          {
+            "bbox": [
+              "401",
+              "352",
+              "429",
+              "423"
+            ],
+            "center": [
+              "415",
+              "387"
+            ],
+            "area": "1988",
+            "width": "28",
+            "height": "71",
+            "yolo_confidence": "0.6484154",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7627544403076172,
+            "combined_confidence": "0.49458173"
+          },
+          {
+            "bbox": [
+              "364",
+              "247",
+              "387",
+              "322"
+            ],
+            "center": [
+              "375",
+              "284"
+            ],
+            "area": "1725",
+            "width": "23",
+            "height": "75",
+            "yolo_confidence": "0.6266222",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.5214147567749023,
+            "combined_confidence": "0.32673007"
+          },
+          {
+            "bbox": [
+              "337",
+              "245",
+              "364",
+              "325"
+            ],
+            "center": [
+              "350",
+              "285"
+            ],
+            "area": "2160",
+            "width": "27",
+            "height": "80",
+            "yolo_confidence": "0.6230472",
+            "subclass": "Amalfi 3in1",
+            "subclass_confidence": 0.5177423357963562,
+            "combined_confidence": "0.3225779"
+          },
+          {
+            "bbox": [
+              "775",
+              "226",
+              "804",
+              "286"
+            ],
+            "center": [
+              "789",
+              "256"
+            ],
+            "area": "1740",
+            "width": "29",
+            "height": "60",
+            "yolo_confidence": "0.6109212",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.9999853372573853,
+            "combined_confidence": "0.61091226"
+          },
+          {
+            "bbox": [
+              "732",
+              "240",
+              "752",
+              "290"
+            ],
+            "center": [
+              "742",
+              "265"
+            ],
+            "area": "1000",
+            "width": "20",
+            "height": "50",
+            "yolo_confidence": "0.5996507",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.9878849387168884,
+            "combined_confidence": "0.5923859"
+          },
+          {
+            "bbox": [
+              "619",
+              "235",
+              "633",
+              "300"
+            ],
+            "center": [
+              "626",
+              "267"
+            ],
+            "area": "910",
+            "width": "14",
+            "height": "65",
+            "yolo_confidence": "0.5983605",
+            "subclass": "Alex",
+            "subclass_confidence": 0.9995720982551575,
+            "combined_confidence": "0.5981044"
+          }
+        ],
+        "center": "[464.2962963  328.57407407]",
+        "product_types": {
+          "Chapo Coco": 21,
+          "Chapo Exotique": 13,
+          "Alex": 11,
+          "Magnum Black": 7,
+          "Amalfi 3in1": 2
+        },
+        "dominant_type": "Chapo Coco",
+        "size": 54,
+        "bbox": [
+          "7",
+          "225",
+          "847",
+          "473"
+        ]
+      },
+      {
+        "cluster_id": "2",
+        "products": [
+          {
+            "bbox": [
+              "0",
+              "131",
+              "45",
+              "227"
+            ],
+            "center": [
+              "22",
+              "179"
+            ],
+            "area": "4320",
+            "width": "45",
+            "height": "96",
+            "yolo_confidence": "0.8364307",
+            "subclass": "Chapo Yaourt",
+            "subclass_confidence": 0.7461275458335876,
+            "combined_confidence": "0.624084"
+          },
+          {
+            "bbox": [
+              "130",
+              "131",
+              "174",
+              "223"
+            ],
+            "center": [
+              "152",
+              "177"
+            ],
+            "area": "4048",
+            "width": "44",
+            "height": "92",
+            "yolo_confidence": "0.8213597",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7818513512611389,
+            "combined_confidence": "0.64218116"
+          },
+          {
+            "bbox": [
+              "47",
+              "131",
+              "83",
+              "225"
+            ],
+            "center": [
+              "65",
+              "178"
+            ],
+            "area": "3384",
+            "width": "36",
+            "height": "94",
+            "yolo_confidence": "0.8159257",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.8868250846862793,
+            "combined_confidence": "0.7235834"
+          },
+          {
+            "bbox": [
+              "245",
+              "135",
+              "279",
+              "219"
+            ],
+            "center": [
+              "262",
+              "177"
+            ],
+            "area": "2856",
+            "width": "34",
+            "height": "84",
+            "yolo_confidence": "0.8126977",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7958151698112488,
+            "combined_confidence": "0.6467572"
+          },
+          {
+            "bbox": [
+              "89",
+              "131",
+              "128",
+              "222"
+            ],
+            "center": [
+              "108",
+              "176"
+            ],
+            "area": "3549",
+            "width": "39",
+            "height": "91",
+            "yolo_confidence": "0.8115081",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.5883432626724243,
+            "combined_confidence": "0.47744533"
+          },
+          {
+            "bbox": [
+              "521",
+              "135",
+              "548",
+              "209"
+            ],
+            "center": [
+              "534",
+              "172"
+            ],
+            "area": "1998",
+            "width": "27",
+            "height": "74",
+            "yolo_confidence": "0.80530363",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.8064324855804443,
+            "combined_confidence": "0.649423"
+          },
+          {
+            "bbox": [
+              "281",
+              "138",
+              "313",
+              "217"
+            ],
+            "center": [
+              "297",
+              "177"
+            ],
+            "area": "2528",
+            "width": "32",
+            "height": "79",
+            "yolo_confidence": "0.7890562",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7269101142883301,
+            "combined_confidence": "0.57357293"
+          },
+          {
+            "bbox": [
+              "549",
+              "134",
+              "576",
+              "207"
+            ],
+            "center": [
+              "562",
+              "170"
+            ],
+            "area": "1971",
+            "width": "27",
+            "height": "73",
+            "yolo_confidence": "0.7801578",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.5110162496566772,
+            "combined_confidence": "0.39867333"
+          },
+          {
+            "bbox": [
+              "577",
+              "134",
+              "602",
+              "206"
+            ],
+            "center": [
+              "589",
+              "170"
+            ],
+            "area": "1800",
+            "width": "25",
+            "height": "72",
+            "yolo_confidence": "0.7749133",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.9213240146636963,
+            "combined_confidence": "0.7139462"
+          },
+          {
+            "bbox": [
+              "451",
+              "134",
+              "483",
+              "211"
+            ],
+            "center": [
+              "467",
+              "172"
+            ],
+            "area": "2464",
+            "width": "32",
+            "height": "77",
+            "yolo_confidence": "0.7625074",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.6471354365348816,
+            "combined_confidence": "0.49344555"
+          },
+          {
+            "bbox": [
+              "489",
+              "134",
+              "519",
+              "210"
+            ],
+            "center": [
+              "504",
+              "172"
+            ],
+            "area": "2280",
+            "width": "30",
+            "height": "76",
+            "yolo_confidence": "0.7608309",
+            "subclass": "Alex",
+            "subclass_confidence": 0.5376771092414856,
+            "combined_confidence": "0.40908134"
+          },
+          {
+            "bbox": [
+              "404",
+              "139",
+              "437",
+              "212"
+            ],
+            "center": [
+              "420",
+              "175"
+            ],
+            "area": "2409",
+            "width": "33",
+            "height": "73",
+            "yolo_confidence": "0.75888526",
+            "subclass": "Chapo Exotique",
+            "subclass_confidence": 0.7974348068237305,
+            "combined_confidence": "0.60516155"
+          },
+          {
+            "bbox": [
+              "657",
+              "132",
+              "682",
+              "201"
+            ],
+            "center": [
+              "669",
+              "166"
+            ],
+            "area": "1725",
+            "width": "25",
+            "height": "69",
+            "yolo_confidence": "0.75249636",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.999971866607666,
+            "combined_confidence": "0.7524752"
+          },
+          {
+            "bbox": [
+              "314",
+              "139",
+              "346",
+              "216"
+            ],
+            "center": [
+              "330",
+              "177"
+            ],
+            "area": "2464",
+            "width": "32",
+            "height": "77",
+            "yolo_confidence": "0.7511466",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.8593756556510925,
+            "combined_confidence": "0.6455171"
+          },
+          {
+            "bbox": [
+              "180",
+              "133",
+              "222",
+              "221"
+            ],
+            "center": [
+              "201",
+              "177"
+            ],
+            "area": "3696",
+            "width": "42",
+            "height": "88",
+            "yolo_confidence": "0.72702706",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.751971423625946,
+            "combined_confidence": "0.5467036"
+          },
+          {
+            "bbox": [
+              "611",
+              "133",
+              "636",
+              "203"
+            ],
+            "center": [
+              "623",
+              "168"
+            ],
+            "area": "1750",
+            "width": "25",
+            "height": "70",
+            "yolo_confidence": "0.723602",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.8224705457687378,
+            "combined_confidence": "0.59514135"
+          },
+          {
+            "bbox": [
+              "356",
+              "141",
+              "393",
+              "213"
+            ],
+            "center": [
+              "374",
+              "177"
+            ],
+            "area": "2664",
+            "width": "37",
+            "height": "72",
+            "yolo_confidence": "0.67531395",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.8102772831916809,
+            "combined_confidence": "0.54719156"
+          },
+          {
+            "bbox": [
+              "750",
+              "135",
+              "776",
+              "196"
+            ],
+            "center": [
+              "763",
+              "165"
+            ],
+            "area": "1586",
+            "width": "26",
+            "height": "61",
+            "yolo_confidence": "0.65455717",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.9998953342437744,
+            "combined_confidence": "0.6544887"
+          },
+          {
+            "bbox": [
+              "832",
+              "134",
+              "848",
+              "194"
+            ],
+            "center": [
+              "840",
+              "164"
+            ],
+            "area": "960",
+            "width": "16",
+            "height": "60",
+            "yolo_confidence": "0.6313953",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.9998966455459595,
+            "combined_confidence": "0.63133"
+          },
+          {
+            "bbox": [
+              "179",
+              "132",
+              "240",
+              "221"
+            ],
+            "center": [
+              "209",
+              "176"
+            ],
+            "area": "5429",
+            "width": "61",
+            "height": "89",
+            "yolo_confidence": "0.56703264",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.7924450039863586,
+            "combined_confidence": "0.4493422"
+          },
+          {
+            "bbox": [
+              "785",
+              "135",
+              "810",
+              "195"
+            ],
+            "center": [
+              "797",
+              "165"
+            ],
+            "area": "1500",
+            "width": "25",
+            "height": "60",
+            "yolo_confidence": "0.54755175",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.9998980760574341,
+            "combined_confidence": "0.54749596"
+          },
+          {
+            "bbox": [
+              "706",
+              "134",
+              "729",
+              "197"
+            ],
+            "center": [
+              "717",
+              "165"
+            ],
+            "area": "1449",
+            "width": "23",
+            "height": "63",
+            "yolo_confidence": "0.5080432",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.9999254941940308,
+            "combined_confidence": "0.5080054"
+          }
+        ],
+        "center": "[432.04545455 172.5       ]",
+        "product_types": {
+          "Chapo Yaourt": 1,
+          "Chapo Coco": 9,
+          "Chapo Exotique": 5,
+          "Alex": 1,
+          "Magnum Black": 6
+        },
+        "dominant_type": "Chapo Coco",
+        "size": 22,
+        "bbox": [
+          "0",
+          "131",
+          "848",
+          "227"
+        ]
+      }
+    ],
+    "product_counts": {
+      "Chapo Yaourt": 3,
+      "Chapo Coco": 41,
+      "Chapo Exotique": 19,
+      "Alex": 12,
+      "Amalfi 3in1": 7,
+      "Magnum Black": 14
+    },
+    "scarcity_scores": {
+      "Alex": 0.875,
+      "Amalfi 3in1": 0.9270833333333334,
+      "Amalfi K": 1.0,
+      "Amalfi proHair": 1.0,
+      "Chapo Amande": 1.0,
+      "Chapo Coco": 0.5729166666666667,
+      "Chapo Exotique": 0.8020833333333334,
+      "Chapo Yaourt": 0.96875,
+      "Magnum Black": 0.8541666666666666,
+      "Magnum Gold": 1.0
+    },
+    "spatial_patterns": {
+      "dominant_pattern": "horizontal",
+      "horizontal_spread": 229.78805055329428,
+      "vertical_spread": 119.24498764725105
+    }
+  },
+  "spatial_context_analysis": [
+    {
+      "void_id": 0,
+      "left_neighbors": [
+        {
+          "product_id": 15,
+          "product": {
+            "bbox": [
+              "635",
+              "28",
+              "662",
+              "103"
+            ],
+            "center": [
+              "648",
+              "65"
+            ],
+            "area": "2025",
+            "width": "27",
+            "height": "75",
+            "yolo_confidence": "0.813176",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.8967034816741943,
+            "combined_confidence": "0.7291777"
+          },
+          "distance": "76",
+          "product_type": "Chapo Coco"
+        }
+      ],
+      "right_neighbors": [
+        {
+          "product_id": 91,
+          "product": {
+            "bbox": [
+              "781",
+              "43",
+              "806",
+              "102"
+            ],
+            "center": [
+              "793",
+              "72"
+            ],
+            "area": "1475",
+            "width": "25",
+            "height": "59",
+            "yolo_confidence": "0.5819911",
+            "subclass": "Magnum Black",
+            "subclass_confidence": 0.9994170665740967,
+            "combined_confidence": "0.5816518"
+          },
+          "distance": "69",
+          "product_type": "Magnum Black"
+        }
+      ],
+      "top_neighbors": [],
+      "bottom_neighbors": [],
+      "horizontal_context": null,
+      "vertical_context": null,
+      "dominant_context": {
+        "product_type": "Magnum Black",
+        "confidence": 0.6,
+        "direction": "right",
+        "distance": "69",
+        "context_strength": "moderate"
+      }
+    },
+    {
+      "void_id": 1,
+      "left_neighbors": [],
+      "right_neighbors": [
+        {
+          "product_id": 24,
+          "product": {
+            "bbox": [
+              "50",
+              "257",
+              "84",
+              "342"
+            ],
+            "center": [
+              "67",
+              "299"
+            ],
+            "area": "2890",
+            "width": "34",
+            "height": "85",
+            "yolo_confidence": "0.8045883",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.6821022033691406,
+            "combined_confidence": "0.54881144"
+          },
+          "distance": "43",
+          "product_type": "Chapo Coco"
+        },
+        {
+          "product_id": 2,
+          "product": {
+            "bbox": [
+              "87",
+              "256",
+              "124",
+              "344"
+            ],
+            "center": [
+              "105",
+              "300"
+            ],
+            "area": "3256",
+            "width": "37",
+            "height": "88",
+            "yolo_confidence": "0.84335047",
+            "subclass": "Chapo Coco",
+            "subclass_confidence": 0.6661534309387207,
+            "combined_confidence": "0.56180084"
+          },
+          "distance": "81",
+          "product_type": "Chapo Coco"
+        }
+      ],
+      "top_neighbors": [],
+      "bottom_neighbors": [],
+      "horizontal_context": null,
+      "vertical_context": null,
+      "dominant_context": {
+        "product_type": "Chapo Coco",
+        "confidence": 0.6,
+        "direction": "right",
+        "distance": "43",
+        "context_strength": "moderate"
+      }
+    }
+  ],
+  "void_analysis": [
+    {
+      "void_id": 0,
+      "void_bbox": [
+        "666",
+        "0",
+        "782",
+        "106"
+      ],
+      "void_area": "12296",
+      "spatial_context": {
+        "void_id": 0,
+        "left_neighbors": [
+          {
+            "product_id": 15,
+            "product": {
+              "bbox": [
+                "635",
+                "28",
+                "662",
+                "103"
+              ],
+              "center": [
+                "648",
+                "65"
+              ],
+              "area": "2025",
+              "width": "27",
+              "height": "75",
+              "yolo_confidence": "0.813176",
+              "subclass": "Chapo Coco",
+              "subclass_confidence": 0.8967034816741943,
+              "combined_confidence": "0.7291777"
+            },
+            "distance": "76",
+            "product_type": "Chapo Coco"
+          }
+        ],
+        "right_neighbors": [
+          {
+            "product_id": 91,
+            "product": {
+              "bbox": [
+                "781",
+                "43",
+                "806",
+                "102"
+              ],
+              "center": [
+                "793",
+                "72"
+              ],
+              "area": "1475",
+              "width": "25",
+              "height": "59",
+              "yolo_confidence": "0.5819911",
+              "subclass": "Magnum Black",
+              "subclass_confidence": 0.9994170665740967,
+              "combined_confidence": "0.5816518"
+            },
+            "distance": "69",
+            "product_type": "Magnum Black"
+          }
+        ],
+        "top_neighbors": [],
+        "bottom_neighbors": [],
+        "horizontal_context": null,
+        "vertical_context": null,
+        "dominant_context": {
+          "product_type": "Magnum Black",
+          "confidence": 0.6,
+          "direction": "right",
+          "distance": "69",
+          "context_strength": "moderate"
+        }
+      },
+      "assignment_candidates": [],
+      "final_assignment": {
+        "product_type": "Magnum Black",
+        "confidence": 0.6,
+        "assignment_method": "spatial_context_moderate",
+        "primary_factors": [
+          "spatial_context"
+        ]
+      },
+      "assignment_confidence": 0.6,
+      "assignment_reasoning": [
+        "Moderate spatial context: Magnum Black product on right side",
+        "Distance: 69px",
+        "Single-sided neighbor analysis suggests likely product type"
+      ],
+      "estimated_product_count": 5
+    },
+    {
+      "void_id": 1,
+      "void_bbox": [
+        "0",
+        "253",
+        "48",
+        "345"
+      ],
+      "void_area": "4416",
+      "spatial_context": {
+        "void_id": 1,
+        "left_neighbors": [],
+        "right_neighbors": [
+          {
+            "product_id": 24,
+            "product": {
+              "bbox": [
+                "50",
+                "257",
+                "84",
+                "342"
+              ],
+              "center": [
+                "67",
+                "299"
+              ],
+              "area": "2890",
+              "width": "34",
+              "height": "85",
+              "yolo_confidence": "0.8045883",
+              "subclass": "Chapo Coco",
+              "subclass_confidence": 0.6821022033691406,
+              "combined_confidence": "0.54881144"
+            },
+            "distance": "43",
+            "product_type": "Chapo Coco"
+          },
+          {
+            "product_id": 2,
+            "product": {
+              "bbox": [
+                "87",
+                "256",
+                "124",
+                "344"
+              ],
+              "center": [
+                "105",
+                "300"
+              ],
+              "area": "3256",
+              "width": "37",
+              "height": "88",
+              "yolo_confidence": "0.84335047",
+              "subclass": "Chapo Coco",
+              "subclass_confidence": 0.6661534309387207,
+              "combined_confidence": "0.56180084"
+            },
+            "distance": "81",
+            "product_type": "Chapo Coco"
+          }
+        ],
+        "top_neighbors": [],
+        "bottom_neighbors": [],
+        "horizontal_context": null,
+        "vertical_context": null,
+        "dominant_context": {
+          "product_type": "Chapo Coco",
+          "confidence": 0.6,
+          "direction": "right",
+          "distance": "43",
+          "context_strength": "moderate"
+        }
+      },
+      "assignment_candidates": [],
+      "final_assignment": {
+        "product_type": "Chapo Coco",
+        "confidence": 0.6,
+        "assignment_method": "spatial_context_moderate",
+        "primary_factors": [
+          "spatial_context"
+        ]
+      },
+      "assignment_confidence": 0.6,
+      "assignment_reasoning": [
+        "Moderate spatial context: Chapo Coco product on right side",
+        "Distance: 43px",
+        "Single-sided neighbor analysis suggests likely product type"
+      ],
+      "estimated_product_count": 1
+    }
+  ],
+  "summary": {
+    "total_products_detected": 96,
+    "total_void_areas": 2,
+    "product_counts_by_type": {
+      "Chapo Yaourt": 3,
+      "Chapo Coco": 41,
+      "Chapo Exotique": 19,
+      "Alex": 12,
+      "Amalfi 3in1": 7,
+      "Magnum Black": 14
+    },
+    "estimated_missing_products": 6,
+    "missing_by_product_type": {
+      "Magnum Black": 5,
+      "Chapo Coco": 1
+    },
+    "stock_levels": {
+      "Alex": {
+        "current_count": 12,
+        "estimated_full_count": 12,
+        "stock_percentage": 100.0,
+        "missing_count": 0
+      },
+      "Amalfi 3in1": {
+        "current_count": 7,
+        "estimated_full_count": 7,
+        "stock_percentage": 100.0,
+        "missing_count": 0
+      },
+      "Chapo Coco": {
+        "current_count": 41,
+        "estimated_full_count": 42,
+        "stock_percentage": 97.61904761904762,
+        "missing_count": 1
+      },
+      "Chapo Exotique": {
+        "current_count": 19,
+        "estimated_full_count": 19,
+        "stock_percentage": 100.0,
+        "missing_count": 0
+      },
+      "Chapo Yaourt": {
+        "current_count": 3,
+        "estimated_full_count": 3,
+        "stock_percentage": 100.0,
+        "missing_count": 0
+      },
+      "Magnum Black": {
+        "current_count": 14,
+        "estimated_full_count": 19,
+        "stock_percentage": 73.68421052631578,
+        "missing_count": 5
+      }
+    },
+    "overall_stock_percentage": 94.11764705882352,
+    "assignment_methods": {
+      "spatial_context_moderate": 2
+    },
+    "average_assignment_confidence": 0.6
+  },
+  "inference_time_ms": 449.66793060302734,
+  "device": "CPU",
+  "raw_image": "[[[202 183 169]\n  [194 175 161]\n  [182 162 153]\n  ...\n  [217 215 216]\n  [217 215 216]\n  [217 215 216]]\n\n [[202 183 169]\n  [193 174 160]\n  [185 165 156]\n  ...\n  [233 231 232]\n  [233 231 232]\n  [233 231 232]]\n\n [[202 183 171]\n  [193 174 162]\n  [184 167 157]\n  ...\n  [250 248 249]\n  [250 248 249]\n  [250 248 249]]\n\n ...\n\n [[ 47  91  65]\n  [ 43  87  61]\n  [ 44  96  67]\n  ...\n  [ 34  13   0]\n  [ 34  13   0]\n  [ 34  13   0]]\n\n [[ 28  99  64]\n  [ 28  99  64]\n  [ 21 100  62]\n  ...\n  [ 35  14   1]\n  [ 35  14   1]\n  [ 35  14   1]]\n\n [[ 22  93  58]\n  [ 21  92  57]\n  [ 14  93  55]\n  ...\n  [ 35  14   1]\n  [ 35  14   1]\n  [ 35  14   1]]]"
+}

@@ -1,0 +1,27 @@
+{
+  "saved_at": "2026-05-05T00:25:08.583263",
+  "state": {
+    "source_type": "NONE",
+    "source_path": "",
+    "workspace_index": 0,
+    "viewer_compare_mode": "slider",
+    "heatmap_enabled": false,
+    "focus_mode": false
+  },
+  "auxiliary_windows": {
+    "config": {
+      "geometry": "AdnQywADAAAAAAAAAAAAAAAAAi8AAAMzAAAAAAAAAAAAAAIvAAADMwAAAAAAAAAABgAAAAAAAAAAAAAAAi8AAAMz",
+      "visible": false
+    },
+    "analytics": {
+      "geometry": "AdnQywADAAAAAAAAAAAAAAAAAhsAAAMLAAAAAAAAAAAAAAIbAAADCwAAAAAAAAAABgAAAAAAAAAAAAAAAhsAAAML",
+      "visible": false
+    },
+    "inventory": {
+      "geometry": "AdnQywADAAAAAAAAAAAAAAAAAhsAAALPAAAAAAAAAAAAAAIbAAACzwAAAAAAAAAABgAAAAAAAAAAAAAAAhsAAALP",
+      "visible": false
+    },
+    "log_dock_visible": false,
+    "void_feed_visible": false
+  }
+}

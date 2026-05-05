@@ -1,0 +1,25 @@
+{
+  "saved_at": "2026-05-05T00:47:41.696200",
+  "state": {
+    "source_type": "RTSP",
+    "source_path": "rtsp://localhost:8554/mystream",
+    "heatmap_enabled": false,
+    "focus_mode": false
+  },
+  "auxiliary_windows": {
+    "config": {
+      "geometry": "AdnQywADAAAAAAABAAAAGgAAAjAAAAMuAAAAAQAAABoAAAIwAAADLgAAAAAAAAAABgAAAAABAAAAGgAAAjAAAAMu",
+      "visible": false
+    },
+    "analytics": {
+      "geometry": "AdnQywADAAAAAAAB/////AAAAhwAAAMlAAAAAQAAABoAAAIcAAADJQAAAAAAAAAABgAAAAABAAAAGgAAAhwAAAMl",
+      "visible": false
+    },
+    "inventory": {
+      "geometry": "AdnQywADAAAAAAAB/////AAAAhwAAALpAAAAAQAAABoAAAIcAAAC6QAAAAAAAAAABgAAAAABAAAAGgAAAhwAAALp",
+      "visible": false
+    },
+    "log_dock_visible": false,
+    "void_feed_visible": false
+  }
+}
