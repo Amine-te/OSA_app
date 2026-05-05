@@ -49,58 +49,22 @@ class SidebarPanel(QWidget):
                 QSizePolicy.Policy.Expanding,
                 QSizePolicy.Policy.Expanding,
             )
-            bg = COLORS["bg_primary"]
-            self.setStyleSheet(
-                f"""
-                QWidget#sidebar_panel {{ background: {bg}; }}
-                QWidget {{ background: transparent; }}
-                """
-            )
         else:
             self.setFixedWidth(320)
             self.setSizePolicy(
                 QSizePolicy.Policy.Fixed,
                 QSizePolicy.Policy.Expanding,
             )
-            if platform.system() == "Darwin":
-                self.setStyleSheet(
-                    f"""
-                    QWidget#sidebar_panel {{
-                        background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                            stop:0 rgba(19, 23, 32, 242),
-                            stop:0.3 rgba(22, 27, 34, 238),
-                            stop:0.7 rgba(19, 23, 32, 240),
-                            stop:1 rgba(16, 20, 28, 245));
-                        border-right: 1px solid rgba(102, 126, 234, 0.12);
-                    }}
-                    QWidget {{ background: transparent; }}
-                    """
-                )
-            else:
-                self.setStyleSheet(
-                    f"""
-                    QWidget {{
-                        background: {COLORS['bg_sidebar']};
-                    }}
-                    """
-                )
 
         # Scroll area for long content
         outer = QVBoxLayout(self)
         outer.setContentsMargins(0, 0, 0, 0)
 
-        scroll = QScrollArea()
-        scroll.setWidgetResizable(True)
-        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        scroll_bg = COLORS["bg_primary"] if full_window else COLORS["bg_sidebar"]
-        scroll.setStyleSheet(
-            f"""
-            QScrollArea {{
-                border: none;
-                background: {scroll_bg};
-            }}
-            """
-        )
+        self.scroll_area = QScrollArea()
+        self.scroll_area.setWidgetResizable(True)
+        self.scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.scroll_area.setFrameShape(self.scroll_area.Shape.NoFrame)
+        self.scroll_area.setStyleSheet("background: transparent;")
 
         container = QWidget()
         self.layout_main = QVBoxLayout(container)
@@ -109,10 +73,7 @@ class SidebarPanel(QWidget):
 
         # ── Header ──
         hdr = QLabel("⚙️  Configuration")
-        hdr.setStyleSheet(
-            f"font-size: 18px; font-weight: 700; color: {COLORS['text_primary']}; "
-            f"padding-bottom: 8px; border-bottom: 1px solid {COLORS['border']}; background: transparent;"
-        )
+        hdr.setProperty("class", "heading")
         self.layout_main.addWidget(hdr)
 
         # ── Model Paths Section ──
@@ -141,9 +102,7 @@ class SidebarPanel(QWidget):
         class_str = ", ".join(class_names) if class_names else ""
 
         info_lbl = QLabel(f"📋 {len(class_names)} classes loaded from config")
-        info_lbl.setStyleSheet(
-            f"font-size: 11px; color: {COLORS['info']}; padding: 4px 0; background: transparent;"
-        )
+        info_lbl.setProperty("class", "muted")
         self.layout_main.addWidget(info_lbl)
 
         self.input_classes = QLineEdit(class_str)
@@ -190,31 +149,23 @@ class SidebarPanel(QWidget):
         self.layout_main.addStretch()
 
         # ── Footer ──
-        footer = QLabel("🛒 OSA Desktop v2.0")
-        footer.setStyleSheet(
-            f"font-size: 11px; color: {COLORS['text_muted']}; padding: 8px 0; background: transparent;"
-        )
+        footer = QLabel("🛒 OSA Desktop v2.1")
+        footer.setProperty("class", "muted")
         footer.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.layout_main.addWidget(footer)
 
-        scroll.setWidget(container)
-        outer.addWidget(scroll)
+        self.scroll_area.setWidget(container)
+        outer.addWidget(self.scroll_area)
 
     # ── Helpers ──────────────────────────────────────────────
 
     def _add_section(self, title):
-        lbl = QLabel(title)
-        lbl.setStyleSheet(
-            f"font-size: 13px; font-weight: 600; color: {COLORS['accent_start']}; "
-            f"padding-top: 12px; padding-bottom: 4px; background: transparent;"
-        )
+        lbl = QLabel(title.upper())
+        lbl.setProperty("class", "subheading")
         self.layout_main.addWidget(lbl)
 
     def _add_path_field(self, label, default_value, filter_str):
         lbl = QLabel(label)
-        lbl.setStyleSheet(
-            f"font-size: 12px; color: {COLORS['text_secondary']}; padding: 2px 0; background: transparent;"
-        )
         self.layout_main.addWidget(lbl)
 
         row = QHBoxLayout()
@@ -235,9 +186,6 @@ class SidebarPanel(QWidget):
 
     def _add_slider(self, label, default, min_val, max_val):
         lbl = QLabel(label)
-        lbl.setStyleSheet(
-            f"font-size: 12px; color: {COLORS['text_secondary']}; padding: 2px 0; background: transparent;"
-        )
         self.layout_main.addWidget(lbl)
 
         row = QHBoxLayout()
@@ -288,8 +236,8 @@ class SidebarPanel(QWidget):
         self.initialize_requested.emit(config)
 
     def set_status(self, text, is_error=False):
-        color = COLORS["danger"] if is_error else COLORS["success"]
-        self.lbl_status.setStyleSheet(
-            f"font-size: 12px; color: {color}; padding: 4px 0; background: transparent;"
-        )
         self.lbl_status.setText(text)
+        if is_error:
+            self.lbl_status.setStyleSheet("color: #DC2626; font-weight: bold;")
+        else:
+            self.lbl_status.setStyleSheet("color: #16A34A; font-weight: bold;")

@@ -84,19 +84,19 @@ class AnalyticsWindow(QMainWindow):
 
         # Session summary (without live inventory KPIs)
         self.kpi_lbl = QLabel("Samples: —   Duration: —   Last update: —")
-        self.kpi_lbl.setStyleSheet(f"color:{COLORS['text_primary']}; font-size: 12px;")
+        self.kpi_lbl.setStyleSheet("font-size: 12px;")
         hl.addWidget(self.kpi_lbl)
 
         # Trend plots (clear labels + legend)
         stock_title = QLabel("Stock Health Trend")
-        stock_title.setStyleSheet(f"color:{COLORS['text_primary']}; font-weight:600;")
+        stock_title.setStyleSheet("font-weight: 600;")
         stock_sub = QLabel("Overall stock percentage over monitoring time.")
-        stock_sub.setStyleSheet(f"color:{COLORS['text_secondary']}; font-size:11px;")
+        stock_sub.setProperty("class", "muted")
         hl.addWidget(stock_title)
         hl.addWidget(stock_sub)
 
         self.plot_stock = pg.PlotWidget()
-        self.plot_stock.setBackground(COLORS["bg_card"])
+        self.plot_stock.setBackground(COLORS.get("plot_bg", COLORS["bg_card"]))
         self.plot_stock.showGrid(x=True, y=True, alpha=0.12)
         self.plot_stock.setLabel("left", "Stock (%)", color=COLORS["text_muted"])
         self.plot_stock.setLabel("bottom", "Elapsed time (s)", color=COLORS["text_muted"])
@@ -113,14 +113,14 @@ class AnalyticsWindow(QMainWindow):
         hl.addWidget(self.plot_stock, stretch=1)
 
         events_title = QLabel("Shelf Events Trend")
-        events_title.setStyleSheet(f"color:{COLORS['text_primary']}; font-weight:600;")
+        events_title.setStyleSheet("font-weight: 600;")
         events_sub = QLabel("Missing products and void detections over monitoring time.")
-        events_sub.setStyleSheet(f"color:{COLORS['text_secondary']}; font-size:11px;")
+        events_sub.setProperty("class", "muted")
         hl.addWidget(events_title)
         hl.addWidget(events_sub)
 
         self.plot_events = pg.PlotWidget()
-        self.plot_events.setBackground(COLORS["bg_card"])
+        self.plot_events.setBackground(COLORS.get("plot_bg", COLORS["bg_card"]))
         self.plot_events.showGrid(x=True, y=True, alpha=0.12)
         self.plot_events.setLabel("left", "Count", color=COLORS["text_muted"])
         self.plot_events.setLabel("bottom", "Elapsed time (s)", color=COLORS["text_muted"])
@@ -147,9 +147,9 @@ class AnalyticsWindow(QMainWindow):
         kl.setContentsMargins(0, 0, 0, 0)
         kl.setSpacing(10)
         kpi_title = QLabel("Operational KPIs")
-        kpi_title.setStyleSheet(f"color:{COLORS['text_primary']}; font-weight:600; font-size:13px;")
+        kpi_title.setStyleSheet("font-weight: 600; font-size: 13px;")
         kpi_sub = QLabel("Computed from selected range and product filter.")
-        kpi_sub.setStyleSheet(f"color:{COLORS['text_secondary']}; font-size:11px;")
+        kpi_sub.setProperty("class", "muted")
         kl.addWidget(kpi_title)
         kl.addWidget(kpi_sub)
         self.kpi_grid_host = QWidget()
@@ -170,9 +170,9 @@ class AnalyticsWindow(QMainWindow):
             r = idx // 2
             c = (idx % 2) * 2
             t = QLabel(title)
-            t.setStyleSheet(f"color:{COLORS['text_secondary']}; font-size:11px;")
+            t.setProperty("class", "muted")
             v = QLabel("—")
-            v.setStyleSheet(f"color:{COLORS['text_primary']}; font-size:16px; font-weight:700;")
+            v.setStyleSheet("font-size: 16px; font-weight: 700;")
             grid.addWidget(t, r, c)
             grid.addWidget(v, r, c + 1)
             self.kpi_value_labels[key] = v
@@ -188,6 +188,19 @@ class AnalyticsWindow(QMainWindow):
         self._store = None
         self._session_id = ""
         self._suspend_product_events = False
+
+    def apply_theme(self) -> None:
+        """Refresh pyqtgraph plot backgrounds after a theme switch."""
+        bg = COLORS.get("plot_bg", COLORS["bg_card"])
+        self.plot_stock.setBackground(bg)
+        self.plot_events.setBackground(bg)
+        
+        # Also refresh axis pen colors if possible, but at least text colors will update via global QSS
+        
+        self.history_hint.setStyleSheet(
+            f"background:{COLORS['bg_card']}; border:1px solid {COLORS['border']}; "
+            f"border-radius:8px; padding:12px;"
+        )
 
     def set_enabled_for_source(self, enabled: bool) -> None:
         """When disabled (Image Inspection), show an empty-state message."""
@@ -363,3 +376,8 @@ class InventoryReportWindow(QMainWindow):
         inv_split.setStretchFactor(0, 3)
         inv_split.setStretchFactor(1, 2)
         self.setCentralWidget(inv_split)
+
+    def apply_theme(self) -> None:
+        """Propagate theme switch to child widgets."""
+        self.img_table.apply_theme()
+        self.report_panel.apply_theme()

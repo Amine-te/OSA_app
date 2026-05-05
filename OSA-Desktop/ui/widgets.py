@@ -58,10 +58,11 @@ class GradientHeader(QWidget):
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         rect = self.rect()
 
+        # Read accent colors from live COLORS so theme switching works
         grad = QLinearGradient(0, 0, rect.width(), 0)
-        grad.setColorAt(0.0, QColor("#667eea"))
-        grad.setColorAt(0.5, QColor("#7161c0"))
-        grad.setColorAt(1.0, QColor("#764ba2"))
+        grad.setColorAt(0.0, QColor(COLORS["accent_start"]))
+        grad.setColorAt(0.5, QColor(COLORS["accent_mid"]))
+        grad.setColorAt(1.0, QColor(COLORS["accent_end"]))
         painter.setBrush(QBrush(grad))
         painter.setPen(Qt.PenStyle.NoPen)
 
@@ -69,6 +70,7 @@ class GradientHeader(QWidget):
         path.addRoundedRect(QRectF(rect), 8, 8)
         painter.drawPath(path)
 
+        # Subtle dot pattern overlay
         painter.setPen(Qt.PenStyle.NoPen)
         painter.setBrush(QColor(255, 255, 255, 6))
         for x in range(0, rect.width(), 24):
@@ -76,22 +78,22 @@ class GradientHeader(QWidget):
                 painter.drawEllipse(x, y, 1, 1)
 
         painter.setPen(QColor("white"))
-        title_font = QFont("Helvetica Neue", 13, QFont.Weight.Bold)
+        title_font = QFont("Inter", 13, QFont.Weight.Bold)
         painter.setFont(title_font)
         painter.drawText(
-            QRectF(rect.x() + 12, rect.y() + 6, rect.width() - 24, 20),
+            QRectF(rect.x() + 14, rect.y() + 6, rect.width() - 80, 20),
             Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter,
             self.title,
         )
 
-        chip = f"{self.state_text}"
+        chip = self.state_text
         if self.workspace_text:
-            chip = f"{self.workspace_text} · {chip}"
+            chip = f"{self.workspace_text}  ·  {chip}"
         painter.setPen(QColor(255, 255, 255, 200))
-        chip_font = QFont("Helvetica Neue", 10, QFont.Weight.DemiBold)
+        chip_font = QFont("Inter", 10, QFont.Weight.DemiBold)
         painter.setFont(chip_font)
         painter.drawText(
-            QRectF(rect.x() + 12, rect.y() + 24, rect.width() - 24, 18),
+            QRectF(rect.x() + 14, rect.y() + 24, rect.width() - 80, 18),
             Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter,
             chip,
         )
@@ -302,12 +304,16 @@ class StockTable(QTableWidget):
         self.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         self.setAlternatingRowColors(True)
+        self.apply_theme()
+        self.setMinimumHeight(300)
+
+    def apply_theme(self):
+        """Re-apply alternating row colors when theme changes."""
         self.setStyleSheet(f"""
             QTableWidget {{
                 alternate-background-color: {COLORS["bg_secondary"]};
             }}
         """)
-        self.setMinimumHeight(300)
 
     def load_data(self, stock_levels: dict):
         """Populate table from pipeline summary stock_levels dict."""
@@ -594,7 +600,9 @@ class StaticReportCanvas(QWidget):
 
     def plot_summary(self, summary_data):
         self.ax.clear()
-        self.ax.set_facecolor(COLORS["bg_card"])
+        plot_bg = COLORS.get("plot_bg", COLORS["bg_card"])
+        self.fig.set_facecolor(plot_bg)
+        self.ax.set_facecolor(plot_bg)
 
         products = list(summary_data.get('stock_levels', {}).keys())
         stock_pcts = [d.get('stock_percentage', 0)
@@ -616,8 +624,6 @@ class StaticReportCanvas(QWidget):
             self.ax.spines['right'].set_visible(False)
             self.ax.spines['left'].set_color(COLORS["border"])
             self.ax.spines['bottom'].set_color(COLORS["border"])
-
-            # Value labels on bars
             for bar, pct in zip(bars, stock_pcts):
                 self.ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1.5,
                              f'{pct:.0f}%', ha='center', va='bottom',
@@ -672,7 +678,7 @@ class ToastNotification(QWidget):
         path = QPainterPath()
         path.addRoundedRect(QRectF(self.rect()).adjusted(2, 2, -2, -2), 10, 10)
         painter.setPen(QPen(QColor(COLORS["border_accent"]), 1))
-        painter.setBrush(QColor(COLORS["bg_card"]))
+        painter.setBrush(QColor(COLORS["bg_secondary"]))
         painter.drawPath(path)
 
         # Accent bar
@@ -683,12 +689,12 @@ class ToastNotification(QWidget):
         painter.drawPath(bar)
 
         # Icon
-        painter.setFont(QFont("Helvetica Neue", 18))
+        painter.setFont(QFont("Inter", 18))
         painter.setPen(QColor(COLORS["text_primary"]))
         painter.drawText(18, 37, self._icon)
 
         # Message
-        painter.setFont(QFont("Helvetica Neue", 12))
+        painter.setFont(QFont("Inter", 12))
         painter.setPen(QColor(COLORS["text_primary"]))
         painter.drawText(48, 34, self._message)
         painter.end()
@@ -826,9 +832,9 @@ class LogConsole(QWidget):
         self.log_area.setMaximumHeight(120)
         self.log_area.setStyleSheet(f"""
             QTextEdit {{
-                background: #0d1117;
+                background: {COLORS['bg_primary']};
                 color: {COLORS['success']};
-                font-family: 'Menlo', 'Consolas', monospace;
+                font-family: 'Cascadia Code', 'Consolas', 'Menlo', monospace;
                 font-size: 11px;
                 border: 1px solid {COLORS['border']};
                 padding: 4px 6px;
@@ -836,6 +842,44 @@ class LogConsole(QWidget):
         """)
         layout.addWidget(self.log_area)
         self._expanded = True
+
+    def apply_theme(self):
+        self.log_area.setStyleSheet(f"""
+            QTextEdit {{
+                background: {COLORS['bg_primary']};
+                color: {COLORS['success']};
+                font-family: 'Cascadia Code', 'Consolas', 'Menlo', monospace;
+                font-size: 11px;
+                border: 1px solid {COLORS['border']};
+                padding: 4px 6px;
+            }}
+        """)
+        _combo_ss = f"""
+            QComboBox {{
+                background: {COLORS['bg_input']};
+                color: {COLORS['text_primary']};
+                border: 1px solid {COLORS['border']};
+                border-radius: 4px;
+                padding: 4px 8px;
+                font-size: 11px;
+            }}
+            QComboBox::drop-down {{ border: none; }}
+        """
+        _line_ss = f"""
+            QLineEdit {{
+                background: {COLORS['bg_input']};
+                color: {COLORS['text_primary']};
+                border: 1px solid {COLORS['border']};
+                border-radius: 4px;
+                padding: 4px 8px;
+                font-size: 11px;
+            }}
+            QLineEdit::placeholder {{
+                color: {COLORS['text_muted']};
+            }}
+        """
+        self.level_filter.setStyleSheet(_combo_ss)
+        self.search_edit.setStyleSheet(_line_ss)
 
     def toggle(self):
         self._expanded = not self._expanded

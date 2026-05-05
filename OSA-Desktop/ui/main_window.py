@@ -39,10 +39,10 @@ from core import session_manager
 from core.history_store import HistoryStore
 
 from workers.pipeline_worker import PipelineWorker
-from ui.styles import COLORS
+from ui.styles import COLORS, toggle_theme, current_theme
 from ui.auxiliary_windows import AnalyticsWindow, ConfigWindow, InventoryReportWindow
 from ui.viewer import SplitCompareViewer, HUDOverlay
-from ui.widgets import GradientHeader, ToastManager, LogConsole
+from ui.widgets import ToastManager, LogConsole
 from ui.error_banner import ErrorBanner
 
 
@@ -119,6 +119,12 @@ class MainWindow(QMainWindow):
         a_feed = QAction("Live detection feed", self)
         a_feed.triggered.connect(self._toggle_void_feed_dock)
         view.addAction(a_feed)
+
+        view.addSeparator()
+        self.act_theme = QAction("🌙  Switch to Dark Theme", self)
+        self.act_theme.setShortcut(QKeySequence("Ctrl+Shift+T"))
+        self.act_theme.triggered.connect(self._on_toggle_theme)
+        view.addAction(self.act_theme)
 
     def _setup_auxiliary_windows(self):
         self._config_win = ConfigWindow(self.config, self)
@@ -236,8 +242,7 @@ class MainWindow(QMainWindow):
         root.setContentsMargins(0, 0, 0, 0)
         root.setSpacing(0)
 
-        self.header = GradientHeader("OSA")
-        root.addWidget(self.header)
+
 
         self.error_banner = ErrorBanner()
         self.error_banner.retry_clicked.connect(self._retry_last_action)
@@ -246,7 +251,7 @@ class MainWindow(QMainWindow):
 
         self.setCentralWidget(wrap)
 
-        self._build_toolbar()
+
         self._build_workspaces()
         self._build_docks()
 
@@ -256,28 +261,9 @@ class MainWindow(QMainWindow):
         inner.addWidget(self.main_stack, stretch=1)
         wrap.layout().addLayout(inner)
 
-        self._update_header_state()
 
-    def _build_toolbar(self):
-        tb = QToolBar("Transport")
-        tb.setMovable(False)
-        tb.setFloatable(False)
-        tb.setIconSize(tb.iconSize())
-        self.addToolBar(tb)
 
-        self.act_start = QAction("▶  Start", self)
-        self.act_start.triggered.connect(self._on_start_clicked)
-        tb.addAction(self.act_start)
 
-        self.act_pause = QAction("⏸  Pause", self)
-        self.act_pause.setEnabled(False)
-        self.act_pause.triggered.connect(self._on_pause_clicked)
-        tb.addAction(self.act_pause)
-
-        self.act_stop = QAction("⏹  Stop", self)
-        self.act_stop.setEnabled(False)
-        self.act_stop.triggered.connect(self._on_stop_clicked)
-        tb.addAction(self.act_stop)
 
     def _build_workspaces(self):
         self.main_stack = QStackedWidget()
@@ -421,7 +407,7 @@ class MainWindow(QMainWindow):
     @pyqtSlot(object)
     def _on_bus_pipeline_state(self, state: PipelineState):
         self.app_state.set_pipeline(state)
-        self._update_header_state()
+
 
     @pyqtSlot(str)
     def _on_bus_error(self, msg: str):
@@ -434,18 +420,7 @@ class MainWindow(QMainWindow):
         self.bus.pipeline_status_changed.emit(state)
         if state == PipelineState.ERROR and err:
             self.bus.error_occurred.emit(err)
-        self._update_transport_buttons()
-        self._update_header_state()
 
-    def _update_transport_buttons(self):
-        st = self.app_state.pipeline_state
-        self.act_start.setEnabled(st not in (PipelineState.LOADING, PipelineState.RUNNING))
-        self.act_pause.setEnabled(st == PipelineState.RUNNING)
-        self.act_stop.setEnabled(st in (PipelineState.RUNNING, PipelineState.PAUSED))
-
-    def _update_header_state(self):
-        st = self.app_state.pipeline_state.name
-        self.header.set_state(st, "Live Camera")
 
     def _on_start_clicked(self):
         if not self.pipeline_ready:
@@ -661,6 +636,35 @@ class MainWindow(QMainWindow):
 
     def _export_quick(self):
         self.report_panel._export_pdf()
+
+    def _on_toggle_theme(self):
+        app = QApplication.instance()
+        new_theme = toggle_theme(app)
+
+        # Update menu label
+        if new_theme == "dark":
+            self.act_theme.setText("☀️  Switch to Light Theme")
+        else:
+            self.act_theme.setText("🌙  Switch to Dark Theme")
+
+        # Refresh pyqtgraph plot backgrounds, log console, and inventory window
+        self.perf_panel.apply_theme()
+        self._analytics_win.apply_theme()
+        self._inventory_win.apply_theme()
+        self.log_console.apply_theme()
+
+        # Rebuild dock title bar styles (they use inline COLORS)
+        self._compact_dock_title_bar(self.dock_log, "Log console")
+        self._compact_dock_title_bar(self.dock_void_feed, "Live detection feed")
+
+        # Repaint all custom widgets that use COLORS in paintEvent
+        for w in self.findChildren(QWidget):
+            w.update()
+
+        self.toasts.show_toast(
+            f"{'Dark' if new_theme == 'dark' else 'Light'} theme applied",
+            "🌙" if new_theme == "dark" else "☀️"
+        )
 
     def _try_restore_session(self):
         folder = session_manager.load_last_session_path(self._base_dir)

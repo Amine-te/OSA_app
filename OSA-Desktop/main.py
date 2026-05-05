@@ -18,7 +18,7 @@ from PyQt6.QtGui import QFont
 import yaml
 
 from ui.main_window import MainWindow
-from ui.styles import GLOBAL_QSS, FONT_FAMILY
+from ui.styles import GLOBAL_QSS, FONT_FAMILY, set_theme
 
 
 def main():
@@ -30,18 +30,21 @@ def main():
 
     app = QApplication(sys.argv)
 
-    # Apply global font
-    font = QFont("Helvetica Neue", 13)
+    # Apply global font — Inter with Segoe UI fallback
+    font = QFont("Inter", 13)
     font.setStyleHint(QFont.StyleHint.SansSerif)
     app.setFont(font)
 
-    # Apply dark theme stylesheet
-    app.setStyleSheet(GLOBAL_QSS)
+    # Apply light theme stylesheet (default)
+    set_theme("light", app)
 
     # Load configuration
     config_path = Path(__file__).resolve().parent / "config.yaml"
     with open(config_path, "r") as f:
         config = yaml.safe_load(f)
+
+    # Store app reference on config so MainWindow can pass it to toggle_theme
+    config["_app"] = app
 
     # Initialize main window
     window = MainWindow(config)

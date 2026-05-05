@@ -29,7 +29,7 @@ class ReportPanel(QWidget):
         root.setSpacing(8)
 
         head = QLabel("Session report")
-        head.setStyleSheet(f"font-size: 15px; font-weight: 600; color: {COLORS['text_primary']};")
+        head.setProperty("class", "heading")
         root.addWidget(head)
 
         self.summary = QTextBrowser()
@@ -58,8 +58,21 @@ class ReportPanel(QWidget):
     def set_results(self, results: dict):
         self._results = results
         if not results:
-            self.summary.setHtml("<p>No analysis data yet.</p>")
+            self.summary.setText("No results available.")
+            self.chart.plot_summary({})
             return
+
+        self._build_summary(results)
+        self.chart.plot_summary(results.get("summary", {}))
+
+    def apply_theme(self) -> None:
+        """Refresh static chart background after theme toggle."""
+        if self._results:
+            self.chart.plot_summary(self._results.get("summary", {}))
+        else:
+            self.chart.plot_summary({})
+
+    def _build_summary(self, results: dict):
         s = results.get("summary", {})
         lines = [
             f"<p><b>Total products detected:</b> {s.get('total_products_detected', 0)}</p>",
@@ -68,7 +81,6 @@ class ReportPanel(QWidget):
             f"<p><b>Inference:</b> {results.get('inference_time_ms', 0):.0f} ms on {results.get('device', '—')}</p>",
         ]
         self.summary.setHtml("".join(lines))
-        self.chart.plot_summary(s)
 
     def _export_pdf(self):
         if not self._results:

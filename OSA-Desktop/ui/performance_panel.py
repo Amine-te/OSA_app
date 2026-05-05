@@ -27,7 +27,7 @@ class PerformancePanel(QWidget):
         lay.addWidget(self.device_lbl)
 
         self.plot = pg.PlotWidget()
-        self.plot.setBackground(COLORS["bg_card"])
+        self.plot.setBackground(COLORS.get("plot_bg", COLORS["bg_card"]))
         self.plot.setMinimumHeight(140)
         self.plot.showGrid(x=True, y=True, alpha=0.12)
         self.plot.setLabel("left", "FPS / latency (ms)", color=COLORS["text_muted"])
@@ -62,3 +62,7 @@ class PerformancePanel(QWidget):
         self._t0 = time.time()
         self.fps_curve.setData([], [])
         self.lat_curve.setData([], [])
+
+    def apply_theme(self) -> None:
+        """Refresh plot background after a theme switch."""
+        self.plot.setBackground(COLORS.get("plot_bg", COLORS["bg_card"]))
