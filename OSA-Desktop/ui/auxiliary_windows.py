@@ -13,6 +13,8 @@ from PyQt6.QtWidgets import (
     QTabWidget,
     QVBoxLayout,
     QWidget,
+    QTableWidget,
+    QPushButton,
 )
 
 from ui.performance_panel import PerformancePanel
@@ -152,32 +154,73 @@ class AnalyticsWindow(QMainWindow):
         kpi_sub.setProperty("class", "muted")
         kl.addWidget(kpi_title)
         kl.addWidget(kpi_sub)
-        self.kpi_grid_host = QWidget()
-        grid = QGridLayout(self.kpi_grid_host)
-        grid.setHorizontalSpacing(10)
-        grid.setVerticalSpacing(8)
-        grid.setContentsMargins(0, 0, 0, 0)
-        self.kpi_value_labels = {}
-        kpi_defs = [
-            ("avg_stock", "Average Stock %"),
-            ("stock_vol", "Stock Volatility (std)"),
-            ("time_under", "Time Under 80%"),
-            ("max_missing", "Max Missing (overall)"),
-            ("avg_void", "Average Voids (overall)"),
-            ("trend", "Trend Direction"),
-        ]
-        for idx, (key, title) in enumerate(kpi_defs):
-            r = idx // 2
-            c = (idx % 2) * 2
-            t = QLabel(title)
-            t.setProperty("class", "muted")
-            v = QLabel("—")
-            v.setStyleSheet("font-size: 16px; font-weight: 700;")
-            grid.addWidget(t, r, c)
-            grid.addWidget(v, r, c + 1)
-            self.kpi_value_labels[key] = v
-        kl.addWidget(self.kpi_grid_host)
-        kl.addStretch()
+        self.kpi_table = QTableWidget()
+        self.kpi_table.setColumnCount(5)
+        self.kpi_table.setHorizontalHeaderLabels([
+            "Product", "OSA Rate", "OOS Rate", "Peak Missing", "Time Under 80%"
+        ])
+        self.kpi_table.horizontalHeader().setStretchLastSection(True)
+        from PyQt6.QtWidgets import QHeaderView, QTableWidgetItem
+        self.kpi_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        self.kpi_table.verticalHeader().setVisible(False)
+        self.kpi_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+        self.kpi_table.setAlternatingRowColors(True)
+        self.kpi_table.setStyleSheet(f"""
+            QTableWidget {{
+                alternate-background-color: {COLORS["bg_secondary"]};
+            }}
+        """)
+        kl.addWidget(self.kpi_table)
+
+        # KPI Evolution Graphs Container
+        self.kpi_graphs_container = QWidget()
+        kpi_grid = QGridLayout(self.kpi_graphs_container)
+        kpi_grid.setContentsMargins(0, 0, 0, 0)
+        kpi_grid.setSpacing(8)
+        
+        self.plot_osa = pg.PlotWidget(title="OSA Rate (%)")
+        self.plot_oos = pg.PlotWidget(title="OOS Rate (%)")
+        self.plot_peak = pg.PlotWidget(title="Missing Items")
+        self.plot_under = pg.PlotWidget(title="Threshold Events (<80%)")
+        
+        for p in (self.plot_osa, self.plot_oos, self.plot_peak, self.plot_under):
+            p.setBackground(COLORS.get("plot_bg", COLORS["bg_card"]))
+            p.showGrid(x=True, y=True, alpha=0.12)
+            p.setLabel("bottom", "Elapsed time (s)", color=COLORS["text_muted"])
+            p.setTitle(p.plotItem.titleLabel.text, color=COLORS["text_primary"], size="10pt")
+            
+        self.plot_osa.setYRange(0, 105)
+        self.plot_oos.setYRange(0, 105)
+        self.plot_under.setYRange(-0.1, 1.1)
+
+        self.curve_osa = self.plot_osa.plot(pen=pg.mkPen(color=COLORS["success"], width=2))
+        self.curve_oos = self.plot_oos.plot(pen=pg.mkPen(color=COLORS["danger"], width=2))
+        self.curve_peak = self.plot_peak.plot(pen=pg.mkPen(color=COLORS["warning"], width=2))
+        self.curve_under = self.plot_under.plot(pen=pg.mkPen(color=COLORS["accent_start"], width=2))
+
+        kpi_grid.addWidget(self.plot_osa, 0, 0)
+        kpi_grid.addWidget(self.plot_oos, 0, 1)
+        kpi_grid.addWidget(self.plot_peak, 1, 0)
+        kpi_grid.addWidget(self.plot_under, 1, 1)
+
+        kl.addWidget(self.kpi_graphs_container, stretch=2)
+        self.kpi_graphs_container.setVisible(False)
+
+        # Export row
+        exp_row = QHBoxLayout()
+        exp_lbl = QLabel("📤 Export Data")
+        exp_lbl.setStyleSheet(f"font-weight: 600; color: {COLORS['text_secondary']}; font-size: 13px;")
+        exp_row.addWidget(exp_lbl)
+        exp_row.addStretch()
+        self.btn_export_kpi_csv = QPushButton("📊 CSV")
+        self.btn_export_kpi_csv.setProperty("class", "secondary")
+        self.btn_export_kpi_csv.clicked.connect(self._export_kpis_csv)
+        self.btn_export_kpi_json = QPushButton("💾 JSON")
+        self.btn_export_kpi_json.setProperty("class", "secondary")
+        self.btn_export_kpi_json.clicked.connect(self._export_kpis_json)
+        exp_row.addWidget(self.btn_export_kpi_csv)
+        exp_row.addWidget(self.btn_export_kpi_json)
+        kl.addLayout(exp_row)
 
         self.tabs.addTab(self.page_history, "History")
         self.tabs.addTab(self.page_kpis, "KPIs")
@@ -195,12 +238,23 @@ class AnalyticsWindow(QMainWindow):
         self.plot_stock.setBackground(bg)
         self.plot_events.setBackground(bg)
         
+        if hasattr(self, 'plot_osa'):
+            for p in (self.plot_osa, self.plot_oos, self.plot_peak, self.plot_under):
+                p.setBackground(bg)
+                title = p.plotItem.titleLabel.text
+                p.setTitle(title, color=COLORS["text_primary"], size="10pt")
+        
         # Also refresh axis pen colors if possible, but at least text colors will update via global QSS
         
         self.history_hint.setStyleSheet(
             f"background:{COLORS['bg_card']}; border:1px solid {COLORS['border']}; "
             f"border-radius:8px; padding:12px;"
         )
+        self.kpi_table.setStyleSheet(f"""
+            QTableWidget {{
+                alternate-background-color: {COLORS["bg_secondary"]};
+            }}
+        """)
 
     def set_enabled_for_source(self, enabled: bool) -> None:
         """When disabled (Image Inspection), show an empty-state message."""
@@ -275,11 +329,7 @@ class AnalyticsWindow(QMainWindow):
                     since_ts_ms=since_ts_ms,
                 )
 
-            self._refresh_kpi_tab(
-                stock_series=series_stock_for_kpi,
-                missing_series=series_missing,
-                void_series=series_voids,
-            )
+            self._refresh_kpi_tab(since_ts_ms=since_ts_ms)
 
             if series_stock:
                 t0 = series_stock[0][0]
@@ -313,50 +363,147 @@ class AnalyticsWindow(QMainWindow):
             # Keep UI resilient; failures here should not break the app.
             return
 
-    def _refresh_kpi_tab(self, *, stock_series, missing_series, void_series):
-        stocks = [float(v) for _, v in (stock_series or [])]
-        miss = [float(v) for _, v in (missing_series or [])]
-        voids = [float(v) for _, v in (void_series or [])]
-
-        if stocks:
-            avg_stock = sum(stocks) / len(stocks)
-            vol = statistics.pstdev(stocks) if len(stocks) > 1 else 0.0
-            under = sum(1 for v in stocks if v < 80.0)
-            under_pct = (under / len(stocks)) * 100.0
-            trend = self._trend_label(stocks)
-            self.kpi_value_labels["avg_stock"].setText(f"{avg_stock:.1f}%")
-            self.kpi_value_labels["stock_vol"].setText(f"{vol:.2f}")
-            self.kpi_value_labels["time_under"].setText(f"{under_pct:.1f}%")
-            self.kpi_value_labels["trend"].setText(trend)
+    def _refresh_kpi_tab(self, since_ts_ms):
+        selected = self.product_combo.currentText()
+        
+        # Clear table
+        self.kpi_table.setRowCount(0)
+        self._current_kpis = [] # save for export
+        
+        products_to_eval = []
+        if selected == "All products":
+            products_to_eval = [self.product_combo.itemText(i) for i in range(1, self.product_combo.count())]
         else:
-            self.kpi_value_labels["avg_stock"].setText("—")
-            self.kpi_value_labels["stock_vol"].setText("—")
-            self.kpi_value_labels["time_under"].setText("—")
-            self.kpi_value_labels["trend"].setText("—")
-
-        if miss:
-            self.kpi_value_labels["max_missing"].setText(f"{max(miss):.0f}")
+            products_to_eval = [selected]
+            
+        self.kpi_table.setRowCount(len(products_to_eval))
+        
+        for row, prod_name in enumerate(products_to_eval):
+            kpis = self._store.compute_osa_kpis(
+                session_id=self._session_id, 
+                product_name=prod_name, 
+                since_ts_ms=since_ts_ms
+            )
+            kpis["product"] = prod_name
+            self._current_kpis.append(kpis)
+            
+            # Format data
+            osa_str = f"{kpis['osa_rate']:.1f}%"
+            oos_str = f"{kpis['oos_rate']:.1f}%"
+            peak_str = str(kpis['peak_missing'])
+            under_str = f"{kpis['time_under_threshold']:.1f}%"
+            
+            from PyQt6.QtWidgets import QTableWidgetItem
+            from PyQt6.QtCore import Qt
+            from PyQt6.QtGui import QColor, QBrush
+            
+            # Row items
+            items = [
+                QTableWidgetItem(prod_name),
+                QTableWidgetItem(osa_str),
+                QTableWidgetItem(oos_str),
+                QTableWidgetItem(peak_str),
+                QTableWidgetItem(under_str),
+            ]
+            
+            # Color coding OSA Rate
+            if kpis['osa_rate'] >= 90:
+                color = QColor(COLORS["success"])
+            elif kpis['osa_rate'] >= 70:
+                color = QColor(COLORS["warning"])
+            else:
+                color = QColor(COLORS["danger"])
+            
+            for col, item in enumerate(items):
+                item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                if col == 1: # Highlight OSA rate column
+                    item.setForeground(QBrush(color))
+                self.kpi_table.setItem(row, col, item)
+                
+        # Handle graphs
+        if selected == "All products":
+            self.kpi_graphs_container.setVisible(False)
+            self.curve_osa.setData([], [])
+            self.curve_oos.setData([], [])
+            self.curve_peak.setData([], [])
+            self.curve_under.setData([], [])
         else:
-            self.kpi_value_labels["max_missing"].setText("—")
-        if voids:
-            self.kpi_value_labels["avg_void"].setText(f"{(sum(voids)/len(voids)):.2f}")
-        else:
-            self.kpi_value_labels["avg_void"].setText("—")
+            self.kpi_graphs_container.setVisible(True)
+            series = self._store.query_kpi_evolution_series(
+                session_id=self._session_id,
+                product_name=selected,
+                since_ts_ms=since_ts_ms
+            )
+            
+            osa = series["osa_rate"]
+            if osa:
+                t0 = osa[-1][0] if osa else 0  # the timeseries comes in reversed order from query_series? Wait, query_kpi_evolution_series does `reversed(rows)` which makes it ascending if the original query was `ORDER BY ts_ms DESC`.
+                t0 = osa[0][0]
+                
+                x_osa = [(ts - t0) / 1000.0 for ts, _ in osa]
+                y_osa = [v for _, v in osa]
+                self.curve_osa.setData(x_osa, y_osa)
+                
+                oos = series["oos_rate"]
+                x_oos = [(ts - t0) / 1000.0 for ts, _ in oos]
+                y_oos = [v for _, v in oos]
+                self.curve_oos.setData(x_oos, y_oos)
+                
+                miss = series["missing_count"]
+                x_miss = [(ts - t0) / 1000.0 for ts, _ in miss]
+                y_miss = [v for _, v in miss]
+                self.curve_peak.setData(x_miss, y_miss)
+                
+                under = series["threshold_events"]
+                x_under = [(ts - t0) / 1000.0 for ts, _ in under]
+                y_under = [v for _, v in under]
+                self.curve_under.setData(x_under, y_under)
+            else:
+                self.curve_osa.setData([], [])
+                self.curve_oos.setData([], [])
+                self.curve_peak.setData([], [])
+                self.curve_under.setData([], [])
 
-    def _trend_label(self, ys):
-        if len(ys) < 2:
-            return "Stable"
-        n = len(ys)
-        x_mean = (n - 1) / 2.0
-        y_mean = sum(ys) / n
-        num = sum((i - x_mean) * (y - y_mean) for i, y in enumerate(ys))
-        den = sum((i - x_mean) ** 2 for i in range(n)) or 1.0
-        slope = num / den
-        if slope > 0.05:
-            return "Improving"
-        if slope < -0.05:
-            return "Declining"
-        return "Stable"
+    def _export_kpis_csv(self):
+        if not getattr(self, "_current_kpis", None):
+            return
+        from PyQt6.QtWidgets import QFileDialog
+        from datetime import datetime
+        import csv
+        
+        path, _ = QFileDialog.getSaveFileName(
+            self, "Save KPIs to CSV",
+            f"osa_kpis_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+            "CSV Files (*.csv)"
+        )
+        if path:
+            with open(path, 'w', newline='', encoding='utf-8') as f:
+                writer = csv.writer(f)
+                writer.writerow(["Product", "OSA Rate (%)", "OOS Rate (%)", "Peak Missing", "Time Under 80% (%)"])
+                for k in self._current_kpis:
+                    writer.writerow([
+                        k["product"], 
+                        f"{k['osa_rate']:.2f}", 
+                        f"{k['oos_rate']:.2f}", 
+                        k["peak_missing"], 
+                        f"{k['time_under_threshold']:.2f}"
+                    ])
+
+    def _export_kpis_json(self):
+        if not getattr(self, "_current_kpis", None):
+            return
+        from PyQt6.QtWidgets import QFileDialog
+        from datetime import datetime
+        import json
+        
+        path, _ = QFileDialog.getSaveFileName(
+            self, "Save KPIs to JSON",
+            f"osa_kpis_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+            "JSON Files (*.json)"
+        )
+        if path:
+            with open(path, 'w', encoding='utf-8') as f:
+                json.dump(self._current_kpis, f, indent=2)
 
 
 class InventoryReportWindow(QMainWindow):

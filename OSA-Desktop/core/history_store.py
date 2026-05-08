@@ -210,3 +210,130 @@ class HistoryStore:
                 out.append((int(ts_ms), 0.0))
         return out
 
+    def compute_osa_kpis(
+        self,
+        *,
+        session_id: str,
+        product_name: Optional[str] = None,
+        since_ts_ms: Optional[int] = None,
+        threshold_pct: float = 80.0
+    ) -> Dict[str, Any]:
+        """Calculates standard On-Shelf Availability metrics."""
+        query = """
+            SELECT stock_pct, missing_products, summary_json
+            FROM analytics_samples
+            WHERE session_id = ?
+        """
+        params: List[object] = [session_id]
+        if since_ts_ms is not None:
+            query += " AND ts_ms >= ?"
+            params.append(int(since_ts_ms))
+        
+        with self._connect() as con:
+            rows = con.execute(query, tuple(params)).fetchall()
+            
+        if not rows:
+            return {
+                "osa_rate": 0.0,
+                "oos_rate": 0.0,
+                "peak_missing": 0,
+                "time_under_threshold": 0.0,
+                "total_samples": 0
+            }
+
+        stock_vals = []
+        missing_vals = []
+        
+        for global_stock, global_missing, payload in rows:
+            if not product_name or product_name == "All products":
+                stock_vals.append(float(global_stock))
+                missing_vals.append(int(global_missing))
+            else:
+                try:
+                    summary = json.loads(payload or "{}")
+                    pdata = summary.get("stock_levels", {}).get(product_name, {})
+                    pct = float(pdata.get("stock_percentage", 0.0))
+                    missing = int(pdata.get("missing_count", 0))
+                    stock_vals.append(pct)
+                    missing_vals.append(missing)
+                except Exception:
+                    stock_vals.append(0.0)
+                    missing_vals.append(0)
+                    
+        total = len(stock_vals)
+        if total == 0:
+            return {"osa_rate": 0.0, "oos_rate": 0.0, "peak_missing": 0, "time_under_threshold": 0.0, "total_samples": 0}
+            
+        osa_rate = sum(stock_vals) / total
+        oos_rate = max(0.0, 100.0 - osa_rate)
+        peak_missing = max(missing_vals) if missing_vals else 0
+        under_count = sum(1 for v in stock_vals if v < threshold_pct)
+        time_under = (under_count / total) * 100.0
+        
+        return {
+            "osa_rate": osa_rate,
+            "oos_rate": oos_rate,
+            "peak_missing": peak_missing,
+            "time_under_threshold": time_under,
+            "total_samples": total
+        }
+
+    def query_kpi_evolution_series(
+        self,
+        *,
+        session_id: str,
+        product_name: str,
+        limit: int = 1200,
+        since_ts_ms: Optional[int] = None,
+        threshold_pct: float = 80.0
+    ) -> Dict[str, List[Tuple[int, float]]]:
+        """Extracts timeseries for OSA Rate, OOS Rate, Missing Count, and Threshold Events."""
+        query = """
+            SELECT ts_ms, stock_pct, missing_products, summary_json
+            FROM analytics_samples
+            WHERE session_id = ?
+        """
+        params: List[object] = [session_id]
+        if since_ts_ms is not None:
+            query += " AND ts_ms >= ?"
+            params.append(int(since_ts_ms))
+        query += " ORDER BY ts_ms DESC LIMIT ?"
+        params.append(int(limit))
+
+        with self._connect() as con:
+            rows = con.execute(query, tuple(params)).fetchall()
+
+        osa_series = []
+        oos_series = []
+        missing_series = []
+        threshold_series = []
+
+        for ts_ms, global_stock, global_missing, payload in reversed(rows):
+            ts = int(ts_ms)
+            pct = 0.0
+            missing = 0
+            
+            if product_name == "All products":
+                pct = float(global_stock)
+                missing = int(global_missing)
+            else:
+                try:
+                    summary = json.loads(payload or "{}")
+                    pdata = summary.get("stock_levels", {}).get(product_name, {})
+                    pct = float(pdata.get("stock_percentage", 0.0))
+                    missing = int(pdata.get("missing_count", 0))
+                except Exception:
+                    pass
+
+            osa_series.append((ts, pct))
+            oos_series.append((ts, max(0.0, 100.0 - pct)))
+            missing_series.append((ts, float(missing)))
+            threshold_series.append((ts, 1.0 if pct < threshold_pct else 0.0))
+
+        return {
+            "osa_rate": osa_series,
+            "oos_rate": oos_series,
+            "missing_count": missing_series,
+            "threshold_events": threshold_series
+        }
+
