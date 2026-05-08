@@ -17,19 +17,36 @@ class StreamManager:
             raise ValueError(f"Unable to open media source: {self.media_path}")
 
     def get_next_frame(self, enforce_interval=True):
-        """Retrieves exactly the next frame, or skips frames to meet the configured interval."""
-        if not self.capture or not self.capture.isOpened():
+        """Retrieves exactly the next frame, or skips frames to meet the configured interval. Auto-reconnects for RTSP."""
+        if not self.capture:
             return None
 
-        ret = False
-        frame = None
+        retries = 0
+        max_retries = 5 if self.is_rtsp else 0
         
-        while self.capture.isOpened():
+        while True:
+            if not self.capture or not self.capture.isOpened():
+                if retries < max_retries:
+                    try:
+                        self.start()
+                    except Exception:
+                        pass
+                else:
+                    return None
+
             ret, frame = self.capture.read()
             if not ret:
-                break
+                if self.is_rtsp and retries < max_retries:
+                    retries += 1
+                    print(f"RTSP Stream lost. Reconnecting... (Attempt {retries}/{max_retries})")
+                    self.release()
+                    time.sleep(1.0)
+                    continue
+                else:
+                    break
                 
             self.current_frame_idx += 1
+            retries = 0 # reset retries on successful read
             
             if not enforce_interval or (self.current_frame_idx % self.frame_interval == 0):
                 return frame

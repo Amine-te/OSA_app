@@ -32,11 +32,12 @@ class PerformancePanel(QWidget):
         self.plot.showGrid(x=True, y=True, alpha=0.12)
         self.plot.setLabel("left", "FPS / latency (ms)", color=COLORS["text_muted"])
         self.plot.setLabel("bottom", "Time (s)", color=COLORS["text_muted"])
+        self.plot.addLegend(offset=(10, 10))
         self.fps_curve = self.plot.plot(
             pen=pg.mkPen(color=COLORS["success"], width=2), name="FPS"
         )
         self.lat_curve = self.plot.plot(
-            pen=pg.mkPen(color=COLORS["accent_start"], width=2), name="Latency"
+            pen=pg.mkPen(color=COLORS["accent_start"], width=2), name="Latency (ms)"
         )
         lay.addWidget(self.plot)
 

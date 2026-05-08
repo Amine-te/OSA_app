@@ -10,7 +10,7 @@ from pathlib import Path
 from datetime import datetime
 
 from PyQt6.QtCore import QByteArray, Qt, QTimer, pyqtSlot
-from PyQt6.QtGui import QAction, QKeySequence, QShortcut
+from PyQt6.QtGui import QAction, QKeySequence, QShortcut, QImage
 from PyQt6.QtWidgets import (
     QApplication,
     QDockWidget,
@@ -26,6 +26,9 @@ from PyQt6.QtWidgets import (
     QToolBar,
     QVBoxLayout,
     QWidget,
+    QComboBox,
+    QMessageBox,
+    QFileDialog,
 )
 
 # Ensure OSA-Desktop root is importable when this module is loaded in unusual contexts.
@@ -90,6 +93,14 @@ class MainWindow(QMainWindow):
         self.progress_bar.setVisible(False)
         self.status_bar.addPermanentWidget(self.progress_bar)
 
+        self.conn_status = QLabel("🔴 Disconnected")
+        self.conn_status.setStyleSheet("color: #6e7681; font-size: 11px; padding-right: 12px;")
+        self.status_bar.addPermanentWidget(self.conn_status)
+
+        self.quick_stats = QLabel("")
+        self.quick_stats.setStyleSheet("font-size: 11px; padding-left: 8px;")
+        self.status_bar.addWidget(self.quick_stats)
+
         self.setDockNestingEnabled(True)
         self.setCorner(Qt.Corner.BottomLeftCorner, Qt.DockWidgetArea.LeftDockWidgetArea)
 
@@ -121,10 +132,16 @@ class MainWindow(QMainWindow):
         view.addAction(a_feed)
 
         view.addSeparator()
-        self.act_theme = QAction("🌙  Switch to Dark Theme", self)
+        self.act_theme = QAction("Dark Theme", self)
         self.act_theme.setShortcut(QKeySequence("Ctrl+Shift+T"))
         self.act_theme.triggered.connect(self._on_toggle_theme)
         view.addAction(self.act_theme)
+
+        help_menu = mb.addMenu("&Help")
+        a_help = QAction("Keyboard Shortcuts", self)
+        a_help.setShortcut(QKeySequence("Ctrl+/"))
+        a_help.triggered.connect(self._show_shortcuts_help)
+        help_menu.addAction(a_help)
 
     def _setup_auxiliary_windows(self):
         self._config_win = ConfigWindow(self.config, self)
@@ -276,8 +293,13 @@ class MainWindow(QMainWindow):
 
         live_ctrl = QHBoxLayout()
         live_ctrl.setSpacing(8)
-        self.input_rtsp_live = QLineEdit()
-        self.input_rtsp_live.setPlaceholderText("rtsp://…")
+        self.input_rtsp_live = QComboBox()
+        self.input_rtsp_live.setEditable(True)
+        self.input_rtsp_live.lineEdit().setPlaceholderText("rtsp://…")
+        history = self.config.get("rtsp_history", [])
+        self.input_rtsp_live.addItems(history)
+        self.input_rtsp_live.setCurrentText("")
+        
         self.btn_rtsp_connect = QPushButton("Connect")
         self.btn_rtsp_connect.setProperty("class", "secondary")
         self.btn_rtsp_connect.clicked.connect(self._on_connect_rtsp_live)
@@ -385,6 +407,46 @@ class MainWindow(QMainWindow):
         QShortcut(QKeySequence("Ctrl+E"), self, activated=self._export_quick)
         QShortcut(QKeySequence("Meta+E"), self, activated=self._export_quick)
         QShortcut(QKeySequence("Ctrl+`"), self, activated=self._toggle_log_dock)
+        QShortcut(QKeySequence("F11"), self, activated=self._toggle_fullscreen)
+        QShortcut(QKeySequence("Ctrl+S"), self, activated=self._take_screenshot)
+
+    def _toggle_fullscreen(self):
+        if self.isFullScreen():
+            self.showNormal()
+        else:
+            self.showFullScreen()
+
+    def _take_screenshot(self):
+        if not self.app_state.last_results or "image" not in self.app_state.last_results:
+            self.toasts.show_toast("No frame available to capture", "❌")
+            return
+            
+        import cv2
+        import numpy as np
+        
+        path, _ = QFileDialog.getSaveFileName(
+            self, "Save Screenshot",
+            f"osa_capture_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png",
+            "Images (*.png *.jpg)"
+        )
+        if path:
+            img = self.app_state.last_results["image"]
+            if isinstance(img, np.ndarray):
+                cv2.imwrite(path, cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
+                self.toasts.show_toast("Screenshot saved!", "📸")
+
+    def _show_shortcuts_help(self):
+        msg = (
+            "<b>Keyboard Shortcuts:</b><br><br>"
+            "<b>Ctrl+,</b> : Open Configuration<br>"
+            "<b>Ctrl+E</b> : Quick Export Report<br>"
+            "<b>Ctrl+`</b> : Toggle Log Console<br>"
+            "<b>Ctrl+Shift+T</b> : Toggle Light/Dark Theme<br>"
+            "<b>Ctrl+S</b> : Capture Screenshot<br>"
+            "<b>F11</b> : Toggle Fullscreen<br>"
+            "<b>Ctrl+/</b> : Show this help dialog"
+        )
+        QMessageBox.information(self, "Shortcuts", msg)
 
     # ── Event bus handlers ────────────────────────────────────
 
@@ -513,19 +575,32 @@ class MainWindow(QMainWindow):
     # ── Media actions ───────────────────────────────────────
 
     def _on_connect_rtsp_live(self):
-        url = self.input_rtsp_live.text().strip()
+        url = self.input_rtsp_live.currentText().strip()
         if url:
+            self._save_rtsp_history(url)
             self.app_state.current_source = SourceType.RTSP
             self.app_state.source_path = url
             self.log_console.log("Live RTSP URL set", "info")
 
     def _on_analyze_live(self):
-        url = self.input_rtsp_live.text().strip()
+        url = self.input_rtsp_live.currentText().strip()
         if not url or not self.pipeline_ready:
             return
+        self._save_rtsp_history(url)
         self.app_state.current_source = SourceType.RTSP
         self.app_state.source_path = url
         self._start_processing(url, is_rtsp=True)
+
+    def _save_rtsp_history(self, url: str):
+        history = self.config.get("rtsp_history", [])
+        if url in history:
+            history.remove(url)
+        history.insert(0, url)
+        history = history[:10]  # Keep last 10
+        self.config["rtsp_history"] = history
+        self.input_rtsp_live.clear()
+        self.input_rtsp_live.addItems(history)
+        self.input_rtsp_live.setCurrentText(url)
 
     def _on_clear_live(self):
         self.live_hud.setVisible(False)
@@ -562,6 +637,8 @@ class MainWindow(QMainWindow):
         self._last_frame_time = time.time()
         self._set_pipeline_state(PipelineState.RUNNING)
         self.worker.start()
+        self.conn_status.setText("🟢 Connected")
+        self.conn_status.setStyleSheet("color: #28a745; font-weight: bold; font-size: 11px; padding-right: 12px;")
         self.log_console.log(f"Processing started: {str(path)}", "info")
 
     def _worker_started(self):
@@ -600,17 +677,28 @@ class MainWindow(QMainWindow):
         dets = results.get("product_detections", [])
         voids = results.get("void_detections", [])
         self.bus.detections_updated.emit(dets, voids)
+        
+        # Quick Stats updates
+        if results.get("summary"):
+            pct = results["summary"].get("overall_stock_percentage", 0)
+            miss = results["summary"].get("estimated_missing_products", 0)
+            self.quick_stats.setText(f"📈 Stock: {pct:.1f}%  |  ⚠️ Missing: {miss}  |  🚀 {self._fps:.1f} FPS")
 
         self._display_live_frame(results)
 
     def _worker_finished(self):
         self.progress_bar.setVisible(False)
+        self.conn_status.setText("🔴 Disconnected")
+        self.conn_status.setStyleSheet("color: #6e7681; font-size: 11px; padding-right: 12px;")
+        self.quick_stats.setText("")
         self._set_pipeline_state(PipelineState.READY)
         self.log_console.log("Processing finished", "info")
         self.toasts.show_toast("Analysis complete", "✅")
 
     def _worker_error(self, msg: str):
         self.progress_bar.setVisible(False)
+        self.conn_status.setText("⚠️ Error")
+        self.conn_status.setStyleSheet("color: #dc3545; font-weight: bold; font-size: 11px; padding-right: 12px;")
         self.log_console.log(f"Error: {msg}", "error")
         self._set_pipeline_state(PipelineState.ERROR, msg)
 
@@ -643,9 +731,9 @@ class MainWindow(QMainWindow):
 
         # Update menu label
         if new_theme == "dark":
-            self.act_theme.setText("☀️  Switch to Light Theme")
+            self.act_theme.setText("Light Theme")
         else:
-            self.act_theme.setText("🌙  Switch to Dark Theme")
+            self.act_theme.setText("Dark Theme")
 
         # Refresh pyqtgraph plot backgrounds, log console, and inventory window
         self.perf_panel.apply_theme()
