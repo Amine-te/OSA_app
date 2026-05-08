@@ -34,13 +34,21 @@ The desktop application uses the `EnhancedRetailPipeline` to execute object dete
 
 ### 2. Live Monitoring & Interaction
 - **Live Detection Feed**: Connect straight into an active real-time CCTV `rtsp://` link. Allows bounding box interactivity (clicking table rows highlights the product bounding box) and live HUD tracking.
-- **Detached Analytics**: History, KPIs, and performance hardware trends (latency/fps) are collected in a dedicated, multi-tabbed analytics window.
+- **RTSP Connection History**: The application remembers the last 10 unique RTSP streams you've connected to, available via a convenient dropdown for one-click reconnects.
+- **Quick Controls & Shortcuts**:
+  - `Ctrl+Shift+T` : Toggle Light/Dark Theme dynamically.
+  - `Ctrl+S` : Instantly save a screenshot of the live annotated feed.
+  - `F11` : Toggle edge-to-edge fullscreen mode.
+  - `Ctrl+/` : View all keyboard shortcuts.
 
 ### 3. Comprehensive Dashboard Panels
 The dashboard translates raw model detections into simple reporting structures, exposing:
 - **Inventory & Report Window**: View live updating stock tables detailing exact capacity and missing items.
-- **Export Data**: Automatically generate PDF, CSV, or JSON summaries out of the session report.
-- **Trend KPIs**: Real-time plots tracking stock health trends and missing product events.
+- **KPI Evolution Dashboard**: A dynamic analytics tab that calculates industry-standard metrics:
+  - **OSA Rate (%)**, **OOS Rate (%)**, **Peak Missing**, and **Threshold Events (<80%)**.
+  - Selecting "All products" displays a comprehensive comparative data table.
+  - Selecting a specific product generates a 2x2 grid of time-series graphs mapping the evolution of that item's availability.
+- **Export Data**: Instantly export the filtered KPI tables or session reports to CSV, JSON, or PDF formats.
 
 ### 4. Modern, Responsive UI
 - **Dual-Theme Support**: Built-in support for a sleek, Docker-inspired Light Theme (default) and a deep, OSA Original Dark Theme.
