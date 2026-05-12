@@ -13,3 +13,4 @@ class EventBus(QObject):
     detections_updated = pyqtSignal(list, list)  # product_dets, void_dets
     pipeline_status_changed = pyqtSignal(object)  # PipelineState
     error_occurred = pyqtSignal(str)
+    stock_alert = pyqtSignal(list)  # List[Alert] — threshold violation alerts

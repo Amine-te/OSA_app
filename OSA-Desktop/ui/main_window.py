@@ -40,6 +40,7 @@ from core.app_state import AppState, PipelineState, SourceType
 from core.event_bus import EventBus
 from core import session_manager
 from core.history_store import HistoryStore
+from core.notification_engine import NotificationEngine, NotificationConfig, AlertSeverity
 
 from workers.pipeline_worker import PipelineWorker
 from ui.styles import COLORS, toggle_theme, current_theme
@@ -47,6 +48,7 @@ from ui.auxiliary_windows import AnalyticsWindow, ConfigWindow, InventoryReportW
 from ui.viewer import SplitCompareViewer, HUDOverlay
 from ui.widgets import ToastManager, LogConsole
 from ui.error_banner import ErrorBanner
+from ui.notification_center import NotificationCenter
 
 
 class MainWindow(QMainWindow):
@@ -65,6 +67,14 @@ class MainWindow(QMainWindow):
         self._base_dir = Path(__file__).resolve().parent.parent
         self._history = HistoryStore(session_manager.sessions_root(self._base_dir) / "history.db")
         self._analytics_frame_idx = 0
+
+        # Notification system
+        self._notif_config = NotificationConfig(
+            warning_threshold=self.config.get("notifications", {}).get("warning_threshold", 70),
+            critical_threshold=self.config.get("notifications", {}).get("critical_threshold", 50),
+            cooldown_seconds=self.config.get("notifications", {}).get("cooldown_seconds", 30),
+        )
+        self._notif_engine = NotificationEngine(self._notif_config)
 
         self._setup_window()
         self._build_ui()
@@ -121,6 +131,11 @@ class MainWindow(QMainWindow):
         a_inv = QAction("Inventory / report", self)
         a_inv.triggered.connect(self._show_inventory_window)
         mb.addAction(a_inv)
+
+        a_notif = QAction("Notifications", self)
+        a_notif.setShortcut(QKeySequence("Ctrl+N"))
+        a_notif.triggered.connect(self._toggle_notification_dock)
+        mb.addAction(a_notif)
 
         view = mb.addMenu("&View")
         a_log = QAction("Log console", self)
@@ -386,15 +401,89 @@ class MainWindow(QMainWindow):
         self.dock_void_feed.setObjectName("dock_void_feed")
         self.dock_void_feed.setFeatures(_dock_flags)
         self.dock_void_feed.setAllowedAreas(Qt.DockWidgetArea.RightDockWidgetArea)
-        feed_host = QWidget()
-        fl = QVBoxLayout(feed_host)
+        self._feed_host = QWidget()
+        fl = QVBoxLayout(self._feed_host)
         fl.setContentsMargins(4, 4, 4, 4)
         self.void_feed_list = QListWidget()
         fl.addWidget(self.void_feed_list)
-        self.dock_void_feed.setWidget(feed_host)
+        self.dock_void_feed.setWidget(self._feed_host)
         self._compact_dock_title_bar(self.dock_void_feed, "Live detection feed")
         self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dock_void_feed)
         self.dock_void_feed.setVisible(False)
+
+        # ── Notification Center dock ─────────────────────────
+        self.dock_notifications = QDockWidget(self)
+        self.dock_notifications.setObjectName("dock_notifications")
+        self.dock_notifications.setFeatures(_dock_flags)
+        self.dock_notifications.setAllowedAreas(
+            Qt.DockWidgetArea.RightDockWidgetArea | Qt.DockWidgetArea.LeftDockWidgetArea
+        )
+        self.notification_center = NotificationCenter(self._notif_config)
+        self.notification_center.alert_count_changed.connect(self._on_notif_count_changed)
+        self.notification_center._settings_panel.settings_changed.connect(
+            self._on_notif_settings_changed
+        )
+        self.dock_notifications.setWidget(self.notification_center)
+        self._compact_dock_title_bar(self.dock_notifications, "Notifications")
+        self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dock_notifications)
+        self.dock_notifications.setVisible(False)
+
+        # Apply initial dock backgrounds
+        self._apply_dock_backgrounds()
+
+    def _toggle_notification_dock(self):
+        show = not self.dock_notifications.isVisible()
+        self.dock_notifications.setFloating(False)
+        self.dock_notifications.setVisible(show)
+        if show:
+            self.dock_notifications.raise_()
+            self.notification_center.mark_read()
+            w = min(360, max(280, int(self.width() * 0.22)))
+            self.resizeDocks([self.dock_notifications], [w], Qt.Orientation.Horizontal)
+
+    def _on_notif_count_changed(self, count: int):
+        if count > 0:
+            self.dock_notifications.setWindowTitle(f"Notifications ({count})")
+        else:
+            self.dock_notifications.setWindowTitle("Notifications")
+
+    def _on_notif_settings_changed(self, config):
+        self._notif_config = config
+        self._notif_engine.update_config(config)
+
+    def _apply_dock_backgrounds(self):
+        """Set explicit backgrounds on all dock host widgets so they follow the theme."""
+        bg = COLORS["bg_secondary"]
+        border = COLORS["border"]
+        accent = COLORS["accent_start"]
+        text = COLORS["text_primary"]
+        text_sec = COLORS["text_secondary"]
+
+        dock_ss = (
+            f"QDockWidget {{ background: {bg}; }}"
+            f"QDockWidget > QWidget {{ background: {bg}; }}"
+        )
+        self.dock_log.setStyleSheet(dock_ss)
+        self.dock_void_feed.setStyleSheet(dock_ss)
+        self.dock_notifications.setStyleSheet(dock_ss)
+        self._feed_host.setStyleSheet(f"background: {bg};")
+
+        # Style the QTabBar that Qt creates when docks are tabified
+        self.setStyleSheet(
+            f"QMainWindow::separator {{ background: {border}; width: 1px; height: 1px; }}"
+            f"QTabBar {{ background: {bg}; }}"
+            f"QTabBar::tab {{"
+            f"  background: {bg}; color: {text_sec};"
+            f"  padding: 6px 14px; border: 1px solid {border};"
+            f"  border-bottom: none; border-top-left-radius: 4px; border-top-right-radius: 4px;"
+            f"  margin-right: 2px;"
+            f"}}"
+            f"QTabBar::tab:selected {{"
+            f"  background: {bg}; color: {accent};"
+            f"  border-bottom: 2px solid {accent};"
+            f"}}"
+            f"QTabBar::tab:hover:!selected {{ background: {COLORS['bg_hover']}; color: {text}; }}"
+        )
 
     def _wire_bus(self):
         self.bus.frame_updated.connect(self._on_bus_frame)
@@ -439,6 +528,7 @@ class MainWindow(QMainWindow):
         msg = (
             "<b>Keyboard Shortcuts:</b><br><br>"
             "<b>Ctrl+,</b> : Open Configuration<br>"
+            "<b>Ctrl+N</b> : Toggle Notifications<br>"
             "<b>Ctrl+E</b> : Quick Export Report<br>"
             "<b>Ctrl+`</b> : Toggle Log Console<br>"
             "<b>Ctrl+Shift+T</b> : Toggle Light/Dark Theme<br>"
@@ -628,6 +718,7 @@ class MainWindow(QMainWindow):
             self.worker.stop()
         self.app_state.analytics_session_id = datetime.now().strftime("%Y%m%d_%H%M%S")
         self._analytics_frame_idx = 0
+        self._notif_engine.clear_state()  # Reset alert tracking for new session
         self._analytics_win.bind_history(self._history, self.app_state.analytics_session_id)
         self.worker = PipelineWorker(rtsp_url=path, config=self.config)
         self.worker.started_processing.connect(self._worker_started)
@@ -683,6 +774,28 @@ class MainWindow(QMainWindow):
             pct = results["summary"].get("overall_stock_percentage", 0)
             miss = results["summary"].get("estimated_missing_products", 0)
             self.quick_stats.setText(f"📈 Stock: {pct:.1f}%  |  ⚠️ Missing: {miss}  |  🚀 {self._fps:.1f} FPS")
+
+        # ── Notification evaluation ──────────────────────────
+        alerts = self._notif_engine.evaluate(results)
+        if alerts:
+            self.notification_center.push_alerts(alerts)
+            self.bus.stock_alert.emit(alerts)
+            for alert in alerts:
+                # Toast for critical/warning alerts
+                if alert.severity == AlertSeverity.CRITICAL:
+                    self.toasts.show_toast(alert.message, "🚨", duration=5000)
+                    self.log_console.log(f"CRITICAL ALERT: {alert.message}", "error")
+                elif alert.severity == AlertSeverity.WARNING:
+                    self.toasts.show_toast(alert.message, "⚠️", duration=4000)
+                    self.log_console.log(f"WARNING ALERT: {alert.message}", "warning")
+                elif alert.is_recovery:
+                    self.toasts.show_toast(alert.message, "✅", duration=3000)
+                    self.log_console.log(f"RECOVERY: {alert.message}", "success")
+            # Play system bell for critical alerts if sound enabled
+            if self._notif_config.sound_enabled:
+                has_critical = any(a.severity == AlertSeverity.CRITICAL for a in alerts)
+                if has_critical:
+                    QApplication.beep()
 
         self._display_live_frame(results)
 
@@ -740,10 +853,15 @@ class MainWindow(QMainWindow):
         self._analytics_win.apply_theme()
         self._inventory_win.apply_theme()
         self.log_console.apply_theme()
+        self.notification_center.apply_theme()
 
         # Rebuild dock title bar styles (they use inline COLORS)
         self._compact_dock_title_bar(self.dock_log, "Log console")
         self._compact_dock_title_bar(self.dock_void_feed, "Live detection feed")
+        self._compact_dock_title_bar(self.dock_notifications, "Notifications")
+
+        # Refresh dock host backgrounds
+        self._apply_dock_backgrounds()
 
         # Repaint all custom widgets that use COLORS in paintEvent
         for w in self.findChildren(QWidget):
