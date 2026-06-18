@@ -6,7 +6,7 @@ from pathlib import Path
 from PyQt6.QtCore import QThread, pyqtSignal
 
 # Import pipeline
-from src.pipelines.enhanced_pipeline import EnhancedRetailPipeline
+from shared.pipelines.enhanced_pipeline import EnhancedRetailPipeline
 from utils.path_utils import resolve_path
 
 class PipelineWorker(QThread):

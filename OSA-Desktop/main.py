@@ -6,8 +6,8 @@ _APP_ROOT = Path(__file__).resolve().parent
 if str(_APP_ROOT) not in sys.path:
     sys.path.insert(0, str(_APP_ROOT))
 
-# Pipeline code lives at repo root (`src/`). Add it so `from src...` works
-# when launching via `python OSA-Desktop/main.py`.
+# Shared AI engine lives at repo root (`shared/`). Add repo root so
+# `from shared...` works when launching via `python OSA-Desktop/main.py`.
 _REPO_ROOT = _APP_ROOT.parent
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
