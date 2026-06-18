@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSA Control Center</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS (Dark) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        :root {
+            --bg-body: #0f1117;
+            --bg-card: #1a1d2e;
+            --bg-sidebar: #12151f;
+            --color-primary: #ffffff;
+            --color-secondary: #8892a4;
+            --accent-ok: #00e676;
+            --accent-warning: #ff9800;
+            --accent-critical: #f44336;
+            --font-ui: 'Inter', system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--color-primary);
+            font-family: var(--font-ui);
+            min-height: 100vh;
+            display: flex;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        .metric { font-family: var(--font-mono); font-weight: 700; }
+        .text-ok { color: var(--accent-ok) !important; }
+        .text-warning { color: var(--accent-warning) !important; }
+        .text-critical { color: var(--accent-critical) !important; }
+        .text-muted-custom { color: var(--color-secondary) !important; }
+        
+        .badge-ok { background-color: rgba(0, 230, 118, 0.2); color: var(--accent-ok); border: 1px solid rgba(0, 230, 118, 0.5); }
+        .badge-warning { background-color: rgba(255, 152, 0, 0.2); color: var(--accent-warning); border: 1px solid rgba(255, 152, 0, 0.5); }
+        .badge-critical { background-color: rgba(244, 67, 54, 0.2); color: var(--accent-critical); border: 1px solid rgba(244, 67, 54, 0.5); }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background-color: var(--bg-sidebar);
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #2a2d3e;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+        
+        .sidebar-brand {
+            padding: 1.5rem 1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-bottom: 1px solid #2a2d3e;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            color: var(--color-secondary);
+            padding: 0.8rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .nav-link:hover {
+            color: var(--color-primary);
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        .nav-link.active {
+            color: var(--color-primary);
+            border-left-color: var(--accent-ok);
+            background-color: rgba(0, 230, 118, 0.05);
+        }
+
+        /* Main Content */
+        .main-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .topbar {
+            height: 60px;
+            background-color: var(--bg-body);
+            border-bottom: 1px solid #2a2d3e;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .content {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        /* Cards & Components */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid #2a2d3e;
+            border-radius: 8px;
+        }
+        
+        .card-header {
+            background-color: transparent;
+            border-bottom: 1px solid #2a2d3e;
+            font-weight: 600;
+            color: var(--color-secondary);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 1rem 1.25rem;
+        }
+
+        .table {
+            color: var(--color-primary);
+            border-color: #2a2d3e;
+        }
+        .table th {
+            color: var(--color-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            border-bottom-width: 1px;
+            background-color: var(--bg-card);
+        }
+        .table td {
+            background-color: transparent;
+            vertical-align: middle;
+        }
+        .table-hover tbody tr:hover td {
+            background-color: rgba(255,255,255,0.02);
+            color: var(--color-primary);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        .status-dot.active { background-color: var(--accent-ok); box-shadow: 0 0 8px var(--accent-ok); }
+        .status-dot.inactive { background-color: var(--accent-critical); }
+        
+        .form-control, .form-select {
+            background-color: #12151f;
+            border-color: #2a2d3e;
+            color: #fff;
+        }
+        .form-control:focus, .form-select:focus {
+            background-color: #12151f;
+            border-color: var(--accent-ok);
+            color: #fff;
+            box-shadow: 0 0 0 0.25rem rgba(0, 230, 118, 0.25);
+        }
+
+        /* Toasts */
+        .toast-container { z-index: 1055; }
+        .toast {
+            background-color: var(--bg-card);
+            border: 1px solid #2a2d3e;
+            color: #fff;
+        }
+        .toast-header {
+            background-color: #12151f;
+            color: var(--color-primary);
+            border-bottom: 1px solid #2a2d3e;
+        }
+        .btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
+        
+        /* Embedded/Iframe Mode for Floating Assistant */
+        body.embedded-mode {
+            background-color: transparent !important;
+            overflow: hidden !important;
+            min-height: 0 !important;
+            height: 100vh !important;
+        }
+        body.embedded-mode .sidebar { display: none !important; }
+        body.embedded-mode .topbar { display: none !important; }
+        body.embedded-mode .content { padding: 0 !important; height: 100vh !important; }
+        body.embedded-mode .chat-layout { grid-template-columns: 1fr !important; height: 100vh !important; gap: 0 !important; }
+        body.embedded-mode .data-pane { display: none !important; }
+        body.embedded-mode .suggestions-container { display: none !important; }
+        body.embedded-mode .card.glass-card { border-radius: 0 !important; border: none !important; height: 100vh !important; box-shadow: none !important; }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="position-relative">
+    <script>
+        // Run immediately to prevent sidebar/header flash in embedded iframe
+        if (window.location.search.includes('embed=true') || window.self !== window.top) {
+            document.documentElement.setAttribute('data-embedded', 'true');
+            document.addEventListener("DOMContentLoaded", function() {
+                document.body.classList.add('embedded-mode');
+            });
+        }
+    </script>
+
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-brand">
+            <i class="bi bi-box-seam text-ok"></i> OSA Control
+        </div>
+        <div class="nav flex-column mt-3">
+            <a href="{% url 'monitoring:dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                <i class="bi bi-speedometer2"></i> Dashboard
+            </a>
+            <a href="{% url 'monitoring:analytics' %}" class="nav-link {% if request.resolver_match.url_name == 'analytics' %}active{% endif %}">
+                <i class="bi bi-graph-up"></i> Analytics
+            </a>
+            <a href="{% url 'monitoring:inventory' %}" class="nav-link {% if request.resolver_match.url_name == 'inventory' %}active{% endif %}">
+                <i class="bi bi-boxes"></i> Inventory
+            </a>
+            <a href="{% url 'monitoring:sessions' %}" class="nav-link {% if request.resolver_match.url_name == 'sessions' or request.resolver_match.url_name == 'session_detail' %}active{% endif %}">
+                <i class="bi bi-collection-play"></i> Sessions
+            </a>
+            <a href="{% url 'monitoring:copilot' %}" class="nav-link {% if request.resolver_match.url_name == 'copilot' %}active{% endif %}">
+                <i class="bi bi-robot text-ok"></i> AI Co-pilot
+            </a>
+            <a href="{% url 'monitoring:settings' %}" class="nav-link {% if request.resolver_match.url_name == 'settings' %}active{% endif %}">
+                <i class="bi bi-gear"></i> Settings
+            </a>
+        </div>
+    </nav>
+
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <!-- Topbar -->
+        <header class="topbar">
+            <div>
+                <span class="fs-5 fw-semibold d-none d-md-inline">Control Center</span>
+            </div>
+            <div>
+                <span id="global-connection-status" class="badge rounded-pill bg-dark border border-secondary text-secondary">
+                    <span class="status-dot inactive" id="ws-dot"></span> <span id="ws-text">WS Disconnected</span>
+                </span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <!-- Django Messages (Toasts) -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="toast align-items-center text-bg-{{ message.tags|default:'dark' }} border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ message }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Auto-hide toasts after 5s -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+            var toastList = toastElList.map(function (toastEl) {
+                return new bootstrap.Toast(toastEl, { delay: 5000 })
+            })
+            toastList.forEach(toast => toast.show())
+        });
+    </script>
+    
+    {% if not request.GET.embed %}
+    <!-- Floating AI Trigger Button (not shown on embed or inside iframe) -->
+    <button id="floating-ai-trigger" type="button" class="btn rounded-circle d-flex align-items-center justify-content-center" style="position: fixed; bottom: 20px; right: 20px; width: 56px; height: 56px; z-index: 999; background: linear-gradient(135deg, #00e676, #00b359); box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4); border: none; transition: all 0.2s;" onclick="toggleFloatingAiPanel()">
+        <i class="bi bi-robot text-black fs-4" id="floating-ai-icon"></i>
+    </button>
+
+    <!-- Floating AI Panel Drawer -->
+    <div id="floating-ai-panel" class="card" style="position: fixed; bottom: 85px; right: 20px; width: 380px; height: 500px; z-index: 998; display: none; flex-direction: column; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 40px rgba(0,0,0,0.5); background: rgba(26, 29, 46, 0.95); backdrop-filter: blur(15px); border-radius: 12px; transition: all 0.3s ease;">
+        <div class="d-flex justify-content-between align-items-center" style="background: rgba(18, 21, 31, 0.6); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0.75rem 1rem;">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-robot text-ok"></i>
+                <span class="text-white fw-semibold small" style="letter-spacing: 0.5px;">AI CO-PILOT</span>
+            </div>
+            <button type="button" class="btn-close btn-close-white" aria-label="Close" onclick="toggleFloatingAiPanel()"></button>
+        </div>
+        <iframe id="floating-ai-iframe" title="AI Co-pilot" style="width: 100%; flex-grow: 1; border: none; background: #0f1117;"></iframe>
+    </div>
+
+    <script>
+        const COPILOT_EMBED_URL = window.location.origin + "{% url 'monitoring:copilot' %}?embed=true";
+
+        function toggleFloatingAiPanel() {
+            const panel = document.getElementById('floating-ai-panel');
+            const iframe = document.getElementById('floating-ai-iframe');
+            const icon = document.getElementById('floating-ai-icon');
+            const trigger = document.getElementById('floating-ai-trigger');
+
+            if (panel.style.display === 'none' || panel.style.display === '') {
+                panel.style.display = 'flex';
+                icon.className = 'bi bi-x-lg text-black fs-4';
+                trigger.style.transform = 'rotate(90deg)';
+                if (!iframe.src) {
+                    iframe.src = COPILOT_EMBED_URL;
+                }
+            } else {
+                panel.style.display = 'none';
+                icon.className = 'bi bi-robot text-black fs-4';
+                trigger.style.transform = 'none';
+            }
+        }
+    </script>
+    {% endif %}
+    
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

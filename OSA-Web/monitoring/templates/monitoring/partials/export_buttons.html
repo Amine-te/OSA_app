@@ -1,0 +1,14 @@
+<div class="btn-group">
+    <a href="{% url 'monitoring:export_table' dataset %}?format=csv{% if selected_product %}&selected_product={{ selected_product|urlencode }}{% endif %}{% if query_string %}&{{ query_string }}{% endif %}"
+       class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-filetype-csv"></i> CSV
+    </a>
+    <a href="{% url 'monitoring:export_table' dataset %}?format=json{% if selected_product %}&selected_product={{ selected_product|urlencode }}{% endif %}{% if query_string %}&{{ query_string }}{% endif %}"
+       class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-filetype-json"></i> JSON
+    </a>
+    <a href="{% url 'monitoring:export_table' dataset %}?format=pdf{% if selected_product %}&selected_product={{ selected_product|urlencode }}{% endif %}{% if query_string %}&{{ query_string }}{% endif %}"
+       class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-filetype-pdf"></i> PDF
+    </a>
+</div>

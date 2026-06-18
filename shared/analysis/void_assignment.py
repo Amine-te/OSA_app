@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.spatial.distance import cdist
-from src.analysis.scoring import (
+from shared.analysis.scoring import (
     calculate_border_to_center_distance,
     estimate_product_count,
     estimate_product_count_from_context,

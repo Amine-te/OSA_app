@@ -1,0 +1,309 @@
+{% extends 'monitoring/base.html' %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="mb-4">
+        <a href="{% url 'monitoring:sessions' %}" class="text-muted-custom text-decoration-none small"><i class="bi bi-arrow-left"></i> Back to Sessions</a>
+    </div>
+
+    <!-- Header Card -->
+    <div class="card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h4 class="mb-1">Session #{{ session.id }}</h4>
+                <div class="text-muted-custom">Camera: {{ session.camera.name }}</div>
+            </div>
+            <div class="text-end">
+                <div class="metric mb-1">
+                    {{ session.started_at|date:"Y-m-d H:i:s" }} — 
+                    {% if session.ended_at %}{{ session.ended_at|date:"H:i:s" }}{% else %}NOW{% endif %}
+                </div>
+                <div>
+                    {% if session.status == 'running' %}
+                        <span class="badge badge-ok">RUNNING</span>
+                    {% elif session.status == 'ended' %}
+                        <span class="badge bg-dark border text-secondary">ENDED</span>
+                    {% else %}
+                        <span class="badge badge-critical">FAILED</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row g-4 mb-4">
+        {% if session.status == 'running' %}
+        <div class="col-12">
+            <div class="text-end text-ok small mb-2"><i class="bi bi-broadcast"></i> Live updates enabled</div>
+        </div>
+        {% endif %}
+        <!-- Chart 1: Stock % Full Width -->
+        <div class="col-12">
+            <div class="card p-3">
+                <div class="card-header border-0 px-0 pt-0">Overall Stock % over Time</div>
+                <div style="height: 250px;">
+                    <canvas id="stockChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chart 2 & 3: Missing & FPS -->
+        <div class="col-md-6">
+            <div class="card p-3">
+                <div class="card-header border-0 px-0 pt-0">Missing Products</div>
+                <div style="height: 200px;">
+                    <canvas id="missingChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-3">
+                <div class="card-header border-0 px-0 pt-0">Performance (FPS)</div>
+                <div style="height: 200px;">
+                    <canvas id="fpsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Alerts Table -->
+        <div class="col-md-5">
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Triggered Alerts ({{ alerts.count }})</span>
+                    {% include 'monitoring/partials/session_export_buttons.html' with pk=session.id dataset='alerts' %}
+                </div>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Product</th>
+                                <th class="text-end">Stock %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in alerts %}
+                            <tr>
+                                <td class="metric">{{ a.triggered_at|date:"H:i:s" }}</td>
+                                <td>
+                                    <span class="badge {% if a.rule.severity == 'critical' %}badge-critical{% else %}badge-warning{% endif %} me-1">
+                                        {{ a.rule.severity|upper }}
+                                    </span>
+                                    {{ a.product_name|default:"Global" }}
+                                </td>
+                                <td class="text-end metric">{{ a.stock_pct_at_trigger|floatformat:1 }}%</td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="3" class="text-center text-muted-custom py-3">No alerts triggered</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Samples Summary (First 100) -->
+        <div class="col-md-7">
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Data Samples</span>
+                    <div class="d-flex align-items-center gap-2">
+                        {% include 'monitoring/partials/session_export_buttons.html' with pk=session.id dataset='samples' %}
+                        <span class="badge bg-dark border text-secondary" id="sample-count">{{ session.samples.count }} Total</span>
+                    </div>
+                </div>
+                <div class="table-responsive" style="max-height: 400px;">
+                    <table class="table mb-0">
+                        <thead class="sticky-top">
+                            <tr>
+                                <th>Time</th>
+                                <th class="text-end">Total</th>
+                                <th class="text-end">Missing</th>
+                                <th class="text-end">Voids</th>
+                                <th class="text-end">Stock %</th>
+                                <th class="text-end">FPS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="samples-tbody">
+                            {% for s in session.samples.all|slice:":100" %}
+                            <tr>
+                                <td class="metric text-muted-custom">{{ s.timestamp|date:"H:i:s" }}</td>
+                                <td class="text-end metric">{{ s.total_products }}</td>
+                                <td class="text-end metric {% if s.missing_products > 0 %}text-warning{% endif %}">{{ s.missing_products }}</td>
+                                <td class="text-end metric">{{ s.void_detections }}</td>
+                                <td class="text-end metric {% if s.stock_pct >= 80 %}text-ok{% elif s.stock_pct >= 60 %}text-warning{% else %}text-critical{% endif %}">
+                                    {{ s.stock_pct|floatformat:1 }}%
+                                </td>
+                                <td class="text-end metric text-muted-custom">{{ s.fps|floatformat:1 }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="6" class="text-center text-muted-custom py-3">No data samples yet</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const chartData = {{ chart_data|safe }};
+    const MAX_CHART_POINTS = 100;
+
+    Chart.defaults.color = '#8892a4';
+    Chart.defaults.font.family = "'JetBrains Mono', monospace";
+    Chart.defaults.plugins.legend.display = false;
+    const gridColor = '#2a2d3e';
+
+    const stockChart = new Chart(document.getElementById('stockChart'), {
+        type: 'line',
+        data: {
+            labels: chartData.labels,
+            datasets: [{
+                data: chartData.stock,
+                borderColor: '#00e676',
+                backgroundColor: 'rgba(0, 230, 118, 0.1)',
+                fill: true,
+                tension: 0.4,
+                borderWidth: 2,
+                pointRadius: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { min: 0, max: 100, grid: { color: gridColor } },
+                x: { grid: { display: false }, ticks: { maxTicksLimit: 10 } }
+            }
+        }
+    });
+
+    const missingChart = new Chart(document.getElementById('missingChart'), {
+        type: 'bar',
+        data: {
+            labels: chartData.labels,
+            datasets: [{
+                data: chartData.missing,
+                backgroundColor: '#f44336'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { beginAtZero: true, grid: { color: gridColor }, ticks: { stepSize: 1 } },
+                x: { grid: { display: false }, ticks: { maxTicksLimit: 8 } }
+            }
+        }
+    });
+
+    const fpsChart = new Chart(document.getElementById('fpsChart'), {
+        type: 'line',
+        data: {
+            labels: chartData.labels,
+            datasets: [{
+                data: chartData.fps,
+                borderColor: '#8892a4',
+                borderWidth: 1.5,
+                tension: 0.2,
+                pointRadius: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { beginAtZero: true, grid: { color: gridColor } },
+                x: { grid: { display: false }, ticks: { maxTicksLimit: 8 } }
+            }
+        }
+    });
+
+    function trimChart(chart) {
+        while (chart.data.labels.length > MAX_CHART_POINTS) {
+            chart.data.labels.shift();
+            chart.data.datasets.forEach(ds => ds.data.shift());
+        }
+    }
+
+    function pushChartPoint(chart, label, value) {
+        chart.data.labels.push(label);
+        chart.data.datasets[0].data.push(value);
+        trimChart(chart);
+        chart.update('none');
+    }
+
+    function setWsStatus(connected) {
+        const dot = document.getElementById('ws-dot');
+        const text = document.getElementById('ws-text');
+        const badge = text?.parentElement;
+        if (!dot || !text) return;
+        if (connected) {
+            dot.className = 'status-dot active';
+            text.innerText = 'Connected';
+            badge?.classList.replace('text-secondary', 'text-ok');
+            badge?.classList.replace('border-secondary', 'border-success');
+        } else {
+            dot.className = 'status-dot inactive';
+            text.innerText = 'Disconnected';
+            badge?.classList.replace('text-ok', 'text-secondary');
+            badge?.classList.replace('border-success', 'border-secondary');
+        }
+    }
+
+    function prependSampleRow(data, label) {
+        const tbody = document.getElementById('samples-tbody');
+        const countEl = document.getElementById('sample-count');
+        if (!tbody) return;
+
+        const emptyRow = tbody.querySelector('td[colspan="6"]');
+        if (emptyRow) emptyRow.parentElement.remove();
+
+        const stockClass = data.stock_pct >= 80 ? 'text-ok' : (data.stock_pct >= 60 ? 'text-warning' : 'text-critical');
+        const missingClass = data.missing_count > 0 ? 'text-warning' : '';
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="metric text-muted-custom">${label}</td>
+            <td class="text-end metric">${data.total_products}</td>
+            <td class="text-end metric ${missingClass}">${data.missing_count}</td>
+            <td class="text-end metric">${data.void_detections}</td>
+            <td class="text-end metric ${stockClass}">${data.stock_pct.toFixed(1)}%</td>
+            <td class="text-end metric text-muted-custom">${data.fps.toFixed(1)}</td>
+        `;
+        tbody.prepend(row);
+        while (tbody.children.length > MAX_CHART_POINTS) {
+            tbody.removeChild(tbody.lastChild);
+        }
+        if (countEl) {
+            const n = parseInt(countEl.innerText, 10) || 0;
+            countEl.innerText = `${n + 1} Total`;
+        }
+    }
+
+    {% if session.status == 'running' %}
+    (function() {
+        const sessionId = {{ session.id }};
+        const wsProtocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
+        const ws = new WebSocket(wsProtocol + window.location.host + '/ws/session/' + sessionId + '/');
+
+        ws.onopen = () => setWsStatus(true);
+        ws.onclose = () => setWsStatus(false);
+        ws.onmessage = (e) => {
+            const data = JSON.parse(e.data);
+            const label = new Date().toLocaleTimeString();
+            pushChartPoint(stockChart, label, data.stock_pct);
+            pushChartPoint(missingChart, label, data.missing_count);
+            pushChartPoint(fpsChart, label, data.fps);
+            prependSampleRow(data, label);
+        };
+    })();
+    {% endif %}
+</script>
+{% endblock %}

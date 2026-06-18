@@ -1,0 +1,288 @@
+{% extends 'monitoring/base.html' %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    
+    <!-- Top Row: KPIs -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card h-100 text-center py-3">
+                <div class="text-muted-custom small text-uppercase mb-1">OSA Rate</div>
+                <div class="fs-1 metric" id="kpi-osa">--%</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card h-100 text-center py-3">
+                <div class="text-muted-custom small text-uppercase mb-1">Total Products</div>
+                <div class="fs-1 metric text-white" id="kpi-total">--</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card h-100 text-center py-3">
+                <div class="text-muted-custom small text-uppercase mb-1">Missing Products</div>
+                <div class="fs-1 metric text-warning" id="kpi-missing">--</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card h-100 text-center py-3">
+                <div class="text-muted-custom small text-uppercase mb-1">Void Detections</div>
+                <div class="fs-1 metric text-white" id="kpi-voids">--</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Second Row: Controls & Stream -->
+    <div class="row g-3 mb-4">
+        
+        <!-- Left Panel: Controls -->
+        <div class="col-lg-4 d-flex flex-column gap-3">
+            
+            <!-- Session Control -->
+            <div class="card p-3">
+                <h6 class="text-uppercase text-muted-custom mb-3 small">Camera Control</h6>
+                
+                {% if active_session %}
+                    <form method="post" action="{% url 'monitoring:stop_session' %}" class="d-flex gap-2">
+                        {% csrf_token %}
+                        <input type="hidden" name="session_id" value="{{ active_session.id }}">
+                        <input type="text" class="form-control" value="{{ active_session.camera.name }}" readonly disabled>
+                        <button type="submit" class="btn btn-danger w-100 d-flex align-items-center justify-content-center gap-2">
+                            <i class="bi bi-stop-fill"></i> Stop
+                        </button>
+                    </form>
+                    <div class="mt-2 text-center text-ok small"><i class="bi bi-record-circle-fill"></i> Monitoring Active</div>
+                {% else %}
+                    <form method="post" action="{% url 'monitoring:start_session' %}" class="d-flex flex-column gap-2">
+                        {% csrf_token %}
+                        <select name="camera_id" class="form-select" required>
+                            {% for c in cameras %}
+                                <option value="{{ c.id }}" {% if selected_camera and selected_camera.id == c.id %}selected{% endif %}>{{ c.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="btn btn-success d-flex align-items-center justify-content-center gap-2 mt-2">
+                            <i class="bi bi-play-fill"></i> Start Monitoring
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="card p-3">
+                <h6 class="text-uppercase text-muted-custom mb-3 small">Telemetry</h6>
+                <div class="metric text-white fs-5" id="telemetry-box">
+                    FPS: -- | Latency: -- ms
+                </div>
+                <div class="text-muted-custom small mt-1">Device: Auto</div>
+            </div>
+
+            <!-- Alerts Panel -->
+            <div class="card flex-grow-1 d-flex flex-column">
+                <div class="card-header">Recent Alerts</div>
+                <div class="card-body p-0" style="max-height: 250px; overflow-y: auto;" id="alerts-container">
+                    <div class="list-group list-group-flush" id="alerts-list">
+                        {% for alert in recent_alerts %}
+                            <div class="list-group-item bg-transparent border-dark px-3 py-2">
+                                <div class="d-flex w-100 justify-content-between align-items-center">
+                                    <h6 class="mb-1 text-white fs-6">
+                                        {% if alert.severity == 'critical' %}
+                                            <span class="badge badge-critical me-1">CRITICAL</span>
+                                        {% else %}
+                                            <span class="badge badge-warning me-1">WARNING</span>
+                                        {% endif %}
+                                        {{ alert.product_name|default:"Global" }}
+                                    </h6>
+                                    <small class="text-muted-custom">{{ alert.triggered_at|date:"H:i:s" }}</small>
+                                </div>
+                                <p class="mb-0 small text-muted-custom">Stock level dropped to <span class="metric text-white">{{ alert.stock_pct_at_trigger|floatformat:1 }}%</span></p>
+                            </div>
+                        {% empty %}
+                            <div class="text-center text-muted-custom p-4 small" id="no-alerts-msg">No recent alerts</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Panel: Video Stream -->
+        <div class="col-lg-8">
+            <div class="card h-100">
+                <div class="card-body p-2 d-flex flex-column align-items-center justify-content-center position-relative" style="min-height: 400px; background-color: #0b0c10; border-radius: 6px;">
+                    
+                    {% if active_session %}
+                        <img id="live-frame" src="" style="width:100%; border-radius:4px; max-height: 70vh; object-fit: contain; display: none;">
+                        <div id="stream-waiting" class="text-muted-custom metric">
+                            <i class="bi bi-arrow-repeat spin d-inline-block"></i> Waiting for stream data...
+                        </div>
+                    {% else %}
+                        <div class="text-muted-custom metric text-center">
+                            <i class="bi bi-camera-video-off fs-1 d-block mb-2"></i>
+                            STREAM OFFLINE<br>
+                            <small class="text-secondary">Start a monitoring session to view feed</small>
+                        </div>
+                    {% endif %}
+
+                </div>
+                {% if active_session %}
+                <div class="card-footer bg-transparent border-0 px-3 py-2 text-muted-custom metric small d-flex justify-content-between">
+                    <span>RTSP: {{ active_session.camera.rtsp_url }}</span>
+                    <span id="hud-stats">FPS: -- | Lat: --ms</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Inventory Table -->
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span>Live Inventory Snapshot</span>
+            <span class="badge bg-dark border border-secondary text-secondary" id="inventory-time">--:--:--</span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover mb-0" id="inventory-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th class="text-end">Current</th>
+                        <th class="text-end">Missing</th>
+                        <th class="text-end">Capacity</th>
+                        <th class="text-end">Stock %</th>
+                        <th class="text-center">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="inventory-tbody">
+                    <tr><td colspan="6" class="text-center text-muted-custom py-4">Waiting for data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% if active_session %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const sessionId = "{{ active_session.id }}";
+        const wsProtocol = window.location.protocol === "https:" ? "wss://" : "ws://";
+        const wsUrl = wsProtocol + window.location.host + "/ws/session/" + sessionId + "/";
+        
+        let ws = new WebSocket(wsUrl);
+        
+        const statusDot = document.getElementById('ws-dot');
+        const statusText = document.getElementById('ws-text');
+        
+        ws.onopen = function(e) {
+            statusDot.className = 'status-dot active';
+            statusText.innerText = 'Connected';
+            statusText.parentElement.classList.replace('text-secondary', 'text-ok');
+            statusText.parentElement.classList.replace('border-secondary', 'border-success');
+        };
+        
+        ws.onclose = function(e) {
+            statusDot.className = 'status-dot inactive';
+            statusText.innerText = 'Disconnected';
+            statusText.parentElement.classList.replace('text-ok', 'text-secondary');
+            statusText.parentElement.classList.replace('border-success', 'border-secondary');
+        };
+
+        ws.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            
+            // 1. Update KPI Cards
+            const osaEl = document.getElementById('kpi-osa');
+            osaEl.innerText = data.stock_pct.toFixed(1) + '%';
+            osaEl.className = 'fs-1 metric ' + (data.stock_pct >= 80 ? 'text-ok' : (data.stock_pct >= 60 ? 'text-warning' : 'text-critical'));
+            
+            document.getElementById('kpi-total').innerText = data.total_products;
+            
+            const missingEl = document.getElementById('kpi-missing');
+            missingEl.innerText = data.missing_count;
+            missingEl.className = 'fs-1 metric ' + (data.missing_count > 0 ? 'text-warning' : 'text-white');
+            
+            document.getElementById('kpi-voids').innerText = data.void_detections;
+            
+            // 2. Update Image & HUD
+            const img = document.getElementById('live-frame');
+            const waiting = document.getElementById('stream-waiting');
+            if (data.annotated_image_b64) {
+                img.src = "data:image/jpeg;base64," + data.annotated_image_b64;
+                if (img.style.display === 'none') {
+                    img.style.display = 'block';
+                    if (waiting) waiting.style.display = 'none';
+                }
+            }
+            
+            const fpsLat = `FPS: ${data.fps} | Latency: ${data.latency_ms} ms`;
+            document.getElementById('telemetry-box').innerText = fpsLat;
+            document.getElementById('hud-stats').innerText = `FPS: ${data.fps} | Lat: ${data.latency_ms}ms`;
+            
+            const now = new Date();
+            document.getElementById('inventory-time').innerText = now.toLocaleTimeString();
+
+            // 3. Rebuild Inventory Table
+            const tbody = document.getElementById('inventory-tbody');
+            if (data.products && data.products.length > 0) {
+                let html = '';
+                data.products.forEach(p => {
+                    let statusClass, statusText;
+                    if (p.stock_pct >= 80) { statusClass = 'badge-ok'; statusText = 'OK'; }
+                    else if (p.stock_pct >= 60) { statusClass = 'badge-warning'; statusText = 'WARNING'; }
+                    else { statusClass = 'badge-critical'; statusText = 'CRITICAL'; }
+                    
+                    let pctColor = p.stock_pct >= 80 ? 'text-ok' : (p.stock_pct >= 60 ? 'text-warning' : 'text-critical');
+                    
+                    html += `<tr>
+                        <td class="fw-medium">${p.name}</td>
+                        <td class="text-end metric">${p.current}</td>
+                        <td class="text-end metric">${p.missing}</td>
+                        <td class="text-end metric text-muted-custom">${p.capacity}</td>
+                        <td class="text-end metric ${pctColor}">${p.stock_pct.toFixed(1)}%</td>
+                        <td class="text-center"><span class="badge ${statusClass}">${statusText}</span></td>
+                    </tr>`;
+                });
+                tbody.innerHTML = html;
+            } else {
+                tbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted-custom py-4">No products detected.</td></tr>';
+            }
+
+            // 4. Alerts
+            if (data.alert_events && data.alert_events.length > 0) {
+                const noAlerts = document.getElementById('no-alerts-msg');
+                if (noAlerts) noAlerts.remove();
+                
+                const alertsList = document.getElementById('alerts-list');
+                data.alert_events.forEach(alert => {
+                    const badgeClass = alert.severity === 'critical' ? 'badge-critical' : 'badge-warning';
+                    const newEl = document.createElement('div');
+                    newEl.className = 'list-group-item bg-transparent border-dark px-3 py-2';
+                    newEl.innerHTML = `
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <h6 class="mb-1 text-white fs-6">
+                                <span class="badge ${badgeClass} me-1">${alert.severity.toUpperCase()}</span>
+                                ${alert.product_name || "Global"}
+                            </h6>
+                            <small class="text-muted-custom">Just now</small>
+                        </div>
+                        <p class="mb-0 small text-muted-custom">Stock level dropped to <span class="metric text-white">${alert.stock_pct_at_trigger.toFixed(1)}%</span></p>
+                    `;
+                    alertsList.prepend(newEl);
+                });
+                
+                // Keep only last 10
+                while (alertsList.children.length > 10) {
+                    alertsList.removeChild(alertsList.lastChild);
+                }
+            }
+        };
+    });
+</script>
+<style>
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    .spin { animation: spin 2s linear infinite; }
+</style>
+{% endif %}
+{% endblock %}

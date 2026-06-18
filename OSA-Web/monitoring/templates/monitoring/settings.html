@@ -1,0 +1,154 @@
+{% extends 'monitoring/base.html' %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <h4 class="mb-4">System Settings</h4>
+
+    <div class="row g-4 mb-5">
+        
+        <!-- Left Col: Camera Form & List -->
+        <div class="col-lg-6">
+            <!-- Add Camera Card -->
+            <div class="card p-4 mb-4">
+                <h5 class="mb-4"><i class="bi bi-camera-video me-2"></i> Add Camera Config</h5>
+                <form method="post" action="{% url 'monitoring:settings' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="camera">
+                    
+                    <div class="mb-3">
+                        <label class="form-label text-muted-custom small">Name</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-muted-custom small">RTSP URL</label>
+                        <input type="text" name="rtsp_url" class="form-control" placeholder="rtsp://..." required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted-custom small">Frame Skip</label>
+                            <input type="number" name="frame_skip" class="form-control" value="5">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted-custom small">Conf. Threshold</label>
+                            <input type="number" step="0.05" name="confidence_threshold" class="form-control" value="0.5">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-muted-custom small">Void Conf. Threshold</label>
+                        <input type="number" step="0.05" name="void_confidence_threshold" class="form-control" value="0.5">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success w-100">Save Camera</button>
+                </form>
+            </div>
+
+            <!-- Existing Cameras Table -->
+            <div class="card">
+                <div class="card-header">Configured Cameras</div>
+                <div class="table-responsive">
+                    <table class="table mb-0 table-sm">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>RTSP</th>
+                                <th class="text-end">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for c in cameras %}
+                            <tr>
+                                <td>{{ c.name }}</td>
+                                <td class="metric text-muted-custom text-truncate" style="max-width: 150px;">{{ c.rtsp_url }}</td>
+                                <td class="text-end">
+                                    <form method="post" action="{% url 'monitoring:delete_camera' c.id %}" style="display:inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="3" class="text-center text-muted-custom py-3">No cameras configured</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Col: Alert Form & List -->
+        <div class="col-lg-6">
+            <!-- Add Alert Card -->
+            <div class="card p-4 mb-4">
+                <h5 class="mb-4"><i class="bi bi-bell me-2"></i> Add Alert Rule</h5>
+                <form method="post" action="{% url 'monitoring:settings' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="alert">
+                    
+                    <div class="mb-3">
+                        <label class="form-label text-muted-custom small">Product Name (Leave empty for Global)</label>
+                        <input type="text" name="product_name" class="form-control">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted-custom small">Threshold %</label>
+                            <input type="number" step="0.1" name="threshold_pct" class="form-control" value="80.0" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted-custom small">Severity</label>
+                            <select name="severity" class="form-select" required>
+                                <option value="warning">Warning (Orange)</option>
+                                <option value="critical">Critical (Red)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" name="enabled" class="form-check-input" id="enabledCheck" checked>
+                        <label class="form-check-label text-white" for="enabledCheck">Enabled</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success w-100">Save Rule</button>
+                </form>
+            </div>
+
+            <!-- Existing Alerts Table -->
+            <div class="card">
+                <div class="card-header">Active Alert Rules</div>
+                <div class="table-responsive">
+                    <table class="table mb-0 table-sm">
+                        <thead>
+                            <tr>
+                                <th>Target</th>
+                                <th>Threshold</th>
+                                <th>Severity</th>
+                                <th class="text-end">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for r in alert_rules %}
+                            <tr>
+                                <td>{{ r.product_name|default:"GLOBAL" }}</td>
+                                <td class="metric">< {{ r.threshold_pct }}%</td>
+                                <td>
+                                    <span class="badge {% if r.severity == 'critical' %}badge-critical{% else %}badge-warning{% endif %}">
+                                        {{ r.severity|upper }}
+                                    </span>
+                                </td>
+                                <td class="text-end">
+                                    <form method="post" action="{% url 'monitoring:delete_alert' r.id %}" style="display:inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="4" class="text-center text-muted-custom py-3">No alert rules</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

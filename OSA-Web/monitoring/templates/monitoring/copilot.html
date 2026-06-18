@@ -1,0 +1,663 @@
+{% extends 'monitoring/base.html' %}
+
+{% block extra_head %}
+<!-- Marked JS for parsing markdown responses into beautiful HTML -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<style>
+    /* Premium Glassmorphic Styles */
+    .glass-card {
+        background: rgba(26, 29, 46, 0.7) !important;
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        transition: all 0.3s ease;
+    }
+    
+    .chat-layout {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        gap: 1.5rem;
+        height: calc(100vh - 120px);
+        min-height: 500px;
+    }
+    
+    @media (max-width: 991px) {
+        .chat-layout {
+            grid-template-columns: 1fr;
+            height: auto;
+        }
+        .data-pane {
+            display: none; /* Hide interactive dock on small viewports for ease */
+        }
+    }
+
+    /* Left Chat Workspace */
+    .chat-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .chat-messages {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        scroll-behavior: smooth;
+    }
+
+    /* Custom Scrollbar for Chat */
+    .chat-messages::-webkit-scrollbar {
+        width: 6px;
+    }
+    .chat-messages::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+    }
+    .chat-messages::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+    }
+    .chat-messages::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Bubbles */
+    .message-bubble {
+        max-width: 85%;
+        padding: 0.9rem 1.2rem;
+        border-radius: 12px;
+        line-height: 1.5;
+        position: relative;
+        animation: fadeInUp 0.3s ease-out both;
+    }
+
+    .message-bubble.user {
+        align-self: flex-end;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        border-bottom-right-radius: 2px;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .message-bubble.assistant {
+        align-self: flex-start;
+        background: rgba(18, 21, 31, 0.8);
+        border-bottom-left-radius: 2px;
+        color: #e2e8f0;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .message-bubble table {
+        width: 100%;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+    }
+
+    .message-bubble th, .message-bubble td {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0.4rem 0.6rem;
+        text-align: left;
+    }
+
+    .message-bubble th {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: var(--color-secondary);
+    }
+
+    /* Suggested Cards */
+    .suggestions-container {
+        display: flex;
+        gap: 0.75rem;
+        overflow-x: auto;
+        padding: 0.5rem 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(15, 17, 23, 0.4);
+    }
+
+    .suggestions-container::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .suggestion-card {
+        background: rgba(26, 29, 46, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        color: var(--color-secondary);
+        padding: 0.5rem 0.9rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+    }
+
+    .suggestion-card:hover {
+        background: rgba(0, 230, 118, 0.1);
+        border-color: var(--accent-ok);
+        color: #fff;
+        transform: translateY(-2px);
+    }
+
+    /* Input Dock */
+    .input-dock {
+        padding: 1rem 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(15, 17, 23, 0.6);
+    }
+
+    .input-wrapper {
+        position: relative;
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .chat-input {
+        flex-grow: 1;
+        background: #0c0e14 !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 0.8rem 1rem;
+        color: #fff;
+        font-size: 0.9rem;
+        resize: none;
+        height: 50px;
+        line-height: 1.4;
+        transition: border-color 0.2s;
+    }
+
+    .chat-input:focus {
+        outline: none;
+        border-color: var(--accent-ok);
+        box-shadow: 0 0 10px rgba(0, 230, 118, 0.2);
+    }
+
+    .send-btn {
+        background: var(--accent-ok);
+        border: none;
+        color: #000;
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: all 0.2s ease;
+    }
+
+    .send-btn:hover {
+        background: #00b359;
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+    }
+
+    .send-btn:disabled {
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.2);
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* Right Data Dock */
+    .data-pane {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .data-header {
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(18, 21, 31, 0.4);
+    }
+
+    .data-content {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Typing Indicator Animation */
+    .typing-indicator {
+        display: flex;
+        gap: 4px;
+        padding: 0.5rem 1rem;
+        background: rgba(18, 21, 31, 0.6);
+        border-radius: 12px;
+        width: fit-content;
+        align-self: flex-start;
+        animation: fadeInUp 0.2s ease-out;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .typing-dot {
+        width: 6px;
+        height: 6px;
+        background-color: var(--color-secondary);
+        border-radius: 50%;
+        animation: bounce 1.4s infinite ease-in-out both;
+    }
+
+    .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+    @keyframes bounce {
+        0%, 80%, 100% { transform: scale(0); }
+        40% { transform: scale(1.0); }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .log-badge {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        background-color: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        color: var(--color-secondary);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="chat-layout">
+        
+        <!-- Left: Chat Panel -->
+        <div class="card glass-card chat-container">
+            <!-- Header -->
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-robot text-ok fs-5"></i>
+                    <div>
+                        <span class="text-white fw-semibold">AI CO-PILOT ASSISTANT</span>
+                        <span class="status-dot active ms-2" style="width: 6px; height: 6px;"></span>
+                        <small class="text-muted-custom ms-1" style="font-size: 0.75rem;">Llama 3.3 70B via Groq</small>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-outline-danger" id="clear-chat-btn" title="Clear conversation history">
+                    <i class="bi bi-trash"></i> Clear Chat
+                </button>
+            </div>
+
+            <!-- Messages Box -->
+            <div class="chat-messages" id="chat-messages-box">
+                <!-- Welcome Message -->
+                <div class="message-bubble assistant">
+                    <strong>Welcome to the OSA AI Control Deck!</strong> 👋
+                    <p class="mt-2 mb-0">
+                        I am your context-aware co-pilot. I have live access to the database and can query active sessions, camera details, system alerts, and shelf stock histories. 
+                    </p>
+                    <p class="mt-2 mb-0">
+                        Try asking me about **inventory levels**, **recent system warnings**, or **product stock trends**!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Suggested prompts horizontal scroll -->
+            <div class="suggestions-container" id="suggestions-box">
+                <div class="suggestion-card" onclick="useSuggestion('What is the current inventory status?')">📋 Current Inventory Status</div>
+                <div class="suggestion-card" onclick="useSuggestion('Are there any active camera sessions?')">🎥 Active Sessions</div>
+                <div class="suggestion-card" onclick="useSuggestion('What alerts were triggered recently?')">⚠️ Recent Alerts</div>
+                <div class="suggestion-card" onclick="useSuggestion('Show me configured cameras')">⚙️ Camera Configs</div>
+                <div class="suggestion-card" onclick="useSuggestion('Plot the stock history of product1')">📈 Plot product1 History</div>
+            </div>
+
+            <!-- Input area -->
+            <div class="input-dock">
+                <div class="input-wrapper">
+                    <textarea class="form-control chat-input" id="prompt-input" placeholder="Ask anything about inventory, cameras or alerts..." rows="1"></textarea>
+                    <button class="send-btn" id="send-button" onclick="submitUserQuery()" title="Send prompt">
+                        <i class="bi bi-send-fill" id="send-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Interactive Data Pane -->
+        <div class="card glass-card data-pane">
+            <div class="data-header">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-cpu text-ok"></i>
+                    <span class="text-white fw-semibold uppercase" style="font-size: 0.8rem; letter-spacing: 0.5px;">Interactive Data Dock</span>
+                </div>
+                <span id="activity-badge" class="log-badge">STANDBY</span>
+            </div>
+            
+            <div class="data-content" id="data-content-box">
+                <!-- Initial Standby State -->
+                <div id="standby-graphics" class="text-center p-4">
+                    <i class="bi bi-activity text-secondary" style="font-size: 4rem; opacity: 0.3;"></i>
+                    <h5 class="text-muted-custom mt-3">Ready to Visualize</h5>
+                    <p class="text-muted-custom small mx-auto" style="max-width: 250px;">
+                        When you ask the AI to draw graphs or summarize metrics, the details will appear instantly in this pane.
+                    </p>
+                </div>
+
+                <!-- Live Chart Container (Hidden by default) -->
+                <div id="chart-dock-container" class="w-100 h-100 d-none flex-column justify-content-between">
+                    <div>
+                        <h6 id="chart-product-title" class="text-white fw-bold mb-1 text-center">Stock Levels</h6>
+                        <p class="text-muted-custom small text-center mb-3">Chronological percentage levels derived from camera analysis</p>
+                    </div>
+                    <div style="position: relative; flex-grow: 1; min-height: 250px; width: 100%;">
+                        <canvas id="coPilotLiveChart"></canvas>
+                    </div>
+                    <div class="mt-3 p-2 bg-dark rounded border border-secondary text-center small text-muted-custom">
+                        <i class="bi bi-info-circle text-ok me-1"></i> Values update in real-time based on monitoring intervals.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Configuration for Marked Markdown Parser
+    marked.setOptions({
+        breaks: true,
+        gfm: true
+    });
+
+    const chatBox = document.getElementById('chat-messages-box');
+    const promptInput = document.getElementById('prompt-input');
+    const sendButton = document.getElementById('send-button');
+    const dataContentBox = document.getElementById('data-content-box');
+    const standbyGraphics = document.getElementById('standby-graphics');
+    const chartDockContainer = document.getElementById('chart-dock-container');
+    const chartTitle = document.getElementById('chart-product-title');
+    const activityBadge = document.getElementById('activity-badge');
+    const clearChatBtn = document.getElementById('clear-chat-btn');
+
+    let activeChart = null;
+
+    // Expandable Textarea Logic
+    promptInput.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight > 150 ? 150 : this.scrollHeight) + 'px';
+    });
+
+    promptInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            submitUserQuery();
+        }
+    });
+
+    function scrollChatToBottom() {
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function useSuggestion(text) {
+        promptInput.value = text;
+        promptInput.focus();
+        promptInput.style.height = 'auto';
+        promptInput.style.height = promptInput.scrollHeight + 'px';
+    }
+
+    function toggleSending(isSending) {
+        if (isSending) {
+            promptInput.disabled = true;
+            sendButton.disabled = true;
+            document.getElementById('send-icon').className = 'bi bi-hourglass-split';
+            
+            // Append Typing Indicator
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.id = 'chat-typing-indicator';
+            indicator.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            `;
+            chatBox.appendChild(indicator);
+            scrollChatToBottom();
+        } else {
+            promptInput.disabled = false;
+            sendButton.disabled = false;
+            document.getElementById('send-icon').className = 'bi bi-send-fill';
+            
+            // Remove Typing Indicator
+            const indicator = document.getElementById('chat-typing-indicator');
+            if (indicator) indicator.remove();
+        }
+    }
+
+    function submitUserQuery() {
+        const prompt = promptInput.value.trim();
+        if (!prompt) return;
+
+        // Display user bubble immediately
+        appendMessageBubble(prompt, 'user');
+        promptInput.value = '';
+        promptInput.style.height = '50px';
+        
+        toggleSending(true);
+        activityBadge.textContent = 'RUNNING TOOL...';
+        activityBadge.classList.add('text-warning');
+
+        fetch("{% url 'monitoring:copilot_chat_api' %}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({ prompt: prompt })
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => { throw err; });
+            }
+            return response.json();
+        })
+        .then(data => {
+            toggleSending(false);
+            
+            if (data.status === 'success') {
+                // Append AI Bubble (markdown parsed)
+                appendMessageBubble(data.message, 'assistant');
+                
+                // If the tool called was get_product_history and we have chart data, plot it!
+                if (data.chart_data && data.chart_data.labels && data.chart_data.labels.length > 0) {
+                    renderDockChart(data.chart_data);
+                    activityBadge.textContent = 'CHART DISPLAYED';
+                    activityBadge.className = 'log-badge text-success';
+                } else if (data.tool_calls && data.tool_calls.length > 0) {
+                    activityBadge.textContent = 'QUERY COMPLETED';
+                    activityBadge.className = 'log-badge text-ok';
+                } else {
+                    activityBadge.textContent = 'STANDBY';
+                    activityBadge.className = 'log-badge';
+                }
+            } else {
+                appendMessageBubble(`⚠️ **Error:** ${data.message || 'Unknown response structure.'}`, 'assistant');
+                activityBadge.textContent = 'ERROR';
+                activityBadge.className = 'log-badge text-danger';
+            }
+        })
+        .catch(err => {
+            toggleSending(false);
+            appendMessageBubble(`❌ **Connection Error:** ${err.message || 'Failed to communicate with AI endpoint.'}`, 'assistant');
+            activityBadge.textContent = 'ERROR';
+            activityBadge.className = 'log-badge text-danger';
+        });
+    }
+
+    function appendMessageBubble(text, role) {
+        const bubble = document.createElement('div');
+        bubble.className = `message-bubble ${role}`;
+        
+        if (role === 'user') {
+            bubble.textContent = text;
+        } else {
+            // Render beautiful markdown tables and formatting using Marked
+            bubble.innerHTML = marked.parse(text);
+        }
+        
+        chatBox.appendChild(bubble);
+        scrollChatToBottom();
+    }
+
+    function renderDockChart(chartData) {
+        // Swap visibility
+        standbyGraphics.classList.add('d-none');
+        chartDockContainer.classList.remove('d-none');
+        chartDockContainer.classList.add('d-flex');
+        
+        chartTitle.textContent = `${chartData.product_name.toUpperCase()} Stock Levels`;
+
+        const ctx = document.getElementById('coPilotLiveChart').getContext('2d');
+        
+        if (activeChart) {
+            activeChart.destroy();
+        }
+
+        activeChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: chartData.labels,
+                datasets: [
+                    {
+                        label: 'Stock %',
+                        data: chartData.stock,
+                        borderColor: '#00e676',
+                        backgroundColor: 'rgba(0, 230, 118, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#00e676',
+                        pointRadius: 4,
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Missing Count',
+                        data: chartData.missing,
+                        borderColor: '#f44336',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        pointBackgroundColor: '#f44336',
+                        pointRadius: 2,
+                        yAxisID: 'y1',
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#8892a4',
+                            font: { family: 'Inter', size: 11 }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: { color: '#8892a4', font: { family: 'JetBrains Mono', size: 10 } }
+                    },
+                    y: {
+                        min: 0,
+                        max: 100,
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: {
+                            color: '#8892a4',
+                            font: { family: 'JetBrains Mono', size: 10 },
+                            callback: function(value) { return value + '%'; }
+                        }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { drawOnChartArea: false },
+                        ticks: {
+                            color: '#f44336',
+                            font: { family: 'JetBrains Mono', size: 10 },
+                            stepSize: 1
+                        },
+                        title: {
+                            display: true,
+                            text: 'Missing Items',
+                            color: '#f44336',
+                            font: { family: 'Inter', size: 10 }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Clear Chat Handler
+    clearChatBtn.addEventListener('click', function() {
+        if (confirm("Are you sure you want to clear the conversation history?")) {
+            fetch("{% url 'monitoring:clear_chat_history' %}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Reset UI
+                    chatBox.innerHTML = `
+                        <div class="message-bubble assistant">
+                            <strong>Welcome to the OSA AI Control Deck!</strong> 👋
+                            <p class="mt-2 mb-0">
+                                I am your context-aware co-pilot. I have live access to the database and can query active sessions, camera details, system alerts, and shelf stock histories. 
+                            </p>
+                            <p class="mt-2 mb-0">
+                                Try asking me about **inventory levels**, **recent system warnings**, or **product stock trends**!
+                            </p>
+                        </div>
+                    `;
+                    standbyGraphics.classList.remove('d-none');
+                    chartDockContainer.classList.add('d-none');
+                    chartDockContainer.classList.remove('d-flex');
+                    if (activeChart) {
+                        activeChart.destroy();
+                        activeChart = null;
+                    }
+                    activityBadge.textContent = 'CLEARED';
+                    activityBadge.className = 'log-badge';
+                    setTimeout(() => {
+                        activityBadge.textContent = 'STANDBY';
+                    }, 2000);
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

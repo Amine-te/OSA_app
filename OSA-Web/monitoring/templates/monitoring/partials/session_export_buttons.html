@@ -1,0 +1,14 @@
+<div class="btn-group">
+    <a href="{% url 'monitoring:export_session_table' pk=pk dataset=dataset %}?format=csv"
+       class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-filetype-csv"></i> CSV
+    </a>
+    <a href="{% url 'monitoring:export_session_table' pk=pk dataset=dataset %}?format=json"
+       class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-filetype-json"></i> JSON
+    </a>
+    <a href="{% url 'monitoring:export_session_table' pk=pk dataset=dataset %}?format=pdf"
+       class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-filetype-pdf"></i> PDF
+    </a>
+</div>

@@ -1,4 +1,4 @@
-from src.detection.classifier import classify_crop
+from shared.detection.classifier import classify_crop
 
 def detect_products(image_path, image_rgb, yolo_model, confidence_threshold, cnn_transform, cnn_model, class_names, device):
     """Detect and classify products using YOLO + CNN"""

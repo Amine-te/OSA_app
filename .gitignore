@@ -1,19 +1,66 @@
-# Python
+# ── Python ────────────────────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
+*.pyo
 .Python
 
-# Virtual Environment
+# ── Virtual Environments ──────────────────────────────────────────────────────
 venv/
 env/
 ENV/
-.venv
+.venv/
+*/.venv/
+*/venv/
 
-# Distribution / packaging
+# ── Distribution / Packaging ──────────────────────────────────────────────────
 build/
 dist/
 *.egg-info/
+*.egg
+MANIFEST
 
+# ── Testing ───────────────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# ── Secrets & Environment ─────────────────────────────────────────────────────
+.env
+OSA-Web/.env
+# Keep .env.example committed (no real secrets)
+!.env.example
+!OSA-Web/.env.example
+
+# ── Databases & Caches ───────────────────────────────────────────────────────
+*.sqlite3
+dump.rdb
+*.rdb
+
+# ── Jupyter Notebooks ─────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── Model Weights (large binaries — use Git LFS or external storage) ──────────
+models/**/*.pt
+models/**/*.pth
+models/**/*.onnx
+models/**/*.engine
+
+# ── OSA-Desktop: session state ───────────────────────────────────────────────
 OSA-Desktop/sessions/
+
+# ── OSA-Web: static collection & media uploads ───────────────────────────────
+OSA-Web/staticfiles/
+OSA-Web/media/
+
+# ── IDEs & Editors ────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store

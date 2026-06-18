@@ -1,8 +1,8 @@
 import torch
 import cv2
-from src.config import get_device, DEFAULT_CNN_TRANSFORM
-from src.networks.cnn import LightweightCNN
-from src.detection.product_detector import detect_products
+from shared.config import get_device, DEFAULT_CNN_TRANSFORM
+from shared.networks.cnn import LightweightCNN
+from shared.detection.product_detector import detect_products
 import numpy as np
 
 class YOLOCNNPipeline:

@@ -1,0 +1,297 @@
+{% extends 'monitoring/base.html' %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="mb-0">Product Analytics</h4>
+        <div>
+            {% include 'monitoring/partials/export_buttons.html' with dataset='analytics_kpi' %}
+        </div>
+    </div>
+
+    <!-- Section 1: KPI Table -->
+    <div class="card mb-5">
+        <div class="card-header">Global KPI Summary</div>
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th class="text-end">OSA Rate (Avg ≥ 80%)</th>
+                        <th class="text-end">OOS Rate (Avg < 80%)</th>
+                        <th class="text-end">Peak Missing</th>
+                        <th class="text-end">Time < 80% (sec)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in kpi_table %}
+                    <tr>
+                        <td class="fw-medium">{{ row.name }}</td>
+                        <td class="text-end metric {% if row.osa_rate >= 80 %}text-ok{% elif row.osa_rate >= 60 %}text-warning{% else %}text-critical{% endif %}">
+                            {{ row.osa_rate|floatformat:1 }}%
+                        </td>
+                        <td class="text-end metric">{{ row.oos_rate|floatformat:1 }}%</td>
+                        <td class="text-end metric">{{ row.peak_missing }}</td>
+                        <td class="text-end metric text-muted-custom">{{ row.time_below_80 }}s</td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="5" class="text-center text-muted-custom py-4">No analytics data available.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Section 2: Time Series -->
+    <div class="card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">Deep Dive: Time Series</h5>
+            {% if selected_product %}
+                {% include 'monitoring/partials/export_buttons.html' with dataset='analytics_timeseries' selected_product=selected_product %}
+            {% endif %}
+        </div>
+        <form method="get" class="mb-4 d-flex gap-2" style="max-width: 400px;">
+            <select name="selected_product" class="form-select" onchange="this.form.submit()">
+                <option value="">-- Select a Product --</option>
+                {% for row in kpi_table %}
+                    <option value="{{ row.name }}" {% if selected_product == row.name %}selected{% endif %}>{{ row.name }}</option>
+                {% endfor %}
+            </select>
+        </form>
+
+        {% if selected_product %}
+            {% if has_chart_data %}
+            {% if running_session_id %}
+            <div class="text-end text-ok small mb-3"><i class="bi bi-broadcast"></i> Live updates while session #{{ running_session_id }} is running</div>
+            {% endif %}
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card p-3 h-100">
+                        <div class="card-header border-0 px-0 pt-0">A. OSA Rate %</div>
+                        <div style="height: 200px;">
+                            <canvas id="chartA"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-3 h-100">
+                        <div class="card-header border-0 px-0 pt-0">B. OOS Rate % (&lt; 80%)</div>
+                        <div style="height: 200px;">
+                            <canvas id="chartB"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-3 h-100">
+                        <div class="card-header border-0 px-0 pt-0">C. Missing Items</div>
+                        <div style="height: 200px;">
+                            <canvas id="chartC"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-3 h-100">
+                        <div class="card-header border-0 px-0 pt-0">D. Threshold Events (&lt; 80%)</div>
+                        <div style="height: 200px;">
+                            <canvas id="chartD"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="text-center py-5 border border-secondary border-opacity-25 rounded bg-dark">
+                <div class="text-muted-custom">No samples found for <strong class="text-white">{{ selected_product }}</strong>. Run a monitoring session first.</div>
+            </div>
+            {% endif %}
+        {% else %}
+            <div class="text-center py-5 border border-secondary border-opacity-25 rounded bg-dark">
+                <i class="bi bi-graph-up text-muted-custom fs-1 mb-2 d-block"></i>
+                <div class="text-muted-custom">Select a product to view time series charts.</div>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% if selected_product and has_chart_data %}
+<script id="selected-product-name" type="application/json">"{{ selected_product|escapejs }}"</script>
+<script>
+    const productChartData = {{ product_chart_data|safe }};
+    const runningSessionId = {{ running_session_id|default:"null" }};
+    const MAX_CHART_POINTS = 200;
+
+    Chart.defaults.color = '#8892a4';
+    Chart.defaults.font.family = "'JetBrains Mono', monospace";
+    Chart.defaults.plugins.legend.display = false;
+    const gridColor = '#2a2d3e';
+    const chartOpts = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: { grid: { color: gridColor } },
+            x: { grid: { display: false }, ticks: { maxTicksLimit: 8 } },
+        },
+    };
+
+    const chartA = new Chart(document.getElementById('chartA'), {
+        type: 'line',
+        data: {
+            labels: productChartData.labels,
+            datasets: [{
+                data: productChartData.stock,
+                borderColor: '#00e676',
+                backgroundColor: 'rgba(0, 230, 118, 0.1)',
+                fill: true,
+                tension: 0.3,
+                borderWidth: 2,
+                pointRadius: 2,
+            }],
+        },
+        options: {
+            ...chartOpts,
+            scales: {
+                y: { min: 0, max: 100, grid: { color: gridColor } },
+                x: { grid: { display: false }, ticks: { maxTicksLimit: 8 } },
+            },
+        },
+    });
+
+    const chartB = new Chart(document.getElementById('chartB'), {
+        type: 'line',
+        data: {
+            labels: productChartData.labels,
+            datasets: [{
+                data: productChartData.oos,
+                borderColor: '#ff9800',
+                backgroundColor: 'rgba(255, 152, 0, 0.15)',
+                fill: true,
+                tension: 0.3,
+                borderWidth: 2,
+                pointRadius: 2,
+                spanGaps: false,
+            }],
+        },
+        options: {
+            ...chartOpts,
+            scales: {
+                y: { min: 0, max: 100, grid: { color: gridColor } },
+                x: { grid: { display: false }, ticks: { maxTicksLimit: 8 } },
+            },
+        },
+    });
+
+    const chartC = new Chart(document.getElementById('chartC'), {
+        type: 'bar',
+        data: {
+            labels: productChartData.labels,
+            datasets: [{
+                data: productChartData.missing,
+                backgroundColor: '#f44336',
+            }],
+        },
+        options: {
+            ...chartOpts,
+            scales: {
+                y: { beginAtZero: true, grid: { color: gridColor }, ticks: { stepSize: 1 } },
+                x: { grid: { display: false }, ticks: { maxTicksLimit: 8 } },
+            },
+        },
+    });
+
+    const chartD = new Chart(document.getElementById('chartD'), {
+        type: 'bar',
+        data: {
+            labels: productChartData.labels,
+            datasets: [{
+                data: productChartData.threshold_events,
+                backgroundColor: productChartData.threshold_events.map(v =>
+                    v ? 'rgba(244, 67, 54, 0.8)' : 'rgba(136, 146, 164, 0.3)'
+                ),
+            }],
+        },
+        options: {
+            ...chartOpts,
+            scales: {
+                y: {
+                    min: 0,
+                    max: 1,
+                    ticks: { stepSize: 1, callback: v => v ? 'Below 80%' : 'OK' },
+                    grid: { color: gridColor },
+                },
+                x: { grid: { display: false }, ticks: { maxTicksLimit: 8 } },
+            },
+        },
+    });
+
+    function trimCharts() {
+        while (chartA.data.labels.length > MAX_CHART_POINTS) {
+            [chartA, chartB, chartC, chartD].forEach(chart => chart.data.labels.shift());
+            chartA.data.datasets[0].data.shift();
+            chartB.data.datasets[0].data.shift();
+            chartC.data.datasets[0].data.shift();
+            chartD.data.datasets[0].data.shift();
+            chartD.data.datasets[0].backgroundColor.shift();
+        }
+    }
+
+    function setWsStatus(connected) {
+        const dot = document.getElementById('ws-dot');
+        const text = document.getElementById('ws-text');
+        const badge = text?.parentElement;
+        if (!dot || !text) return;
+        if (connected) {
+            dot.className = 'status-dot active';
+            text.innerText = 'Connected';
+            badge?.classList.replace('text-secondary', 'text-ok');
+            badge?.classList.replace('border-secondary', 'border-success');
+        } else {
+            dot.className = 'status-dot inactive';
+            text.innerText = 'Disconnected';
+            badge?.classList.replace('text-ok', 'text-secondary');
+            badge?.classList.replace('border-success', 'border-secondary');
+        }
+    }
+
+    if (runningSessionId) {
+        const productName = JSON.parse(document.getElementById('selected-product-name').textContent);
+        const wsProtocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
+        const ws = new WebSocket(wsProtocol + window.location.host + '/ws/session/' + runningSessionId + '/');
+
+        ws.onopen = () => setWsStatus(true);
+        ws.onclose = () => setWsStatus(false);
+        ws.onmessage = (e) => {
+            const data = JSON.parse(e.data);
+            const product = (data.products || []).find(p => p.name === productName);
+            if (!product) return;
+
+            const label = new Date().toLocaleTimeString();
+            const pct = product.stock_pct;
+            const missing = product.missing;
+            const threshold = pct < 80 ? 1 : 0;
+
+            chartA.data.labels.push(label);
+            chartA.data.datasets[0].data.push(pct);
+            chartB.data.labels.push(label);
+            chartB.data.datasets[0].data.push(pct < 80 ? pct : null);
+            chartC.data.labels.push(label);
+            chartC.data.datasets[0].data.push(missing);
+            chartD.data.labels.push(label);
+            chartD.data.datasets[0].data.push(threshold);
+            chartD.data.datasets[0].backgroundColor.push(
+                threshold ? 'rgba(244, 67, 54, 0.8)' : 'rgba(136, 146, 164, 0.3)'
+            );
+
+            trimCharts();
+
+            chartA.update('none');
+            chartB.update('none');
+            chartC.update('none');
+            chartD.update('none');
+        };
+    }
+</script>
+{% endif %}
+{% endblock %}

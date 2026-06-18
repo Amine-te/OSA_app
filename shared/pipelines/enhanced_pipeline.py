@@ -5,15 +5,15 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
-from src.config import get_device, DEFAULT_ASSIGNMENT_PARAMS, DEFAULT_CNN_TRANSFORM
-from src.networks.cnn import LightweightCNN
-from src.detection.product_detector import detect_products
-from src.detection.void_detector import detect_voids
-from src.analysis.shelf_patterns import analyze_shelf_patterns
-from src.analysis.spatial_context import analyze_spatial_context
-from src.analysis.void_assignment import intelligent_void_assignment_with_spatial_context, filter_isolated_voids
-from src.reporting.summary import generate_summary, print_detailed_summary
-from src.visualization.results_visualizer import visualize_complete_results
+from shared.config import get_device, DEFAULT_ASSIGNMENT_PARAMS, DEFAULT_CNN_TRANSFORM
+from shared.networks.cnn import LightweightCNN
+from shared.detection.product_detector import detect_products
+from shared.detection.void_detector import detect_voids
+from shared.analysis.shelf_patterns import analyze_shelf_patterns
+from shared.analysis.spatial_context import analyze_spatial_context
+from shared.analysis.void_assignment import intelligent_void_assignment_with_spatial_context, filter_isolated_voids
+from shared.reporting.summary import generate_summary, print_detailed_summary
+from shared.visualization.results_visualizer import visualize_complete_results
 
 class EnhancedRetailPipeline:
     """Complete pipeline combining YOLO detection, CNN classification, and intelligent void area detection"""
