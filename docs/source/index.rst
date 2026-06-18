@@ -68,7 +68,8 @@ This documentation provides comprehensive coverage of the On-Shelf Availability 
    data_documentation
    solution
    models
-   app
+   desktop_app
+   web_app
 
 ----
 
